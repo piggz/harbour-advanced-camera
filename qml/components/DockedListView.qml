@@ -8,8 +8,8 @@ DockedPanel {
     signal clicked(var value)
 
     width: parent.width / 2
-    height: parent.height - buttonLayout.height - 40
-
+    height: parent.height
+   
     dock: Dock.Left
     clip:true
 

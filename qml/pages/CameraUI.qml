@@ -4,7 +4,7 @@ import Sailfish.Media 1.0
 //import com.jolla.camera 1.0
 import QtMultimedia 5.4
 import QtQuick.Layouts 1.0
-import uk.co.piggz.harbour_advanced_camera 1.0
+//import uk.co.piggz.harbour_advanced_camera 1.0
 import "../components/"
 
 Page {
@@ -75,76 +75,69 @@ Page {
         }
     }
 
-    RowLayout {
-        id: buttonLayout
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        anchors.left: parent.left
-        anchors.margins: 20
-        height: parent.height / 8
-        spacing: 20
-        Rectangle {
-            color: '#999999'
-            Layout.fillWidth: false
-            Layout.minimumWidth: 300
-            Layout.preferredWidth: 300
-            Layout.maximumWidth: 300
-            Layout.minimumHeight: 150
-            Layout.preferredHeight: parent.height
-            radius: 10
-            Text {
-                anchors.centerIn: parent
-                text: "Effect"
-            }
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    if (panelEffects.expanded) {
+    Rectangle {
+        id: buttonPanel
+        property int buttonSize: ((height -Theme.paddingMedium) / 5) - Theme.paddingMedium
+        property bool menuVisible: false
+        color: "grey"
+        height: parent.height
+        width: buttonSize * 2 + 3 * Theme.paddingMedium
+        x: menuVisible ? 0 : -(width / 2)
+        y:0
+        Behavior on x {
+            NumberAnimation { duration: 150 }
+        }
+        
+        
+        Row {
+            spacing: Theme.paddingMedium
+            anchors.fill: parent
+            ColumnLayout {
+                id: colButtons
+                spacing: Theme.paddingMedium
+                width: buttonPanel.buttonSize
+                
+                RoundButton {
+                    id: btnScene
+                    Layout.preferredHeight: buttonPanel.buttonSize
+                    Layout.preferredWidth: buttonPanel.buttonSize                    
+                    Layout.fillHeight: false
+                    
+                    onClicked: {
+                     if (panelEffects.expanded) {
                         panelEffects.hide();
                     } else {
                         panelEffects.show();
                         panelExposure.hide();
                     }
-                }
-            }
-        }
-
-        Rectangle {
-            color: '#999999'
-            Layout.fillWidth: false
-            Layout.minimumWidth: 300
-            Layout.preferredWidth: 300
-            Layout.maximumWidth: 300
-            Layout.minimumHeight: 150
-            Layout.preferredHeight: parent.height
-            radius: 10
-            Text {
-                anchors.centerIn: parent
-                text: "Exposure"
-            }
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    if (panelExposure.expanded) {
-                        panelExposure.hide();
-                    } else {
-                        panelExposure.show();
-                        panelEffects.hide();
                     }
                 }
             }
-        }
-
-        Item {
-            Layout.fillWidth: true
-            Layout.preferredHeight: parent.height
+            Item {
+                id: colMenu
+                height: parent.height
+                width: buttonPanel.buttonSize
+                
+                RoundButton {
+                    id: btnMenu
+                    height: buttonPanel.buttonSize
+                    width: buttonPanel.buttonSize                    
+                    anchors.verticalCenter: parent.verticalCenter
+                    onClicked: {
+                    	buttonPanel.menuVisible = !buttonPanel.menuVisible;
+                    }
+                }
+                
+	    
+            }
+            
         }
 
     }
 
     DockedListView {
         id: panelEffects
-        model: modelEffects
+//        model: modelEffects
 
         onClicked: {
             camera.imageProcessing.setColorFilter(value);
@@ -153,13 +146,13 @@ Page {
 
     DockedListView {
         id: panelExposure
-        model: modelExposure
+    //    model: modelExposure
 
         onClicked: {
             camera.exposure.setExposureMode(value);
         }
     }
-
+/*
     EffectsModel {
         id: modelEffects
     }
@@ -167,7 +160,7 @@ Page {
     ExposureModel {
         id: modelExposure
     }
-
+*/
     /*
     GStreamerVideoOutput {
         id: videoOutput
@@ -188,7 +181,7 @@ Page {
     */
 
     Component.onCompleted: {
-        modelEffects.setCamera(camera);
-        modelExposure.setCamera(camera);
+      //  modelEffects.setCamera(camera);
+      //  modelExposure.setCamera(camera);
     }
 }
