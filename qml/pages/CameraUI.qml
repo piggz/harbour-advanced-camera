@@ -140,6 +140,7 @@ Page {
                     Layout.preferredHeight: buttonPanel.buttonSize
                     Layout.preferredWidth: buttonPanel.buttonSize
                     Layout.fillHeight: false
+                    image: "../pics/icon-m-resolution.png"
 
                     onClicked: {
 
