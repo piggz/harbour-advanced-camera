@@ -28,7 +28,8 @@ DISTFILES += qml/harbour-advanced-camera.qml \
     rpm/harbour-advanced-camera.yaml \
     translations/*.ts \
     harbour-advanced-camera.desktop \
-    qml/pages/CameraUI.qml
+    qml/pages/CameraUI.qml \
+    qml/components/RoundButton.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 

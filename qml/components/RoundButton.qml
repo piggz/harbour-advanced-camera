@@ -3,28 +3,27 @@ import Sailfish.Silica 1.0
 
 Item {
     id: button
-    property alias image: btnImage.source
+    property string image: ""
     signal clicked()
     
     Rectangle {
         anchors.fill: parent
-        radius: width/2   
-        color: "red"
+        radius: width/2
+        color: "#222222"
         
-        Image {
-            id: btnImage
-            anchors.fill:parent    
-        }
-        MouseArea {
-            anchors.fill: parent
-            
-            onClicked: {
-                button.clicked()
+        IconButton {
+            anchors.centerIn: parent
+            icon.source: button.image
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    button.clicked()
+                }
             }
         }
-    } 
-    Component.onCompleted:{
-        console.log("btn", width, height);
+        Component.onCompleted:{
+            console.log("btn", width, height);
+        }
     }
 }
-

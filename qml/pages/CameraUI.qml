@@ -1,10 +1,10 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Sailfish.Media 1.0
-//import com.jolla.camera 1.0
+import com.jolla.camera 1.0
 import QtMultimedia 5.4
 import QtQuick.Layouts 1.0
-//import uk.co.piggz.harbour_advanced_camera 1.0
+import uk.co.piggz.harbour_advanced_camera 1.0
 import "../components/"
 
 Page {
@@ -75,11 +75,11 @@ Page {
         }
     }
 
-    Rectangle {
+    Item {
         id: buttonPanel
         property int buttonSize: ((height -Theme.paddingMedium) / 5) - Theme.paddingMedium
         property bool menuVisible: false
-        color: "grey"
+        //color: "grey"
         height: parent.height
         width: buttonSize * 2 + 3 * Theme.paddingMedium
         x: menuVisible ? 0 : -(width / 2)
@@ -92,6 +92,8 @@ Page {
         Row {
             spacing: Theme.paddingMedium
             anchors.fill: parent
+            anchors.margins: Theme.paddingMedium
+
             ColumnLayout {
                 id: colButtons
                 spacing: Theme.paddingMedium
@@ -100,35 +102,73 @@ Page {
                 RoundButton {
                     id: btnScene
                     Layout.preferredHeight: buttonPanel.buttonSize
-                    Layout.preferredWidth: buttonPanel.buttonSize                    
+                    Layout.preferredWidth: buttonPanel.buttonSize
                     Layout.fillHeight: false
                     
                     onClicked: {
-                     if (panelEffects.expanded) {
-                        panelEffects.hide();
-                    } else {
+                        hidePanels()
                         panelEffects.show();
-                        panelExposure.hide();
                     }
+                }
+                RoundButton {
+                    id: btnExposure
+                    Layout.preferredHeight: buttonPanel.buttonSize
+                    Layout.preferredWidth: buttonPanel.buttonSize
+                    Layout.fillHeight: false
+
+                    onClicked: {
+                        hidePanels()
+                        panelExposure.show();
+                    }
+                }
+                RoundButton {
+                    id: btnFocus
+                    Layout.preferredHeight: buttonPanel.buttonSize
+                    Layout.preferredWidth: buttonPanel.buttonSize
+                    Layout.fillHeight: false
+
+                    onClicked: {
+
+                    }
+                }
+                RoundButton {
+                    id: btnResolution
+                    Layout.preferredHeight: buttonPanel.buttonSize
+                    Layout.preferredWidth: buttonPanel.buttonSize
+                    Layout.fillHeight: false
+
+                    onClicked: {
+
+                    }
+                }
+                RoundButton {
+                    id: btnSomething
+                    Layout.preferredHeight: buttonPanel.buttonSize
+                    Layout.preferredWidth: buttonPanel.buttonSize
+                    Layout.fillHeight: false
+
+                    onClicked: {
+
                     }
                 }
             }
             Item {
-                id: colMenu
+                id: menuButtonContainer
                 height: parent.height
                 width: buttonPanel.buttonSize
                 
                 RoundButton {
                     id: btnMenu
                     height: buttonPanel.buttonSize
-                    width: buttonPanel.buttonSize                    
+                    width: buttonPanel.buttonSize
                     anchors.verticalCenter: parent.verticalCenter
+                    image: buttonPanel.menuVisible ? "image://theme/icon-m-left" : "image://theme/icon-m-right"
                     onClicked: {
-                    	buttonPanel.menuVisible = !buttonPanel.menuVisible;
+                        buttonPanel.menuVisible = !buttonPanel.menuVisible;
                     }
                 }
                 
-	    
+
             }
             
         }
@@ -137,7 +177,7 @@ Page {
 
     DockedListView {
         id: panelEffects
-//        model: modelEffects
+        model: modelEffects
 
         onClicked: {
             camera.imageProcessing.setColorFilter(value);
@@ -146,13 +186,13 @@ Page {
 
     DockedListView {
         id: panelExposure
-    //    model: modelExposure
+        model: modelExposure
 
         onClicked: {
             camera.exposure.setExposureMode(value);
         }
     }
-/*
+
     EffectsModel {
         id: modelEffects
     }
@@ -160,7 +200,16 @@ Page {
     ExposureModel {
         id: modelExposure
     }
-*/
+
+    function hidePanels()
+    {
+        buttonPanel.menuVisible = false;
+        panelExposure.hide();
+        panelEffects.hide();
+
+
+    }
+
     /*
     GStreamerVideoOutput {
         id: videoOutput
@@ -181,7 +230,7 @@ Page {
     */
 
     Component.onCompleted: {
-      //  modelEffects.setCamera(camera);
-      //  modelExposure.setCamera(camera);
+          modelEffects.setCamera(camera);
+          modelExposure.setCamera(camera);
     }
 }
