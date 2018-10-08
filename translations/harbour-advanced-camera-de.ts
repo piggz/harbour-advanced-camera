@@ -2,6 +2,57 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>CameraUI</name>
+    <message>
+        <source>Flash Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash On</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Red Eye Reduction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sunlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cloudy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shade</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tungsten</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flourescent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sunset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
         <source>My Cover</source>

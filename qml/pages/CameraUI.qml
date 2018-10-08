@@ -77,7 +77,7 @@ Page {
 
     Item {
         id: buttonPanel
-        property int buttonSize: ((height -Theme.paddingMedium) / 5) - Theme.paddingMedium
+        property int buttonSize: ((height -Theme.paddingMedium) / colButtons.children.length) - Theme.paddingMedium
         property bool menuVisible: false
         //color: "grey"
         height: parent.height
@@ -112,6 +112,8 @@ Page {
                 }
                 RoundButton {
                     id: btnExposure
+                    image: "image://theme/icon-camera-exposure-compensation"
+
                     Layout.preferredHeight: buttonPanel.buttonSize
                     Layout.preferredWidth: buttonPanel.buttonSize
                     Layout.fillHeight: false
@@ -123,6 +125,8 @@ Page {
                 }
                 RoundButton {
                     id: btnFocus
+                    image: "image://theme/icon-camera-focus"
+
                     Layout.preferredHeight: buttonPanel.buttonSize
                     Layout.preferredWidth: buttonPanel.buttonSize
                     Layout.fillHeight: false
@@ -142,13 +146,29 @@ Page {
                     }
                 }
                 RoundButton {
-                    id: btnSomething
+                    id: btnWhiteBalance
+                    image: "image://theme/icon-camera-wb-automatic"
+
                     Layout.preferredHeight: buttonPanel.buttonSize
                     Layout.preferredWidth: buttonPanel.buttonSize
                     Layout.fillHeight: false
 
                     onClicked: {
+                        hidePanels();
+                        panelWhiteBalance.show();
+                    }
+                }
+                RoundButton {
+                    id: btnFlash
+                    image: "image://theme/icon-camera-flash-on"
 
+                    Layout.preferredHeight: buttonPanel.buttonSize
+                    Layout.preferredWidth: buttonPanel.buttonSize
+                    Layout.fillHeight: false
+
+                    onClicked: {
+                        hidePanels();
+                        panelFlash.show();
                     }
                 }
             }
@@ -181,6 +201,7 @@ Page {
 
         onClicked: {
             camera.imageProcessing.setColorFilter(value);
+            hidePanels();
         }
     }
 
@@ -190,8 +211,31 @@ Page {
 
         onClicked: {
             camera.exposure.setExposureMode(value);
+            hidePanels();
         }
     }
+
+    DockedListView {
+        id: panelFlash
+        model: modelFlash
+
+        onClicked: {
+            camera.flash.setFlashMode(value);
+            hidePanels();
+        }
+    }
+
+    DockedListView {
+        id: panelWhiteBalance
+        model: modelWhiteBalance
+
+        onClicked: {
+            camera.imageProcessing.setWhiteBalanceMode(value);
+            hidePanels();
+        }
+    }
+
+
 
     EffectsModel {
         id: modelEffects
@@ -201,12 +245,81 @@ Page {
         id: modelExposure
     }
 
+    ListModel {
+        id: modelFlash
+
+        ListElement {
+            name: qsTr("Flash Auto")
+            value: Camera.FlashAuto
+        }
+
+        ListElement {
+            name: qsTr("Flash On")
+            value: Camera.FlashOn
+        }
+
+        ListElement {
+            name: qsTr("Red Eye Reduction")
+            value: Camera.FlashRedEyeReduction
+        }
+
+        ListElement {
+            name: qsTr("Flash Off")
+            value: Camera.FlashOff
+        }
+    }
+
+    ListModel {
+        id: modelWhiteBalance
+
+        ListElement {
+            name: qsTr("Auto")
+            value: CameraImageProcessing.WhiteBalanceAuto
+        }
+
+        ListElement {
+            name: qsTr("Sunlight")
+            value: CameraImageProcessing.WhiteBalanceSunlight
+        }
+
+        ListElement {
+            name: qsTr("Cloudy")
+            value: CameraImageProcessing.WhiteBalanceCloudy
+        }
+
+        ListElement {
+            name: qsTr("Shade")
+            value: CameraImageProcessing.WhiteBalanceShade
+        }
+
+        ListElement {
+            name: qsTr("Tungsten")
+            value: CameraImageProcessing.WhiteBalanceTungsten
+        }
+
+        ListElement {
+            name: qsTr("Flourescent")
+            value: CameraImageProcessing.WhiteBalanceFluorescent
+        }
+
+        ListElement {
+            name: qsTr("Sunset")
+            value: CameraImageProcessing.WhiteBalanceSunset
+        }
+
+        ListElement {
+            name: qsTr("Flash")
+            value: CameraImageProcessing.WhiteBalanceFlash
+        }
+    }
+
     function hidePanels()
     {
         buttonPanel.menuVisible = false;
         panelExposure.hide();
         panelEffects.hide();
-
+        panelWhiteBalance.hide();
+        panelFlash.hide();
 
     }
 
@@ -228,6 +341,9 @@ Page {
         }
     }
     */
+
+
+
 
     Component.onCompleted: {
           modelEffects.setCamera(camera);
