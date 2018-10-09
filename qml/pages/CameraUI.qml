@@ -51,27 +51,21 @@ Page {
         }
     }
 
-    Rectangle {
+    RoundButton {
         id: btnCapture
 
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
         anchors.rightMargin: 50
 
-        color: "red"
 
         height: parent.height / 6
         width: height
-        radius: width/2
 
-        border.color: "white"
-        border.width: 20
+        image: "image://theme/icon-camera-shutter"
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                camera.imageCapture.capture();
-            }
+        onClicked: {
+            camera.imageCapture.capture();
         }
     }
 
@@ -104,7 +98,8 @@ Page {
                     Layout.preferredHeight: buttonPanel.buttonSize
                     Layout.preferredWidth: buttonPanel.buttonSize
                     Layout.fillHeight: false
-                    
+                    image: "../pics/icon-m-effect.png"
+
                     onClicked: {
                         hidePanels()
                         panelEffects.show();
