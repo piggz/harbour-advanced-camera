@@ -113,51 +113,103 @@
 <context>
     <name>ExposureModel</name>
     <message>
-        <source>None</source>
+        <source>Auto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Aqua</source>
+        <source>Automatic Scene Detection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Blackboard</source>
+        <source>Augmented Reality</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Grayscale</source>
+        <source>Backlight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Negative</source>
+        <source>Barcode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Posterize</source>
+        <source>Beach</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sepia</source>
+        <source>Candlelight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Solarize</source>
+        <source>Fireworks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Whiteboard</source>
+        <source>Flowers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Emboss</source>
+        <source>HDR</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sketch</source>
+        <source>Landscape</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Neon</source>
+        <source>Large Aperture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Night</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Night Portrait</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Party</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Portrait</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Small Aperture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Snow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sports</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Steady Photo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sunset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Theatre</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

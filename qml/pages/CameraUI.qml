@@ -338,11 +338,8 @@ Page {
     }
     */
 
-
-
-
     Component.onCompleted: {
-          modelEffects.setCamera(camera);
-          modelExposure.setCamera(camera);
+        modelEffects.setCamera(camera);
+        modelExposure.setCamera(camera);
     }
 }

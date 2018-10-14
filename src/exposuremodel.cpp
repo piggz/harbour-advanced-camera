@@ -60,45 +60,84 @@ QString ExposureModel::exposureName(QCameraExposure::ExposureMode e) const
     QString name;
 
     switch(e) {
-    case QCameraImageProcessing::ColorFilterNone:
-        name = tr("None");
+    case QCameraExposure::ExposureAuto:
+        name = tr("Auto");
         break;
-    case QCameraImageProcessing::ColorFilterAqua:
-        name = tr("Aqua");
+    case QCameraExposure::ExposureAction:
+        name = tr("Action");
         break;
-    case QCameraImageProcessing::ColorFilterBlackboard:
-        name = tr("Blackboard");
+    case QCameraExposure::ExposureASD:
+        name = tr("Automatic Scene Detection");
         break;
-    case QCameraImageProcessing::ColorFilterGrayscale:
-        name = tr("Grayscale");
+    case QCameraExposure::ExposureAR:
+        name = tr("Augmented Reality");
         break;
-    case QCameraImageProcessing::ColorFilterNegative:
-        name = tr("Negative");
+    case QCameraExposure::ExposureBacklight:
+        name = tr("Backlight");
         break;
-    case QCameraImageProcessing::ColorFilterPosterize:
-        name = tr("Posterize");
+    case QCameraExposure::ExposureBarcode:
+        name = tr("Barcode");
         break;
-    case QCameraImageProcessing::ColorFilterSepia:
-        name = tr("Sepia");
+    case QCameraExposure::ExposureBeach:
+        name = tr("Beach");
         break;
-    case QCameraImageProcessing::ColorFilterSolarize:
-        name = tr("Solarize");
+    case QCameraExposure::ExposureCandlelight:
+        name = tr("Candlelight");
         break;
-    case QCameraImageProcessing::ColorFilterWhiteboard:
-        name = tr("Whiteboard");
+    case QCameraExposure::ExposureFireworks:
+        name = tr("Fireworks");
         break;
-    case QCameraImageProcessing::ColorFilterEmboss:
-        name = tr("Emboss");
+    case QCameraExposure::ExposureFlowers:
+        name = tr("Flowers");
         break;
-    case QCameraImageProcessing::ColorFilterSketch:
-        name = tr("Sketch");
+    case QCameraExposure::ExposureHDR:
+        name = tr("HDR");
         break;
-    case QCameraImageProcessing::ColorFilterNeon:
-        name = tr("Neon");
+    case QCameraExposure::ExposureLandscape:
+        name = tr("Landscape");
+        break;
+    case QCameraExposure::ExposureLargeAperture:
+        name = tr("Large Aperture");
+        break;
+    case QCameraExposure::ExposureManual:
+        name = tr("Manual");
+        break;
+    case QCameraExposure::ExposureNight:
+        name = tr("Night");
+        break;
+    case QCameraExposure::ExposureNightPortrait:
+        name = tr("Night Portrait");
+        break;
+    case QCameraExposure::ExposureParty:
+        name = tr("Party");
+        break;
+    case QCameraExposure::ExposurePortrait:
+        name = tr("Portrait");
+        break;
+    case QCameraExposure::ExposureSmallAperture:
+        name = tr("Small Aperture");
+        break;
+    case QCameraExposure::ExposureSnow:
+        name = tr("Snow");
+        break;
+    case QCameraExposure::ExposureSports:
+        name = tr("Sports");
+        break;
+    case QCameraExposure::ExposureSpotlight:
+        name = tr("Spotlight");
+        break;
+    case QCameraExposure::ExposureSteadyPhoto:
+        name = tr("Steady Photo");
+        break;
+    case QCameraExposure::ExposureSunset:
+        name = tr("Sunset");
+        break;
+    case QCameraExposure::ExposureTheatre:
+        name = tr("Theatre");
         break;
 
     default:
-        name = "Unknown";
+        name = "Unknown (" + QString::number(e) + ")";
     }
 
     return name;
