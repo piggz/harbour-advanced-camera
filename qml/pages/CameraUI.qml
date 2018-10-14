@@ -338,8 +338,17 @@ Page {
     }
     */
 
+    Timer {
+        id: delatyQuery
+        interval: 1000
+        running: true
+        repeat: false
+        onTriggered: {
+            modelExposure.setCamera(camera);
+        }
+    }
+
     Component.onCompleted: {
         modelEffects.setCamera(camera);
-        modelExposure.setCamera(camera);
     }
 }
