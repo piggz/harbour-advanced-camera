@@ -127,7 +127,8 @@ Page {
                     Layout.fillHeight: false
 
                     onClicked: {
-
+                        hidePanels()
+                        panelFocus.show();
                     }
                 }
                 RoundButton {
@@ -231,7 +232,15 @@ Page {
         }
     }
 
+    DockedListView {
+        id: panelFocus
+        model: modelFocus
 
+        onClicked: {
+            camera.focus.setFocusMode(value);
+            hidePanels();
+        }
+    }
 
     EffectsModel {
         id: modelEffects
@@ -309,6 +318,40 @@ Page {
         }
     }
 
+    ListModel {
+        id: modelFocus
+
+        ListElement {
+            name: qsTr("Auto")
+            value: Camera.FocusAuto
+        }
+
+        ListElement {
+            name: qsTr("Manual")
+            value: Camera.FocusManual
+        }
+
+        ListElement {
+            name: qsTr("Hyperfocal")
+            value: Camera.FocusHyperfocal
+        }
+
+        ListElement {
+            name: qsTr("Infinity")
+            value: Camera.FocusInfinity
+        }
+
+        ListElement {
+            name: qsTr("Continuous")
+            value: Camera.FocusContinuous
+        }
+
+        ListElement {
+            name: qsTr("Macro")
+            value: Camera.FocusMacro
+        }
+    }
+
     function hidePanels()
     {
         buttonPanel.menuVisible = false;
@@ -316,7 +359,7 @@ Page {
         panelEffects.hide();
         panelWhiteBalance.hide();
         panelFlash.hide();
-
+        panelFocus.hide();
     }
 
     /*
