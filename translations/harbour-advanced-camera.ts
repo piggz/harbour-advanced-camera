@@ -233,4 +233,11 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>IsoModel</name>
+    <message>
+        <source>Auto ISO</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

@@ -72,7 +72,7 @@ Page {
     Item {
         id: buttonPanel
         property int buttonSize: ((height -Theme.paddingMedium) / colButtons.children.length) - Theme.paddingMedium
-        property bool menuVisible: false
+        property bool menuVisible: true
         //color: "grey"
         height: parent.height
         width: buttonSize * 2 + 3 * Theme.paddingMedium
@@ -169,6 +169,26 @@ Page {
                     }
                 }
             }
+            ColumnLayout {
+                id: colButtons2
+                spacing: Theme.paddingMedium
+                width: buttonPanel.buttonSize
+
+                RoundButton {
+                    id: btnIso
+                    Layout.preferredHeight: buttonPanel.buttonSize
+                    Layout.preferredWidth: buttonPanel.buttonSize
+                    Layout.fillHeight: false
+                    image: "image://theme/icon-camera-iso"
+
+                    onClicked: {
+                        hidePanels()
+                        panelIso.show();
+                    }
+                }
+
+            }
+            /*
             Item {
                 id: menuButtonContainer
                 height: parent.height
@@ -187,7 +207,7 @@ Page {
                 
 
             }
-            
+            */
         }
 
     }
@@ -242,12 +262,30 @@ Page {
         }
     }
 
+    DockedListView {
+        id: panelIso
+        model: modelIso
+
+        onClicked: {
+            if (value === 0) {
+                camera.exposure.setAutoIsoSensitivity();
+            } else {
+                camera.exposure.setManualIsoSensitivity(value);
+            }
+            hidePanels();
+        }
+    }
+
     EffectsModel {
         id: modelEffects
     }
 
     ExposureModel {
         id: modelExposure
+    }
+
+    IsoModel {
+        id: modelIso
     }
 
     ListModel {
@@ -354,12 +392,13 @@ Page {
 
     function hidePanels()
     {
-        buttonPanel.menuVisible = false;
+        //buttonPanel.menuVisible = false;
         panelExposure.hide();
         panelEffects.hide();
         panelWhiteBalance.hide();
         panelFlash.hide();
         panelFocus.hide();
+        panelIso.hide();
     }
 
     /*
@@ -388,10 +427,8 @@ Page {
         repeat: false
         onTriggered: {
             modelExposure.setCamera(camera);
+            modelEffects.setCamera(camera);
+            modelIso.setCamera(camera)
         }
-    }
-
-    Component.onCompleted: {
-        modelEffects.setCamera(camera);
     }
 }

@@ -9,6 +9,7 @@
 #include <sailfishapp.h>
 #include "effectsmodel.h"
 #include "exposuremodel.h"
+#include "isomodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,6 +27,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<EffectsModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "EffectsModel");
     qmlRegisterType<ExposureModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "ExposureModel");
+    qmlRegisterType<IsoModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "IsoModel");
 
     QQuickView *view = SailfishApp::createView();
 

@@ -18,7 +18,8 @@ QT += multimedia
 
 SOURCES += src/harbour-advanced-camera.cpp \
     src/effectsmodel.cpp \
-    src/exposuremodel.cpp
+    src/exposuremodel.cpp \
+    src/isomodel.cpp
 
 DISTFILES += qml/harbour-advanced-camera.qml \
     qml/cover/CoverPage.qml \
@@ -45,4 +46,5 @@ TRANSLATIONS += translations/harbour-advanced-camera-de.ts
 
 HEADERS += \
     src/effectsmodel.h \
-    src/exposuremodel.h
+    src/exposuremodel.h \
+    src/isomodel.h
