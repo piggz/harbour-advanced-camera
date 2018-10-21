@@ -139,7 +139,8 @@ Page {
                     image: "../pics/icon-m-resolution.png"
 
                     onClicked: {
-
+                        hidePanels();
+                        panelResolution.show();
                     }
                 }
                 RoundButton {
@@ -276,6 +277,16 @@ Page {
         }
     }
 
+    DockedListView {
+        id: panelResolution
+        model: modelResolution
+
+        onClicked: {
+            camera.imageCapture.setResolution(value);
+            hidePanels();
+        }
+    }
+
     EffectsModel {
         id: modelEffects
     }
@@ -286,6 +297,10 @@ Page {
 
     IsoModel {
         id: modelIso
+    }
+
+    ResolutionModel {
+        id: modelResolution
     }
 
     ListModel {
@@ -356,6 +371,7 @@ Page {
         }
     }
 
+
     ListModel {
         id: modelFocus
 
@@ -399,6 +415,7 @@ Page {
         panelFlash.hide();
         panelFocus.hide();
         panelIso.hide();
+        panelResolution.hide();
     }
 
     /*
@@ -421,14 +438,15 @@ Page {
     */
 
     Timer {
-        id: delatyQuery
+        id: delayQuery
         interval: 1000
         running: true
         repeat: false
         onTriggered: {
             modelExposure.setCamera(camera);
             modelEffects.setCamera(camera);
-            modelIso.setCamera(camera)
+            modelIso.setCamera(camera);
+            modelResolution.setImageCapture(camera.imageCapture);
         }
     }
 }
