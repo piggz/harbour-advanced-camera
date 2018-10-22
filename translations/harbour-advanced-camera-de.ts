@@ -5,71 +5,71 @@
     <name>CameraUI</name>
     <message>
         <source>Flash Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Blitz aus</translation>
     </message>
     <message>
-        <source>Flash Auto</source>
-        <translation type="unfinished"></translation>
+        <source>Flash auto</source>
+        <translation>Blitz Auto</translation>
     </message>
     <message>
         <source>Flash On</source>
-        <translation type="unfinished"></translation>
+        <translation>Blitz an</translation>
     </message>
     <message>
         <source>Red Eye Reduction</source>
-        <translation type="unfinished"></translation>
+        <translation>Rote-Augen-Reduzierung</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Sunlight</source>
-        <translation type="unfinished"></translation>
+        <translation>Sonnenlicht</translation>
     </message>
     <message>
         <source>Cloudy</source>
-        <translation type="unfinished"></translation>
+        <translation>Bewölkt</translation>
     </message>
     <message>
         <source>Shade</source>
-        <translation type="unfinished"></translation>
+        <translation>Schatten</translation>
     </message>
     <message>
         <source>Tungsten</source>
-        <translation type="unfinished"></translation>
+        <translation>Tungsten</translation>
     </message>
     <message>
         <source>Flourescent</source>
-        <translation type="unfinished"></translation>
+        <translation>Fluoreszierend</translation>
     </message>
     <message>
         <source>Sunset</source>
-        <translation type="unfinished"></translation>
+        <translation>Sonnenuntergang</translation>
     </message>
     <message>
         <source>Flash</source>
-        <translation type="unfinished"></translation>
+        <translation>Blitz</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Manuell</translation>
     </message>
     <message>
         <source>Hyperfocal</source>
-        <translation type="unfinished"></translation>
+        <translation>Hyperfokal</translation>
     </message>
     <message>
         <source>Infinity</source>
-        <translation type="unfinished"></translation>
+        <translation>Unendlichkeit</translation>
     </message>
     <message>
         <source>Continuous</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontinuierlich</translation>
     </message>
     <message>
         <source>Macro</source>
-        <translation type="unfinished"></translation>
+        <translation>Makro</translation>
     </message>
 </context>
 <context>
@@ -83,161 +83,161 @@
     <name>EffectsModel</name>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Keinen</translation>
     </message>
     <message>
         <source>Aqua</source>
-        <translation type="unfinished"></translation>
+        <translation>Aqua</translation>
     </message>
     <message>
         <source>Blackboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Blackboard</translation>
     </message>
     <message>
         <source>Grayscale</source>
-        <translation type="unfinished"></translation>
+        <translation>Graustufen</translation>
     </message>
     <message>
         <source>Negative</source>
-        <translation type="unfinished"></translation>
+        <translation>Negativ</translation>
     </message>
     <message>
         <source>Posterize</source>
-        <translation type="unfinished"></translation>
+        <translation>Posterisieren</translation>
     </message>
     <message>
         <source>Sepia</source>
-        <translation type="unfinished"></translation>
+        <translation>Sepia</translation>
     </message>
     <message>
         <source>Solarize</source>
-        <translation type="unfinished"></translation>
+        <translation>Solarisieren</translation>
     </message>
     <message>
         <source>Whiteboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Whiteboard</translation>
     </message>
     <message>
         <source>Emboss</source>
-        <translation type="unfinished"></translation>
+        <translation>Prägen</translation>
     </message>
     <message>
         <source>Sketch</source>
-        <translation type="unfinished"></translation>
+        <translation>Skizzieren</translation>
     </message>
     <message>
         <source>Neon</source>
-        <translation type="unfinished"></translation>
+        <translation>Neon</translation>
     </message>
 </context>
 <context>
     <name>ExposureModel</name>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Automatic Scene Detection</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatische Szenenerkennung</translation>
     </message>
     <message>
         <source>Augmented Reality</source>
-        <translation type="unfinished"></translation>
+        <translation>erweiterte Realität</translation>
     </message>
     <message>
         <source>Backlight</source>
-        <translation type="unfinished"></translation>
+        <translation>Hintergrundbeleuchtung</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation type="unfinished"></translation>
+        <translation>Barcode</translation>
     </message>
     <message>
         <source>Beach</source>
-        <translation type="unfinished"></translation>
+        <translation>Strand</translation>
     </message>
     <message>
         <source>Candlelight</source>
-        <translation type="unfinished"></translation>
+        <translation>Kerzenlicht</translation>
     </message>
     <message>
         <source>Fireworks</source>
-        <translation type="unfinished"></translation>
+        <translation>Feuerwerk</translation>
     </message>
     <message>
         <source>Flowers</source>
-        <translation type="unfinished"></translation>
+        <translation>Blumen</translation>
     </message>
     <message>
         <source>HDR</source>
-        <translation type="unfinished"></translation>
+        <translation>HDR</translation>
     </message>
     <message>
         <source>Landscape</source>
-        <translation type="unfinished"></translation>
+        <translation>Landschaft</translation>
     </message>
     <message>
         <source>Large Aperture</source>
-        <translation type="unfinished"></translation>
+        <translation>Große Blende</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Manuell</translation>
     </message>
     <message>
         <source>Night</source>
-        <translation type="unfinished"></translation>
+        <translation>Nacht</translation>
     </message>
     <message>
         <source>Night Portrait</source>
-        <translation type="unfinished"></translation>
+        <translation>Nachtporträt</translation>
     </message>
     <message>
         <source>Party</source>
-        <translation type="unfinished"></translation>
+        <translation>Party</translation>
     </message>
     <message>
         <source>Portrait</source>
-        <translation type="unfinished"></translation>
+        <translation>Porträt</translation>
     </message>
     <message>
         <source>Small Aperture</source>
-        <translation type="unfinished"></translation>
+        <translation>Kleine Blende</translation>
     </message>
     <message>
         <source>Snow</source>
-        <translation type="unfinished"></translation>
+        <translation>Schnee</translation>
     </message>
     <message>
         <source>Sports</source>
-        <translation type="unfinished"></translation>
+        <translation>Sport</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"></translation>
+        <translation>Scheinwerfer</translation>
     </message>
     <message>
         <source>Steady Photo</source>
-        <translation type="unfinished"></translation>
+        <translation>Stetiges Foto</translation>
     </message>
     <message>
         <source>Sunset</source>
-        <translation type="unfinished"></translation>
+        <translation>Sonnenuntergang</translation>
     </message>
     <message>
         <source>Theatre</source>
-        <translation type="unfinished"></translation>
+        <translation>Theater</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Action</translation>
     </message>
 </context>
 <context>
     <name>IsoModel</name>
     <message>
         <source>Auto ISO</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto ISO</translation>
     </message>
 </context>
 </TS>
