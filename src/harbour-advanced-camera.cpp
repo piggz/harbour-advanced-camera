@@ -5,6 +5,7 @@
 #include <QQuickView>
 #include <QGuiApplication>
 #include <QQmlContext>
+#include <QSortFilterProxyModel>
 
 #include <sailfishapp.h>
 #include "effectsmodel.h"
@@ -31,8 +32,16 @@ int main(int argc, char *argv[])
     qmlRegisterType<IsoModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "IsoModel");
     qmlRegisterType<ResolutionModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "ResolutionModel");
 
+    ResolutionModel resolutionModel;
+
+    QSortFilterProxyModel sortedResolutionModel;
+    sortedResolutionModel.setSourceModel(&resolutionModel);
+    sortedResolutionModel.setSortRole(ResolutionModel::ResolutionMpx);
+    sortedResolutionModel.sort(0, Qt::DescendingOrder);
     QQuickView *view = SailfishApp::createView();
 
+    view->rootContext()->setContextProperty("modelResolution", &resolutionModel);
+    view->rootContext()->setContextProperty("sortedModelResolution", &sortedResolutionModel);
     view->setSource(SailfishApp::pathTo("qml/harbour-advanced-camera.qml"));
     view->show();
 

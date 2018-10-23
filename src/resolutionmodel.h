@@ -13,7 +13,8 @@ public:
 
     enum ResolutionRoles {
         ResolutionName = Qt::UserRole + 1,
-        ResolutionValue
+        ResolutionValue,
+        ResolutionMpx
     };
 
     ResolutionModel();

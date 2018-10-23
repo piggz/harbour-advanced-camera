@@ -1,5 +1,23 @@
 #include "resolutionmodel.h"
 
+QSize sizeToRatio(const QSize &siz)
+{
+    int a = siz.width();
+    int b = siz.height();
+    int c = a % b;
+    int gcd = 0;
+
+    while(c > 0)
+    {
+        a = b;
+        b = c;
+        c = a % b;
+    }
+
+    gcd = b;
+    return siz / gcd;
+}
+
 ResolutionModel::ResolutionModel()
 {
 
@@ -27,9 +45,12 @@ QVariant ResolutionModel::data(const QModelIndex &index, int role) const
     }
 
     if (role == ResolutionName) {
-        v = m_resolutions.keys().at(index.row());
+        QSize r = sizeToRatio(m_resolutions.values().at(index.row()));
+        v = m_resolutions.keys().at(index.row()) + QString(" (%1:%2)").arg(r.width()).arg(r.height());
     } else if (role == ResolutionValue) {
         v = m_resolutions.values().at(index.row());
+    } else if (role == ResolutionMpx) {
+        v = m_resolutions.values().at(index.row()).width() * m_resolutions.values().at(index.row()).height();
     }
     return v;
 }

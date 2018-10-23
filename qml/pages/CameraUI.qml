@@ -279,7 +279,7 @@ Page {
 
     DockedListView {
         id: panelResolution
-        model: modelResolution
+        model: sortedModelResolution
 
         onClicked: {
             camera.imageCapture.setResolution(value);
@@ -299,9 +299,9 @@ Page {
         id: modelIso
     }
 
-    ResolutionModel {
+    /*ResolutionModel {
         id: modelResolution
-    }
+    }*/
 
     ListModel {
         id: modelFlash
