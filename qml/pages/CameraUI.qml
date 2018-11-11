@@ -202,7 +202,7 @@ Page {
                 }
                 RoundButton {
                     id: btnFlash
-                    image: "image://theme/icon-camera-flash-on"
+                    image: flashIcon()
 
                     Layout.preferredHeight: buttonPanel.buttonSize
                     Layout.preferredWidth: buttonPanel.buttonSize
@@ -519,7 +519,6 @@ Page {
         camera.imageCapture.setResolution(resolution.value);
     }
 
-
     function hidePanels() {
         //buttonPanel.menuVisible = false;
         panelExposure.hide();
@@ -529,5 +528,28 @@ Page {
         panelFocus.hide();
         panelIso.hide();
         panelResolution.hide();
+    }
+
+    function flashIcon() {
+        var flashIcon = "";
+        switch(flashMode.value) {
+        case Camera.FlashAuto:
+            flashIcon = "image://theme/icon-camera-flash-automatic";
+            break;
+        case Camera.FlashOn:
+            flashIcon = "image://theme/icon-camera-flash-on";
+            break;
+        case Camera.FlashOff:
+            flashIcon = "image://theme/icon-camera-flash-off";
+            break;
+        case Camera.FlashRedEyeReduction:
+            flashIcon = "image://theme/icon-camera-flash-redeye";
+            break;
+        default:
+            flashIcon = "image://theme/icon-camera-flash-on";
+            break;
+
+        }
+        return flashIcon;
     }
 }
