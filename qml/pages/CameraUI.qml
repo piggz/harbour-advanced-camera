@@ -164,7 +164,7 @@ Page {
                 }
                 RoundButton {
                     id: btnFocus
-                    image: "image://theme/icon-camera-focus"
+                    image: focusIcon()
 
                     Layout.preferredHeight: buttonPanel.buttonSize
                     Layout.preferredWidth: buttonPanel.buttonSize
@@ -551,5 +551,34 @@ Page {
 
         }
         return flashIcon;
+    }
+
+    function focusIcon() {
+        var focusIcon = "";
+        switch(focusMode.value) {
+        case Camera.FocusAuto:
+            focusIcon = "image://theme/icon-camera-focus-auto";
+            break;
+        case Camera.FocusManual:
+            focusIcon = "image://theme/icon-camera-focus"; //TODO need icon
+            break;
+        case Camera.FocusMacro:
+            focusIcon = "image://theme/icon-camera-focus-macro";
+            break;
+        case Camera.FocusHyperfocal:
+            focusIcon = "image://theme/icon-camera-focus"; //TODO need icon
+            break;
+        case Camera.FocusContinuous:
+            focusIcon = "image://theme/icon-camera-focus"; //TODO need icon
+            break;
+        case Camera.FocusInfinity:
+            focusIcon = "image://theme/icon-camera-focus-infinity";
+            break;
+        default:
+            focusIcon = "image://theme/icon-camera-focus";
+            break;
+
+        }
+        return focusIcon;
     }
 }
