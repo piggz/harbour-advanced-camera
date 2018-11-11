@@ -189,7 +189,7 @@ Page {
                 }
                 RoundButton {
                     id: btnWhiteBalance
-                    image: "image://theme/icon-camera-wb-automatic"
+                    image: whiteBalanceIcon()
 
                     Layout.preferredHeight: buttonPanel.buttonSize
                     Layout.preferredWidth: buttonPanel.buttonSize
@@ -580,5 +580,40 @@ Page {
 
         }
         return focusIcon;
+    }
+
+    function whiteBalanceIcon() {
+        var wbIcon = "";
+        switch(whiteBalanceMode.value) {
+        case CameraImageProcessing.WhiteBalanceAuto:
+            wbIcon = "image://theme/icon-camera-wb-automatic";
+            break;
+        case CameraImageProcessing.WhiteBalanceSunlight:
+            wbIcon = "image://theme/icon-camera-wb-sunny";
+            break;
+        case CameraImageProcessing.WhiteBalanceCloudy:
+            wbIcon = "image://theme/icon-camera-wb-cloudy";
+            break;
+        case CameraImageProcessing.WhiteBalanceShade:
+            wbIcon = "image://theme/icon-camera-wb-shade";
+            break;
+        case CameraImageProcessing.WhiteBalanceTungsten:
+            wbIcon = "image://theme/icon-camera-wb-tungsten";
+            break;
+        case CameraImageProcessing.WhiteBalanceFluorescent:
+            wbIcon = "image://theme/icon-camera-wb-fluorecent";
+            break;
+        case CameraImageProcessing.WhiteBalanceSunset:
+            wbIcon = "image://theme/icon-camera-wb-sunset";
+            break;
+        case CameraImageProcessing.WhiteBalanceFlash:
+            wbIcon = "image://theme/icon-camera-wb-default"; //TODO need icon
+            break;
+        default:
+            wbIcon = "image://theme/icon-camera-wb-default";
+            break;
+
+        }
+        return wbIcon;
     }
 }
