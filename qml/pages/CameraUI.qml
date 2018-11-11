@@ -5,6 +5,7 @@ import com.jolla.camera 1.0
 import QtMultimedia 5.4
 import QtQuick.Layouts 1.0
 import uk.co.piggz.harbour_advanced_camera 1.0
+import Nemo.Configuration 1.0
 import "../components/"
 
 Page {
@@ -12,6 +13,49 @@ Page {
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.Landscape
+
+    ConfigurationValue {
+        id: effectMode
+        key: "/uk/co/piggz/harbour-advanced-camera/effectMode"
+        defaultValue: ""
+    }
+
+    ConfigurationValue {
+        id: exposureMode
+        key: "/uk/co/piggz/harbour-advanced-camera/exposureMode"
+        defaultValue: ""
+    }
+
+    ConfigurationValue {
+        id: focusMode
+        key: "/uk/co/piggz/harbour-advanced-camera/focusMode"
+        defaultValue: ""
+    }
+
+    ConfigurationValue {
+        id: resolution
+        key: "/uk/co/piggz/harbour-advanced-camera/resolution"
+        defaultValue: ""
+    }
+
+    ConfigurationValue {
+        id: whiteBalanceMode
+        key: "/uk/co/piggz/harbour-advanced-camera/whiteBalanceMode"
+        defaultValue: ""
+    }
+
+    ConfigurationValue {
+        id: flashMode
+        key: "/uk/co/piggz/harbour-advanced-camera/flashMode"
+        defaultValue: ""
+    }
+
+    ConfigurationValue {
+        id: isoMode
+        key: "/uk/co/piggz/harbour-advanced-camera/isoMode"
+        defaultValue: ""
+    }
+
 
     Rectangle {
         parent: window
@@ -216,9 +260,11 @@ Page {
     DockedListView {
         id: panelEffects
         model: modelEffects
+        selectedItem: effectMode.value
 
         onClicked: {
             camera.imageProcessing.setColorFilter(value);
+            effectMode.value = value;
             hidePanels();
         }
     }
@@ -226,9 +272,12 @@ Page {
     DockedListView {
         id: panelExposure
         model: modelExposure
+        selectedItem: exposureMode.value
+
 
         onClicked: {
             camera.exposure.setExposureMode(value);
+            exposureMode.value = value;
             hidePanels();
         }
     }
@@ -236,9 +285,12 @@ Page {
     DockedListView {
         id: panelFlash
         model: modelFlash
+        selectedItem: flashMode.value
+
 
         onClicked: {
             camera.flash.setFlashMode(value);
+            flashMode.value = value;
             hidePanels();
         }
     }
@@ -246,9 +298,12 @@ Page {
     DockedListView {
         id: panelWhiteBalance
         model: modelWhiteBalance
+        selectedItem: whiteBalanceMode.value
+
 
         onClicked: {
             camera.imageProcessing.setWhiteBalanceMode(value);
+            whiteBalanceMode.value = value;
             hidePanels();
         }
     }
@@ -256,9 +311,11 @@ Page {
     DockedListView {
         id: panelFocus
         model: modelFocus
+        selectedItem: focusMode.value
 
         onClicked: {
             camera.focus.setFocusMode(value);
+            focusMode.value = value;
             hidePanels();
         }
     }
@@ -266,6 +323,7 @@ Page {
     DockedListView {
         id: panelIso
         model: modelIso
+        selectedItem: isoMode.value
 
         onClicked: {
             if (value === 0) {
@@ -273,6 +331,7 @@ Page {
             } else {
                 camera.exposure.setManualIsoSensitivity(value);
             }
+            isoMode.value = value;
             hidePanels();
         }
     }
@@ -280,9 +339,11 @@ Page {
     DockedListView {
         id: panelResolution
         model: sortedModelResolution
+        selectedItem: resolution.value
 
         onClicked: {
             camera.imageCapture.setResolution(value);
+            resolution.value = value;
             hidePanels();
         }
     }
@@ -406,18 +467,6 @@ Page {
         }
     }
 
-    function hidePanels()
-    {
-        //buttonPanel.menuVisible = false;
-        panelExposure.hide();
-        panelEffects.hide();
-        panelWhiteBalance.hide();
-        panelFlash.hide();
-        panelFocus.hide();
-        panelIso.hide();
-        panelResolution.hide();
-    }
-
     /*
     GStreamerVideoOutput {
         id: videoOutput
@@ -448,5 +497,37 @@ Page {
             modelIso.setCamera(camera);
             modelResolution.setImageCapture(camera.imageCapture);
         }
+    }
+
+    Component.onCompleted: {
+        applySettings();
+    }
+
+    function applySettings() {
+        camera.imageProcessing.setColorFilter(effectMode.value);
+        camera.exposure.setExposureMode(exposureMode.value);
+        camera.flash.setFlashMode(flashMode.value);
+        camera.imageProcessing.setWhiteBalanceMode(whiteBalanceMode.value);
+        camera.focus.setFocusMode(focusMode.value);
+
+        if (isoMode.value === 0) {
+            camera.exposure.setAutoIsoSensitivity();
+        } else {
+            camera.exposure.setManualIsoSensitivity(isoMode.value);
+        }
+
+        camera.imageCapture.setResolution(resolution.value);
+    }
+
+
+    function hidePanels() {
+        //buttonPanel.menuVisible = false;
+        panelExposure.hide();
+        panelEffects.hide();
+        panelWhiteBalance.hide();
+        panelFlash.hide();
+        panelFocus.hide();
+        panelIso.hide();
+        panelResolution.hide();
     }
 }

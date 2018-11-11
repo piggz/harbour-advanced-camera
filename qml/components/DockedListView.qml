@@ -5,6 +5,8 @@ DockedPanel {
     id: panel
 
     property alias model: listView.model
+    property var selectedItem
+
     signal clicked(var value)
 
     width: parent.width / 2
@@ -23,7 +25,7 @@ DockedPanel {
         delegate: ListItem {
             width: ListView.view.width
             height: Theme.itemSizeSmall
-
+            highlighted: value === selectedItem
             Label {
                 text: name
             }

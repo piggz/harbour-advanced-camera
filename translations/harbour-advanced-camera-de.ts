@@ -8,10 +8,6 @@
         <translation>Blitz aus</translation>
     </message>
     <message>
-        <source>Flash auto</source>
-        <translation>Blitz Auto</translation>
-    </message>
-    <message>
         <source>Flash On</source>
         <translation>Blitz an</translation>
     </message>
@@ -70,6 +66,10 @@
     <message>
         <source>Macro</source>
         <translation>Makro</translation>
+    </message>
+    <message>
+        <source>Flash Auto</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
