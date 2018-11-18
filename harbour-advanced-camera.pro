@@ -20,7 +20,10 @@ SOURCES += src/harbour-advanced-camera.cpp \
     src/effectsmodel.cpp \
     src/exposuremodel.cpp \
     src/isomodel.cpp \
-    src/resolutionmodel.cpp
+    src/resolutionmodel.cpp \
+    src/wbmodel.cpp \
+    src/focusmodel.cpp \
+    src/flashmodel.cpp
 
 DISTFILES += qml/harbour-advanced-camera.qml \
     qml/cover/CoverPage.qml \
@@ -49,4 +52,7 @@ HEADERS += \
     src/effectsmodel.h \
     src/exposuremodel.h \
     src/isomodel.h \
-    src/resolutionmodel.h
+    src/resolutionmodel.h \
+    src/wbmodel.h \
+    src/focusmodel.h \
+    src/flashmodel.h

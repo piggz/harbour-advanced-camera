@@ -360,113 +360,17 @@ Page {
         id: modelIso
     }
 
-    /*ResolutionModel {
-        id: modelResolution
-    }*/
-
-    ListModel {
-        id: modelFlash
-
-        ListElement {
-            name: qsTr("Flash Auto")
-            value: Camera.FlashAuto
-        }
-
-        ListElement {
-            name: qsTr("Flash On")
-            value: Camera.FlashOn
-        }
-
-        ListElement {
-            name: qsTr("Red Eye Reduction")
-            value: Camera.FlashRedEyeReduction
-        }
-
-        ListElement {
-            name: qsTr("Flash Off")
-            value: Camera.FlashOff
-        }
-    }
-
-    ListModel {
+    WhiteBalanceModel {
         id: modelWhiteBalance
-
-        ListElement {
-            name: qsTr("Auto")
-            value: CameraImageProcessing.WhiteBalanceAuto
-        }
-
-        ListElement {
-            name: qsTr("Sunlight")
-            value: CameraImageProcessing.WhiteBalanceSunlight
-        }
-
-        ListElement {
-            name: qsTr("Cloudy")
-            value: CameraImageProcessing.WhiteBalanceCloudy
-        }
-
-        ListElement {
-            name: qsTr("Shade")
-            value: CameraImageProcessing.WhiteBalanceShade
-        }
-
-        ListElement {
-            name: qsTr("Tungsten")
-            value: CameraImageProcessing.WhiteBalanceTungsten
-        }
-
-        ListElement {
-            name: qsTr("Flourescent")
-            value: CameraImageProcessing.WhiteBalanceFluorescent
-        }
-
-        ListElement {
-            name: qsTr("Sunset")
-            value: CameraImageProcessing.WhiteBalanceSunset
-        }
-
-        ListElement {
-            name: qsTr("Flash")
-            value: CameraImageProcessing.WhiteBalanceFlash
-        }
     }
 
-
-    ListModel {
+    FocusModel {
         id: modelFocus
-
-        ListElement {
-            name: qsTr("Auto")
-            value: Camera.FocusAuto
-        }
-
-        ListElement {
-            name: qsTr("Manual")
-            value: Camera.FocusManual
-        }
-
-        ListElement {
-            name: qsTr("Hyperfocal")
-            value: Camera.FocusHyperfocal
-        }
-
-        ListElement {
-            name: qsTr("Infinity")
-            value: Camera.FocusInfinity
-        }
-
-        ListElement {
-            name: qsTr("Continuous")
-            value: Camera.FocusContinuous
-        }
-
-        ListElement {
-            name: qsTr("Macro")
-            value: Camera.FocusMacro
-        }
     }
 
+    FlashModel {
+        id: modelFlash
+    }
     /*
     GStreamerVideoOutput {
         id: videoOutput
@@ -495,6 +399,10 @@ Page {
             modelExposure.setCamera(camera);
             modelEffects.setCamera(camera);
             modelIso.setCamera(camera);
+            modelWhiteBalance.setCamera(camera);
+            modelFocus.setCamera(camera);
+            modelFlash.setCamera(camera);
+
             modelResolution.setImageCapture(camera.imageCapture);
         }
     }

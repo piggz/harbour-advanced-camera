@@ -2,77 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>CameraUI</name>
-    <message>
-        <source>Flash Off</source>
-        <translation>Blitz aus</translation>
-    </message>
-    <message>
-        <source>Flash On</source>
-        <translation>Blitz an</translation>
-    </message>
-    <message>
-        <source>Red Eye Reduction</source>
-        <translation>Rote-Augen-Reduzierung</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Auto</translation>
-    </message>
-    <message>
-        <source>Sunlight</source>
-        <translation>Sonnenlicht</translation>
-    </message>
-    <message>
-        <source>Cloudy</source>
-        <translation>Bewölkt</translation>
-    </message>
-    <message>
-        <source>Shade</source>
-        <translation>Schatten</translation>
-    </message>
-    <message>
-        <source>Tungsten</source>
-        <translation>Tungsten</translation>
-    </message>
-    <message>
-        <source>Flourescent</source>
-        <translation>Fluoreszierend</translation>
-    </message>
-    <message>
-        <source>Sunset</source>
-        <translation>Sonnenuntergang</translation>
-    </message>
-    <message>
-        <source>Flash</source>
-        <translation>Blitz</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Manuell</translation>
-    </message>
-    <message>
-        <source>Hyperfocal</source>
-        <translation>Hyperfokal</translation>
-    </message>
-    <message>
-        <source>Infinity</source>
-        <translation>Unendlichkeit</translation>
-    </message>
-    <message>
-        <source>Continuous</source>
-        <translation>Kontinuierlich</translation>
-    </message>
-    <message>
-        <source>Macro</source>
-        <translation>Makro</translation>
-    </message>
-    <message>
-        <source>Flash Auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CoverPage</name>
     <message>
         <source>My Cover</source>
@@ -234,10 +163,135 @@
     </message>
 </context>
 <context>
+    <name>FlashModel</name>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished">Auto</translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Red Eye Reduction</source>
+        <translation type="unfinished">Rote-Augen-Reduzierung</translation>
+    </message>
+    <message>
+        <source>Fill</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slow Sync Front Curtain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slow Sync Rear Curtain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished">Manuell</translation>
+    </message>
+</context>
+<context>
+    <name>FocusModel</name>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished">Manuell</translation>
+    </message>
+    <message>
+        <source>Hyperfocal</source>
+        <translation type="unfinished">Hyperfokal</translation>
+    </message>
+    <message>
+        <source>Infinity</source>
+        <translation type="unfinished">Unendlichkeit</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished">Auto</translation>
+    </message>
+    <message>
+        <source>Continuous</source>
+        <translation type="unfinished">Kontinuierlich</translation>
+    </message>
+    <message>
+        <source>Macro</source>
+        <translation type="unfinished">Makro</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>IsoModel</name>
     <message>
         <source>Auto ISO</source>
         <translation>Auto ISO</translation>
+    </message>
+</context>
+<context>
+    <name>WbModel</name>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished">Auto</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished">Manuell</translation>
+    </message>
+    <message>
+        <source>Sunlight</source>
+        <translation type="unfinished">Sonnenlicht</translation>
+    </message>
+    <message>
+        <source>Cloudy</source>
+        <translation type="unfinished">Bewölkt</translation>
+    </message>
+    <message>
+        <source>Shade</source>
+        <translation type="unfinished">Schatten</translation>
+    </message>
+    <message>
+        <source>Tungsten</source>
+        <translation type="unfinished">Tungsten</translation>
+    </message>
+    <message>
+        <source>Flash</source>
+        <translation type="unfinished">Blitz</translation>
+    </message>
+    <message>
+        <source>Sunset</source>
+        <translation type="unfinished">Sonnenuntergang</translation>
+    </message>
+    <message>
+        <source>Warm Fluorescent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fluorescent</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

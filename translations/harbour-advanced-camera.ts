@@ -2,77 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>CameraUI</name>
-    <message>
-        <source>Flash Off</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Flash Auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Flash On</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Red Eye Reduction</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sunlight</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cloudy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Shade</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Tungsten</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Flourescent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sunset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Flash</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hyperfocal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Infinity</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Continuous</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Macro</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CoverPage</name>
     <message>
         <source>My Cover</source>
@@ -234,9 +163,134 @@
     </message>
 </context>
 <context>
+    <name>FlashModel</name>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Red Eye Reduction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fill</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Video Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slow Sync Front Curtain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slow Sync Rear Curtain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FocusModel</name>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hyperfocal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Infinity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continuous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Macro</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>IsoModel</name>
     <message>
         <source>Auto ISO</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WbModel</name>
+    <message>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sunlight</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cloudy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shade</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tungsten</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Flash</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sunset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warm Fluorescent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fluorescent</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
