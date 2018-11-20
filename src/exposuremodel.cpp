@@ -101,7 +101,7 @@ QString ExposureModel::exposureName(QCameraExposure::ExposureMode e) const
         break;
     case QCameraExposure::ExposureManual:
         name = tr("Manual");
-        break;
+
     case QCameraExposure::ExposureNight:
         name = tr("Night");
         break;
