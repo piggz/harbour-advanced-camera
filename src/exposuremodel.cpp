@@ -61,13 +61,13 @@ QString ExposureModel::exposureName(QCameraExposure::ExposureMode e) const
 
     switch(e) {
     case QCameraExposure::ExposureAuto:
-        name = tr("Auto");
+        name = tr("Automatic Scene Detection");
         break;
     case QCameraExposure::ExposureAction:
         name = tr("Action");
         break;
-    case QCameraExposure::ExposureASD:
-        name = tr("Automatic Scene Detection");
+    case QCameraExposure::ExposureManual:
+        name = tr("Off");
         break;
     case QCameraExposure::ExposureAR:
         name = tr("Augmented Reality");
