@@ -371,6 +371,35 @@ Page {
     FlashModel {
         id: modelFlash
     }
+
+    Rectangle {
+        id: focusCircle
+        height: parent.height / 4
+        width: height
+        radius: width / 2
+        border.width: 2
+        border.color: "white"
+        color: "transparent"
+        x: parent.width / 2 - (width / 2)
+        y: parent.height / 2 - (height / 2)
+    }
+
+    MouseArea {
+        id: mouseFocusArea
+        anchors.fill: parent
+        z: -1 //Send to back
+        onClicked: {
+            var x = mouse.x;
+            var y = mouse.y;
+
+            focusCircle.x = x - (focusCircle.width / 2);
+            focusCircle.y = y - (focusCircle.height / 2);
+
+            camera.focus.focusPointMode = Camera.FocusPointCustom;
+            camera.focus.setCustomFocusPoint(Qt.point((x / page.width), (y / page.height)));
+        }
+    }
+
     /*
     GStreamerVideoOutput {
         id: videoOutput
