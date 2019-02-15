@@ -62,10 +62,6 @@
 <context>
     <name>ExposureModel</name>
     <message>
-        <source>Auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Automatic Scene Detection</source>
         <translation type="unfinished"></translation>
     </message>
@@ -107,10 +103,6 @@
     </message>
     <message>
         <source>Large Aperture</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Manual</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -159,6 +151,10 @@
     </message>
     <message>
         <source>Action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

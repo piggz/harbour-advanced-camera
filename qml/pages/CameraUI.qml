@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Sailfish.Media 1.0
-import com.jolla.camera 1.0
+//import com.jolla.camera 1.0
 import QtMultimedia 5.4
 import QtQuick.Layouts 1.0
 import uk.co.piggz.harbour_advanced_camera 1.0
@@ -13,6 +13,9 @@ Page {
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.Landscape
+
+    property size temp_resolution: "0x0"
+    property string temp_resolution_str: ""
 
     ConfigurationValue {
         id: effectMode
@@ -339,12 +342,14 @@ Page {
     DockedListView {
         id: panelResolution
         model: sortedModelResolution
-        selectedItem: resolution.value
+        selectedItem: strToSize(temp_resolution_str)
 
-        onClicked: {
+        onClicked: {  
             camera.imageCapture.setResolution(value);
-            resolution.value = value;
+            temp_resolution_str = sizeToStr(value);
+            resolution.value = temp_resolution_str;
             hidePanels();
+            console.log("selected resolution", value, temp_resolution_str, resolution.value);
         }
     }
 
@@ -454,6 +459,10 @@ Page {
         }
 
         camera.imageCapture.setResolution(resolution.value);
+
+        resolution.sync();
+        var temp = resolution.value;
+        console.log("resolution:", resolution.value, ":", temp_resolution, ":", temp);
     }
 
     function hidePanels() {
@@ -552,5 +561,20 @@ Page {
 
         }
         return wbIcon;
+    }
+
+    function strToSize(siz) {
+        console.log("Converting ", siz, " to size");
+
+        var w = parseInt(siz.substring(0, siz.indexOf("x")));
+        var h = parseInt(siz.substring(siz.indexOf("x") + 1));
+
+        return Qt.size(w,h);
+    }
+
+    function sizeToStr(siz) {
+        console.log("Converting ", siz, " to string");
+
+        return siz.width + "x" + siz.height;
     }
 }
