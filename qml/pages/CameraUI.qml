@@ -14,7 +14,6 @@ Page {
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.Landscape
 
-    property size temp_resolution: "0x0"
     property string temp_resolution_str: ""
 
     ConfigurationValue {
@@ -458,11 +457,8 @@ Page {
             camera.exposure.setManualIsoSensitivity(isoMode.value);
         }
 
-        camera.imageCapture.setResolution(resolution.value);
-
-        resolution.sync();
-        var temp = resolution.value;
-        console.log("resolution:", resolution.value, ":", temp_resolution, ":", temp);
+        camera.imageCapture.setResolution(strToSize(resolution.value));
+        temp_resolution_str = resolution.value;
     }
 
     function hidePanels() {
