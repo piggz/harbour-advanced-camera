@@ -398,6 +398,14 @@ Page {
         y: parent.height / 2 - (height / 2)
     }
 
+    Label {
+        id: lblResolution
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.margins: Theme.paddingMedium
+        text: temp_resolution_str
+    }
+
     MouseArea {
         id: mouseFocusArea
         anchors.fill: parent
