@@ -235,7 +235,8 @@ Page {
                     Layout.preferredHeight: buttonPanel.buttonSize
                     Layout.preferredWidth: buttonPanel.buttonSize
                     Layout.fillHeight: false
-                    image: "image://theme/icon-camera-iso"
+                    //image: "image://theme/icon-camera-iso"
+                    image: isoIcon()
 
                     onClicked: {
                         hidePanels()
@@ -566,6 +567,19 @@ Page {
 
         }
         return wbIcon;
+    }
+
+    function isoIcon() {
+        var iso = "";
+        if (isoMode.value === 0) {
+            iso = "../pics/icon-m-iso-auto.png";
+        } else if (isoMode.value === 1) {
+            iso = "../pics/icon-m-iso-hjr.png";
+        } else {
+            iso = "../pics/icon-m-iso-" + isoMode.value + ".png";
+        }
+
+        return iso;
     }
 
     function strToSize(siz) {
