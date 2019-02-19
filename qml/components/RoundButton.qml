@@ -4,23 +4,20 @@ import Sailfish.Silica 1.0
 Item {
     id: button
     property string image: ""
+    property alias icon: iconButton.icon
     signal clicked()
     
     Rectangle {
         anchors.fill: parent
         radius: width/2
-        color: "#222222"
+        color: Theme.colorScheme == Theme.LightOnDark ? "black" : "white"
+        opacity: 0.7
         
         IconButton {
+            id: iconButton
             anchors.centerIn: parent
             icon.source: button.image
-            MouseArea {
-                anchors.fill: parent
-
-                onClicked: {
-                    button.clicked()
-                }
-            }
+            onClicked: button.clicked()
         }
         Component.onCompleted:{
             console.log("btn", width, height);
