@@ -153,6 +153,7 @@ Page {
                     Layout.preferredHeight: buttonPanel.buttonSize
                     Layout.preferredWidth: buttonPanel.buttonSize
                     Layout.fillHeight: false
+                    icon.color: Theme.primaryColor
                     image: "../pics/icon-m-effect.png"
 
                     onClicked: {
@@ -191,6 +192,7 @@ Page {
                     Layout.preferredHeight: buttonPanel.buttonSize
                     Layout.preferredWidth: buttonPanel.buttonSize
                     Layout.fillHeight: false
+                    icon.color: Theme.primaryColor
                     image: "../pics/icon-m-resolution.png"
 
                     onClicked: {
@@ -236,6 +238,7 @@ Page {
                     Layout.preferredWidth: buttonPanel.buttonSize
                     Layout.fillHeight: false
                     //image: "image://theme/icon-camera-iso"
+                    icon.color: Theme.primaryColor
                     image: isoIcon()
 
                     onClicked: {
@@ -403,6 +406,7 @@ Page {
         anchors.right: parent.right
         anchors.top: parent.top
         anchors.margins: Theme.paddingMedium
+        color: Theme.lightPrimaryColor
         text: temp_resolution_str
     }
 

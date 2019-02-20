@@ -16,20 +16,22 @@ DockedPanel {
     dock: Dock.Left
     clip:true
 
-    SilicaListView {
-        id: listView
+    Rectangle {
         anchors.fill: parent
-        VerticalScrollDecorator {}
-        clip: true
+        color: Theme.colorScheme == Theme.LightOnDark ? "black" : "white"
+        opacity: 0.7
 
-        delegate: ListItem {
-            width: ListView.view.width
-            height: Theme.itemSizeSmall
-            highlighted: value === selectedItem
-            Rectangle {
-                anchors.fill: parent
-                color: "black"
-                opacity: 0.7
+        SilicaListView {
+            id: listView
+            anchors.fill: parent
+            VerticalScrollDecorator {}
+            clip: true
+
+            delegate: ListItem {
+                width: ListView.view.width
+                height: Theme.itemSizeSmall
+                highlighted: value === selectedItem
+
                 Label {
                     anchors {
                         left: parent.left
@@ -41,9 +43,9 @@ DockedPanel {
                     color: highlighted ? Theme.highlightColor : Theme.primaryColor
                     text: name
                 }
-            }
-            onClicked: {
-                panel.clicked(value);
+                onClicked: {
+                    panel.clicked(value);
+                }
             }
         }
     }
