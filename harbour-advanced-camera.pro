@@ -46,7 +46,8 @@ CONFIG += sailfishapp_i18n
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
-TRANSLATIONS += translations/harbour-advanced-camera-de.ts
+TRANSLATIONS += translations/harbour-advanced-camera-de.ts \
+                translations/harbour-advanced-camera-fr.ts
 
 HEADERS += \
     src/effectsmodel.h \
