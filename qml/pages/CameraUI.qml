@@ -80,7 +80,7 @@ Page {
     Camera {
         id: camera
 
-        imageProcessing.colorFilter: CameraImageProcessing.ColorFilterNormal
+        imageProcessing.colorFilter: CameraImageProcessing.ColorFilterNone
 
         viewfinder.resolution: Qt.size(1920, 1080)
         exposure {
@@ -549,16 +549,16 @@ Page {
             focusIcon = "image://theme/icon-camera-focus-auto";
             break;
         case Camera.FocusManual:
-            focusIcon = "image://theme/icon-camera-focus"; //TODO need icon
+            focusIcon = "../pics/icon-camera-focus-manual.png";
             break;
         case Camera.FocusMacro:
             focusIcon = "image://theme/icon-camera-focus-macro";
             break;
         case Camera.FocusHyperfocal:
-            focusIcon = "image://theme/icon-camera-focus"; //TODO need icon
+            focusIcon = "../pics/icon-camera-focus-hyperfocal.png";
             break;
         case Camera.FocusContinuous:
-            focusIcon = "image://theme/icon-camera-focus"; //TODO need icon
+            focusIcon = "../pics/icon-camera-focus-continuous.png";
             break;
         case Camera.FocusInfinity:
             focusIcon = "image://theme/icon-camera-focus-infinity";
