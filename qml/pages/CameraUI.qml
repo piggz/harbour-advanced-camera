@@ -329,8 +329,7 @@ Page {
         selectedItem: focusMode.value
 
         onClicked: {
-            camera.focus.setFocusMode(value);
-            focusMode.value = value;
+            setFocusMode(value);
             hidePanels();
         }
     }
@@ -356,7 +355,7 @@ Page {
         model: sortedModelResolution
         selectedItem: strToSize(temp_resolution_str)
 
-        onClicked: {  
+        onClicked: {
             camera.imageCapture.setResolution(value);
             temp_resolution_str = sizeToStr(value);
             resolution.value = temp_resolution_str;
@@ -397,8 +396,13 @@ Page {
         border.width: 2
         border.color: "white"
         color: "transparent"
-        x: parent.width / 2 - (width / 2)
-        y: parent.height / 2 - (height / 2)
+        x: parent.width / 2
+        y: parent.height / 2
+        transform: Translate {
+            x: -focusCircle.width / 2
+            y: -focusCircle.height / 2
+        }
+
     }
 
     Label {
@@ -415,14 +419,15 @@ Page {
         anchors.fill: parent
         z: -1 //Send to back
         onClicked: {
-            var x = mouse.x;
-            var y = mouse.y;
+            // If in auto or macro focus mode, focus on the specified point
+            if (camera.focus.focusMode == Camera.FocusAuto || camera.focus.focusMode == Camera.FocusMacro || camera.focus.focusMode == Camera.FocusContinuous) {
+                focusCircle.x = mouse.x;
+                focusCircle.y = mouse.y;
 
-            focusCircle.x = x - (focusCircle.width / 2);
-            focusCircle.y = y - (focusCircle.height / 2);
-
-            camera.focus.focusPointMode = Camera.FocusPointCustom;
-            camera.focus.setCustomFocusPoint(Qt.point((x / page.width), (y / page.height)));
+                camera.focus.focusPointMode = Camera.FocusPointCustom;
+                camera.focus.setCustomFocusPoint(Qt.point((mouse.x / page.width), (mouse.y / page.height)));
+            }
+            camera.searchAndLock();
         }
     }
 
@@ -471,7 +476,7 @@ Page {
         camera.exposure.setExposureMode(exposureMode.value);
         camera.flash.setFlashMode(flashMode.value);
         camera.imageProcessing.setWhiteBalanceMode(whiteBalanceMode.value);
-        camera.focus.setFocusMode(focusMode.value);
+        setFocusMode(focusMode.value);
 
         if (isoMode.value === 0) {
             camera.exposure.setAutoIsoSensitivity();
@@ -607,5 +612,20 @@ Page {
         console.log("Converting ", siz, " to string");
 
         return siz.width + "x" + siz.height;
+    }
+
+    function setFocusMode(focus) {
+        if (camera.focus.focusMode !== focus) {
+            camera.unlock();
+            camera.focus.setFocusMode(focus);
+            focusMode.value = focus;
+
+            //Set the focus point pack to centre
+            focusCircle.x = page.width / 2;
+            focusCircle.y = page.height / 2;
+
+            camera.focus.focusPointMode = Camera.FocusPointAuto
+            camera.searchAndLock();
+        }
     }
 }
