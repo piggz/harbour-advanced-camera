@@ -93,6 +93,22 @@ Page {
         imageCapture {
             onImageCaptured: {
                 photoPreview.source = preview  // Show the preview in an Image
+                console.log("Camera: captured", photoPreview.source)
+            }
+            onImageSaved: {
+                console.log("Camera: image saved", path)
+                modelData.append({ photoPath: "file://" + path })
+                btnGallery.visible = true
+            }
+        }
+    }
+
+    Image {
+        id: photoPreview
+
+        onStatusChanged: {
+            if (photoPreview.status == Image.Ready) {
+                console.log('photoPreview ready')
             }
         }
     }
@@ -102,7 +118,7 @@ Page {
 
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
-        anchors.rightMargin: 50
+        anchors.rightMargin: Theme.paddingMedium
 
 
         height: parent.height / 6
@@ -450,6 +466,10 @@ Page {
     }
     */
 
+    ListModel {
+        id: modelData
+    }
+
     Timer {
         id: delayQuery
         interval: 1000
@@ -626,6 +646,27 @@ Page {
 
             camera.focus.focusPointMode = Camera.FocusPointAuto
             camera.searchAndLock();
+        }
+    }
+
+    RoundButton {
+        id: btnGallery
+
+        visible: false
+        enabled: visible
+
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: Theme.paddingMedium
+        anchors.right: parent.right
+        anchors.rightMargin: Theme.paddingMedium
+
+        height: parent.height / 6
+        width: height
+
+        image: "image://theme/icon-m-image"
+
+        onClicked: {
+            pageStack.push(Qt.resolvedUrl("GalleryUI.qml"), { "photoList": modelData })
         }
     }
 }
