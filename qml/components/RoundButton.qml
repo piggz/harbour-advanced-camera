@@ -5,12 +5,16 @@ Item {
     id: button
     property string image: ""
     property alias icon: iconButton.icon
+    property int size: Theme.itemSizeSmall
     signal clicked()
-    
+
+    height: size
+    width: size
+
     Rectangle {
         anchors.fill: parent
         radius: width/2
-        color: Theme.colorScheme == Theme.LightOnDark ? "black" : "white"
+        color: Theme.colorScheme === Theme.LightOnDark ? "black" : "white"
         opacity: 0.7
         
         IconButton {

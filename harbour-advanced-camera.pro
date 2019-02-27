@@ -25,16 +25,20 @@ SOURCES += src/harbour-advanced-camera.cpp \
     src/focusmodel.cpp \
     src/flashmodel.cpp
 
-DISTFILES += qml/harbour-advanced-camera.qml \
-    qml/cover/CoverPage.qml \
-    rpm/harbour-advanced-camera.changes.in \
+DISTFILES += rpm/harbour-advanced-camera.changes.in \
     rpm/harbour-advanced-camera.changes.run.in \
     rpm/harbour-advanced-camera.spec \
     rpm/harbour-advanced-camera.yaml \
     translations/*.ts \
     harbour-advanced-camera.desktop \
+    qml/harbour-advanced-camera.qml \
+    qml/components/DockedListView.qml \
+    qml/components/RoundButton.qml \
+    qml/cover/CoverPage.qml \
     qml/pages/CameraUI.qml \
-    qml/components/RoundButton.qml
+    qml/pages/GalleryUI.qml \
+    qml/pages/Settings.qml \
+    qml/pages/SettingsOverlay.qml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 
