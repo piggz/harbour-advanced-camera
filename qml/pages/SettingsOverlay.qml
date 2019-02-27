@@ -28,83 +28,82 @@ Item {
             NumberAnimation { duration: 150 }
         }
 
-        Row {
-            spacing: Theme.paddingSmall
-            anchors.fill: parent
-            anchors.margins: Theme.paddingSmall
+        GridLayout {
+            id: colButtons
+            flow: GridLayout.TopToBottom
+            rowSpacing: Theme.paddingSmall
+            columnSpacing: Theme.paddingSmall
+            rows: Math.floor(height / (btnScene.height + rowSpacing)) //using the button height and not theme size incase we change the RoundButton size
 
-            ColumnLayout {
-                id: colButtons
-                spacing: Theme.paddingSmall
-                width: Theme.itemSizeSmall
+            anchors {
+                top: parent.top
+                bottom: parent.bottom
+                left: parent.left
+                margins: Theme.paddingSmall
+            }
 
-                RoundButton {
-                    id: btnScene
-                    icon.color: Theme.primaryColor
-                    image: "../pics/icon-m-effect.png"
+            RoundButton {
+                id: btnScene
+                icon.color: Theme.primaryColor
+                image: "../pics/icon-m-effect.png"
 
-                    onClicked: {
-                        panelEffects.show();
-                    }
-                }
-                RoundButton {
-                    id: btnExposure
-                    image: "image://theme/icon-camera-exposure-compensation"
-
-                    onClicked: {
-                        panelExposure.show();
-                    }
-                }
-                RoundButton {
-                    id: btnFocus
-                    image: focusIcon()
-
-                    onClicked: {
-                        panelFocus.show();
-                    }
-                }
-                RoundButton {
-                    id: btnResolution
-                    icon.color: Theme.primaryColor
-                    image: "../pics/icon-m-resolution.png"
-
-                    onClicked: {
-                        panelResolution.show();
-                    }
-                }
-                RoundButton {
-                    id: btnWhiteBalance
-                    image: whiteBalanceIcon()
-
-                    onClicked: {
-                        panelWhiteBalance.show();
-                    }
-                }
-                RoundButton {
-                    id: btnFlash
-                    image: flashIcon()
-
-                    onClicked: {
-                        panelFlash.show();
-                    }
+                onClicked: {
+                    panelEffects.show();
                 }
             }
-            ColumnLayout {
-                id: colButtons2
-                spacing: Theme.paddingSmall
-                width: Theme.itemSizeSmall
+            RoundButton {
+                id: btnExposure
+                image: "image://theme/icon-camera-exposure-compensation"
 
-                RoundButton {
-                    id: btnIso
-                    icon.color: Theme.primaryColor
-                    image: isoIcon()
-
-                    onClicked: {
-                        panelIso.show();
-                    }
+                onClicked: {
+                    panelExposure.show();
                 }
-
             }
+            RoundButton {
+                id: btnFocus
+                image: focusIcon()
+
+                onClicked: {
+                    panelFocus.show();
+                }
+            }
+            RoundButton {
+                id: btnResolution
+                icon.color: Theme.primaryColor
+                image: "../pics/icon-m-resolution.png"
+
+                onClicked: {
+                    panelResolution.show();
+                }
+            }
+            RoundButton {
+                id: btnWhiteBalance
+                image: whiteBalanceIcon()
+
+                onClicked: {
+                    panelWhiteBalance.show();
+                }
+            }
+            RoundButton {
+                id: btnFlash
+                image: flashIcon()
+
+                onClicked: {
+                    panelFlash.show();
+                }
+            }
+
+            RoundButton {
+                id: btnIso
+                icon.color: Theme.primaryColor
+                image: isoIcon()
+
+                onClicked: {
+                    panelIso.show();
+                }
+            }
+
+
         }
     }
 
