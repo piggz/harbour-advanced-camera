@@ -10,7 +10,13 @@ Item {
 
     Item {
         id: buttonPanel
-        visible: true
+        visible: !panelEffects.expanded &&
+                 !panelExposure.expanded &&
+                 !panelFlash.expanded &&
+                 !panelWhiteBalance.expanded &&
+                 !panelFocus.expanded &&
+                 !panelIso.expanded &&
+                 !panelResolution.expanded
         enabled: visible
 
         height: parent.height
@@ -31,14 +37,13 @@ Item {
                 id: colButtons
                 spacing: Theme.paddingSmall
                 width: Theme.itemSizeSmall
-                
+
                 RoundButton {
                     id: btnScene
                     icon.color: Theme.primaryColor
                     image: "../pics/icon-m-effect.png"
 
                     onClicked: {
-                        hidePanels()
                         panelEffects.show();
                     }
                 }
@@ -47,7 +52,6 @@ Item {
                     image: "image://theme/icon-camera-exposure-compensation"
 
                     onClicked: {
-                        hidePanels()
                         panelExposure.show();
                     }
                 }
@@ -56,7 +60,6 @@ Item {
                     image: focusIcon()
 
                     onClicked: {
-                        hidePanels()
                         panelFocus.show();
                     }
                 }
@@ -66,7 +69,6 @@ Item {
                     image: "../pics/icon-m-resolution.png"
 
                     onClicked: {
-                        hidePanels();
                         panelResolution.show();
                     }
                 }
@@ -75,7 +77,6 @@ Item {
                     image: whiteBalanceIcon()
 
                     onClicked: {
-                        hidePanels();
                         panelWhiteBalance.show();
                     }
                 }
@@ -84,7 +85,6 @@ Item {
                     image: flashIcon()
 
                     onClicked: {
-                        hidePanels();
                         panelFlash.show();
                     }
                 }
@@ -100,34 +100,12 @@ Item {
                     image: isoIcon()
 
                     onClicked: {
-                        hidePanels()
                         panelIso.show();
                     }
                 }
 
             }
-            /*
-            Item {
-                id: menuButtonContainer
-                height: parent.height
-                width: buttonPanel.buttonSize
-                
-                RoundButton {
-                    id: btnMenu
-                    height: buttonPanel.buttonSize
-                    width: buttonPanel.buttonSize
-                    anchors.verticalCenter: parent.verticalCenter
-                    image: buttonPanel.menuVisible ? "image://theme/icon-m-left" : "image://theme/icon-m-right"
-                    onClicked: {
-                        buttonPanel.menuVisible = !buttonPanel.menuVisible;
-                    }
-                }
-                
-
-            }
-            */
         }
-
     }
 
     DockedListView {
@@ -138,7 +116,7 @@ Item {
         onClicked: {
             camera.imageProcessing.setColorFilter(value);
             settings.mode.effect = value;
-            hidePanels();
+            hide();
         }
     }
 
@@ -147,11 +125,10 @@ Item {
         model: modelExposure
         selectedItem: settings.mode.exposure
 
-
         onClicked: {
             camera.exposure.setExposureMode(value);
             settings.mode.exposure = value;
-            hidePanels();
+            hide();
         }
     }
 
@@ -160,11 +137,10 @@ Item {
         model: modelFlash
         selectedItem: settings.mode.flash
 
-
         onClicked: {
             camera.flash.setFlashMode(value);
             settings.mode.flash = value;
-            hidePanels();
+            hide();
         }
     }
 
@@ -173,11 +149,10 @@ Item {
         model: modelWhiteBalance
         selectedItem: settings.mode.whiteBalance
 
-
         onClicked: {
             camera.imageProcessing.setWhiteBalanceMode(value);
             settings.mode.whiteBalance = value;
-            hidePanels();
+            hide();
         }
     }
 
@@ -188,7 +163,7 @@ Item {
 
         onClicked: {
             setFocusMode(value);
-            hidePanels();
+            hide();
         }
     }
 
@@ -204,7 +179,7 @@ Item {
                 camera.exposure.setManualIsoSensitivity(value);
             }
             settings.mode.iso = value;
-            hidePanels();
+            hide();
         }
     }
 
@@ -217,7 +192,7 @@ Item {
             camera.imageCapture.setResolution(value);
             temp_resolution_str = settings.sizeToStr(value);
             settings.mode.resolution = temp_resolution_str;
-            hidePanels();
+            hide();
             console.log("selected resolution", value, temp_resolution_str, settings.mode.resolution);
         }
     }
@@ -262,17 +237,6 @@ Item {
         }
     }
 
-    function hidePanels() {
-        //buttonPanel.menuVisible = false;
-        panelExposure.hide();
-        panelEffects.hide();
-        panelWhiteBalance.hide();
-        panelFlash.hide();
-        panelFocus.hide();
-        panelIso.hide();
-        panelResolution.hide();
-    }
-
     function flashIcon() {
         var flashIcon = "";
         switch(settings.mode.flash) {
@@ -291,7 +255,6 @@ Item {
         default:
             flashIcon = "image://theme/icon-camera-flash-on";
             break;
-
         }
         return flashIcon;
     }
@@ -320,7 +283,6 @@ Item {
         default:
             focusIcon = "image://theme/icon-camera-focus";
             break;
-
         }
         return focusIcon;
     }
@@ -355,7 +317,6 @@ Item {
         default:
             wbIcon = "image://theme/icon-camera-wb-default";
             break;
-
         }
         return wbIcon;
     }
@@ -369,7 +330,6 @@ Item {
         } else {
             iso = "../pics/icon-m-iso-" + settings.mode.iso + ".png";
         }
-
         return iso;
     }
 }
