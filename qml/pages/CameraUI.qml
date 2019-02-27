@@ -88,7 +88,7 @@ Page {
             exposureMode: Camera.ExposureAuto
         }
 
-        flash.mode: Camera.FlashRedEyeReduction
+        flash.mode: Camera.FlashOff
 
         imageCapture {
             onImageCaptured: {
@@ -120,9 +120,7 @@ Page {
         anchors.right: parent.right
         anchors.rightMargin: Theme.paddingMedium
 
-
-        height: parent.height / 6
-        width: height
+        size: Theme.itemSizeLarge
 
         image: "image://theme/icon-camera-shutter"
 
@@ -142,33 +140,30 @@ Page {
 
     Item {
         id: buttonPanel
-        property int buttonSize: ((height -Theme.paddingMedium) / colButtons.children.length) - Theme.paddingMedium
-        property bool menuVisible: true
-        //color: "grey"
+        visible: true
+        enabled: visible
+
         height: parent.height
-        width: buttonSize * 2 + 3 * Theme.paddingMedium
-        x: menuVisible ? 0 : -(width / 2)
-        y:0
+        width: 2 * Theme.itemSizeSmall + 4 * Theme.paddingMedium
+        anchors.left: parent.left
+        anchors.top: parent.top
+
         Behavior on x {
             NumberAnimation { duration: 150 }
         }
-        
-        
+
         Row {
-            spacing: Theme.paddingMedium
+            spacing: Theme.paddingSmall
             anchors.fill: parent
-            anchors.margins: Theme.paddingMedium
+            anchors.margins: Theme.paddingSmall
 
             ColumnLayout {
                 id: colButtons
-                spacing: Theme.paddingMedium
-                width: buttonPanel.buttonSize
+                spacing: Theme.paddingSmall
+                width: Theme.itemSizeSmall
                 
                 RoundButton {
                     id: btnScene
-                    Layout.preferredHeight: buttonPanel.buttonSize
-                    Layout.preferredWidth: buttonPanel.buttonSize
-                    Layout.fillHeight: false
                     icon.color: Theme.primaryColor
                     image: "../pics/icon-m-effect.png"
 
@@ -181,10 +176,6 @@ Page {
                     id: btnExposure
                     image: "image://theme/icon-camera-exposure-compensation"
 
-                    Layout.preferredHeight: buttonPanel.buttonSize
-                    Layout.preferredWidth: buttonPanel.buttonSize
-                    Layout.fillHeight: false
-
                     onClicked: {
                         hidePanels()
                         panelExposure.show();
@@ -194,10 +185,6 @@ Page {
                     id: btnFocus
                     image: focusIcon()
 
-                    Layout.preferredHeight: buttonPanel.buttonSize
-                    Layout.preferredWidth: buttonPanel.buttonSize
-                    Layout.fillHeight: false
-
                     onClicked: {
                         hidePanels()
                         panelFocus.show();
@@ -205,9 +192,6 @@ Page {
                 }
                 RoundButton {
                     id: btnResolution
-                    Layout.preferredHeight: buttonPanel.buttonSize
-                    Layout.preferredWidth: buttonPanel.buttonSize
-                    Layout.fillHeight: false
                     icon.color: Theme.primaryColor
                     image: "../pics/icon-m-resolution.png"
 
@@ -220,10 +204,6 @@ Page {
                     id: btnWhiteBalance
                     image: whiteBalanceIcon()
 
-                    Layout.preferredHeight: buttonPanel.buttonSize
-                    Layout.preferredWidth: buttonPanel.buttonSize
-                    Layout.fillHeight: false
-
                     onClicked: {
                         hidePanels();
                         panelWhiteBalance.show();
@@ -233,10 +213,6 @@ Page {
                     id: btnFlash
                     image: flashIcon()
 
-                    Layout.preferredHeight: buttonPanel.buttonSize
-                    Layout.preferredWidth: buttonPanel.buttonSize
-                    Layout.fillHeight: false
-
                     onClicked: {
                         hidePanels();
                         panelFlash.show();
@@ -245,15 +221,11 @@ Page {
             }
             ColumnLayout {
                 id: colButtons2
-                spacing: Theme.paddingMedium
-                width: buttonPanel.buttonSize
+                spacing: Theme.paddingSmall
+                width: Theme.itemSizeSmall
 
                 RoundButton {
                     id: btnIso
-                    Layout.preferredHeight: buttonPanel.buttonSize
-                    Layout.preferredWidth: buttonPanel.buttonSize
-                    Layout.fillHeight: false
-                    //image: "image://theme/icon-camera-iso"
                     icon.color: Theme.primaryColor
                     image: isoIcon()
 
@@ -406,7 +378,7 @@ Page {
 
     Rectangle {
         id: focusCircle
-        height: parent.height / 4
+        height: Theme.itemSizeHuge
         width: height
         radius: width / 2
         border.width: 2
@@ -660,8 +632,7 @@ Page {
         anchors.right: parent.right
         anchors.rightMargin: Theme.paddingMedium
 
-        height: parent.height / 6
-        width: height
+        size: Theme.itemSizeSmall
 
         image: "image://theme/icon-m-image"
 

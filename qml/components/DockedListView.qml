@@ -6,6 +6,7 @@ DockedPanel {
 
     property alias model: listView.model
     property var selectedItem
+    modal: true
 
     signal clicked(var value)
 
@@ -14,11 +15,11 @@ DockedPanel {
     z: 99
 
     dock: Dock.Left
-    clip:true
+    clip: true
 
     Rectangle {
         anchors.fill: parent
-        color: Theme.colorScheme == Theme.LightOnDark ? "black" : "white"
+        color: Theme.colorScheme === Theme.LightOnDark ? "black" : "white"
         opacity: 0.7
 
         SilicaListView {
