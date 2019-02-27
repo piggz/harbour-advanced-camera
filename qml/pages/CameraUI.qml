@@ -13,6 +13,8 @@ Page {
     allowedOrientations: Orientation.Landscape
 
     property string temp_resolution_str: ""
+    property bool _cameraReload: false
+    property bool _completed: false
 
     Rectangle {
         parent: window
@@ -25,7 +27,7 @@ Page {
         id: captureView
         anchors.fill: parent
         source: camera
-        rotation: 180
+        rotation: camera.position == Camera.FrontFace ? 0 : 180
         orientation: camera.orientation
         onOrientationChanged: {
             console.log(orientation)
@@ -34,6 +36,10 @@ Page {
 
     Camera {
         id: camera
+
+        cameraState: page._completed && !page._cameraReload
+                        ? Camera.ActiveState
+                        : Camera.UnloadedState
 
         imageProcessing.colorFilter: CameraImageProcessing.ColorFilterNone
 
@@ -111,7 +117,7 @@ Page {
 
     Label {
         id: lblResolution
-        anchors.right: parent.right
+        anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.margins: Theme.paddingMedium
         color: Theme.lightPrimaryColor
@@ -164,7 +170,17 @@ Page {
 
     Component.onCompleted: {
         applySettings();
+        _completed = true;
     }
+
+    Timer {
+        id: reloadTimer
+        interval: 100
+        running: page._cameraReload && camera.cameraStatus == Camera.UnloadedStatus
+        onTriggered: {
+            page._cameraReload = false;
+        }
+     }
 
     function applySettings() {
         camera.imageProcessing.setColorFilter(settings.mode.effect);
@@ -181,6 +197,7 @@ Page {
 
         camera.imageCapture.setResolution(settings.strToSize(settings.mode.resolution));
         temp_resolution_str = settings.mode.resolution;
+        settings.global.cameraCount = QtMultimedia.availableCameras.length;
     }
 
     function setFocusMode(focus) {
@@ -215,6 +232,23 @@ Page {
 
         onClicked: {
             pageStack.push(Qt.resolvedUrl("GalleryUI.qml"), { "photoList": galleryModel })
+        }
+    }
+
+    IconButton {
+        id: btnCameraSwitch
+        icon.source: "image://theme/icon-camera-switch"
+        visible: settings.global.cameraCount > 1
+        anchors {
+            top: parent.top
+            topMargin: Theme.paddingMedium
+            right: parent.right
+            rightMargin: Theme.paddingMedium
+        }
+        onClicked: {
+            _cameraReload = true
+            camera.deviceId = settings.global.cameraId == "primary" ? "secondary" : "primary"
+            settings.global.cameraId = camera.deviceId
         }
     }
 }
