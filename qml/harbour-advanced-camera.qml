@@ -7,4 +7,5 @@ ApplicationWindow
     id: window
     initialPage: Component { CameraUI { } }
     allowedOrientations: defaultAllowedOrientations
+    cover: Qt.resolvedUrl("cover/CoverPage.qml")
 }

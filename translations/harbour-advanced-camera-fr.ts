@@ -4,9 +4,9 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="8"/>
-        <source>My Cover</source>
-        <translation>Advanced Camera</translation>
+        <location filename="../qml/cover/CoverPage.qml" line="13"/>
+        <source>Advanced Camera</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
