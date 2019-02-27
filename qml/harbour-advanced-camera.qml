@@ -5,6 +5,11 @@ import "pages"
 ApplicationWindow
 {
     id: window
+
+    Settings {
+        id: settings
+    }
+
     initialPage: Component { CameraUI { } }
     allowedOrientations: defaultAllowedOrientations
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
