@@ -97,8 +97,7 @@ Page {
             }
             onImageSaved: {
                 console.log("Camera: image saved", path)
-                modelData.append({ photoPath: "file://" + path })
-                btnGallery.visible = true
+                galleryModel.append({ photoPath: "file://" + path })
             }
         }
     }
@@ -439,7 +438,7 @@ Page {
     */
 
     ListModel {
-        id: modelData
+        id: galleryModel
     }
 
     Timer {
@@ -624,7 +623,7 @@ Page {
     RoundButton {
         id: btnGallery
 
-        visible: false
+        visible: galleryModel.count > 0
         enabled: visible
 
         anchors.bottom: parent.bottom
@@ -637,7 +636,7 @@ Page {
         image: "image://theme/icon-m-image"
 
         onClicked: {
-            pageStack.push(Qt.resolvedUrl("GalleryUI.qml"), { "photoList": modelData })
+            pageStack.push(Qt.resolvedUrl("GalleryUI.qml"), { "photoList": galleryModel })
         }
     }
 }
