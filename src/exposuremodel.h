@@ -23,6 +23,7 @@ public:
     virtual QVariant data(const QModelIndex &index, int role) const;
 
     Q_INVOKABLE void setCamera(QObject *camera);
+    Q_INVOKABLE QString iconName(QCameraExposure::ExposureMode e) const;
 
 private:
     QMap<QCameraExposure::ExposureMode, QString> m_exposures;

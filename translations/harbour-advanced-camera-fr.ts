@@ -140,57 +140,57 @@
         <translation>Grande ouverture</translation>
     </message>
     <message>
-        <location filename="../src/exposuremodel.cpp" line="106"/>
+        <location filename="../src/exposuremodel.cpp" line="103"/>
         <source>Night</source>
         <translation>Nuit</translation>
     </message>
     <message>
-        <location filename="../src/exposuremodel.cpp" line="109"/>
+        <location filename="../src/exposuremodel.cpp" line="106"/>
         <source>Night Portrait</source>
         <translation>Portrait de nuit</translation>
     </message>
     <message>
-        <location filename="../src/exposuremodel.cpp" line="112"/>
+        <location filename="../src/exposuremodel.cpp" line="109"/>
         <source>Party</source>
         <translation>Fête</translation>
     </message>
     <message>
-        <location filename="../src/exposuremodel.cpp" line="115"/>
+        <location filename="../src/exposuremodel.cpp" line="112"/>
         <source>Portrait</source>
         <translation>Portrait</translation>
     </message>
     <message>
-        <location filename="../src/exposuremodel.cpp" line="118"/>
+        <location filename="../src/exposuremodel.cpp" line="115"/>
         <source>Small Aperture</source>
         <translation>Petite ouverture</translation>
     </message>
     <message>
-        <location filename="../src/exposuremodel.cpp" line="121"/>
+        <location filename="../src/exposuremodel.cpp" line="118"/>
         <source>Snow</source>
         <translation>Neige</translation>
     </message>
     <message>
-        <location filename="../src/exposuremodel.cpp" line="124"/>
+        <location filename="../src/exposuremodel.cpp" line="121"/>
         <source>Sports</source>
         <translation>Sports</translation>
     </message>
     <message>
-        <location filename="../src/exposuremodel.cpp" line="127"/>
+        <location filename="../src/exposuremodel.cpp" line="124"/>
         <source>Spotlight</source>
         <translation>Projecteur</translation>
     </message>
     <message>
-        <location filename="../src/exposuremodel.cpp" line="130"/>
+        <location filename="../src/exposuremodel.cpp" line="127"/>
         <source>Steady Photo</source>
         <translation>Photo stable</translation>
     </message>
     <message>
-        <location filename="../src/exposuremodel.cpp" line="133"/>
+        <location filename="../src/exposuremodel.cpp" line="130"/>
         <source>Sunset</source>
         <translation>Coucher de soleil</translation>
     </message>
     <message>
-        <location filename="../src/exposuremodel.cpp" line="136"/>
+        <location filename="../src/exposuremodel.cpp" line="133"/>
         <source>Theatre</source>
         <translation>Théâtre</translation>
     </message>
