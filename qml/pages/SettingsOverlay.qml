@@ -53,11 +53,8 @@ Item {
             }
             RoundButton {
                 id: btnExposure
-                //image: "image://theme/icon-camera-exposure-compensation"
                 image: sceneModeIcon()
                 icon.color: Theme.primaryColor
-                icon.width: Theme.iconSizeMedium
-                icon.height: Theme.iconSizeMedium
 
                 onClicked: {
                     panelExposure.show();
