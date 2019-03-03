@@ -56,6 +56,8 @@ Item {
                 //image: "image://theme/icon-camera-exposure-compensation"
                 image: sceneModeIcon()
                 icon.color: Theme.primaryColor
+                icon.width: Theme.iconSizeMedium
+                icon.height: Theme.iconSizeMedium
 
                 onClicked: {
                     panelExposure.show();
@@ -335,6 +337,6 @@ Item {
     }
 
     function sceneModeIcon(scene) {
-        return "../pics/icon-m-scene_mode_" + modelExposure.iconName(settings.mode.exposure) + ".png";
+        return "../pics/icon-m-scene_mode_" + modelExposure.iconName(settings.mode.exposure) + ".svg";
     }
 }
