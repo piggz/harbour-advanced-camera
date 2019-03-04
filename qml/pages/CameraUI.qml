@@ -58,7 +58,7 @@ Page {
             }
             onImageSaved: {
                 console.log("Camera: image saved", path)
-                galleryModel.append({ photoPath: "file://" + path })
+                galleryModel.append({ filePath: path })
             }
         }
     }
@@ -231,7 +231,7 @@ Page {
         image: "image://theme/icon-m-image"
 
         onClicked: {
-            pageStack.push(Qt.resolvedUrl("GalleryUI.qml"), { "photoList": galleryModel })
+            pageStack.push(Qt.resolvedUrl("GalleryUI.qml"), { "fileList": galleryModel })
         }
     }
 

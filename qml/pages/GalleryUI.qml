@@ -1,13 +1,78 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import Nemo.FileManager 1.0
+import "../components/"
 
 Page {
     id: galleryPage
 
-    property var photoList: ({})
+    property var fileList: ({})
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
+
+    backNavigation: false
+
+    function removeFile(idx) {
+        var path = fileList.get(idx).filePath
+        console.log("Removing", path)
+        FileEngine.deleteFiles( [ path ] )
+        fileList.remove(idx)
+        if (gallery.count === 0) {
+            console.log("Closing empty gallery!")
+            pageStack.pop()
+        }
+    }
+
+    RoundButton {
+        id: btnClose
+
+        visible: true
+        icon.source: "image://theme/icon-m-close"
+        size: Theme.itemSizeMedium
+
+        anchors {
+            top: parent.top
+            topMargin: Theme.paddingMedium
+            right: parent.right
+            rightMargin: Theme.paddingMedium
+        }
+
+        onClicked: {
+            console.log("Clicked close button")
+            pageStack.pop()
+        }
+    }
+
+    RemorsePopup { id: remorse }
+
+    Row {
+        id: rowBottom
+
+        visible: btnClose.visible
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
+            bottomMargin: Theme.paddingMedium
+        }
+
+        RoundButton {
+            id: btnRemove
+
+            icon.source: "image://theme/icon-m-delete"
+            size: Theme.itemSizeMedium
+
+            function showRemorseItem() {
+                remorse.execute(qsTr("Deleting"),
+                    function() { removeFile(gallery.currentIndex) })
+            }
+
+            onClicked: {
+                console.log("Clicked delete button")
+                showRemorseItem()
+            }
+        }
+    }
 
     SlideshowView {
         id: gallery
@@ -15,8 +80,9 @@ Page {
         clip: true
         width: parent.width
         height: parent.height
+        z: -1
 
-        model: photoList
+        model: fileList
         currentIndex: count - 1
 
         delegate: Rectangle {
@@ -32,13 +98,13 @@ Page {
                 sourceSize.width: parent.width
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectFit
-                source: photoPath
+                source: "file://" + filePath
 
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
                         console.log("Clicked", thumbnail.source)
-                        Qt.openUrlExternally(thumbnail.source)
+                        btnClose.visible = btnClose.visible ? false : true
                     }
                 }
             }
