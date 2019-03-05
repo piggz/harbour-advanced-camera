@@ -83,7 +83,7 @@ Page {
         size: Theme.itemSizeLarge
 
         image: "image://theme/icon-camera-shutter"
-
+        icon.anchors.margins: Theme.paddingSmall
         onClicked: {
             camera.imageCapture.capture();
             animFlash.start();

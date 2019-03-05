@@ -20,7 +20,11 @@ Item {
         IconButton {
             id: iconButton
             anchors.centerIn: parent
+            anchors.fill: parent
+            icon.anchors.fill: icon.parent
+            icon.anchors.margins: Theme.paddingMedium
             icon.source: button.image
+            icon.fillMode: Image.PreserveAspectFit
             onClicked: button.clicked()
         }
         Component.onCompleted:{

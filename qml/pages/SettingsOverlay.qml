@@ -53,7 +53,8 @@ Item {
             }
             RoundButton {
                 id: btnExposure
-                image: "image://theme/icon-camera-exposure-compensation"
+                image: sceneModeIcon()
+                icon.color: Theme.primaryColor
 
                 onClicked: {
                     panelExposure.show();
@@ -330,5 +331,9 @@ Item {
             iso = "../pics/icon-m-iso-" + settings.mode.iso + ".png";
         }
         return iso;
+    }
+
+    function sceneModeIcon(scene) {
+        return "../pics/icon-m-scene_mode_" + modelExposure.iconName(settings.mode.exposure) + ".svg";
     }
 }

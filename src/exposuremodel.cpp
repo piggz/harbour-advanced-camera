@@ -99,9 +99,6 @@ QString ExposureModel::exposureName(QCameraExposure::ExposureMode e) const
     case QCameraExposure::ExposureLargeAperture:
         name = tr("Large Aperture");
         break;
-    
-
-
     case QCameraExposure::ExposureNight:
         name = tr("Night");
         break;
@@ -138,6 +135,90 @@ QString ExposureModel::exposureName(QCameraExposure::ExposureMode e) const
 
     default:
         name = "Unknown (" + QString::number(e) + ")";
+    }
+
+    return name;
+}
+
+QString ExposureModel::iconName(QCameraExposure::ExposureMode e) const
+{
+    QString name;
+
+    switch(e) {
+    case QCameraExposure::ExposureAuto:
+        name = "asd";
+        break;
+    case QCameraExposure::ExposureAction:
+        name = "action";
+        break;
+    case QCameraExposure::ExposureManual:
+        name = "none";
+        break;
+    case QCameraExposure::ExposureAR:
+        name = "ar";
+        break;
+    case QCameraExposure::ExposureBacklight:
+        name = "backlight";
+        break;
+    case QCameraExposure::ExposureBarcode:
+        name = "barcode";
+        break;
+    case QCameraExposure::ExposureBeach:
+        name = "beach";
+        break;
+    case QCameraExposure::ExposureCandlelight:
+        name = "candlelight";
+        break;
+    case QCameraExposure::ExposureFireworks:
+        name = "fireworks";
+        break;
+    case QCameraExposure::ExposureFlowers:
+        name = "flowers";
+        break;
+    case QCameraExposure::ExposureHDR:
+        name = "hdr";
+        break;
+    case QCameraExposure::ExposureLandscape:
+        name = "landscape";
+        break;
+    case QCameraExposure::ExposureLargeAperture:
+        name = "large_aperture";
+        break;
+    case QCameraExposure::ExposureNight:
+        name = "night";
+        break;
+    case QCameraExposure::ExposureNightPortrait:
+        name = "night_portrait";
+        break;
+    case QCameraExposure::ExposureParty:
+        name = "party";
+        break;
+    case QCameraExposure::ExposurePortrait:
+        name = "portrait";
+        break;
+    case QCameraExposure::ExposureSmallAperture:
+        name = "small_aperture";
+        break;
+    case QCameraExposure::ExposureSnow:
+        name = "snow";
+        break;
+    case QCameraExposure::ExposureSports:
+        name = "sports";
+        break;
+    case QCameraExposure::ExposureSpotlight:
+        name = "spotlight";
+        break;
+    case QCameraExposure::ExposureSteadyPhoto:
+        name = "steady_photo";
+        break;
+    case QCameraExposure::ExposureSunset:
+        name = "sunset";
+        break;
+    case QCameraExposure::ExposureTheatre:
+        name = "theatre";
+        break;
+    default:
+        name = "unknown";
     }
 
     return name;
