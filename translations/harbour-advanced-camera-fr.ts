@@ -294,6 +294,14 @@
     </message>
 </context>
 <context>
+    <name>GalleryUI</name>
+    <message>
+        <location filename="../qml/pages/GalleryUI.qml" line="66"/>
+        <source>Deleting</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>IsoModel</name>
     <message>
         <location filename="../src/isomodel.cpp" line="62"/>

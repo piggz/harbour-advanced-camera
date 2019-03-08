@@ -237,6 +237,13 @@
     </message>
 </context>
 <context>
+    <name>GalleryUI</name>
+    <message>
+        <source>Deleting</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>IsoModel</name>
     <message>
         <source>Auto ISO</source>
