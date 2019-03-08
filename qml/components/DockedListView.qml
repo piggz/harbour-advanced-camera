@@ -7,6 +7,7 @@ DockedPanel {
     property alias model: listView.model
     property var selectedItem
     modal: true
+    animationDuration: 250
 
     signal clicked(var value)
 
