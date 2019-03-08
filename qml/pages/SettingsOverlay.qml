@@ -10,23 +10,21 @@ Item {
 
     Item {
         id: buttonPanel
-        visible: !panelEffects.expanded &&
+        opacity: (!panelEffects.expanded &&
                  !panelExposure.expanded &&
                  !panelFlash.expanded &&
                  !panelWhiteBalance.expanded &&
                  !panelFocus.expanded &&
                  !panelIso.expanded &&
-                 !panelResolution.expanded
-        enabled: visible
+                 !panelResolution.expanded) === true ? 1 : 0
+        enabled: opacity > 0
 
         height: parent.height
         width: 2 * Theme.itemSizeSmall + 4 * Theme.paddingMedium
         anchors.left: parent.left
         anchors.top: parent.top
 
-        Behavior on x {
-            NumberAnimation { duration: 150 }
-        }
+        Behavior on opacity { FadeAnimation {}}
 
         GridLayout {
             id: colButtons
