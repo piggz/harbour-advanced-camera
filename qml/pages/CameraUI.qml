@@ -1,7 +1,5 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Sailfish.Media 1.0
-//import com.jolla.camera 1.0
 import QtMultimedia 5.4
 import uk.co.piggz.harbour_advanced_camera 1.0
 import "../components/"
