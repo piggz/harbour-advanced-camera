@@ -13,6 +13,7 @@ Page {
     property string temp_resolution_str: ""
     property bool _cameraReload: false
     property bool _completed: false
+    property bool _focusAndSnap: false
 
     Rectangle {
         parent: window
@@ -59,6 +60,13 @@ Page {
                 galleryModel.append({ filePath: path })
             }
         }
+        onLockStatusChanged: {
+            if (camera.lockStatus == Camera.Locked && _focusAndSnap) {
+                camera.imageCapture.capture();
+                animFlash.start();
+                _focusAndSnap = false;
+            }
+        }
     }
 
     Image {
@@ -83,8 +91,13 @@ Page {
         image: "image://theme/icon-camera-shutter"
         icon.anchors.margins: Theme.paddingSmall
         onClicked: {
-            camera.imageCapture.capture();
-            animFlash.start();
+            if (camera.focus.focusMode == Camera.FocusAuto || camera.focus.focusMode == Camera.FocusMacro || camera.focus.focusMode == Camera.FocusContinuous) {
+                _focusAndSnap = true;
+                camera.searchAndLock();
+            } else {
+                camera.imageCapture.capture();
+                animFlash.start();
+            }
         }
     }
 
@@ -102,7 +115,7 @@ Page {
         width: height
         radius: width / 2
         border.width: 2
-        border.color: "white"
+        border.color: focusColor()
         color: "transparent"
         x: parent.width / 2
         y: parent.height / 2
@@ -164,10 +177,13 @@ Page {
 
     SettingsOverlay {
         id: settingsOverlay
+
+        onReady: {
+            applySettings();
+        }
     }
 
     Component.onCompleted: {
-        applySettings();
         _completed = true;
     }
 
@@ -247,6 +263,16 @@ Page {
             _cameraReload = true
             camera.deviceId = settings.global.cameraId == "primary" ? "secondary" : "primary"
             settings.global.cameraId = camera.deviceId
+        }
+    }
+
+    function focusColor() {
+        if (camera.lockStatus == Camera.Unlocked) {
+            return Theme.highlightColor;
+        } else if (camera.lockStatus == Camera.Searching) {
+            return Theme.secondaryColor;
+        } else {
+            return Theme.primaryColor;
         }
     }
 }
