@@ -8,6 +8,8 @@ import "../components/"
 Item {
     anchors.fill: parent
 
+    signal ready()
+
     Item {
         id: buttonPanel
         opacity: (!panelEffects.expanded &&
@@ -232,6 +234,8 @@ Item {
             modelFocus.setCamera(camera);
             modelFlash.setCamera(camera);
             modelResolution.setImageCapture(camera.imageCapture);
+
+            ready();
         }
     }
 

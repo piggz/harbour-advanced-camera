@@ -6,7 +6,9 @@ Item {
     property string image: ""
     property alias icon: iconButton.icon
     property int size: Theme.itemSizeSmall
+    property alias down: iconButton.down
     signal clicked()
+    signal pressed()
 
     height: size
     width: size
@@ -26,9 +28,7 @@ Item {
             icon.source: button.image
             icon.fillMode: Image.PreserveAspectFit
             onClicked: button.clicked()
-        }
-        Component.onCompleted:{
-            console.log("btn", width, height);
+            onPressed: button.pressed()
         }
     }
 }
