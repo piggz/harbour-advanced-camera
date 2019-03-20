@@ -23,6 +23,7 @@ Builder: qtc5
 PkgConfigBR:
   - sailfishapp >= 1.0.2
   - Qt5Core
+  - Qt5Multimedia
   - Qt5Qml
   - Qt5Quick
 
