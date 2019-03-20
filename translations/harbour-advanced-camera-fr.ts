@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<TS version="2.1" language="zh_cn">
+<context><?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_cn">
 <context>
     <name>CoverPage</name>
     <message>
         <location filename="../qml/cover/CoverPage.qml" line="13"/>
         <source>Advanced Camera</source>
-        <translation type="unfinished"></translation>
+        <translation>高级相机</translation>
     </message>
 </context>
 <context>
@@ -14,62 +17,194 @@
     <message>
         <location filename="../src/effectsmodel.cpp" line="64"/>
         <source>None</source>
-        <translation>Aucun</translation>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../src/effectsmodel.cpp" line="67"/>
         <source>Aqua</source>
-        <translation>Eau</translation>
+        <translation>浅绿</translation>
     </message>
     <message>
         <location filename="../src/effectsmodel.cpp" line="70"/>
         <source>Blackboard</source>
-        <translation>Tableau noir</translation>
+        <translation>黑板</translation>
     </message>
     <message>
         <location filename="../src/effectsmodel.cpp" line="73"/>
         <source>Grayscale</source>
-        <translation>Gris</translation>
+        <translation>灰度</translation>
     </message>
     <message>
         <location filename="../src/effectsmodel.cpp" line="76"/>
         <source>Negative</source>
-        <translation>Négatif</translation>
+        <translation>负片</translation>
     </message>
     <message>
         <location filename="../src/effectsmodel.cpp" line="79"/>
         <source>Posterize</source>
-        <translation>Postériser</translation>
+        <translation>色调分离</translation>
     </message>
     <message>
         <location filename="../src/effectsmodel.cpp" line="82"/>
         <source>Sepia</source>
-        <translation>Sepia</translation>
+        <translation>旧照片</translation>
     </message>
     <message>
         <location filename="../src/effectsmodel.cpp" line="85"/>
         <source>Solarize</source>
-        <translation>Solariser</translation>
+        <translation>过曝</translation>
     </message>
     <message>
         <location filename="../src/effectsmodel.cpp" line="88"/>
         <source>Whiteboard</source>
-        <translation>Tableau blanc</translation>
+        <translation>白板</translation>
     </message>
     <message>
         <location filename="../src/effectsmodel.cpp" line="91"/>
         <source>Emboss</source>
-        <translation>Relief</translation>
+        <translation>浮雕</translation>
+    </message>
+    <message>
+        <location filename="../src
+    <name>CoverPage</name>
+    <message>
+        <location filename="../qml/cover/CoverPage.qml" line="13"/>
+        <source>Advanced Camera</source>
+        <translation>高级相机</translation>
+    </message>
+</context>
+<context>
+    <name>EffectsModel</name>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="64"/>
+        <source>None</source>
+        <translation>无</translation>
+    </message><?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_cn">
+<context><?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_cn">
+<context>
+    <name>CoverPage</name>
+    <message>
+        <location filename="../qml/cover/CoverPage.qml" line="13"/>
+        <source>Advanced Camera</source>
+        <translation>高级相机</translation>
+    </message>
+</context>
+<context>
+    <name>EffectsModel</name>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="64"/>
+        <source>None</source>
+        <translation>无</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="67"/>
+        <source>Aqua</source>
+        <translation>浅绿</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="70"/>
+        <source>Blackboard</source>
+        <translation>黑板</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="73"/>
+        <source>Grayscale</source>
+        <translation>灰度</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="76"/>
+        <source>Negative</source>
+        <translation>负片</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="79"/>
+        <source>Posterize</source>
+        <translation>色调分离</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="82"/>
+        <source>Sepia</source>
+        <translation>旧照片</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="85"/>
+        <source>Solarize</source>
+        <translation>过曝</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="88"/>
+        <source>Whiteboard</source>
+        <translation>白板</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="91"/>
+        <source>Emboss</source>
+        <translation>浮雕</translation>
+    </message>
+    <message>
+        <location filename="../src
+    <name>CoverPage</name>
+    <message>
+        <location filename="../qml/cover/CoverPage.qml" line="13"/>
+        <source>Advanced Camera</source>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="67"/>
+        <source>Aqua</source>
+        <translation>浅绿</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="70"/>
+        <source>Blackboard</source>
+        <translation>黑板</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="73"/>
+        <source>Grayscale</source>
+        <translation>灰度</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="76"/>
+        <source>Negative</source>
+        <translation>负片</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="79"/>
+        <source>Posterize</source>
+        <translation>色调分离</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="82"/>
+        <source>Sepia</source>
+        <translation>旧照片</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="85"/>
+        <source>Solarize</source>
+        <translation>过曝</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="88"/>
+        <source>Whiteboard</source>
+        <translation>白板</translation>
+    </message>
+    <message>
+        <location filename="../src/effectsmodel.cpp" line="91"/>
+        <source>Emboss</source>
+        <translation>浮雕</translation>
     </message>
     <message>
         <location filename="../src/effectsmodel.cpp" line="94"/>
         <source>Sketch</source>
-        <translation>Esquisse</translation>
+        <translation>素描</translation>
     </message>
     <message>
         <location filename="../src/effectsmodel.cpp" line="97"/>
         <source>Neon</source>
-        <translation>Néon</translation>
+        <translation>霓虹灯</translation>
     </message>
 </context>
 <context>
@@ -77,52 +212,52 @@
     <message>
         <location filename="../src/exposuremodel.cpp" line="64"/>
         <source>Automatic Scene Detection</source>
-        <translation>Automatique</translation>
+        <translation>自动检测场景</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="67"/>
         <source>Action</source>
-        <translation>Action</translation>
+        <translation>操作</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="70"/>
         <source>Off</source>
-        <translation>Désactivé</translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="73"/>
         <source>Augmented Reality</source>
-        <translation>Réalité augmentée</translation>
+        <translation>增强现实</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="76"/>
         <source>Backlight</source>
-        <translation>Contre-jour</translation>
+        <translation>黑光</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="79"/>
         <source>Barcode</source>
-        <translation>Code-barres</translation>
+        <translation>条形码</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="82"/>
         <source>Beach</source>
-        <translation>Plage</translation>
+        <translation>沙滩</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="85"/>
         <source>Candlelight</source>
-        <translation>Bougie</translation>
+        <translation>烛光</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="88"/>
         <source>Fireworks</source>
-        <translation>Feu d&apos;artifice</translation>
+        <translation>烟火</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="91"/>
         <source>Flowers</source>
-        <translation>Fleurs</translation>
+        <translation>花卉</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="94"/>
@@ -132,67 +267,67 @@
     <message>
         <location filename="../src/exposuremodel.cpp" line="97"/>
         <source>Landscape</source>
-        <translation>Paysage</translation>
+        <translation>风景</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="100"/>
         <source>Large Aperture</source>
-        <translation>Grande ouverture</translation>
+        <translation>大光圈</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="103"/>
         <source>Night</source>
-        <translation>Nuit</translation>
+        <translation>夜间</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="106"/>
         <source>Night Portrait</source>
-        <translation>Portrait de nuit</translation>
+        <translation>夜间人像</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="109"/>
         <source>Party</source>
-        <translation>Fête</translation>
+        <translation>聚会</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="112"/>
         <source>Portrait</source>
-        <translation>Portrait</translation>
+        <translation>人像</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="115"/>
         <source>Small Aperture</source>
-        <translation>Petite ouverture</translation>
+        <translation>小光圈</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="118"/>
         <source>Snow</source>
-        <translation>Neige</translation>
+        <translation>雪景</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="121"/>
         <source>Sports</source>
-        <translation>Sports</translation>
+        <translation>运动</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="124"/>
         <source>Spotlight</source>
-        <translation>Projecteur</translation>
+        <translation>聚光灯</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="127"/>
         <source>Steady Photo</source>
-        <translation>Photo stable</translation>
+        <translation>稳定照片</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="130"/>
         <source>Sunset</source>
-        <translation>Coucher de soleil</translation>
+        <translation>黄昏</translation>
     </message>
     <message>
         <location filename="../src/exposuremodel.cpp" line="133"/>
         <source>Theatre</source>
-        <translation>Théâtre</translation>
+        <translation>剧院</translation>
     </message>
 </context>
 <context>
@@ -201,57 +336,57 @@
         <location filename="../src/flashmodel.cpp" line="48"/>
         <location filename="../src/flashmodel.cpp" line="81"/>
         <source>Unknown</source>
-        <translation>Inconnu</translation>
+        <translation>未知</translation>
     </message>
     <message>
         <location filename="../src/flashmodel.cpp" line="61"/>
         <source>Auto</source>
-        <translation>Automatique</translation>
+        <translation>自动</translation>
     </message>
     <message>
         <location filename="../src/flashmodel.cpp" line="63"/>
         <source>Off</source>
-        <translation>Désactivé</translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../src/flashmodel.cpp" line="65"/>
         <source>On</source>
-        <translation>Activé</translation>
+        <translation>开启</translation>
     </message>
     <message>
         <location filename="../src/flashmodel.cpp" line="67"/>
         <source>Red Eye Reduction</source>
-        <translation>Réduction des yeux rouges</translation>
+        <translation>消除红眼</translation>
     </message>
     <message>
         <location filename="../src/flashmodel.cpp" line="69"/>
         <source>Fill</source>
-        <translation>Remplissage</translation>
+        <translation>填充</translation>
     </message>
     <message>
         <location filename="../src/flashmodel.cpp" line="71"/>
         <source>Torch</source>
-        <translation>Torche</translation>
+        <translation>闪光灯</translation>
     </message>
     <message>
         <location filename="../src/flashmodel.cpp" line="73"/>
         <source>Video Light</source>
-        <translation>Torche vidéo</translation>
+        <translation>视频亮度</translation>
     </message>
     <message>
         <location filename="../src/flashmodel.cpp" line="75"/>
         <source>Slow Sync Front Curtain</source>
-        <translation>Sync. 1er rideau</translation>
+        <translation>慢速前帘同步</translation>
     </message>
     <message>
         <location filename="../src/flashmodel.cpp" line="77"/>
         <source>Slow Sync Rear Curtain</source>
-        <translation>Sync. 2ème rideau</translation>
+        <translation>慢速后帘同步</translation>
     </message>
     <message>
         <location filename="../src/flashmodel.cpp" line="79"/>
         <source>Manual</source>
-        <translation>Manuel</translation>
+        <translation>手动</translation>
     </message>
 </context>
 <context>
@@ -260,37 +395,37 @@
         <location filename="../src/focusmodel.cpp" line="48"/>
         <location filename="../src/focusmodel.cpp" line="73"/>
         <source>Unknown</source>
-        <translation>Inconnu</translation>
+        <translation>未知</translation>
     </message>
     <message>
         <location filename="../src/focusmodel.cpp" line="61"/>
         <source>Manual</source>
-        <translation>Manuel</translation>
+        <translation>手动</translation>
     </message>
     <message>
         <location filename="../src/focusmodel.cpp" line="63"/>
         <source>Hyperfocal</source>
-        <translation>Hyperfocale</translation>
+        <translation>超焦距</translation>
     </message>
     <message>
         <location filename="../src/focusmodel.cpp" line="65"/>
         <source>Infinity</source>
-        <translation>Infini</translation>
+        <translation>无限远</translation>
     </message>
     <message>
         <location filename="../src/focusmodel.cpp" line="67"/>
         <source>Auto</source>
-        <translation>Automatique</translation>
+        <translation>自动</translation>
     </message>
     <message>
         <location filename="../src/focusmodel.cpp" line="69"/>
         <source>Continuous</source>
-        <translation>Continu</translation>
+        <translation>持续</translation>
     </message>
     <message>
         <location filename="../src/focusmodel.cpp" line="71"/>
         <source>Macro</source>
-        <translation>Macro</translation>
+        <translation>微距</translation>
     </message>
 </context>
 <context>
@@ -298,7 +433,7 @@
     <message>
         <location filename="../qml/pages/GalleryUI.qml" line="66"/>
         <source>Deleting</source>
-        <translation type="unfinished"></translation>
+        <translation>正在删除照片</translation>
     </message>
 </context>
 <context>
@@ -306,7 +441,7 @@
     <message>
         <location filename="../src/isomodel.cpp" line="62"/>
         <source>Auto ISO</source>
-        <translation>ISO automatique</translation>
+        <translation>自动 ISO</translation>
     </message>
 </context>
 <context>
@@ -314,57 +449,57 @@
     <message>
         <location filename="../src/wbmodel.cpp" line="63"/>
         <source>Auto</source>
-        <translation>Automatique</translation>
+        <translation>自动</translation>
     </message>
     <message>
         <location filename="../src/wbmodel.cpp" line="65"/>
         <source>Manual</source>
-        <translation>Manuel</translation>
+        <translation>手动</translation>
     </message>
     <message>
         <location filename="../src/wbmodel.cpp" line="67"/>
         <source>Sunlight</source>
-        <translation>Lumière du jour</translation>
+        <translation>日光</translation>
     </message>
     <message>
         <location filename="../src/wbmodel.cpp" line="69"/>
         <source>Cloudy</source>
-        <translation>Nuageux</translation>
+        <translation>多云</translation>
     </message>
     <message>
         <location filename="../src/wbmodel.cpp" line="71"/>
         <source>Shade</source>
-        <translation>Ombre</translation>
+        <translation>阴天</translation>
     </message>
     <message>
         <location filename="../src/wbmodel.cpp" line="73"/>
         <source>Tungsten</source>
-        <translation>Tungstène</translation>
+        <translation>钨丝灯</translation>
     </message>
     <message>
         <location filename="../src/wbmodel.cpp" line="75"/>
         <source>Fluorescent</source>
-        <translation>Fluorescent</translation>
+        <translation>日光灯</translation>
     </message>
     <message>
         <location filename="../src/wbmodel.cpp" line="77"/>
         <source>Flash</source>
-        <translation>Flash</translation>
+        <translation>闪光</translation>
     </message>
     <message>
         <location filename="../src/wbmodel.cpp" line="79"/>
         <source>Sunset</source>
-        <translation>Coucher de soleil</translation>
+        <translation>黄昏</translation>
     </message>
     <message>
         <location filename="../src/wbmodel.cpp" line="81"/>
         <source>Warm Fluorescent</source>
-        <translation>Fluorescent chaud</translation>
+        <translation>暖色日光灯</translation>
     </message>
     <message>
         <location filename="../src/wbmodel.cpp" line="83"/>
         <source>Unknown</source>
-        <translation>Inconnu</translation>
+        <translation>未知</translation>
     </message>
 </context>
 </TS>
