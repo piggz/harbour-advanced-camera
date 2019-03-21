@@ -5,6 +5,7 @@ import Nemo.Configuration 1.0
 Item {
     property alias global: globalSettings
     property alias mode: modeSettings
+    property alias jollaCamera: jollaCameraSettings
 
     ConfigurationGroup {
         id: globalSettings
@@ -25,6 +26,15 @@ Item {
             property string resolution: ""
             property int whiteBalance: CameraImageProcessing.WhiteBalanceAuto
         }
+    }
+
+    ConfigurationGroup {
+        id: jollaCameraSettings
+        path: "/apps/jolla-camera/" + globalSettings.cameraId + "/image"
+
+        property string viewfinderResolution
+        property string viewfinderResolution_16_9
+        property string viewfinderResolution_4_3
     }
 
     function strToSize(siz) {

@@ -43,7 +43,6 @@ Page {
 
         imageProcessing.colorFilter: CameraImageProcessing.ColorFilterNone
 
-        viewfinder.resolution: Qt.size(1920, 1080)
         exposure {
             //exposureCompensation: -1.0
             exposureMode: Camera.ExposureAuto
@@ -60,6 +59,9 @@ Page {
                 console.log("Camera: image saved", path)
                 galleryModel.append({ filePath: path });
             }
+            onResolutionChanged: {
+                camera.viewfinder.resolution = getNearestViewFinderResolution();
+            }
         }
         onLockStatusChanged: {
             if (camera.lockStatus == Camera.Locked && _focusAndSnap) {
@@ -74,6 +76,7 @@ Page {
 
             if (cameraStatus == Camera.ActiveStatus && !_parametersLoaded) {
                 settingsOverlay.setCamera(camera);
+                camera.viewfinder.resolution = getNearestViewFinderResolution();
                 _parametersLoaded = true;
                 applySettings();
             }
@@ -219,6 +222,39 @@ Page {
             camera.focus.focusPointMode = Camera.FocusPointAuto;
             camera.searchAndLock();
         }
+    }
+
+    function getNearestViewFinderResolution() {
+        /// Tries to find the most correct ViewFinder resolution
+        /// for the selected camera settings
+        ///
+        /// In order of preference:
+        ///  * viewFinderResolution for the nearest aspect ratio as set in jolla-camera's dconf settings
+        ///  * viewFinderResolution as set in jolla-camera's dconf settings
+        ///  * First resolution as returned by camera.supportedViewfinderResolutions()
+        ///  * device resolution
+
+        var currentRatioSize = modelResolution.sizeToRatio(camera.imageCapture.resolution);
+        var currentRatio = currentRatioSize.height > 0 ? currentRatioSize.width / currentRatioSize.height : 0;
+        if (currentRatio > 0) {
+            if (currentRatio <= 4.0 / 3 && settings.jollaCamera.viewfinderResolution_4_3) {
+                return settings.strToSize(settings.jollaCamera.viewfinderResolution_4_3);
+            } else if (settings.jollaCamera.viewfinderResolution_16_9) {
+                return settings.strToSize(settings.jollaCamera.viewfinderResolution_16_9);
+            }
+        }
+
+        if (settings.jollaCamera.viewfinderResolution) {
+            return settings.strToSize(settings.jollaCamera.viewfinderResolution);
+        }
+
+        var supportedResolutions = camera.supportedViewfinderResolutions();
+        if (supportedResolutions.length > 0) {
+            return supportedResolutions[0];
+        }
+
+        return Qt.size(Screen.height, Screen.width);
+
     }
 
     RoundButton {

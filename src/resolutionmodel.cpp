@@ -1,6 +1,6 @@
 #include "resolutionmodel.h"
 
-QSize sizeToRatio(const QSize &siz)
+QSize ResolutionModel::sizeToRatio(const QSize &siz) const
 {
     int a = siz.width();
     int b = siz.height();
