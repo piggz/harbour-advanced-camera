@@ -30,7 +30,7 @@ Page {
         rotation: camera.position == Camera.FrontFace ? 0 : 180
         orientation: camera.orientation
         onOrientationChanged: {
-            console.log(orientation)
+            console.log(orientation);
         }
     }
 
@@ -54,11 +54,11 @@ Page {
         imageCapture {
             onImageCaptured: {
                 photoPreview.source = preview  // Show the preview in an Image
-                console.log("Camera: captured", photoPreview.source)
+                console.log("Camera: captured", photoPreview.source);
             }
             onImageSaved: {
                 console.log("Camera: image saved", path)
-                galleryModel.append({ filePath: path })
+                galleryModel.append({ filePath: path });
             }
         }
         onLockStatusChanged: {
@@ -85,7 +85,7 @@ Page {
 
         onStatusChanged: {
             if (photoPreview.status == Image.Ready) {
-                console.log('photoPreview ready')
+                console.log('photoPreview ready');
             }
         }
     }
@@ -216,7 +216,7 @@ Page {
             focusCircle.x = page.width / 2;
             focusCircle.y = page.height / 2;
 
-            camera.focus.focusPointMode = Camera.FocusPointAuto
+            camera.focus.focusPointMode = Camera.FocusPointAuto;
             camera.searchAndLock();
         }
     }
@@ -237,7 +237,7 @@ Page {
         image: "image://theme/icon-m-image"
 
         onClicked: {
-            pageStack.push(Qt.resolvedUrl("GalleryUI.qml"), { "fileList": galleryModel })
+            pageStack.push(Qt.resolvedUrl("GalleryUI.qml"), { "fileList": galleryModel });
         }
     }
 
