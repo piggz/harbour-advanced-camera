@@ -8,8 +8,6 @@ import "../components/"
 Item {
     anchors.fill: parent
 
-    signal ready()
-
     Item {
         id: buttonPanel
         opacity: (!panelEffects.expanded &&
@@ -221,22 +219,14 @@ Item {
         id: modelFlash
     }
 
-    Timer {
-        id: delayQuery
-        interval: 1000
-        running: true
-        repeat: false
-        onTriggered: {
-            modelExposure.setCamera(camera);
-            modelEffects.setCamera(camera);
-            modelIso.setCamera(camera);
-            modelWhiteBalance.setCamera(camera);
-            modelFocus.setCamera(camera);
-            modelFlash.setCamera(camera);
-            modelResolution.setImageCapture(camera.imageCapture);
-
-            ready();
-        }
+    function setCamera(cam) {
+        modelExposure.setCamera(cam);
+        modelEffects.setCamera(cam);
+        modelIso.setCamera(cam);
+        modelWhiteBalance.setCamera(cam);
+        modelFocus.setCamera(cam);
+        modelFlash.setCamera(cam);
+        modelResolution.setImageCapture(cam.imageCapture);
     }
 
     function flashIcon() {
