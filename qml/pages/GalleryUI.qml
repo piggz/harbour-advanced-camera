@@ -14,13 +14,13 @@ Page {
     backNavigation: false
 
     function removeFile(idx) {
-        var path = fileList.get(idx).filePath
-        console.log("Removing", path)
+        var path = fileList.get(idx).filePath;
+        console.log("Removing", path);
         if (fsOperations.deleteFile( path )) {
-            fileList.remove(idx)
+            fileList.remove(idx);
             if (gallery.count === 0) {
-                console.log("Closing empty gallery!")
-                pageStack.pop()
+                console.log("Closing empty gallery!");
+                pageStack.pop();
             }
         } else {
             console.log("Error deleting file:", path);
@@ -42,8 +42,8 @@ Page {
         }
 
         onClicked: {
-            console.log("Clicked close button")
-            pageStack.pop()
+            console.log("Clicked close button");
+            pageStack.pop();
         }
     }
 
@@ -67,12 +67,12 @@ Page {
 
             function showRemorseItem() {
                 remorse.execute(qsTr("Deleting"),
-                    function() { removeFile(gallery.currentIndex) })
+                    function() { removeFile(gallery.currentIndex) });
             }
 
             onClicked: {
-                console.log("Clicked delete button")
-                showRemorseItem()
+                console.log("Clicked delete button");
+                showRemorseItem();
             }
         }
     }
@@ -106,8 +106,8 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        console.log("Clicked", thumbnail.source)
-                        btnClose.visible = btnClose.visible ? false : true
+                        console.log("Clicked", thumbnail.source);
+                        btnClose.visible = btnClose.visible ? false : true;
                     }
                 }
             }
