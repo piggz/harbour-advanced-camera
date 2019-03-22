@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Nemo.FileManager 1.0
+import uk.co.piggz.harbour_advanced_camera 1.0
 import "../components/"
 
 Page {
@@ -16,11 +16,14 @@ Page {
     function removeFile(idx) {
         var path = fileList.get(idx).filePath
         console.log("Removing", path)
-        FileEngine.deleteFiles( [ path ] )
-        fileList.remove(idx)
-        if (gallery.count === 0) {
-            console.log("Closing empty gallery!")
-            pageStack.pop()
+        if (fsOperations.deleteFile( path )) {
+            fileList.remove(idx)
+            if (gallery.count === 0) {
+                console.log("Closing empty gallery!")
+                pageStack.pop()
+            }
+        } else {
+            console.log("Error deleting file:", path);
         }
     }
 
@@ -109,5 +112,9 @@ Page {
                 }
             }
         }
+    }
+
+    FSOperations {
+        id: fsOperations
     }
 }
