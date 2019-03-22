@@ -23,7 +23,8 @@ SOURCES += src/harbour-advanced-camera.cpp \
     src/resolutionmodel.cpp \
     src/wbmodel.cpp \
     src/focusmodel.cpp \
-    src/flashmodel.cpp
+    src/flashmodel.cpp \
+    src/fsoperations.cpp
 
 DISTFILES += rpm/harbour-advanced-camera.changes.in \
     rpm/harbour-advanced-camera.changes.run.in \
@@ -60,4 +61,5 @@ HEADERS += \
     src/resolutionmodel.h \
     src/wbmodel.h \
     src/focusmodel.h \
-    src/flashmodel.h
+    src/flashmodel.h \
+    src/fsoperations.h
