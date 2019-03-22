@@ -15,6 +15,7 @@
 #include "wbmodel.h"
 #include "focusmodel.h"
 #include "flashmodel.h"
+#include "fsoperations.h"
 
 int main(int argc, char *argv[])
 {
@@ -37,6 +38,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<WbModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "WhiteBalanceModel");
     qmlRegisterType<FocusModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "FocusModel");
     qmlRegisterType<FlashModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "FlashModel");
+    qmlRegisterType<FSOperations>("uk.co.piggz.harbour_advanced_camera", 1, 0, "FSOperations");
 
     ResolutionModel resolutionModel;
 
