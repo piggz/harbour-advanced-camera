@@ -14,6 +14,7 @@ Page {
     property bool _cameraReload: false
     property bool _completed: false
     property bool _focusAndSnap: false
+    property bool _parametersLoaded: false
 
     Rectangle {
         parent: window
@@ -65,6 +66,16 @@ Page {
                 camera.imageCapture.capture();
                 animFlash.start();
                 _focusAndSnap = false;
+            }
+        }
+
+        onCameraStatusChanged: {
+            console.log("Camera status:", cameraStatus);
+
+            if (cameraStatus == Camera.ActiveStatus && !_parametersLoaded) {
+                settingsOverlay.setCamera(camera);
+                _parametersLoaded = true;
+                applySettings();
             }
         }
     }
@@ -152,35 +163,16 @@ Page {
         }
     }
 
-    /*
-    GStreamerVideoOutput {
-        id: videoOutput
-        source: camera
-        orientation: camera.orientation
-
-        onOrientationChanged: {
-            console.log(orientation)
-        }
-
-        z: -1
-        anchors.fill: parent
-
-        Behavior on y {
-            NumberAnimation { duration: 150; easing.type: Easing.InOutQuad }
-        }
-    }
-    */
-
     ListModel {
         id: galleryModel
     }
 
+    ListModel {
+        id: viewfinderResolutionModel
+    }
+
     SettingsOverlay {
         id: settingsOverlay
-
-        onReady: {
-            applySettings();
-        }
     }
 
     Component.onCompleted: {
@@ -261,8 +253,10 @@ Page {
         }
         onClicked: {
             _cameraReload = true
-            camera.deviceId = settings.global.cameraId == "primary" ? "secondary" : "primary"
-            settings.global.cameraId = camera.deviceId
+            camera.stop();
+            camera.deviceId = settings.global.cameraId == "primary" ? "secondary" : "primary";
+            camera.start();
+            settings.global.cameraId = camera.deviceId;
         }
     }
 
