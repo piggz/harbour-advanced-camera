@@ -2,16 +2,15 @@
 
 WbModel::WbModel()
 {
-
 }
 
-QHash<int, QByteArray> WbModel::roleNames() const {
+QHash<int, QByteArray> WbModel::roleNames() const
+{
     QHash<int, QByteArray> roles;
     roles[WbName] = "name";
     roles[WbValue] = "value";
     return roles;
 }
-
 
 int WbModel::rowCount(const QModelIndex &parent) const
 {

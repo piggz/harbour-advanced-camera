@@ -2,16 +2,15 @@
 
 FlashModel::FlashModel()
 {
-
 }
 
-QHash<int, QByteArray> FlashModel::roleNames() const {
+QHash<int, QByteArray> FlashModel::roleNames() const
+{
     QHash<int, QByteArray> roles;
     roles[FlashName] = "name";
     roles[FlashValue] = "value";
     return roles;
 }
-
 
 int FlashModel::rowCount(const QModelIndex &parent) const
 {

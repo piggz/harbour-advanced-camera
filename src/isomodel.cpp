@@ -2,16 +2,15 @@
 
 IsoModel::IsoModel()
 {
-
 }
 
-QHash<int, QByteArray> IsoModel::roleNames() const {
+QHash<int, QByteArray> IsoModel::roleNames() const
+{
     QHash<int, QByteArray> roles;
     roles[IsoName] = "name";
     roles[IsoValue] = "value";
     return roles;
 }
-
 
 int IsoModel::rowCount(const QModelIndex &parent) const
 {
