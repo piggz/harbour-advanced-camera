@@ -7,8 +7,7 @@ QSize ResolutionModel::sizeToRatio(const QSize &siz) const
     int c = a % b;
     int gcd = 0;
 
-    while(c > 0)
-    {
+    while (c > 0) {
         a = b;
         b = c;
         c = a % b;
@@ -20,16 +19,15 @@ QSize ResolutionModel::sizeToRatio(const QSize &siz) const
 
 ResolutionModel::ResolutionModel()
 {
-
 }
 
-QHash<int, QByteArray> ResolutionModel::roleNames() const {
+QHash<int, QByteArray> ResolutionModel::roleNames() const
+{
     QHash<int, QByteArray> roles;
     roles[ResolutionName] = "name";
     roles[ResolutionValue] = "value";
     return roles;
 }
-
 
 int ResolutionModel::rowCount(const QModelIndex &parent) const
 {
@@ -61,7 +59,7 @@ void ResolutionModel::setImageCapture(QObject *capture)
     QList<QCameraImageCapture*> captures = capture->findChildren<QCameraImageCapture*>();
 
     if (captures.count() > 0) {
-        cap = captures[0]; //fist will do!
+        cap = captures[0]; //first will do!
     }
 
     if (m_capture != cap) {
@@ -76,7 +74,5 @@ void ResolutionModel::setImageCapture(QObject *capture)
         }
         endResetModel();
         qDebug() << supportedResolutions << m_resolutions;
-
     }
-
 }

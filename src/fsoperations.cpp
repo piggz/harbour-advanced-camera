@@ -3,7 +3,6 @@
 
 FSOperations::FSOperations(QObject *parent) : QObject(parent)
 {
-
 }
 
 bool FSOperations::deleteFile(const QString &path)

@@ -2,16 +2,15 @@
 
 FocusModel::FocusModel()
 {
-
 }
 
-QHash<int, QByteArray> FocusModel::roleNames() const {
+QHash<int, QByteArray> FocusModel::roleNames() const
+{
     QHash<int, QByteArray> roles;
     roles[FocusName] = "name";
     roles[FocusValue] = "value";
     return roles;
 }
-
 
 int FocusModel::rowCount(const QModelIndex &parent) const
 {
