@@ -250,6 +250,8 @@ Page {
 
         var supportedResolutions = camera.supportedViewfinderResolutions();
         if (supportedResolutions.length > 0) {
+            //TODO find the best resolution for the correct aspect ratio
+            //when we fix supportedViewfinderResolutions()
             return supportedResolutions[0];
         }
 
