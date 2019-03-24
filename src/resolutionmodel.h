@@ -3,6 +3,7 @@
 
 #include <QAbstractListModel>
 #include <QCameraImageCapture>
+#include <QMediaRecorder>
 #include <QPair>
 
 class ResolutionModel : public QAbstractListModel
@@ -25,10 +26,16 @@ public:
 
     Q_INVOKABLE QSize sizeToRatio(const QSize &siz) const;
     Q_INVOKABLE void setImageCapture(QObject *camera);
+    Q_INVOKABLE void setVideoRecorder(QObject *capture);
+    Q_INVOKABLE void setMode(const QString &mode);
+    Q_INVOKABLE QSize defaultResolution(const QString &mode);
+    Q_INVOKABLE bool isValidResolution(const QSize &resolution, const QString &mode);
 
 private:
     QMap<QString, QSize> m_resolutions;
-    QCameraImageCapture *m_capture = nullptr;
+    QList<QSize> m_supportedImageResolutions;
+    QList<QSize> m_supportedVideoResolutions;
+    QString m_mode = "image";
 };
 
 #endif // RESOLUTIONMODEL_H

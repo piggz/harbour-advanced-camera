@@ -14,6 +14,7 @@ Item {
         property string cameraId: "primary"
         property string captureMode: "image"
 
+
         ConfigurationGroup {
             id: modeSettings
             path: globalSettings.cameraId + "/" + globalSettings.captureMode
@@ -38,8 +39,6 @@ Item {
     }
 
     function strToSize(siz) {
-        console.log("Converting ", siz, " to size");
-
         var w = parseInt(siz.substring(0, siz.indexOf("x")));
         var h = parseInt(siz.substring(siz.indexOf("x") + 1));
 
@@ -47,8 +46,17 @@ Item {
     }
 
     function sizeToStr(siz) {
-        console.log("Converting ", siz, " to string");
-
         return siz.width + "x" + siz.height;
+    }
+
+    //Return either the current mode resolution or default resolution for that mode
+    function resolution(mode) {
+        if (settings.global.captureMode === mode && settings.mode.resolution !== "") {
+            var res = strToSize(settings.mode.resolution);
+            if (modelResolution.isValidResolution(res, mode)) {
+                return res;
+            }
+        }
+        return modelResolution.defaultResolution(mode);
     }
 }
