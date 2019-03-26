@@ -214,8 +214,9 @@ Page {
 
     function setFocusMode(focus) {
         if (camera.focus.focusMode !== focus) {
-            camera.unlock();
+            camera.stop();
             camera.focus.setFocusMode(focus);
+            camera.start();
             settings.mode.focus = focus;
 
             //Set the focus point pack to centre
