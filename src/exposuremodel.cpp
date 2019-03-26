@@ -2,16 +2,15 @@
 
 ExposureModel::ExposureModel()
 {
-
 }
 
-QHash<int, QByteArray> ExposureModel::roleNames() const {
+QHash<int, QByteArray> ExposureModel::roleNames() const
+{
     QHash<int, QByteArray> roles;
     roles[ExposureName] = "name";
     roles[ExposureValue] = "value";
     return roles;
 }
-
 
 int ExposureModel::rowCount(const QModelIndex &parent) const
 {

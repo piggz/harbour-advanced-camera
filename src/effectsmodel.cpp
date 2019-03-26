@@ -2,16 +2,15 @@
 
 EffectsModel::EffectsModel()
 {
-
 }
 
-QHash<int, QByteArray> EffectsModel::roleNames() const {
+QHash<int, QByteArray> EffectsModel::roleNames() const
+{
     QHash<int, QByteArray> roles;
     roles[EffectName] = "name";
     roles[EffectValue] = "value";
     return roles;
 }
-
 
 int EffectsModel::rowCount(const QModelIndex &parent) const
 {

@@ -179,6 +179,7 @@ Page {
     }
 
     Component.onCompleted: {
+        camera.deviceId = settings.global.cameraId;
         _completed = true;
     }
 
@@ -204,7 +205,9 @@ Page {
             camera.exposure.setManualIsoSensitivity(settings.mode.iso);
         }
 
-        camera.imageCapture.setResolution(settings.strToSize(settings.mode.resolution));
+        if (settings.mode.resolution) {
+            camera.imageCapture.setResolution(settings.strToSize(settings.mode.resolution));
+        }
         temp_resolution_str = settings.mode.resolution;
         settings.global.cameraCount = QtMultimedia.availableCameras.length;
     }
@@ -295,6 +298,10 @@ Page {
             camera.deviceId = settings.global.cameraId == "primary" ? "secondary" : "primary";
             camera.start();
             settings.global.cameraId = camera.deviceId;
+            if (settings.mode.resolution) {
+                camera.imageCapture.setResolution(settings.strToSize(settings.mode.resolution));
+            }
+            temp_resolution_str = settings.mode.resolution;
         }
     }
 
