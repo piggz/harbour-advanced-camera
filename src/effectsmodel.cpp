@@ -14,8 +14,8 @@ QHash<int, QByteArray> EffectsModel::roleNames() const
 
 int EffectsModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return m_effects.count();
-
 }
 
 QVariant EffectsModel::data(const QModelIndex &index, int role) const

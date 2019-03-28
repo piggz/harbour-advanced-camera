@@ -14,6 +14,7 @@ QHash<int, QByteArray> IsoModel::roleNames() const
 
 int IsoModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return m_isoModes.count();
 }
 
