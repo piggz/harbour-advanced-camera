@@ -31,6 +31,7 @@ QHash<int, QByteArray> ResolutionModel::roleNames() const
 
 int ResolutionModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return m_resolutions.count();
 }
 

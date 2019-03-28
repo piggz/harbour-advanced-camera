@@ -14,6 +14,7 @@ QHash<int, QByteArray> FlashModel::roleNames() const
 
 int FlashModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return m_flashModes.count();
 }
 

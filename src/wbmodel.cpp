@@ -14,6 +14,7 @@ QHash<int, QByteArray> WbModel::roleNames() const
 
 int WbModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return m_wbModes.count();
 }
 

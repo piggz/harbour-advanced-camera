@@ -14,6 +14,7 @@ QHash<int, QByteArray> FocusModel::roleNames() const
 
 int FocusModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent);
     return m_focusModes.count();
 }
 
