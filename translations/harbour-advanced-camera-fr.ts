@@ -298,7 +298,7 @@
     <message>
         <location filename="../qml/pages/GalleryUI.qml" line="69"/>
         <source>Deleting</source>
-        <translation type="unfinished"></translation>
+        <translation>Suppression</translation>
     </message>
 </context>
 <context>
