@@ -56,7 +56,8 @@ TRANSLATIONS += translations/harbour-advanced-camera-de.ts \
                 translations/harbour-advanced-camera-fi.ts \
                 translations/harbour-advanced-camera-fr.ts \
                 translations/harbour-advanced-camera-sv.ts \
-                translations/harbour-advanced-camera-zh_CN.ts 
+		translations/harbour-advanced-camera-nl.ts \
+                translations/harbour-advanced-camera-zh_CN.ts		 
 
 HEADERS += \
     src/effectsmodel.h \

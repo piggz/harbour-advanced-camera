@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="nl_NL">
+<context>
+    <name>CoverPage</name>
+    <message>
+        <source>Advanced Camera</source>
+        <translation>Advanced Camera</translation>
+    </message>
+</context>
+<context>
+    <name>EffectsModel</name>
+    <message>
+        <source>None</source>
+        <translation>Geen</translation>
+    </message>
+    <message>
+        <source>Aqua</source>
+        <translation>Water</translation>
+    </message>
+    <message>
+        <source>Blackboard</source>
+        <translation>Schoolbord</translation>
+    </message>
+    <message>
+        <source>Grayscale</source>
+        <translation>Grijswaarden</translation>
+    </message>
+    <message>
+        <source>Negative</source>
+        <translation>Negatief</translation>
+    </message>
+    <message>
+        <source>Posterize</source>
+        <translation>Posterize</translation>
+    </message>
+    <message>
+        <source>Sepia</source>
+        <translation>Sepia</translation>
+    </message>
+    <message>
+        <source>Solarize</source>
+        <translation>Solarize</translation>
+    </message>
+    <message>
+        <source>Whiteboard</source>
+        <translation>Whiteboard</translation>
+    </message>
+    <message>
+        <source>Emboss</source>
+        <translation>Reliëf</translation>
+    </message>
+    <message>
+        <source>Sketch</source>
+        <translation>Schets</translation>
+    </message>
+    <message>
+        <source>Neon</source>
+        <translation>Neon</translation>
+    </message>
+</context>
+<context>
+    <name>ExposureModel</name>
+    <message>
+        <source>Automatic Scene Detection</source>
+        <translation>Automatische Scènedetectie</translation>
+    </message>
+    <message>
+        <source>Augmented Reality</source>
+        <translation>Augmented Reality</translation>
+    </message>
+    <message>
+        <source>Backlight</source>
+        <translation>Tegenlicht</translation>
+    </message>
+    <message>
+        <source>Barcode</source>
+        <translation>Streepjescode</translation>
+    </message>
+    <message>
+        <source>Beach</source>
+        <translation>Strand</translation>
+    </message>
+    <message>
+        <source>Candlelight</source>
+        <translation>Kaarslicht</translation>
+    </message>
+    <message>
+        <source>Fireworks</source>
+        <translation>Vuurwerk</translation>
+    </message>
+    <message>
+        <source>Flowers</source>
+        <translation>Bloemen</translation>
+    </message>
+    <message>
+        <source>HDR</source>
+        <translation>HDR</translation>
+    </message>
+    <message>
+        <source>Landscape</source>
+        <translation>Landschap</translation>
+    </message>
+    <message>
+        <source>Large Aperture</source>
+        <translation>Groot Diafragma</translation>
+    </message>
+    <message>
+        <source>Night</source>
+        <translation>Nacht</translation>
+    </message>
+    <message>
+        <source>Night Portrait</source>
+        <translation>Nachtportret</translation>
+    </message>
+    <message>
+        <source>Party</source>
+        <translation>Feest</translation>
+    </message>
+    <message>
+        <source>Portrait</source>
+        <translation>Portret</translation>
+    </message>
+    <message>
+        <source>Small Aperture</source>
+        <translation>Klein Diafragma</translation>
+    </message>
+    <message>
+        <source>Snow</source>
+        <translation>Sneeuw</translation>
+    </message>
+    <message>
+        <source>Sports</source>
+        <translation>Sport</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Lichtspot</translation>
+    </message>
+    <message>
+        <source>Steady Photo</source>
+        <translation>Stabiele Foto</translation>
+    </message>
+    <message>
+        <source>Sunset</source>
+        <translation>Zonsondergang</translation>
+    </message>
+    <message>
+        <source>Theatre</source>
+        <translation>Theater</translation>
+    </message>
+    <message>
+        <source>Action</source>
+        <translation>Actie</translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation>Uit</translation>
+    </message>
+</context>
+<context>
+    <name>FlashModel</name>
+    <message>
+        <source>Unknown</source>
+        <translation>Onbekend</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Automatisch</translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation>Uit</translation>
+    </message>
+    <message>
+        <source>On</source>
+        <translation>Aan</translation>
+    </message>
+    <message>
+        <source>Red Eye Reduction</source>
+        <translation>Rode Ogen Reductie</translation>
+    </message>
+    <message>
+        <source>Fill</source>
+        <translation>Vullen</translation>
+    </message>
+    <message>
+        <source>Torch</source>
+        <translation>Fakkel</translation>
+    </message>
+    <message>
+        <source>Video Light</source>
+        <translation>Videolicht</translation>
+    </message>
+    <message>
+        <source>Slow Sync Front Curtain</source>
+        <translation>Slow Sync Voor</translation>
+    </message>
+    <message>
+        <source>Slow Sync Rear Curtain</source>
+        <translation>Slow Sync Achter</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Handmatig</translation>
+    </message>
+</context>
+<context>
+    <name>FocusModel</name>
+    <message>
+        <source>Unknown</source>
+        <translation>Onbekend</translation>
+    </message>
+	<message>
+        <source>Manual</source>
+        <translation>Handmatig</translation>
+    </message>
+    <message>
+        <source>Hyperfocal</source>
+        <translation>Hyper-brandpuntsafstand</translation>
+    </message>
+    <message>
+        <source>Infinity</source>
+        <translation>Oneindig</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Automatisch</translation>
+    </message>
+    <message>
+        <source>Continuous</source>
+        <translation>Doorlopend</translation>
+    </message>
+    <message>
+        <source>Macro</source>
+        <translation>Macro</translation>
+    </message>
+</context>
+<context>
+    <name>GalleryUI</name>
+    <message>
+        <source>Deleting</source>
+        <translation>Wissen</translation>
+    </message>
+</context>
+<context>
+    <name>IsoModel</name>
+    <message>
+        <source>Auto ISO</source>
+        <translation>Automatische ISO</translation>
+    </message>
+</context>
+<context>
+    <name>WbModel</name>
+    <message>
+        <source>Unknown</source>
+        <translation>Onbekend</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Automatisch</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Handmatig</translation>
+    </message>
+    <message>
+        <source>Sunlight</source>
+        <translation>Zonlicht</translation>
+    </message>
+    <message>
+        <source>Cloudy</source>
+        <translation>Bewolkt</translation>
+    </message>
+    <message>
+        <source>Shade</source>
+        <translation>Schaduw</translation>
+    </message>
+    <message>
+        <source>Tungsten</source>
+        <translation>Wolfraam</translation>
+    </message>
+    <message>
+        <source>Flash</source>
+        <translation>Flitslicht</translation>
+    </message>
+    <message>
+        <source>Sunset</source>
+        <translation>Zonsondergang</translation>
+    </message>
+    <message>
+        <source>Warm Fluorescent</source>
+        <translation>Warm Fluorescerend</translation>
+    </message>
+    <message>
+        <source>Fluorescent</source>
+        <translation>Fluorescerend</translation>
+    </message>
+</context>
+</TS>
