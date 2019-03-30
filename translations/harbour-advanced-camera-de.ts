@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="de_DE">
 <context>
     <name>CoverPage</name>
     <message>
         <source>Advanced Camera</source>
-        <translation type="unfinished"></translation>
+        <translation>Erweiterte Kamera</translation>
     </message>
 </context>
 <context>
@@ -16,7 +16,7 @@
     </message>
     <message>
         <source>Aqua</source>
-        <translation>Aqua</translation>
+        <translation>Wasser</translation>
     </message>
     <message>
         <source>Blackboard</source>
@@ -67,7 +67,7 @@
     </message>
     <message>
         <source>Augmented Reality</source>
-        <translation>erweiterte Realität</translation>
+        <translation>Erweiterte Realität</translation>
     </message>
     <message>
         <source>Backlight</source>
@@ -75,7 +75,7 @@
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Barcode</translation>
+        <translation>Strichcode</translation>
     </message>
     <message>
         <source>Beach</source>
@@ -151,150 +151,150 @@
     </message>
     <message>
         <source>Action</source>
-        <translation>Action</translation>
+        <translation>Aktion</translation>
     </message>
     <message>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Aus</translation>
     </message>
 </context>
 <context>
     <name>FlashModel</name>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekannt</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished">Auto</translation>
+        <translation>Automatisch</translation>
     </message>
     <message>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Aus</translation>
     </message>
     <message>
         <source>On</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein</translation>
     </message>
     <message>
         <source>Red Eye Reduction</source>
-        <translation type="unfinished">Rote-Augen-Reduzierung</translation>
+        <translation>Rote-Augen-Reduzierung</translation>
     </message>
     <message>
         <source>Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Füllen</translation>
     </message>
     <message>
         <source>Torch</source>
-        <translation type="unfinished"></translation>
+        <translation>Fackel</translation>
     </message>
     <message>
         <source>Video Light</source>
-        <translation type="unfinished"></translation>
+        <translation>Videolicht</translation>
     </message>
     <message>
         <source>Slow Sync Front Curtain</source>
-        <translation type="unfinished"></translation>
+        <translation>Langsamer Sync Vorhang</translation>
     </message>
     <message>
         <source>Slow Sync Rear Curtain</source>
-        <translation type="unfinished"></translation>
+        <translation>Slow Sync Hinterer Vorhang</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished">Manuell</translation>
+        <translation>Manuell</translation>
     </message>
 </context>
 <context>
     <name>FocusModel</name>
     <message>
         <source>Manual</source>
-        <translation type="unfinished">Manuell</translation>
+        <translation>Manuell</translation>
     </message>
     <message>
         <source>Hyperfocal</source>
-        <translation type="unfinished">Hyperfokal</translation>
+        <translation>Hyperfokal</translation>
     </message>
     <message>
         <source>Infinity</source>
-        <translation type="unfinished">Unendlichkeit</translation>
+        <translation>Unendlichkeit</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished">Auto</translation>
+        <translation>Automatisch</translation>
     </message>
     <message>
         <source>Continuous</source>
-        <translation type="unfinished">Kontinuierlich</translation>
+        <translation>Kontinuierlich</translation>
     </message>
     <message>
         <source>Macro</source>
-        <translation type="unfinished">Makro</translation>
+        <translation>Makro</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekannt</translation>
     </message>
 </context>
 <context>
     <name>GalleryUI</name>
     <message>
         <source>Deleting</source>
-        <translation type="unfinished"></translation>
+        <translation>Löschen</translation>
     </message>
 </context>
 <context>
     <name>IsoModel</name>
     <message>
         <source>Auto ISO</source>
-        <translation>Auto ISO</translation>
+        <translation>Automatisches ISO</translation>
     </message>
 </context>
 <context>
     <name>WbModel</name>
     <message>
         <source>Auto</source>
-        <translation type="unfinished">Auto</translation>
+        <translation>Automatisch</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished">Manuell</translation>
+        <translation>Manuell</translation>
     </message>
     <message>
         <source>Sunlight</source>
-        <translation type="unfinished">Sonnenlicht</translation>
+        <translation>Sonnenlicht</translation>
     </message>
     <message>
         <source>Cloudy</source>
-        <translation type="unfinished">Bewölkt</translation>
+        <translation>Bewölkt</translation>
     </message>
     <message>
         <source>Shade</source>
-        <translation type="unfinished">Schatten</translation>
+        <translation>Schatten</translation>
     </message>
     <message>
         <source>Tungsten</source>
-        <translation type="unfinished">Tungsten</translation>
+        <translation>Wolfram</translation>
     </message>
     <message>
         <source>Flash</source>
-        <translation type="unfinished">Blitz</translation>
+        <translation>Blitz</translation>
     </message>
     <message>
         <source>Sunset</source>
-        <translation type="unfinished">Sonnenuntergang</translation>
+        <translation>Sonnenuntergang</translation>
     </message>
     <message>
         <source>Warm Fluorescent</source>
-        <translation type="unfinished"></translation>
+        <translation>Warmes fluoreszierendes</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekannt</translation>
     </message>
     <message>
         <source>Fluorescent</source>
-        <translation type="unfinished"></translation>
+        <translation>Fluoreszierendes</translation>
     </message>
 </context>
 </TS>
