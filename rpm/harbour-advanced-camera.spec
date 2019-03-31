@@ -13,7 +13,7 @@ Name:       harbour-advanced-camera
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Advanced camera
-Version:    0.2.2
+Version:    0.2.3
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
@@ -26,8 +26,8 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Multimedia)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
-BuildRequires:  desktop-file-utils
 BuildRequires:  qt5-qttools-linguist
+BuildRequires:  desktop-file-utils
 
 %description
 Short description of my Sailfish OS Application
