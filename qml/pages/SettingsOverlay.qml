@@ -43,7 +43,7 @@ Item {
             RoundButton {
                 id: btnScene
                 icon.color: Theme.primaryColor
-                image: "../pics/icon-m-effect.png"
+                image: effectIcon()
 
                 onClicked: {
                     panelEffects.show();
@@ -325,6 +325,52 @@ Item {
         return iso;
     }
 
+    function effectIcon() {
+        var effectIcon = "";
+
+        switch(settings.mode.effect) {
+        case CameraImageProcessing.ColorFilterNone:
+            effectIcon = "none";
+            break;
+        case CameraImageProcessing.ColorFilterAqua:
+            effectIcon = "aqua";
+            break;
+        case CameraImageProcessing.ColorFilterBlackboard:
+            effectIcon = "blackboard";
+            break;
+        case CameraImageProcessing.ColorFilterGrayscale:
+            effectIcon = "grayscale";
+            break;
+        case CameraImageProcessing.ColorFilterNegative:
+            effectIcon = "negative";
+            break;
+        case CameraImageProcessing.ColorFilterPosterize:
+            effectIcon = "posterize";
+            break;
+        case CameraImageProcessing.ColorFilterSepia:
+            effectIcon = "sepia";
+            break;
+        case CameraImageProcessing.ColorFilterSolarize:
+            effectIcon = "solarize";
+            break;
+        case CameraImageProcessing.ColorFilterWhiteboard:
+            effectIcon = "whiteboard";
+            break;
+        case CameraImageProcessing.ColorFilterEmboss:
+            effectIcon = "emboss";
+            break;
+        case CameraImageProcessing.ColorFilterSketch:
+            effectIcon = "sketch";
+            break;
+        case CameraImageProcessing.ColorFilterNeon:
+            effectIcon = "neon";
+            break;
+        default:
+            effectIcon = "default";
+            break;
+        }
+        return "../pics/icon-m-effect-" + effectIcon + ".svg";
+    }
     function sceneModeIcon(scene) {
         return "../pics/icon-m-scene_mode_" + modelExposure.iconName(settings.mode.exposure) + ".svg";
     }
