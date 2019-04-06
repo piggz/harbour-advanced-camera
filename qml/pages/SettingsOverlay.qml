@@ -184,14 +184,17 @@ Item {
     DockedListView {
         id: panelResolution
         model: sortedModelResolution
-        selectedItem: settings.strToSize(temp_resolution_str)
+        selectedItem: settings.strToSize(settings.mode.resolution)
 
         onClicked: {
-            camera.imageCapture.setResolution(value);
-            temp_resolution_str = settings.sizeToStr(value);
-            settings.mode.resolution = temp_resolution_str;
+            settings.mode.resolution = settings.sizeToStr(value);
             hide();
-            console.log("selected resolution", value, temp_resolution_str, settings.mode.resolution);
+            console.log("selected resolution", value, settings.mode.resolution);
+            if (settings.global.captureMode == "video") {
+                camera.videoRecorder.resolution = value;
+            } else {
+                camera.imageCapture.setResolution(value);
+            }
         }
     }
 
@@ -227,6 +230,8 @@ Item {
         modelFocus.setCamera(cam);
         modelFlash.setCamera(cam);
         modelResolution.setImageCapture(cam.imageCapture);
+        modelResolution.setVideoRecorder(cam.videoRecorder);
+        modelResolution.setMode(settings.global.captureMode);
     }
 
     function flashIcon() {
@@ -371,7 +376,14 @@ Item {
         }
         return "../pics/icon-m-effect-" + effectIcon + ".svg";
     }
+
     function sceneModeIcon(scene) {
         return "../pics/icon-m-scene_mode_" + modelExposure.iconName(settings.mode.exposure) + ".svg";
+    }
+
+    function setMode(mode, cam){
+        modelResolution.setMode(mode);
+        settings.global.captureMode = mode;
+        settings.mode.path = settings.global.cameraId + "/" + mode;
     }
 }

@@ -63,17 +63,65 @@ void ResolutionModel::setImageCapture(QObject *capture)
         cap = captures[0]; //first will do!
     }
 
-    if (m_capture != cap) {
-        m_capture = cap;
-
-        beginResetModel();
-
-        QList<QSize> supportedResolutions = m_capture->supportedResolutions();
-
-        for (int i = 0; i < supportedResolutions.count() ;i++) {
-            m_resolutions[QString("%1x%2").arg(supportedResolutions[i].width()).arg(supportedResolutions[i].height())] = supportedResolutions[i];
-        }
-        endResetModel();
-        qDebug() << supportedResolutions << m_resolutions;
+    if (cap) {
+        m_supportedImageResolutions = cap->supportedResolutions();
     }
+}
+
+void ResolutionModel::setVideoRecorder(QObject *capture)
+{
+    QMediaRecorder *cap = nullptr;
+    QList<QMediaRecorder*> captures = capture->findChildren<QMediaRecorder*>();
+
+    if (captures.count() > 0) {
+        cap = captures[0]; //first will do!
+    }
+
+    if (cap) {
+        m_supportedVideoResolutions = cap->supportedResolutions();
+    }
+}
+
+void ResolutionModel::setMode(const QString &mode)
+{
+    m_mode = mode;
+    beginResetModel();
+    m_resolutions.clear();
+
+    if (mode == "image") {
+        for (int i = 0; i < m_supportedImageResolutions.count() ;i++) {
+            m_resolutions[QString("%1x%2").arg(m_supportedImageResolutions[i].width()).arg(m_supportedImageResolutions[i].height())] = m_supportedImageResolutions[i];
+        }
+    } else if (mode == "video") {
+        for (int i = 0; i < m_supportedVideoResolutions.count() ;i++) {
+            m_resolutions[QString("%1x%2").arg(m_supportedVideoResolutions[i].width()).arg(m_supportedVideoResolutions[i].height())] = m_supportedVideoResolutions[i];
+        }
+    }
+
+    endResetModel();
+    qDebug() << "Supported " << mode << " resolutions:" << m_resolutions;
+}
+
+QSize ResolutionModel::defaultResolution(const QString &mode)
+{
+    if (mode == "video") {
+        if (m_supportedVideoResolutions.count() > 0) {
+            return m_supportedVideoResolutions.at(m_supportedVideoResolutions.count() - 1);
+        }
+    } else if (mode == "image") {
+        if (m_supportedImageResolutions.count() > 0) {
+            return m_supportedImageResolutions.at(m_supportedImageResolutions.count() - 1);
+        }
+    }
+    return QSize(0,0);
+}
+
+bool ResolutionModel::isValidResolution(const QSize &resolution, const QString &mode)
+{
+    if (mode == "image") {
+        return m_supportedImageResolutions.contains(resolution);
+    } else if (mode == "video") {
+        return m_supportedVideoResolutions.contains(resolution);
+    }
+    return false;
 }

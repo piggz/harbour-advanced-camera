@@ -41,11 +41,11 @@ int main(int argc, char *argv[])
     qmlRegisterType<FSOperations>("uk.co.piggz.harbour_advanced_camera", 1, 0, "FSOperations");
 
     ResolutionModel resolutionModel;
-
     QSortFilterProxyModel sortedResolutionModel;
     sortedResolutionModel.setSourceModel(&resolutionModel);
     sortedResolutionModel.setSortRole(ResolutionModel::ResolutionMpx);
     sortedResolutionModel.sort(0, Qt::DescendingOrder);
+
     QQuickView *view = SailfishApp::createView();
 
     view->rootContext()->setContextProperty("modelResolution", &resolutionModel);

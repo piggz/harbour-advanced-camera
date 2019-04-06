@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import QtMultimedia 5.4
+import QtMultimedia 5.6
 import uk.co.piggz.harbour_advanced_camera 1.0
 import "../components/"
 
@@ -10,17 +10,21 @@ Page {
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.Landscape
 
-    property string temp_resolution_str: ""
     property bool _cameraReload: false
     property bool _completed: false
     property bool _focusAndSnap: false
     property bool _parametersLoaded: false
+    property bool _recordingVideo: false
 
     Rectangle {
         parent: window
         anchors.fill: parent
         z: -1
         color: "black"
+    }
+
+    FSOperations {
+        id: fsOperations
     }
 
     VideoOutput {
@@ -38,8 +42,8 @@ Page {
         id: camera
 
         cameraState: page._completed && !page._cameraReload
-                        ? Camera.ActiveState
-                        : Camera.UnloadedState
+                     ? Camera.ActiveState
+                     : Camera.UnloadedState
 
         imageProcessing.colorFilter: CameraImageProcessing.ColorFilterNone
 
@@ -60,12 +64,35 @@ Page {
                 galleryModel.append({ filePath: path });
             }
             onResolutionChanged: {
+                console.log("Image resolution changed:", settings.resolution("image"));
                 camera.viewfinder.resolution = getNearestViewFinderResolution();
             }
         }
+
+        videoRecorder {
+            audioSampleRate: 48000
+            audioBitRate: 96
+            audioChannels: 1
+            audioCodec: "audio/mpeg, mpegversion=(int)4"
+            frameRate: 30
+            videoCodec: "video/x-h264"
+            mediaContainer: "video/x-matroska"
+
+            onRecorderStateChanged: {
+                if (camera.videoRecorder.recorderState == CameraRecorder.StoppedState) {
+                    console.log("saved to: " + camera.videoRecorder.outputLocation)
+                }
+            }
+
+            onResolutionChanged: {
+                console.log("Video resolution changed:", settings.resolution("video"));
+                camera.viewfinder.resolution = getNearestViewFinderResolution();
+            }
+        }
+
         onLockStatusChanged: {
-            if (camera.lockStatus == Camera.Locked && _focusAndSnap) {
-                camera.imageCapture.capture();
+            if (camera.lockStatus == Camera.Locked && _focusAndSnap && !_recordingVideo) {
+                camera.imageCapture.captureToLocation(fsOperations.writableLocation("image") + "/AdvancedCam/IMG_" + Qt.formatDateTime(new Date(), "yyyyMMdd_hhmmss") + ".jpg");
                 animFlash.start();
                 _focusAndSnap = false;
             }
@@ -76,9 +103,20 @@ Page {
 
             if (cameraStatus == Camera.ActiveStatus && !_parametersLoaded) {
                 settingsOverlay.setCamera(camera);
+                if (settings.global.captureMode === "video") {
+                    camera.captureMode = Camera.CaptureVideo;
+                    btnModeSwitch._hilighted2 = true;
+                } else {
+                    camera.captureMode = Camera.CaptureStillImage;
+                    btnModeSwitch._hilighted2 = false;
+                }
+
+                settingsOverlay.setMode(settings.global.captureMode);
+
                 camera.viewfinder.resolution = getNearestViewFinderResolution();
                 _parametersLoaded = true;
                 applySettings();
+                lblResolution.forceUpdate = !lblResolution.forceUpdate
             }
         }
     }
@@ -102,15 +140,24 @@ Page {
 
         size: Theme.itemSizeLarge
 
-        image: "image://theme/icon-camera-shutter"
+        image: shutterIcon()
         icon.anchors.margins: Theme.paddingSmall
         onClicked: {
-            if (camera.focus.focusMode == Camera.FocusAuto || camera.focus.focusMode == Camera.FocusMacro || camera.focus.focusMode == Camera.FocusContinuous) {
-                _focusAndSnap = true;
-                camera.searchAndLock();
+            if (camera.captureMode == Camera.CaptureStillImage) {
+                if (camera.focus.focusMode == Camera.FocusAuto || camera.focus.focusMode == Camera.FocusMacro || camera.focus.focusMode == Camera.FocusContinuous) {
+                    _focusAndSnap = true;
+                    camera.searchAndLock();
+                } else {
+                    camera.imageCapture.captureToLocation(fsOperations.writableLocation("image") + "/AdvancedCam/IMG_" + Qt.formatDateTime(new Date(), "yyyyMMdd_hhmmss") + ".jpg")
+                    animFlash.start();
+                }
             } else {
-                camera.imageCapture.capture();
-                animFlash.start();
+                if (camera.videoRecorder.recorderStatus == CameraRecorder.RecordingStatus) {
+                    camera.videoRecorder.stop();
+                } else {
+                    camera.videoRecorder.outputLocation = fsOperations.writableLocation("video") + "/AdvancedCam/VID_" + Qt.formatDateTime(new Date(), "yyyyMMdd_hhmmss") + ".mkv";
+                    camera.videoRecorder.record();
+                }
             }
         }
     }
@@ -137,16 +184,27 @@ Page {
             x: -focusCircle.width / 2
             y: -focusCircle.height / 2
         }
-
     }
 
     Label {
+        property bool forceUpdate: false
         id: lblResolution
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
         anchors.margins: Theme.paddingMedium
         color: Theme.lightPrimaryColor
-        text: temp_resolution_str
+        text: (forceUpdate || !forceUpdate) ? settings.sizeToStr(settings.resolution(settings.global.captureMode)) : ""
+    }
+
+    Label {
+        id: lblRecordTime
+        visible: settings.global.captureMode == "video"
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.margins: Theme.paddingMedium
+        color: Theme.lightPrimaryColor
+        //text: Qt.formatDateTime(new Date(camera.videoRecorder.duration), "hh:mm:ss") //Doest work as return 01:00:00 for 0
+        text: msToTime(camera.videoRecorder.duration)
     }
 
     MouseArea {
@@ -181,6 +239,8 @@ Page {
     Component.onCompleted: {
         camera.deviceId = settings.global.cameraId;
         _completed = true;
+        fsOperations.createFolder(fsOperations.writableLocation("image") + "/AdvancedCam/");
+        fsOperations.createFolder(fsOperations.writableLocation("video") + "/AdvancedCam/");
     }
 
     Timer {
@@ -190,9 +250,10 @@ Page {
         onTriggered: {
             page._cameraReload = false;
         }
-     }
+    }
 
     function applySettings() {
+        console.log("Applying settings in mode ", settings.global.captureMode);
         camera.imageProcessing.setColorFilter(settings.mode.effect);
         camera.exposure.setExposureMode(settings.mode.exposure);
         camera.flash.setFlashMode(settings.mode.flash);
@@ -205,10 +266,9 @@ Page {
             camera.exposure.setManualIsoSensitivity(settings.mode.iso);
         }
 
-        if (settings.mode.resolution) {
-            camera.imageCapture.setResolution(settings.strToSize(settings.mode.resolution));
-        }
-        temp_resolution_str = settings.mode.resolution;
+        camera.imageCapture.setResolution(settings.resolution("image"));
+        camera.videoRecorder.resolution = settings.resolution("video");
+
         settings.global.cameraCount = QtMultimedia.availableCameras.length;
     }
 
@@ -238,7 +298,7 @@ Page {
         ///  * First resolution as returned by camera.supportedViewfinderResolutions()
         ///  * device resolution
 
-        var currentRatioSize = modelResolution.sizeToRatio(camera.imageCapture.resolution);
+        var currentRatioSize = modelResolution.sizeToRatio(settings.resolution(settings.global.captureMode));
         var currentRatio = currentRatioSize.height > 0 ? currentRatioSize.width / currentRatioSize.height : 0;
         if (currentRatio > 0) {
             if (currentRatio <= 4.0 / 3 && settings.jollaCamera.viewfinderResolution_4_3) {
@@ -269,7 +329,7 @@ Page {
         visible: galleryModel.count > 0
         enabled: visible
 
-        anchors.bottom: parent.bottom
+        anchors.top: btnCameraSwitch.bottom
         anchors.bottomMargin: Theme.paddingMedium
         anchors.right: parent.right
         anchors.rightMargin: Theme.paddingMedium
@@ -302,7 +362,35 @@ Page {
             if (settings.mode.resolution) {
                 camera.imageCapture.setResolution(settings.strToSize(settings.mode.resolution));
             }
-            temp_resolution_str = settings.mode.resolution;
+        }
+    }
+
+    IconSwitch {
+        id: btnModeSwitch
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: Theme.paddingMedium
+        anchors.right: parent.right
+        anchors.rightMargin: Theme.paddingMedium
+
+        width: Theme.itemSizeSmall
+
+        icon1Source: "image://theme/icon-camera-camera-mode"
+        icon2Source: "image://theme/icon-camera-video"
+        button1Name: "image"
+        button2Name: "video"
+
+        onClicked: {
+            console.log("selected:", name);
+
+            camera.stop();
+            settingsOverlay.setMode(name, camera);
+            if (name === button1Name) {
+                camera.captureMode = Camera.CaptureStillImage;
+            } else {
+                camera.captureMode = Camera.CaptureVideo;
+            }
+            applySettings();
+            camera.start();
         }
     }
 
@@ -314,5 +402,20 @@ Page {
         } else {
             return Theme.primaryColor;
         }
+    }
+
+    function shutterIcon() {
+        if (camera.captureMode == Camera.CaptureStillImage) {
+            return "image://theme/icon-camera-shutter"
+        } else {
+            if (camera.videoRecorder.recorderStatus == CameraRecorder.RecordingStatus) {
+                return "image://theme/icon-camera-video-shutter-off";
+            } else {
+                return "image://theme/icon-camera-video-shutter-on";
+            }
+        }
+    }
+    function msToTime(millis) {
+        return new Date(millis).toISOString().substr(11, 8);
     }
 }

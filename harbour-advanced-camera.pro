@@ -34,12 +34,14 @@ DISTFILES += rpm/harbour-advanced-camera.changes.in \
     harbour-advanced-camera.desktop \
     qml/harbour-advanced-camera.qml \
     qml/components/DockedListView.qml \
+    qml/components/IconSwitch.qml \
     qml/components/RoundButton.qml \
     qml/cover/CoverPage.qml \
     qml/pages/CameraUI.qml \
     qml/pages/GalleryUI.qml \
     qml/pages/Settings.qml \
     qml/pages/SettingsOverlay.qml
+
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
 
