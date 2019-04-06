@@ -184,7 +184,7 @@ Item {
     DockedListView {
         id: panelResolution
         model: sortedModelResolution
-        selectedItem: settings.strToSize(settings.mode.resolution)
+        selectedItem: settings.resolution(settings.global.captureMode)
 
         onClicked: {
             settings.mode.resolution = settings.sizeToStr(value);
