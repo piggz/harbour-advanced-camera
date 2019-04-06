@@ -76,7 +76,9 @@ Page {
             audioCodec: "audio/mpeg, mpegversion=(int)4"
             frameRate: 30
             videoCodec: "video/x-h264"
-            mediaContainer: "video/x-matroska"
+            mediaContainer: "video/quicktime, variant=(string)iso"
+            videoEncodingMode: CameraRecorder.AverageBitRateEncoding
+            videoBitRate: 12000000
 
             onRecorderStateChanged: {
                 if (camera.videoRecorder.recorderState == CameraRecorder.StoppedState) {
@@ -155,7 +157,7 @@ Page {
                 if (camera.videoRecorder.recorderStatus == CameraRecorder.RecordingStatus) {
                     camera.videoRecorder.stop();
                 } else {
-                    camera.videoRecorder.outputLocation = fsOperations.writableLocation("video") + "/AdvancedCam/VID_" + Qt.formatDateTime(new Date(), "yyyyMMdd_hhmmss") + ".mkv";
+                    camera.videoRecorder.outputLocation = fsOperations.writableLocation("video") + "/AdvancedCam/VID_" + Qt.formatDateTime(new Date(), "yyyyMMdd_hhmmss") + ".mp4";
                     camera.videoRecorder.record();
                 }
             }
@@ -417,5 +419,17 @@ Page {
     }
     function msToTime(millis) {
         return new Date(millis).toISOString().substr(11, 8);
+    }
+
+    Connections {
+        target: window
+
+        onActiveFocusChanged: {
+            if (!window.activeFocus) {
+                camera.stop();
+            } else {
+                camera.start();
+            }
+        }
     }
 }
