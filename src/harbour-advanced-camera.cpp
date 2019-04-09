@@ -16,6 +16,7 @@
 #include "focusmodel.h"
 #include "flashmodel.h"
 #include "fsoperations.h"
+#include "resourcehandler.h"
 
 int main(int argc, char *argv[])
 {
@@ -48,9 +49,15 @@ int main(int argc, char *argv[])
 
     QQuickView *view = SailfishApp::createView();
 
+    ResourceHandler handler;
+    handler.acquire();
+
     view->rootContext()->setContextProperty("modelResolution", &resolutionModel);
     view->rootContext()->setContextProperty("sortedModelResolution", &sortedResolutionModel);
     view->setSource(SailfishApp::pathTo("qml/harbour-advanced-camera.qml"));
+
+    QObject::connect(view, &QQuickView::focusObjectChanged, &handler, &ResourceHandler::handleFocusChange);
+
     view->show();
 
     return app->exec();

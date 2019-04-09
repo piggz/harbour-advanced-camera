@@ -15,6 +15,8 @@ Page {
     property bool _focusAndSnap: false
     property bool _parametersLoaded: false
     property bool _recordingVideo: false
+    readonly property int zoomStepSize: 5
+    focus: true
 
     Rectangle {
         parent: window
@@ -37,6 +39,30 @@ Page {
             console.log(orientation);
         }
     }
+
+    Slider {
+        id: zoomSlider
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        width: parent.width * 0.75
+        minimumValue: 1
+        maximumValue: camera.maximumDigitalZoom
+        value: camera.digitalZoom
+        stepSize: zoomStepSize
+
+        onValueChanged: {
+            if (value != camera.digitalZoom) camera.digitalZoom = value;
+        }
+
+        Connections {
+            target: camera
+
+            onDigitalZoomChanged: {
+                zoomSlider.value = camera.digitalZoom;
+            }
+        }
+    }
+
 
     Camera {
         id: camera
@@ -104,6 +130,10 @@ Page {
             console.log("Camera status:", cameraStatus);
 
             if (cameraStatus == Camera.ActiveStatus && !_parametersLoaded) {
+                if (zoomSlider.maximumValue != camera.maximumDigitalZoom) {
+                    zoomSlider.maximumValue = camera.maximumDigitalZoom;
+                }
+
                 settingsOverlay.setCamera(camera);
                 if (settings.global.captureMode === "video") {
                     camera.captureMode = Camera.CaptureVideo;
@@ -188,25 +218,25 @@ Page {
         }
     }
 
-    Label {
-        property bool forceUpdate: false
-        id: lblResolution
-        anchors.horizontalCenter: parent.horizontalCenter
+    Row {
         anchors.top: parent.top
-        anchors.margins: Theme.paddingMedium
-        color: Theme.lightPrimaryColor
-        text: (forceUpdate || !forceUpdate) ? settings.sizeToStr(settings.resolution(settings.global.captureMode)) : ""
-    }
-
-    Label {
-        id: lblRecordTime
-        visible: settings.global.captureMode == "video"
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.margins: Theme.paddingMedium
-        color: Theme.lightPrimaryColor
-        //text: Qt.formatDateTime(new Date(camera.videoRecorder.duration), "hh:mm:ss") //Doest work as return 01:00:00 for 0
-        text: msToTime(camera.videoRecorder.duration)
+        spacing: Theme.paddingMedium
+
+        Label {
+            property bool forceUpdate: false
+            id: lblResolution
+            color: Theme.lightPrimaryColor
+            text: (forceUpdate || !forceUpdate) ? settings.sizeToStr(settings.resolution(settings.global.captureMode)) : ""
+        }
+
+        Label {
+            id: lblRecordTime
+            visible: settings.global.captureMode == "video"
+            color: Theme.lightPrimaryColor
+            //text: Qt.formatDateTime(new Date(camera.videoRecorder.duration), "hh:mm:ss") //Doest work as return 01:00:00 for 0
+            text: msToTime(camera.videoRecorder.duration)
+        }
     }
 
     MouseArea {
@@ -356,7 +386,7 @@ Page {
             rightMargin: Theme.paddingMedium
         }
         onClicked: {
-            _cameraReload = true
+            _cameraReload = true;
             camera.stop();
             camera.deviceId = settings.global.cameraId == "primary" ? "secondary" : "primary";
             camera.start();
@@ -383,7 +413,6 @@ Page {
 
         onClicked: {
             console.log("selected:", name);
-
             camera.stop();
             settingsOverlay.setMode(name, camera);
             if (name === button1Name) {
@@ -430,6 +459,18 @@ Page {
             } else {
                 camera.start();
             }
+        }
+    }
+
+    Keys.onVolumeUpPressed: {
+        if (camera.digitalZoom < camera.maximumDigitalZoom) {
+            camera.digitalZoom += zoomStepSize;
+        }
+    }
+
+    Keys.onVolumeDownPressed: {
+        if (camera.digitalZoom > 1) {
+            camera.digitalZoom -= zoomStepSize;
         }
     }
 }
