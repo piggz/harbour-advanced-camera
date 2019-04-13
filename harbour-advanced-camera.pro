@@ -24,7 +24,8 @@ SOURCES += src/harbour-advanced-camera.cpp \
     src/wbmodel.cpp \
     src/focusmodel.cpp \
     src/flashmodel.cpp \
-    src/fsoperations.cpp
+    src/fsoperations.cpp \
+    src/resourcehandler.cpp
 
 DISTFILES += rpm/harbour-advanced-camera.changes.in \
     rpm/harbour-advanced-camera.changes.run.in \
@@ -58,7 +59,7 @@ TRANSLATIONS += translations/harbour-advanced-camera-de.ts \
                 translations/harbour-advanced-camera-fi.ts \
                 translations/harbour-advanced-camera-fr.ts \
                 translations/harbour-advanced-camera-sv.ts \
-                translations/harbour-advanced-camera-zh_CN.ts 
+                translations/harbour-advanced-camera-zh_CN.ts
 
 HEADERS += \
     src/effectsmodel.h \
@@ -68,4 +69,8 @@ HEADERS += \
     src/wbmodel.h \
     src/focusmodel.h \
     src/flashmodel.h \
-    src/fsoperations.h
+    src/fsoperations.h \
+    src/resourcehandler.h
+
+PKGCONFIG += audioresource
+LIBS += -ldl

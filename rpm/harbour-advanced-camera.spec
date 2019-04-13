@@ -26,6 +26,7 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Multimedia)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(audioresource)
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  desktop-file-utils
 
