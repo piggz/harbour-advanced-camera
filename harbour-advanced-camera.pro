@@ -25,7 +25,8 @@ SOURCES += src/harbour-advanced-camera.cpp \
     src/focusmodel.cpp \
     src/flashmodel.cpp \
     src/fsoperations.cpp \
-    src/resourcehandler.cpp
+    src/resourcehandler.cpp \
+    src/gridmodel.cpp
 
 DISTFILES += rpm/harbour-advanced-camera.changes.in \
     rpm/harbour-advanced-camera.changes.run.in \
@@ -41,7 +42,8 @@ DISTFILES += rpm/harbour-advanced-camera.changes.in \
     qml/pages/CameraUI.qml \
     qml/pages/GalleryUI.qml \
     qml/pages/Settings.qml \
-    qml/pages/SettingsOverlay.qml
+    qml/pages/SettingsOverlay.qml \
+    qml/pages/GridOverlay.qml
 
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 172x172
@@ -70,7 +72,8 @@ HEADERS += \
     src/focusmodel.h \
     src/flashmodel.h \
     src/fsoperations.h \
-    src/resourcehandler.h
+    src/resourcehandler.h\
+    src/gridmodel.h
 
 PKGCONFIG += audioresource
 LIBS += -ldl

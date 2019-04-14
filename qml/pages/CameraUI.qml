@@ -40,6 +40,10 @@ Page {
         }
     }
 
+    GridOverlay {
+        anchors.fill: parent
+    }
+
     Slider {
         id: zoomSlider
         anchors.horizontalCenter: parent.horizontalCenter

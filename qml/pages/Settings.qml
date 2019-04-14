@@ -26,6 +26,7 @@ Item {
             property int iso: 0
             property string resolution: ""
             property int whiteBalance: CameraImageProcessing.WhiteBalanceAuto
+            property string gridMode: "none"
         }
     }
 

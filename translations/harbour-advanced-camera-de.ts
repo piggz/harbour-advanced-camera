@@ -244,6 +244,21 @@
     </message>
 </context>
 <context>
+    <name>GridModel</name>
+    <message>
+        <source>thirds</source>
+        <translation>Drittel</translation>
+    </message>
+    <message>
+        <source>ambiente</source>
+        <translation>Ambiente</translation>
+    </message>
+    <message>
+        <source>none</source>
+        <translation>Kein</translation>
+    </message>
+</context>
+<context>
     <name>IsoModel</name>
     <message>
         <source>Auto ISO</source>

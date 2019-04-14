@@ -302,6 +302,24 @@
     </message>
 </context>
 <context>
+    <name>GridModel</name>
+    <message>
+        <location filename="../src/gridmodel.cpp" line="5"/>
+        <source>thirds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gridmodel.cpp" line="5"/>
+        <source>ambiente</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/gridmodel.cpp" line="5"/>
+        <source>none</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>IsoModel</name>
     <message>
         <location filename="../src/isomodel.cpp" line="62"/>

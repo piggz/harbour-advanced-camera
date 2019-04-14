@@ -102,7 +102,15 @@ Item {
                 }
             }
 
+            RoundButton {
+                id: btnGrid
+                icon.color: Theme.primaryColor
+                image: "image://theme/icon-m-tabs"
 
+                onClicked: {
+                    panelGrid.show();
+                }
+            }
         }
     }
 
@@ -198,6 +206,18 @@ Item {
         }
     }
 
+    DockedListView {
+        id: panelGrid
+        model: modelGrid
+        selectedItem: settings.mode.gridMode
+
+        onClicked: {
+            settings.mode.gridMode = value;
+            hide();
+            console.log("Setting grid mode to: " + value);
+        }
+    }
+
     EffectsModel {
         id: modelEffects
     }
@@ -220,6 +240,10 @@ Item {
 
     FlashModel {
         id: modelFlash
+    }
+
+    GridModel {
+        id: modelGrid
     }
 
     function setCamera(cam) {

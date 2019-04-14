@@ -17,6 +17,7 @@
 #include "flashmodel.h"
 #include "fsoperations.h"
 #include "resourcehandler.h"
+#include "gridmodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -40,6 +41,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<FocusModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "FocusModel");
     qmlRegisterType<FlashModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "FlashModel");
     qmlRegisterType<FSOperations>("uk.co.piggz.harbour_advanced_camera", 1, 0, "FSOperations");
+    qmlRegisterType<GridModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "GridModel");
 
     ResolutionModel resolutionModel;
     QSortFilterProxyModel sortedResolutionModel;
