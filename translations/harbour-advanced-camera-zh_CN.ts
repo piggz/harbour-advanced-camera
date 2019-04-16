@@ -229,7 +229,7 @@
     </message>
     <message>
         <source>Macro</source>
-        <translation>宏观</translation>
+        <translation>微距</translation>
     </message>
     <message>
         <source>Unknown</source>
