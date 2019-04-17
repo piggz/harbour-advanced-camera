@@ -13,6 +13,7 @@ Item {
         property int cameraCount: 2
         property string cameraId: "primary"
         property string captureMode: "image"
+        property bool swapZoomControl: false
 
 
         ConfigurationGroup {

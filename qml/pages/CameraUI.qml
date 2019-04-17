@@ -463,12 +463,28 @@ Page {
     }
 
     Keys.onVolumeUpPressed: {
+        if (settings.global.swapZoomControl) {
+            zoomOut();
+        } else {
+            zoomIn();
+        }
+    }
+
+    Keys.onVolumeDownPressed: {
+        if (settings.global.swapZoomControl) {
+            zoomIn();
+        } else {
+            zoomOut();
+        }
+    }
+
+    function zoomIn() {
         if (camera.digitalZoom < camera.maximumDigitalZoom) {
             camera.digitalZoom += zoomStepSize;
         }
     }
 
-    Keys.onVolumeDownPressed: {
+    function zoomOut() {
         if (camera.digitalZoom > 1) {
             camera.digitalZoom -= zoomStepSize;
         }

@@ -16,7 +16,8 @@ Item {
                  !panelWhiteBalance.expanded &&
                  !panelFocus.expanded &&
                  !panelIso.expanded &&
-                 !panelResolution.expanded) === true ? 1 : 0
+                 !panelResolution.expanded &&
+                 !panelGeneral.expanded) === true ? 1 : 0
         enabled: opacity > 0
 
         height: parent.height
@@ -101,7 +102,15 @@ Item {
                     panelIso.show();
                 }
             }
+            RoundButton {
+                id: btnGeneral
+                icon.color: Theme.primaryColor
+                image: "image://theme/icon-m-developer-mode"
 
+                onClicked: {
+                    panelGeneral.show();
+                }
+            }
 
         }
     }
@@ -194,6 +203,44 @@ Item {
                 camera.videoRecorder.resolution = value;
             } else {
                 camera.imageCapture.setResolution(value);
+            }
+        }
+    }
+
+    DockedPanel {
+        id: panelGeneral
+        modal: true
+        animationDuration: 250
+        width: parent.width / 2
+        height: parent.height
+        z: 99
+        dock: Dock.Left
+        clip: true
+
+        Rectangle {
+            anchors.fill: parent
+            color: Theme.colorScheme === Theme.LightOnDark ? "black" : "white"
+            opacity: 0.7
+
+            SilicaFlickable {
+                anchors.fill: parent
+                anchors.margins: Theme.paddingMedium
+                contentHeight: mainColumn.height
+                VerticalScrollDecorator {}
+                Column {
+                    id: mainColumn
+                    width: parent.width
+                    height: childrenRect.height
+                    spacing: Theme.paddingMedium
+                    TextSwitch {
+                        id: gridSwitch
+                        text: "Swap zoom controls"
+                        checked: settings.global.swapZoomControl
+                        onCheckedChanged: {
+                            settings.global.swapZoomControl = checked;
+                        }
+                    }
+                }
             }
         }
     }
