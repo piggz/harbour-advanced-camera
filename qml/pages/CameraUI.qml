@@ -40,6 +40,14 @@ Page {
         }
     }
 
+    GridOverlay {
+        aspect: settings.global.captureMode == "image" ? ratio(camera.imageCapture.resolution) : ratio(camera.videoRecorder.resolution)
+
+        function ratio(resolution) {
+            return resolution.width / resolution.height
+        }
+    }
+
     Slider {
         id: zoomSlider
         anchors.horizontalCenter: parent.horizontalCenter

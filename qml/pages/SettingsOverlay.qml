@@ -11,13 +11,13 @@ Item {
     Item {
         id: buttonPanel
         opacity: (!panelEffects.expanded &&
-                 !panelExposure.expanded &&
-                 !panelFlash.expanded &&
-                 !panelWhiteBalance.expanded &&
-                 !panelFocus.expanded &&
-                 !panelIso.expanded &&
-                 !panelResolution.expanded &&
-                 !panelGeneral.expanded) === true ? 1 : 0
+                  !panelExposure.expanded &&
+                  !panelFlash.expanded &&
+                  !panelWhiteBalance.expanded &&
+                  !panelFocus.expanded &&
+                  !panelIso.expanded &&
+                  !panelResolution.expanded &&
+                  !panelGeneral.expanded) === true ? 1 : 0
         enabled: opacity > 0
 
         height: parent.height
@@ -233,11 +233,43 @@ Item {
                     height: childrenRect.height
                     spacing: Theme.paddingMedium
                     TextSwitch {
-                        id: gridSwitch
-                        text: "Swap zoom controls"
+                        id: zoomSwitch
+                        text: qsTr("Swap zoom controls")
                         checked: settings.global.swapZoomControl
                         onCheckedChanged: {
                             settings.global.swapZoomControl = checked;
+                        }
+                    }
+
+                    ComboBox {
+                        id: gridSwitch
+
+                        property var grids: [{"id": "none", "name": qsTr("None")}, {"id": "thirds", "name": qsTr("Thirds")}, {"id": "ambience", "name": qsTr("Ambience")}]
+
+                        function findIndex(id) {
+                            for (var i = 0; i < grids.length; i++) {
+                                if (grids[i]["id"] === id) {
+                                    return i;
+                                }
+                            }
+                            return 0;
+                        }
+
+                        label: qsTr("Grid:")
+                        currentIndex: findIndex(settings.global.gridMode)
+
+                        menu: ContextMenu {
+                            Repeater {
+                                model: gridSwitch.grids
+
+                                delegate: MenuItem {
+                                    text: modelData["name"]
+
+                                    onClicked: {
+                                        settings.global.gridMode = modelData["id"];
+                                    }
+                                }
+                            }
                         }
                     }
                 }

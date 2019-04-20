@@ -310,6 +310,34 @@
     </message>
 </context>
 <context>
+    <name>SettingsOverlay</name>
+    <message>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="237"/>
+        <source>Swap zoom controls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="247"/>
+        <source>None</source>
+        <translation type="unfinished">Aucun</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="247"/>
+        <source>Thirds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="247"/>
+        <source>Ambience</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="258"/>
+        <source>Grid:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WbModel</name>
     <message>
         <location filename="../src/wbmodel.cpp" line="63"/>

@@ -14,6 +14,7 @@ Item {
         property string cameraId: "primary"
         property string captureMode: "image"
         property bool swapZoomControl: false
+        property string gridMode: "none"
 
 
         ConfigurationGroup {
