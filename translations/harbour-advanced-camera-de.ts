@@ -251,6 +251,29 @@
     </message>
 </context>
 <context>
+    <name>SettingsOverlay</name>
+    <message>
+        <source>Grid:</source>
+        <translation>Raster:</translation>
+    </message>
+    <message>
+        <source>Swap zoom controls</source>
+        <translation>Zoomtasten vertauschen</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished">Keinen</translation>
+    </message>
+    <message>
+        <source>Thirds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ambience</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WbModel</name>
     <message>
         <source>Auto</source>
