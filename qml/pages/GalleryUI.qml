@@ -1,5 +1,7 @@
 import QtQuick 2.5
 import Sailfish.Silica 1.0
+import QtMultimedia 5.6
+import Nemo.Thumbnailer 1.0
 import uk.co.piggz.harbour_advanced_camera 1.0
 import "../components/"
 
@@ -7,6 +9,7 @@ Page {
     id: galleryPage
 
     property var fileList: ({})
+    property alias showButtons: btnClose.visible
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
@@ -25,6 +28,13 @@ Page {
         } else {
             console.log("Error deleting file:", path);
         }
+    }
+
+    function getFileName(idx) {
+        var fullPath = fileList.get(idx).filePath;
+        var lastSep = fullPath.lastIndexOf("/");
+        var fileName = fullPath.substr(lastSep + 1, fullPath.length - lastSep);
+        return fileName;
     }
 
     RoundButton {
@@ -52,7 +62,7 @@ Page {
     Row {
         id: rowBottom
 
-        visible: btnClose.visible
+        visible: showButtons
         anchors {
             horizontalCenter: parent.horizontalCenter
             bottom: parent.bottom
@@ -66,7 +76,7 @@ Page {
             size: Theme.itemSizeMedium
 
             function showRemorseItem() {
-                remorse.execute(qsTr("Deleting"),
+                remorse.execute(qsTr("Deleting %1").arg(getFileName(gallery.currentIndex)),
                     function() { removeFile(gallery.currentIndex) });
             }
 
@@ -94,22 +104,37 @@ Page {
             height: parent.height
             color: 'black'
 
-            Image {
+            Thumbnail {
                 id: thumbnail
 
-                asynchronous: true
                 sourceSize.width: parent.width
+                sourceSize.height: parent.height
                 anchors.fill: parent
-                fillMode: Image.PreserveAspectFit
-                source: "file://" + filePath
-                autoTransform: true
+                fillMode: Thumbnail.PreserveAspectFit
+                source: filePath
+                mimeType: isVideo ? "video/" : "image/"
+                smooth: true
 
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        console.log("Clicked", thumbnail.source);
-                        btnClose.visible = btnClose.visible ? false : true;
+                        showButtons = !showButtons
                     }
+                }
+            }
+
+            RoundButton {
+                id: btnPlay
+
+                visible: isVideo
+                anchors.centerIn: parent
+                icon.source: "image://theme/icon-m-play"
+                size: Theme.itemSizeMedium
+
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("VideoPlayer.qml"),
+                        { videoFile: filePath },
+                        PageStackAction.Immediate);
                 }
             }
         }

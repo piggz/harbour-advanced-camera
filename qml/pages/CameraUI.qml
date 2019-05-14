@@ -130,7 +130,7 @@ Page {
             }
             onImageSaved: {
                 console.log("Camera: image saved", path)
-                galleryModel.append({ filePath: path });
+                galleryModel.append({ filePath: path, isVideo: false });
             }
             onResolutionChanged: {
                 console.log("Image resolution changed:", camera.imageCapture.resolution);
@@ -152,6 +152,14 @@ Page {
             onRecorderStateChanged: {
                 if (camera.videoRecorder.recorderState == CameraRecorder.StoppedState) {
                     console.log("saved to: " + camera.videoRecorder.outputLocation)
+                }
+            }
+
+            onRecorderStatusChanged: {
+                if (camera.videoRecorder.recorderStatus == CameraRecorder.FinalizingStatus) {
+                    var path = camera.videoRecorder.outputLocation.toString()
+                    path = path.replace(/^(file:\/{2})/,"")
+                    galleryModel.append({ filePath: path, isVideo: true })
                 }
             }
 
@@ -425,6 +433,7 @@ Page {
         image: "image://theme/icon-m-image"
 
         onClicked: {
+            camera.stop();
             pageStack.push(Qt.resolvedUrl("GalleryUI.qml"), { "fileList": galleryModel });
         }
     }
@@ -525,6 +534,17 @@ Page {
             if (!window.activeFocus) {
                 camera.stop();
             } else {
+                camera.start();
+            }
+        }
+    }
+
+    Connections {
+        target: pageStack
+
+        onDepthChanged: {
+            if (pageStack.depth === 1) {
+                console.log("Calling camera.start() due to pageStack change");
                 camera.start();
             }
         }
