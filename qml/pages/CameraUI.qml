@@ -182,24 +182,7 @@ Page {
 
         image: shutterIcon()
         icon.anchors.margins: Theme.paddingSmall
-        onClicked: {
-            if (camera.captureMode == Camera.CaptureStillImage) {
-                if (camera.focus.focusMode == Camera.FocusAuto || camera.focus.focusMode == Camera.FocusMacro || camera.focus.focusMode == Camera.FocusContinuous) {
-                    _focusAndSnap = true;
-                    camera.searchAndLock();
-                } else {
-                    camera.imageCapture.captureToLocation(fsOperations.writableLocation("image") + "/AdvancedCam/IMG_" + Qt.formatDateTime(new Date(), "yyyyMMdd_hhmmss") + ".jpg")
-                    animFlash.start();
-                }
-            } else {
-                if (camera.videoRecorder.recorderStatus == CameraRecorder.RecordingStatus) {
-                    camera.videoRecorder.stop();
-                } else {
-                    camera.videoRecorder.outputLocation = fsOperations.writableLocation("video") + "/AdvancedCam/VID_" + Qt.formatDateTime(new Date(), "yyyyMMdd_hhmmss") + ".mp4";
-                    camera.videoRecorder.record();
-                }
-            }
-        }
+        onClicked: page.doShutter()
     }
 
     Rectangle {
@@ -483,6 +466,35 @@ Page {
             zoomIn();
         } else {
             zoomOut();
+        }
+    }
+
+    Keys.onPressed: { // SFOS intercepts Qt.Key_Camera (which starts camera app after a long press), so we have to work with focus
+        if(event.isAutoRepeat) {
+            return;
+        }
+
+       if ([Qt.Key_CameraFocus, Qt.Key_Camera].indexOf(event.key) > -1) {
+           doShutter();
+       }
+   }
+
+    function doShutter(){
+        if (camera.captureMode == Camera.CaptureStillImage) {
+            if (camera.focus.focusMode == Camera.FocusAuto || camera.focus.focusMode == Camera.FocusMacro || camera.focus.focusMode == Camera.FocusContinuous) {
+                _focusAndSnap = true;
+                camera.searchAndLock();
+            } else {
+                camera.imageCapture.captureToLocation(fsOperations.writableLocation("image") + "/AdvancedCam/IMG_" + Qt.formatDateTime(new Date(), "yyyyMMdd_hhmmss") + ".jpg")
+                animFlash.start();
+            }
+        } else {
+            if (camera.videoRecorder.recorderStatus == CameraRecorder.RecordingStatus) {
+                camera.videoRecorder.stop();
+            } else {
+                camera.videoRecorder.outputLocation = fsOperations.writableLocation("video") + "/AdvancedCam/VID_" + Qt.formatDateTime(new Date(), "yyyyMMdd_hhmmss") + ".mp4";
+                camera.videoRecorder.record();
+            }
         }
     }
 
