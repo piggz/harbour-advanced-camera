@@ -221,7 +221,7 @@ Page {
         height: Theme.itemSizeMedium
         width: height
         radius: width / 2
-        border.width: 2
+        border.width: 4
         border.color: focusColor()
         color: "transparent"
         x: parent.width / 2
