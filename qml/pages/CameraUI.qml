@@ -132,6 +132,12 @@ Page {
                 animFlash.start();
                 _focusAndSnap = false;
             }
+            else if (camera.lockStatus == Camera.Locked) {
+                focusCircle.height = Theme.itemSizeSmall
+            }
+            else {
+                focusCircle.height = Theme.itemSizeMedium
+            }
         }
 
         onCameraStatusChanged: {
