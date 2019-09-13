@@ -212,7 +212,7 @@ Page {
 
     Rectangle {
         id: focusCircle
-        height: Theme.itemSizeHuge
+        height: Theme.itemSizeMedium
         width: height
         radius: width / 2
         border.width: 2
