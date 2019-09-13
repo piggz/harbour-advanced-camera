@@ -80,6 +80,9 @@ Page {
                      : Camera.UnloadedState
 
         imageProcessing.colorFilter: CameraImageProcessing.ColorFilterNone
+        imageProcessing.denoisingLevel: 1
+        imageProcessing.contrast: 1
+        imageProcessing.sharpeningLevel: 1
 
         exposure {
             //exposureCompensation: -1.0
