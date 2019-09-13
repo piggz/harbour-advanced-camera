@@ -435,11 +435,11 @@ Page {
 
     function focusColor() {
         if (camera.lockStatus == Camera.Unlocked) {
-            return Theme.primaryColor;
+            return "white";
         } else if (camera.lockStatus == Camera.Searching) {
-            return Theme.secondaryColor;
+            return "#e3e3e3" //light grey;
         } else {
-            return Theme.highlightColor;
+            return "lightgreen";
         }
     }
 
