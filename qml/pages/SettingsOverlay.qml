@@ -7,6 +7,7 @@ import "../components/"
 
 Item {
     anchors.fill: parent
+    property int iconRotation: 0
 
     Item {
         id: buttonPanel
@@ -44,6 +45,7 @@ Item {
             RoundButton {
                 id: btnScene
                 icon.color: Theme.primaryColor
+                icon.rotation: iconRotation
                 image: effectIcon()
 
                 onClicked: {
@@ -54,6 +56,7 @@ Item {
                 id: btnExposure
                 image: sceneModeIcon()
                 icon.color: Theme.primaryColor
+                icon.rotation: iconRotation
 
                 onClicked: {
                     panelExposure.show();
@@ -62,6 +65,7 @@ Item {
             RoundButton {
                 id: btnFocus
                 image: focusIcon()
+                icon.rotation: iconRotation
 
                 onClicked: {
                     panelFocus.show();
@@ -70,6 +74,7 @@ Item {
             RoundButton {
                 id: btnResolution
                 icon.color: Theme.primaryColor
+                icon.rotation: iconRotation
                 image: "../pics/icon-m-resolution.png"
 
                 onClicked: {
@@ -79,6 +84,7 @@ Item {
             RoundButton {
                 id: btnWhiteBalance
                 image: whiteBalanceIcon()
+                icon.rotation: iconRotation
 
                 onClicked: {
                     panelWhiteBalance.show();
@@ -87,6 +93,7 @@ Item {
             RoundButton {
                 id: btnFlash
                 image: flashIcon()
+                icon.rotation: iconRotation
 
                 onClicked: {
                     panelFlash.show();
@@ -96,6 +103,7 @@ Item {
             RoundButton {
                 id: btnIso
                 icon.color: Theme.primaryColor
+                icon.rotation: iconRotation
                 image: isoIcon()
 
                 onClicked: {
@@ -105,6 +113,7 @@ Item {
             RoundButton {
                 id: btnGeneral
                 icon.color: Theme.primaryColor
+                icon.rotation: iconRotation
                 image: "image://theme/icon-m-developer-mode"
 
                 onClicked: {
@@ -119,6 +128,7 @@ Item {
         id: panelEffects
         model: modelEffects
         selectedItem: settings.mode.effect
+        rotation: iconRotation
 
         onClicked: {
             camera.imageProcessing.setColorFilter(value);
@@ -131,6 +141,7 @@ Item {
         id: panelExposure
         model: modelExposure
         selectedItem: settings.mode.exposure
+        rotation: iconRotation
 
         onClicked: {
             camera.exposure.setExposureMode(value);
@@ -143,6 +154,7 @@ Item {
         id: panelFlash
         model: modelFlash
         selectedItem: settings.mode.flash
+        rotation: iconRotation
 
         onClicked: {
             camera.flash.setFlashMode(value);
@@ -155,6 +167,7 @@ Item {
         id: panelWhiteBalance
         model: modelWhiteBalance
         selectedItem: settings.mode.whiteBalance
+        rotation: iconRotation
 
         onClicked: {
             camera.imageProcessing.setWhiteBalanceMode(value);
@@ -167,6 +180,7 @@ Item {
         id: panelFocus
         model: modelFocus
         selectedItem: settings.mode.focus
+        rotation: iconRotation
 
         onClicked: {
             setFocusMode(value);
@@ -178,6 +192,7 @@ Item {
         id: panelIso
         model: modelIso
         selectedItem: settings.mode.iso
+        rotation: iconRotation
 
         onClicked: {
             if (value === 0) {
@@ -194,6 +209,7 @@ Item {
         id: panelResolution
         model: sortedModelResolution
         selectedItem: settings.resolution(settings.global.captureMode)
+        rotation: iconRotation
 
         onClicked: {
             settings.mode.resolution = settings.sizeToStr(value);
@@ -216,6 +232,7 @@ Item {
         z: 99
         dock: Dock.Left
         clip: true
+        rotation: iconRotation
 
         Rectangle {
             anchors.fill: parent

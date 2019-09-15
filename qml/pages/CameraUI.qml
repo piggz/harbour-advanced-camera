@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtMultimedia 5.6
+import QtSensors 5.0
 import uk.co.piggz.harbour_advanced_camera 1.0
 import "../components/"
 
@@ -16,6 +17,22 @@ Page {
     property bool _parametersLoaded: false
     property bool _recordingVideo: false
     readonly property int zoomStepSize: 5
+    property int controlsRotation: 0
+
+    // Use Orientation Sensor to sense orientation change
+    OrientationSensor { id: orientationSensor; active: true }
+
+    // Orientation sensors for primary (back camera) & secondary (front camera)
+    readonly property var _rotationValues: {
+        "primary": [270, 270, 90, 180 ,0],
+        "secondary": [90, 90, 270, 180, 0]
+    }
+
+    NumberAnimation on controlsRotation { running: camera._orientation === 1; to: -90;   duration: 200 }
+    NumberAnimation on controlsRotation { running: camera._orientation === 2; to: 90; duration: 200 }
+    NumberAnimation on controlsRotation { running: camera._orientation === 3; to: 180; duration: 200 }
+    NumberAnimation on controlsRotation { running: camera._orientation === 4; to: 0;  duration: 200 }
+
     focus: true
 
     Rectangle {
@@ -57,6 +74,11 @@ Page {
         maximumValue: camera.maximumDigitalZoom
         value: camera.digitalZoom
         stepSize: zoomStepSize
+        rotation: {
+            // Zoom slider should be slide up to zoom in
+            if (camera._orientation  === 1 ) return -180
+            else if (camera._orientation === 2) return 0
+            else return controlsRotation }
 
         onValueChanged: {
             if (value != camera.digitalZoom) camera.digitalZoom = value;
@@ -80,6 +102,15 @@ Page {
                      : Camera.UnloadedState
 
         imageProcessing.colorFilter: CameraImageProcessing.ColorFilterNone
+
+        // Use easy device orientation values
+        // 0=unknown, 1=portrait, 2=portrait inverted, 3=landscape, 4=landscape inverted
+        readonly property int _orientation: orientationSensor.reading ?
+                                               orientationSensor.reading.orientation :
+                                               0
+
+        // Write Orientation to metadata
+        metaData.orientation: _rotationValues[deviceId][_orientation]
 
         exposure {
             //exposureCompensation: -1.0
@@ -163,7 +194,7 @@ Page {
 
     Image {
         id: photoPreview
-
+        rotation: page.controlsRotation
         onStatusChanged: {
             if (photoPreview.status == Image.Ready) {
                 console.log('photoPreview ready');
@@ -179,6 +210,7 @@ Page {
         anchors.rightMargin: Theme.paddingMedium
 
         size: Theme.itemSizeLarge
+        rotation: page.controlsRotation
 
         image: shutterIcon()
         icon.anchors.margins: Theme.paddingSmall
@@ -230,6 +262,12 @@ Page {
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
         spacing: Theme.paddingMedium
+        rotation: page.controlsRotation
+        transformOrigin: {
+            if (camera._orientation == 1) return Item.Right
+            else if (camera._orientation == 2) return Item.Left
+            else return Item.Center
+        }
 
         Label {
             property bool forceUpdate: false
@@ -274,6 +312,7 @@ Page {
 
     SettingsOverlay {
         id: settingsOverlay
+        iconRotation: page.controlsRotation
     }
 
     Component.onCompleted: {
@@ -373,6 +412,7 @@ Page {
         anchors.bottomMargin: Theme.paddingMedium
         anchors.right: parent.right
         anchors.rightMargin: Theme.paddingMedium
+        icon.rotation: page.controlsRotation
 
         size: Theme.itemSizeSmall
 
@@ -387,6 +427,7 @@ Page {
         id: btnCameraSwitch
         icon.source: "image://theme/icon-camera-switch"
         visible: settings.global.cameraCount > 1
+        icon.rotation: page.controlsRotation
         anchors {
             top: parent.top
             topMargin: Theme.paddingMedium
@@ -411,7 +452,7 @@ Page {
         anchors.bottomMargin: Theme.paddingMedium
         anchors.right: parent.right
         anchors.rightMargin: Theme.paddingMedium
-
+        rotation: page.controlsRotation
         width: Theme.itemSizeSmall
 
         icon1Source: "image://theme/icon-camera-camera-mode"
