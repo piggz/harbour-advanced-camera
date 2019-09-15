@@ -23,6 +23,7 @@ public slots:
 
 private:
     resource_set_t *m_resource;
+    void *m_handle = nullptr;
 };
 
 #endif // RESOURCEHANDLER_H
