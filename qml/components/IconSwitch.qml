@@ -48,5 +48,6 @@ Item {
         z: 1
         y: _hilighted2 ? parent.height / 2 : 0
         Behavior on y { NumberAnimation {duration: 100 } }
+        color: Theme.highlightBackgroundColor
     }
 }

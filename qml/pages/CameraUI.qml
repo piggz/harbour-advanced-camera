@@ -22,7 +22,7 @@ Page {
         parent: window
         anchors.fill: parent
         z: -1
-        color: "black"
+        color: (Theme.colorScheme === Theme.DarkOnLight) ? "white" : "black"
     }
 
     FSOperations {
