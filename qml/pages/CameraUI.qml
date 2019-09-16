@@ -215,10 +215,10 @@ Page {
 
     Rectangle {
         id: focusCircle
-        height: Theme.itemSizeHuge
+        height: (camera.lockStatus == Camera.Locked) ? Theme.itemSizeSmall : Theme.itemSizeMedium
         width: height
         radius: width / 2
-        border.width: 2
+        border.width: 4
         border.color: focusColor()
         color: "transparent"
         x: parent.width / 2
@@ -438,11 +438,11 @@ Page {
 
     function focusColor() {
         if (camera.lockStatus == Camera.Unlocked) {
-            return Theme.highlightColor;
+            return "white";
         } else if (camera.lockStatus == Camera.Searching) {
-            return Theme.secondaryColor;
+            return "#e3e3e3" //light grey;
         } else {
-            return Theme.primaryColor;
+            return "lightgreen";
         }
     }
 
