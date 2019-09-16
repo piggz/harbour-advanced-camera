@@ -132,12 +132,6 @@ Page {
                 animFlash.start();
                 _focusAndSnap = false;
             }
-            else if (camera.lockStatus == Camera.Locked) {
-                focusCircle.height = Theme.itemSizeSmall
-            }
-            else {
-                focusCircle.height = Theme.itemSizeMedium
-            }
         }
 
         onCameraStatusChanged: {
@@ -218,7 +212,7 @@ Page {
 
     Rectangle {
         id: focusCircle
-        height: Theme.itemSizeMedium
+        height: (camera.lockStatus == Camera.Locked) ? Theme.itemSizeSmall : Theme.itemSizeMedium
         width: height
         radius: width / 2
         border.width: 4
