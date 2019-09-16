@@ -254,23 +254,23 @@
     <name>SettingsOverlay</name>
     <message>
         <source>Grid:</source>
-        <translation type="unfinished"></translation>
+        <translation>Stödlinjer:</translation>
     </message>
     <message>
         <source>Swap zoom controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoomkontroller av/på</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished">Ingen</translation>
+        <translation>Ingen</translation>
     </message>
     <message>
         <source>Thirds</source>
-        <translation type="unfinished"></translation>
+        <translation>tredjedelar</translation>
     </message>
     <message>
         <source>Ambience</source>
-        <translation type="unfinished"></translation>
+        <translation>Atmosfär</translation>
     </message>
 </context>
 <context>
