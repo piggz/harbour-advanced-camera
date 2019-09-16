@@ -451,7 +451,7 @@ Page {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: Theme.paddingMedium
         anchors.right: parent.right
-        anchors.rightMargin: Theme.paddingMedium
+        anchors.rightMargin: (rotation == 90 || rotation == -90) ? Theme.paddingLarge * 2 : Theme.paddingMedium
         rotation: page.controlsRotation
         width: Theme.itemSizeSmall
 
