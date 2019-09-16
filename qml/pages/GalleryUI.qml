@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.5
 import Sailfish.Silica 1.0
 import uk.co.piggz.harbour_advanced_camera 1.0
 import "../components/"
@@ -102,6 +102,7 @@ Page {
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectFit
                 source: "file://" + filePath
+                autoTransform: true
 
                 MouseArea {
                     anchors.fill: parent
