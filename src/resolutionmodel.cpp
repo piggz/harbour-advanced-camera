@@ -65,6 +65,9 @@ void ResolutionModel::setImageCapture(QObject *capture)
 
     if (cap) {
         m_supportedImageResolutions = cap->supportedResolutions();
+        if (!m_mode.isEmpty()) {
+            setMode(m_mode);
+        }
     }
 }
 
@@ -79,6 +82,9 @@ void ResolutionModel::setVideoRecorder(QObject *capture)
 
     if (cap) {
         m_supportedVideoResolutions = cap->supportedResolutions();
+        if (!m_mode.isEmpty()) {
+            setMode(m_mode);
+        }
     }
 }
 

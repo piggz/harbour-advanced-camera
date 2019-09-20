@@ -16,6 +16,7 @@ Page {
     property bool _focusAndSnap: false
     property bool _parametersLoaded: false
     property bool _recordingVideo: false
+    property bool _setTempResolution: false
     readonly property int zoomStepSize: 5
     property int controlsRotation: 0
 
@@ -132,7 +133,7 @@ Page {
                 galleryModel.append({ filePath: path });
             }
             onResolutionChanged: {
-                console.log("Image resolution changed:", settings.resolution("image"));
+                console.log("Image resolution changed:", camera.imageCapture.resolution);
                 camera.viewfinder.resolution = getNearestViewFinderResolution();
             }
         }
@@ -188,8 +189,10 @@ Page {
                 settingsOverlay.setMode(settings.global.captureMode);
 
                 camera.viewfinder.resolution = getNearestViewFinderResolution();
-                _parametersLoaded = true;
-                applySettings();
+                if (!_setTempResolution) {
+                    _parametersLoaded = true;
+                    applySettings();
+                }
                 lblResolution.forceUpdate = !lblResolution.forceUpdate
             }
         }
@@ -439,13 +442,26 @@ Page {
         }
         onClicked: {
             _cameraReload = true;
+            console.log("Setting temp resolution");
+            _setTempResolution = true;
+            camera.imageCapture.setResolution(settings.strToSize("320x240"));
             camera.stop();
             camera.deviceId = settings.global.cameraId == "primary" ? "secondary" : "primary";
-            camera.start();
+            _parametersLoaded = false;
+            tmrDelayedStart.start();
+        }
+    }
+
+    Timer {
+        id: tmrDelayedStart
+        repeat: false
+        running: false
+        interval: 500
+        onTriggered: {
+            console.log("camera delayed start", settings.global.cameraId);
             settings.global.cameraId = camera.deviceId;
-            if (settings.mode.resolution) {
-                camera.imageCapture.setResolution(settings.strToSize(settings.mode.resolution));
-            }
+            _setTempResolution = false;
+            camera.start();
         }
     }
 

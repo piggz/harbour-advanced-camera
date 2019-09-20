@@ -43,7 +43,6 @@ Item {
     function strToSize(siz) {
         var w = parseInt(siz.substring(0, siz.indexOf("x")));
         var h = parseInt(siz.substring(siz.indexOf("x") + 1));
-
         return Qt.size(w,h);
     }
 
