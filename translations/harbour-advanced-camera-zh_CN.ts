@@ -5,7 +5,7 @@
     <name>CoverPage</name>
     <message>
         <source>Advanced Camera</source>
-        <translation>Advanced Camera</translation>
+        <translation>高级相机</translation>
     </message>
 </context>
 <context>
@@ -254,23 +254,23 @@
     <name>SettingsOverlay</name>
     <message>
         <source>Grid:</source>
-        <translation type="unfinished"></translation>
+        <translation>网格:</translation>
     </message>
     <message>
         <source>Swap zoom controls</source>
-        <translation type="unfinished"></translation>
+        <translation>交换变焦控件</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished">无</translation>
+        <translation>无</translation>
     </message>
     <message>
         <source>Thirds</source>
-        <translation type="unfinished"></translation>
+        <translation>三分</translation>
     </message>
     <message>
         <source>Ambience</source>
-        <translation type="unfinished"></translation>
+        <translation>氛围</translation>
     </message>
 </context>
 <context>
