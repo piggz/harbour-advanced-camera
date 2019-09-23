@@ -17,6 +17,7 @@ Page {
     property bool _parametersLoaded: false
     property bool _recordingVideo: false
     property bool _setTempResolution: false
+    property bool _manualModeSelected: false
     readonly property int zoomStepSize: 5
     property int controlsRotation: 0
 
@@ -222,7 +223,7 @@ Page {
         icon.anchors.margins: Theme.paddingSmall
         onClicked: {
             if (camera.captureMode == Camera.CaptureStillImage) {
-                if (camera.focus.focusMode == Camera.FocusAuto || camera.focus.focusMode == Camera.FocusMacro || camera.focus.focusMode == Camera.FocusContinuous) {
+                if ((camera.focus.focusMode == Camera.FocusAuto && !_manualModeSelected) || camera.focus.focusMode == Camera.FocusMacro || camera.focus.focusMode == Camera.FocusContinuous) {
                     _focusAndSnap = true;
                     camera.searchAndLock();
                 } else {
@@ -358,19 +359,27 @@ Page {
     }
 
     function setFocusMode(focus) {
-        if (camera.focus.focusMode !== focus) {
+        if (focus === Camera.FocusManual) {
             camera.stop();
-            camera.focus.setFocusMode(focus);
+            camera.focus.setFocusMode(Camera.FocusAuto);
             camera.start();
-            settings.mode.focus = focus;
-
-            //Set the focus point pack to centre
-            focusCircle.x = page.width / 2;
-            focusCircle.y = page.height / 2;
-
-            camera.focus.focusPointMode = Camera.FocusPointAuto;
-            camera.searchAndLock();
+            _manualModeSelected = true;
+        } else {
+            _manualModeSelected = false;
+            if (camera.focus.focusMode !== focus) {
+                camera.stop();
+                camera.focus.setFocusMode(focus);
+                camera.start();
+            }
         }
+        settings.mode.focus = focus;
+
+        //Set the focus point back to centre
+        focusCircle.x = page.width / 2;
+        focusCircle.y = page.height / 2;
+
+        camera.focus.focusPointMode = Camera.FocusPointAuto;
+        camera.searchAndLock();
     }
 
     function getNearestViewFinderResolution() {

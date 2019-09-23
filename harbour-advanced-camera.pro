@@ -72,5 +72,4 @@ HEADERS += \
     src/fsoperations.h \
     src/resourcehandler.h
 
-PKGCONFIG += audioresource
 LIBS += -ldl
