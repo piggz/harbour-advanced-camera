@@ -140,7 +140,7 @@ Page {
 
         videoRecorder {
             audioSampleRate: 48000
-            audioBitRate: 96
+            audioBitRate: 128000
             audioChannels: 1
             audioCodec: "audio/mpeg, mpegversion=(int)4"
             frameRate: 30
