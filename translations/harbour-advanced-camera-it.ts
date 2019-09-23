@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<TS version="2.1" language="it_IT">
 <context>
     <name>CoverPage</name>
     <message>
         <source>Advanced Camera</source>
-        <translation>高级相机</translation>
+        <translation>Advanced Camera</translation>
     </message>
 </context>
 <context>
     <name>EffectsModel</name>
     <message>
         <source>None</source>
-        <translation>无</translation>
+        <translation>Nessuno</translation>
     </message>
     <message>
         <source>Aqua</source>
-        <translation>水族</translation>
+        <translation>Aqua</translation>
     </message>
     <message>
         <source>Blackboard</source>
-        <translation>黑板</translation>
+        <translation>Lavagna nera</translation>
     </message>
     <message>
         <source>Grayscale</source>
-        <translation>灰度</translation>
+        <translation>Scala di grigi</translation>
     </message>
     <message>
         <source>Negative</source>
-        <translation>底片</translation>
+        <translation>Negativo</translation>
     </message>
     <message>
         <source>Posterize</source>
-        <translation>色调分离</translation>
+        <translation>Posterizza</translation>
     </message>
     <message>
         <source>Sepia</source>
-        <translation>棕褐色调</translation>
+        <translation>Seppia</translation>
     </message>
     <message>
         <source>Solarize</source>
-        <translation>曝光</translation>
+        <translation>Solarizza</translation>
     </message>
     <message>
         <source>Whiteboard</source>
-        <translation>白板</translation>
+        <translation>Lavagna bianca</translation>
     </message>
     <message>
         <source>Emboss</source>
-        <translation>浮雕</translation>
+        <translation>In rilievo</translation>
     </message>
     <message>
         <source>Sketch</source>
-        <translation>素描</translation>
+        <translation>Schizzo</translation>
     </message>
     <message>
         <source>Neon</source>
-        <translation>氖灯</translation>
+        <translation>Neon</translation>
     </message>
 </context>
 <context>
     <name>ExposureModel</name>
     <message>
         <source>Automatic Scene Detection</source>
-        <translation>自动场景检测</translation>
+        <translation>Scena automatica</translation>
     </message>
     <message>
         <source>Augmented Reality</source>
-        <translation>增强现实</translation>
+        <translation>Realtà aumentata</translation>
     </message>
     <message>
         <source>Backlight</source>
-        <translation>逆光</translation>
+        <translation>Artificiale</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>条码</translation>
+        <translation>Barcode</translation>
     </message>
     <message>
         <source>Beach</source>
-        <translation>海滩</translation>
+        <translation>Spiaggia</translation>
     </message>
     <message>
         <source>Candlelight</source>
-        <translation>黄昏</translation>
+        <translation>Candela</translation>
     </message>
     <message>
         <source>Fireworks</source>
-        <translation>烟花</translation>
+        <translation>Fuochi d&apos;artificio</translation>
     </message>
     <message>
         <source>Flowers</source>
-        <translation>花卉</translation>
+        <translation>Fiori</translation>
     </message>
     <message>
         <source>HDR</source>
@@ -99,225 +99,202 @@
     </message>
     <message>
         <source>Landscape</source>
-        <translation>风景</translation>
+        <translation>Paesaggio</translation>
     </message>
     <message>
         <source>Large Aperture</source>
-        <translation>大孔径</translation>
+        <translation>Apertura larga</translation>
     </message>
     <message>
         <source>Night</source>
-        <translation>夜间</translation>
+        <translation>Notte</translation>
     </message>
     <message>
         <source>Night Portrait</source>
-        <translation>夜间人像</translation>
+        <translation>Ritratto notturno</translation>
     </message>
     <message>
         <source>Party</source>
-        <translation>聚会</translation>
+        <translation>Festa</translation>
     </message>
     <message>
         <source>Portrait</source>
-        <translation>人像</translation>
+        <translation>Ritratto</translation>
     </message>
     <message>
         <source>Small Aperture</source>
-        <translation>小孔径</translation>
+        <translation>Apertura stretta</translation>
     </message>
     <message>
         <source>Snow</source>
-        <translation>雪景</translation>
+        <translation>Neve</translation>
     </message>
     <message>
         <source>Sports</source>
-        <translation>运动</translation>
+        <translation>Sport</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>聚光灯</translation>
+        <translation>Riflettore</translation>
     </message>
     <message>
         <source>Steady Photo</source>
-        <translation>防抖</translation>
+        <translation>Foto fissa</translation>
     </message>
     <message>
         <source>Sunset</source>
-        <translation>日落</translation>
+        <translation>Tramonto</translation>
     </message>
     <message>
         <source>Theatre</source>
-        <translation>剧院</translation>
+        <translation>Cinema</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation>动作</translation>
+        <translation>Azione</translation>
     </message>
     <message>
         <source>Off</source>
-        <translation>关</translation>
+        <translation>Off</translation>
     </message>
 </context>
 <context>
     <name>FlashModel</name>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation>Sconosciuto</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>自动</translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Off</source>
-        <translation>关</translation>
+        <translation>Off</translation>
     </message>
     <message>
         <source>On</source>
-        <translation>开</translation>
+        <translation>On</translation>
     </message>
     <message>
         <source>Red Eye Reduction</source>
-        <translation>红眼</translation>
+        <translation>Riduzione occhi rossi</translation>
     </message>
     <message>
         <source>Fill</source>
-        <translation>填充</translation>
+        <translation>Riempi</translation>
     </message>
     <message>
         <source>Torch</source>
-        <translation>火炬</translation>
+        <translation>Torcia</translation>
     </message>
     <message>
         <source>Video Light</source>
-        <translation>视频灯</translation>
+        <translation>Luce video</translation>
     </message>
     <message>
         <source>Slow Sync Front Curtain</source>
-        <translation>慢同步前置</translation>
+        <translation>Sinc. lenta tendina frontale</translation>
     </message>
     <message>
         <source>Slow Sync Rear Curtain</source>
-        <translation>慢同步后置</translation>
+        <translation>Sinc. lenta tendina posteriore</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation>手动</translation>
+        <translation>Manuale</translation>
     </message>
 </context>
 <context>
     <name>FocusModel</name>
     <message>
         <source>Manual</source>
-        <translation>手动</translation>
+        <translation>Manuale</translation>
     </message>
     <message>
         <source>Hyperfocal</source>
-        <translation>超焦距</translation>
+        <translation>Iperfocale</translation>
     </message>
     <message>
         <source>Infinity</source>
-        <translation>无限</translation>
+        <translation>Infinito</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>自动</translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Continuous</source>
-        <translation>连续</translation>
+        <translation>Continuo</translation>
     </message>
     <message>
         <source>Macro</source>
-        <translation>微距</translation>
+        <translation>Macro</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation>Sconosciuto</translation>
     </message>
 </context>
 <context>
     <name>GalleryUI</name>
     <message>
         <source>Deleting</source>
-        <translation>删除中</translation>
+        <translation>Eliminazione</translation>
     </message>
 </context>
 <context>
     <name>IsoModel</name>
     <message>
         <source>Auto ISO</source>
-        <translation>自动ISO</translation>
-    </message>
-</context>
-<context>
-    <name>SettingsOverlay</name>
-    <message>
-        <source>Grid:</source>
-        <translation>网格:</translation>
-    </message>
-    <message>
-        <source>Swap zoom controls</source>
-        <translation>交换变焦控件</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>无</translation>
-    </message>
-    <message>
-        <source>Thirds</source>
-        <translation>三分</translation>
-    </message>
-    <message>
-        <source>Ambience</source>
-        <translation>氛围</translation>
+        <translation>Auto ISO</translation>
     </message>
 </context>
 <context>
     <name>WbModel</name>
     <message>
         <source>Auto</source>
-        <translation>自动</translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation>手动</translation>
+        <translation>Manuale</translation>
     </message>
     <message>
         <source>Sunlight</source>
-        <translation>日光</translation>
+        <translation>Soleggiato</translation>
     </message>
     <message>
         <source>Cloudy</source>
-        <translation>多云</translation>
+        <translation>Nuvoloso</translation>
     </message>
     <message>
         <source>Shade</source>
-        <translation>阴天</translation>
+        <translation>Ombra</translation>
     </message>
     <message>
         <source>Tungsten</source>
-        <translation>钨丝灯</translation>
+        <translation>Tungsteno</translation>
     </message>
     <message>
         <source>Flash</source>
-        <translation>闪烁</translation>
+        <translation>Flash</translation>
     </message>
     <message>
         <source>Sunset</source>
-        <translation>日落</translation>
+        <translation>Tramonto</translation>
     </message>
     <message>
         <source>Warm Fluorescent</source>
-        <translation>暖荧光</translation>
+        <translation>Fluorescente calda</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation>Sconosciuto</translation>
     </message>
     <message>
         <source>Fluorescent</source>
-        <translation>荧光</translation>
+        <translation>Fluorescente</translation>
     </message>
 </context>
 </TS>
