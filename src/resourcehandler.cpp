@@ -29,7 +29,7 @@ ResourceHandler::ResourceHandler(QObject *parent) :
         if (!create_set || !acquire_set || !release_set) {
             qDebug() << "Error in dlsym to one of the functions";
         } else {
-            m_resource = create_set("player", RESOURCE_SCALE_BUTTON, 0, 0, &grant_callback, nullptr);
+            m_resource = create_set("player", RESOURCE_SCALE_BUTTON|RESOURCE_SNAP_BUTTON, 0, 0, &grant_callback, nullptr);
         }
     }
 }
