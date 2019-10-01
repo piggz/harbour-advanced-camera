@@ -49,6 +49,10 @@ void FocusModel::setCamera(QObject *camera)
                 m_focusModes[(QCameraFocus::FocusMode)c] = focusName((QCameraFocus::FocusMode)c);
             }
         }
+        //Add manual mode even if not supported as we simulate it
+        if (!m_focusModes.contains(QCameraFocus::ManualFocus)) {
+            m_focusModes[QCameraFocus::ManualFocus] = focusName(QCameraFocus::ManualFocus);
+        }
         endResetModel();
     }
 }
