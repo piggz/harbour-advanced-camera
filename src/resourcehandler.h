@@ -5,6 +5,7 @@
 
 #define RESOURCE_BIT(b)   (((uint32_t)1) << (b))
 #define RESOURCE_SCALE_BUTTON     RESOURCE_BIT( 10 )
+#define RESOURCE_SNAP_BUTTON     RESOURCE_BIT( 11 )
 
 typedef struct resource_set_t resource_set_t;
 typedef void (*resource_callback_t)(resource_set_t *, uint32_t, void*);
