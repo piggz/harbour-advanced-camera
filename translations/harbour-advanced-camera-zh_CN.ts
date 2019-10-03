@@ -240,7 +240,7 @@
     <name>GalleryUI</name>
     <message>
         <source>Deleting %1</source>
-        <translation type="unfinished"></translation>
+        <translation>正在删除 %1</translation>
     </message>
 </context>
 <context>
