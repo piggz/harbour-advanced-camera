@@ -6,7 +6,7 @@
     <message>
         <location filename="../qml/cover/CoverPage.qml" line="13"/>
         <source>Advanced Camera</source>
-        <translation type="unfinished"></translation>
+        <translation>Advanced Camera</translation>
     </message>
 </context>
 <context>
@@ -314,27 +314,27 @@
     <message>
         <location filename="../qml/pages/SettingsOverlay.qml" line="261"/>
         <source>Swap zoom controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Inverser les commandes du zoom</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsOverlay.qml" line="271"/>
         <source>None</source>
-        <translation type="unfinished">Aucun</translation>
+        <translation>Aucune</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsOverlay.qml" line="271"/>
         <source>Thirds</source>
-        <translation type="unfinished"></translation>
+        <translation>Tiers</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsOverlay.qml" line="271"/>
         <source>Ambience</source>
-        <translation type="unfinished"></translation>
+        <translation>Ambiance</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsOverlay.qml" line="282"/>
         <source>Grid:</source>
-        <translation type="unfinished"></translation>
+        <translation>Grille :</translation>
     </message>
 </context>
 <context>
