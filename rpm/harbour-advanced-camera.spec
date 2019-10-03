@@ -13,11 +13,11 @@ Name:       harbour-advanced-camera
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Advanced camera
-Version:    0.4.0
+Version:    0.5.0
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
-URL:        http://example.org/
+URL:        http://github.com/piggz/harbour-advanced-camera
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-advanced-camera.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9

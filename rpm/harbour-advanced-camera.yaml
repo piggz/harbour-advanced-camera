@@ -1,11 +1,11 @@
 Name: harbour-advanced-camera
 Summary: Advanced camera
-Version: 0.4.0
+Version: 0.5.0
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # https://github.com/mer-tools/spectacle/blob/master/data/GROUPS
 Group: Qt/Qt
-URL: http://example.org/
+URL: http://github.com/piggz/harbour-advanced-camera
 License: LICENSE
 # This must be generated before uploading a package to a remote build service.
 # Usually this line does not need to be modified.
