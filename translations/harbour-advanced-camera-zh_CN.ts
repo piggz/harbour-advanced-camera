@@ -239,8 +239,8 @@
 <context>
     <name>GalleryUI</name>
     <message>
-        <source>Deleting</source>
-        <translation>删除中</translation>
+        <source>Deleting %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

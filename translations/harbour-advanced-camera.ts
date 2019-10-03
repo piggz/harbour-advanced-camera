@@ -239,7 +239,7 @@
 <context>
     <name>GalleryUI</name>
     <message>
-        <source>Deleting</source>
+        <source>Deleting %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

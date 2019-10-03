@@ -258,37 +258,37 @@
     <name>FocusModel</name>
     <message>
         <location filename="../src/focusmodel.cpp" line="48"/>
-        <location filename="../src/focusmodel.cpp" line="73"/>
+        <location filename="../src/focusmodel.cpp" line="77"/>
         <source>Unknown</source>
         <translation>Inconnu</translation>
     </message>
     <message>
-        <location filename="../src/focusmodel.cpp" line="61"/>
+        <location filename="../src/focusmodel.cpp" line="65"/>
         <source>Manual</source>
         <translation>Manuel</translation>
     </message>
     <message>
-        <location filename="../src/focusmodel.cpp" line="63"/>
+        <location filename="../src/focusmodel.cpp" line="67"/>
         <source>Hyperfocal</source>
         <translation>Hyperfocale</translation>
     </message>
     <message>
-        <location filename="../src/focusmodel.cpp" line="65"/>
+        <location filename="../src/focusmodel.cpp" line="69"/>
         <source>Infinity</source>
         <translation>Infini</translation>
     </message>
     <message>
-        <location filename="../src/focusmodel.cpp" line="67"/>
+        <location filename="../src/focusmodel.cpp" line="71"/>
         <source>Auto</source>
         <translation>Automatique</translation>
     </message>
     <message>
-        <location filename="../src/focusmodel.cpp" line="69"/>
+        <location filename="../src/focusmodel.cpp" line="73"/>
         <source>Continuous</source>
         <translation>Continu</translation>
     </message>
     <message>
-        <location filename="../src/focusmodel.cpp" line="71"/>
+        <location filename="../src/focusmodel.cpp" line="75"/>
         <source>Macro</source>
         <translation>Macro</translation>
     </message>
@@ -296,9 +296,9 @@
 <context>
     <name>GalleryUI</name>
     <message>
-        <location filename="../qml/pages/GalleryUI.qml" line="69"/>
-        <source>Deleting</source>
-        <translation>Suppression</translation>
+        <location filename="../qml/pages/GalleryUI.qml" line="79"/>
+        <source>Deleting %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
