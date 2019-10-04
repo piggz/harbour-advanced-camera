@@ -41,7 +41,7 @@ Page {
         parent: window
         anchors.fill: parent
         z: -1
-        color: (Theme.colorScheme === Theme.DarkOnLight) ? "white" : "black"
+        color: "black"
     }
 
     FSOperations {
@@ -430,7 +430,7 @@ Page {
         }
     }
 
-    IconButton {
+    RoundButton {
         id: btnCameraSwitch
         icon.source: "image://theme/icon-camera-switch"
         visible: settings.global.cameraCount > 1
