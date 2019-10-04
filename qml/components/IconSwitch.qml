@@ -12,7 +12,7 @@ Item {
 
     height: width * 2
 
-    IconButton {
+    RoundButton {
         id: icon1
         width: parent.width
         height: width
@@ -25,7 +25,7 @@ Item {
         }
     }
 
-    IconButton {
+    RoundButton {
         id: icon2
         width: parent.width
         height: width
