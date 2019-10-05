@@ -63,6 +63,7 @@ Page {
         id: rowBottom
 
         visible: showButtons
+        spacing: Theme.paddingMedium
         anchors {
             horizontalCenter: parent.horizontalCenter
             bottom: parent.bottom
@@ -83,6 +84,19 @@ Page {
             onClicked: {
                 console.log("Clicked delete button");
                 showRemorseItem();
+            }
+        }
+
+        RoundButton {
+            id: btnShare
+
+            icon.source: "image://theme/icon-m-share"
+            size: Theme.itemSizeMedium
+
+            onClicked: {
+                var filePath = fileList.get(gallery.currentIndex).filePath;
+                var mimeType = gallery.currentIndex.isVideo ? "video/mp4" : "image/jpeg";
+                pageStack.push("Sailfish.TransferEngine.SharePage", { "source": filePath, "mimeType": mimeType });
             }
         }
     }
