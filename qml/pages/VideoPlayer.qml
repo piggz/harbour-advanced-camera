@@ -2,10 +2,13 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtMultimedia 5.6
 import Nemo.KeepAlive 1.2
+import uk.co.piggz.harbour_advanced_camera 1.0
 import "../components/"
 
 Page {
     id: videoPage
+
+    property ListModel fileList
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
     allowedOrientations: Orientation.All
@@ -38,6 +41,22 @@ Page {
             }
         }
 
+        FrameGrabber {
+            id: frameGrabber
+
+            source: null
+            baseDir: settings.global.storagePath
+
+            onFrameGrabbed: {
+                source = null
+                console.log("Snapshot saved:", snapshotPath)
+                fileList.append({
+                                    "filePath": snapshotPath,
+                                    "isVideo": false
+                                })
+            }
+        }
+
         VideoOutput {
             id: video
 
@@ -50,6 +69,19 @@ Page {
                 onClicked: {
                     controlsOpacity > 0 ? controlsOpacity = 0 : controlsOpacity = 1.0
                 }
+            }
+        }
+
+        Rectangle {
+            id: rectFlash
+            anchors.fill: parent
+            opacity: 0
+
+            NumberAnimation on opacity {
+                id: animFlash
+                from: 1.0
+                to: 0.0
+                duration: 200
             }
         }
 
@@ -99,6 +131,25 @@ Page {
                         player.seek(0)
                         player.play()
                     }
+                }
+            }
+
+            RoundButton {
+                id: btnSnapshot
+
+                enabled: controlsOpacity > 0
+                icon.source: "image://theme/icon-m-camera"
+                size: Theme.itemSizeMedium
+
+                anchors {
+                    verticalCenter: parent.verticalCenter
+                    right: parent.right
+                    rightMargin: Theme.paddingMedium
+                }
+
+                onClicked: {
+                    animFlash.start()
+                    frameGrabber.source = player
                 }
             }
 

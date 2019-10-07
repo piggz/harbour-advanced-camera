@@ -15,6 +15,7 @@ TARGET = harbour-advanced-camera
 CONFIG += sailfishapp
 
 QT += multimedia
+QT += multimedia-private
 
 SOURCES += src/harbour-advanced-camera.cpp \
     src/effectsmodel.cpp \
@@ -26,7 +27,8 @@ SOURCES += src/harbour-advanced-camera.cpp \
     src/flashmodel.cpp \
     src/fsoperations.cpp \
     src/resourcehandler.cpp \
-    src/storagemodel.cpp
+    src/storagemodel.cpp \
+    src/framegrabber.cpp
 
 DISTFILES += rpm/harbour-advanced-camera.changes.in \
     rpm/harbour-advanced-camera.changes.run.in \
@@ -72,6 +74,7 @@ HEADERS += \
     src/flashmodel.h \
     src/fsoperations.h \
     src/resourcehandler.h \
-    src/storagemodel.h
+    src/storagemodel.h \
+    src/framegrabber.h
 
 LIBS += -ldl
