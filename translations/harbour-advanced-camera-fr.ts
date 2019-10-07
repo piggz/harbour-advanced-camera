@@ -296,7 +296,7 @@
 <context>
     <name>GalleryUI</name>
     <message>
-        <location filename="../qml/pages/GalleryUI.qml" line="79"/>
+        <location filename="../qml/pages/GalleryUI.qml" line="80"/>
         <source>Deleting %1</source>
         <translation type="unfinished"></translation>
     </message>
