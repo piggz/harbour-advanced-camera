@@ -25,7 +25,8 @@ SOURCES += src/harbour-advanced-camera.cpp \
     src/focusmodel.cpp \
     src/flashmodel.cpp \
     src/fsoperations.cpp \
-    src/resourcehandler.cpp
+    src/resourcehandler.cpp \
+    src/storagemodel.cpp
 
 DISTFILES += rpm/harbour-advanced-camera.changes.in \
     rpm/harbour-advanced-camera.changes.run.in \
@@ -70,6 +71,7 @@ HEADERS += \
     src/focusmodel.h \
     src/flashmodel.h \
     src/fsoperations.h \
-    src/resourcehandler.h
+    src/resourcehandler.h \
+    src/storagemodel.h
 
 LIBS += -ldl

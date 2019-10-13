@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtMultimedia 5.4
 import Nemo.Configuration 1.0
+import Sailfish.Silica 1.0
 
 Item {
     property alias global: globalSettings
@@ -15,6 +16,7 @@ Item {
         property string captureMode: "image"
         property bool swapZoomControl: false
         property string gridMode: "none"
+        property string storagePath: StandardPaths.home
 
         ConfigurationGroup {
             id: modeSettings

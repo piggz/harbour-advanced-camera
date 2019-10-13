@@ -5,6 +5,7 @@
 #include <QQuickView>
 #include <QGuiApplication>
 #include <QQmlContext>
+#include <QQuickItem>
 #include <QSortFilterProxyModel>
 
 #include <sailfishapp.h>
@@ -17,6 +18,7 @@
 #include "flashmodel.h"
 #include "fsoperations.h"
 #include "resourcehandler.h"
+#include "storagemodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -39,7 +41,6 @@ int main(int argc, char *argv[])
     qmlRegisterType<WbModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "WhiteBalanceModel");
     qmlRegisterType<FocusModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "FocusModel");
     qmlRegisterType<FlashModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "FlashModel");
-    qmlRegisterType<FSOperations>("uk.co.piggz.harbour_advanced_camera", 1, 0, "FSOperations");
 
     ResolutionModel resolutionModel;
     QSortFilterProxyModel sortedResolutionModel;
@@ -54,10 +55,17 @@ int main(int argc, char *argv[])
 
     view->rootContext()->setContextProperty("modelResolution", &resolutionModel);
     view->rootContext()->setContextProperty("sortedModelResolution", &sortedResolutionModel);
+    StorageModel storageModel;
+    view->rootContext()->setContextProperty("modelStorage", &storageModel);
+    FSOperations fsOperations;
+    view->rootContext()->setContextProperty("fsOperations", &fsOperations);
+
     view->setSource(SailfishApp::pathTo("qml/harbour-advanced-camera.qml"));
 
     QObject::connect(view, &QQuickView::focusObjectChanged, &handler,
                      &ResourceHandler::handleFocusChange);
+    QObject::connect(&fsOperations, &FSOperations::rescan, &storageModel,
+                     &StorageModel::scan);
 
     view->show();
 

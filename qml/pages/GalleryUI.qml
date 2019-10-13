@@ -164,8 +164,4 @@ Page {
             }
         }
     }
-
-    FSOperations {
-        id: fsOperations
-    }
 }
