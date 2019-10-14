@@ -360,6 +360,12 @@ Page {
         anchors.fill: parent
         z: -1 //Send to back
         onClicked: {
+
+            if (settingsOverlay.panelOpen) {
+                settingsOverlay.hideAllPanels();
+                return;
+            }
+
             // If in auto or macro focus mode, focus on the specified point
             if (camera.focus.focusMode == Camera.FocusAuto || camera.focus.focusMode == Camera.FocusMacro || camera.focus.focusMode == Camera.FocusContinuous) {
                 var focusPoint

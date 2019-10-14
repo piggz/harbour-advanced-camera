@@ -8,18 +8,19 @@ import "../components/"
 Item {
     anchors.fill: parent
     property int iconRotation: 0
+    property bool panelOpen: panelEffects.expanded ||
+                             panelExposure.expanded ||
+                             panelFlash.expanded ||
+                             panelWhiteBalance.expanded ||
+                             panelFocus.expanded ||
+                             panelIso.expanded ||
+                             panelResolution.expanded ||
+                             panelGeneral.expanded
 
     Item {
         id: buttonPanel
-        opacity: (!panelEffects.expanded &&
-                  !panelExposure.expanded &&
-                  !panelFlash.expanded &&
-                  !panelWhiteBalance.expanded &&
-                  !panelFocus.expanded &&
-                  !panelIso.expanded &&
-                  !panelResolution.expanded &&
-                  !panelGeneral.expanded) === true ? 1 : 0
-        enabled: opacity > 0
+        opacity: (panelOpen ? 0 : 1)
+        enabled: !panelOpen
 
         height: parent.height
         width: 2 * Theme.itemSizeSmall + 4 * Theme.paddingMedium
@@ -488,5 +489,16 @@ Item {
         modelResolution.setMode(mode);
         settings.global.captureMode = mode;
         settings.mode.path = settings.global.cameraId + "/" + mode;
+    }
+
+    function hideAllPanels() {
+        panelEffects.hide();
+        panelExposure.hide();
+        panelFlash.hide();
+        panelFocus.hide();
+        panelGeneral.hide();
+        panelIso.hide();
+        panelResolution.hide();
+        panelWhiteBalance.hide();
     }
 }
