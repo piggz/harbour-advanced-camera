@@ -51,10 +51,10 @@ Page {
         return (720 + camera.orientation + rotation) % 360
     }
 
-    NumberAnimation on controlsRotation { running: camera._orientation === OrientationReading.TopUp; to: -90;   duration: 200 }
-    NumberAnimation on controlsRotation { running: camera._orientation === OrientationReading.TopDown; to: 90; duration: 200 }
-    NumberAnimation on controlsRotation { running: camera._orientation === OrientationReading.LeftUp; to: 180; duration: 200 }
-    NumberAnimation on controlsRotation { running: camera._orientation === OrientationReading.RightUp; to: 0;  duration: 200 }
+    RotationAnimation on controlsRotation { running: camera._orientation === OrientationReading.TopUp; to: 270;   duration: 200 }
+    RotationAnimation on controlsRotation { running: camera._orientation === OrientationReading.TopDown; to: 90; duration: 200 }
+    RotationAnimation on controlsRotation { running: camera._orientation === OrientationReading.LeftUp; to: 180; duration: 200 }
+    RotationAnimation on controlsRotation { running: camera._orientation === OrientationReading.RightUp; to: 0;  duration: 200 }
 
     focus: true
 
@@ -203,7 +203,8 @@ Page {
                 // Zoom slider should be slide up to zoom in
                 if (camera._orientation === OrientationReading.TopUp) return -180;
                 else if (camera._orientation === OrientationReading.TopDown) return 0;
-                else return controlsRotation;
+                else if (camera._orientation === OrientationReading.LeftUp) return 180;
+                else if (camera._orientation === OrientationReading.RightUp) return 0;
             }
 
             onValueChanged: {
