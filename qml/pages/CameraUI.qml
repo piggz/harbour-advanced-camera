@@ -23,7 +23,14 @@ Page {
     property int controlsRotation: 0
 
     // Use Orientation Sensor to sense orientation change
-    OrientationSensor { id: orientationSensor; active: true }
+    OrientationSensor {
+        id: orientationSensor; active: true
+        onReadingChanged: {
+            if (reading.orientation > 0 && reading.orientation <= 4) {
+                camera._orientation = reading.orientation;
+            }
+        }
+    }
 
     // Orientation sensors for primary (back camera) & secondary (front camera)
     readonly property var _rotationValues: {
@@ -48,8 +55,6 @@ Page {
     NumberAnimation on controlsRotation { running: camera._orientation === 2; to: 90; duration: 200 }
     NumberAnimation on controlsRotation { running: camera._orientation === 3; to: 180; duration: 200 }
     NumberAnimation on controlsRotation { running: camera._orientation === 4; to: 0;  duration: 200 }
-    NumberAnimation on controlsRotation { running: camera._orientation === 5; to: -90;  duration: 200 } //Face-Up = Portrait
-    NumberAnimation on controlsRotation { running: camera._orientation === 6; to: -90;  duration: 200 } //Face-Down = Portrait
 
     focus: true
 
@@ -75,9 +80,7 @@ Page {
 
         // Use easy device orientation values
         // 0=unknown, 1=portrait, 2=portrait inverted, 3=landscape, 4=landscape inverted
-        readonly property int _orientation: orientationSensor.reading ?
-                                                orientationSensor.reading.orientation :
-                                                0
+        property int _orientation: 1
 
         // Write Orientation to metadata
         metaData.orientation: _rotationValues[deviceId][_orientation]
@@ -198,7 +201,7 @@ Page {
             stepSize: zoomStepSize
             rotation: {
                 // Zoom slider should be slide up to zoom in
-                if (camera._orientation  === 1 || camera._orientation >= 5) return -180
+                if (camera._orientation  === 1) return -180
                 else if (camera._orientation === 2) return 0
                 else return controlsRotation }
 
