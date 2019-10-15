@@ -312,27 +312,27 @@
 <context>
     <name>SettingsOverlay</name>
     <message>
-        <location filename="../qml/pages/SettingsOverlay.qml" line="269"/>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="262"/>
         <source>Swap zoom controls</source>
         <translation>Inverser les commandes du zoom</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsOverlay.qml" line="279"/>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="272"/>
         <source>None</source>
         <translation>Aucune</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsOverlay.qml" line="279"/>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="272"/>
         <source>Thirds</source>
         <translation>Tiers</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsOverlay.qml" line="279"/>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="272"/>
         <source>Ambience</source>
         <translation>Ambiance</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsOverlay.qml" line="290"/>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="283"/>
         <source>Grid:</source>
         <translation>Grille :</translation>
     </message>
