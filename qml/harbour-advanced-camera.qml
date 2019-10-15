@@ -26,9 +26,9 @@ ApplicationWindow
         z: -1
     }
 
-    initialPage:  CameraUI {
-            id: cameraUI
-        }
+    initialPage: CameraUI {
+        id: cameraUI
+    }
 
     allowedOrientations: Orientation.All
     cover: Qt.resolvedUrl("cover/CoverPage.qml")

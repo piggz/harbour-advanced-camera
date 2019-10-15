@@ -24,9 +24,10 @@ Page {
 
     // Use Orientation Sensor to sense orientation change
     OrientationSensor {
-        id: orientationSensor; active: true
+        id: orientationSensor
+        active: true
         onReadingChanged: {
-            if (reading.orientation > 0 && reading.orientation <= 4) {
+            if (reading.orientation >= OrientationReading.TopUp && reading.orientation <= OrientationReading.RightUp) {
                 camera._orientation = reading.orientation;
             }
         }
@@ -34,14 +35,13 @@ Page {
 
     // Orientation sensors for primary (back camera) & secondary (front camera)
     readonly property var _rotationValues: {
-        "primary": [270, 270, 90, 180 ,0, 270, 270], //Uses orienatation sensor value 0-6
+        "primary": [270, 270, 90, 180 ,0, 270, 270], //Uses orientation sensor value 0-6
         "secondary": [90, 90, 270, 180, 0, 90, 90],
         "ui": [0, 90, 0, 0, 270, 0, 0, 0, 180] //Uses enum value 1,2,4,8
     }
 
     readonly property int viewfinderOrientation: {
         var rotation = 0
-        console.log(orientation)
         switch (orientation) {
         case Orientation.Landscape: rotation = 90; break;
         case Orientation.PortraitInverted: rotation = 180; break;
@@ -51,10 +51,10 @@ Page {
         return (720 + camera.orientation + rotation) % 360
     }
 
-    NumberAnimation on controlsRotation { running: camera._orientation === 1; to: -90;   duration: 200 }
-    NumberAnimation on controlsRotation { running: camera._orientation === 2; to: 90; duration: 200 }
-    NumberAnimation on controlsRotation { running: camera._orientation === 3; to: 180; duration: 200 }
-    NumberAnimation on controlsRotation { running: camera._orientation === 4; to: 0;  duration: 200 }
+    NumberAnimation on controlsRotation { running: camera._orientation === OrientationReading.TopUp; to: -90;   duration: 200 }
+    NumberAnimation on controlsRotation { running: camera._orientation === OrientationReading.TopDown; to: 90; duration: 200 }
+    NumberAnimation on controlsRotation { running: camera._orientation === OrientationReading.LeftUp; to: 180; duration: 200 }
+    NumberAnimation on controlsRotation { running: camera._orientation === OrientationReading.RightUp; to: 0;  duration: 200 }
 
     focus: true
 
@@ -201,9 +201,10 @@ Page {
             stepSize: zoomStepSize
             rotation: {
                 // Zoom slider should be slide up to zoom in
-                if (camera._orientation  === 1) return -180
-                else if (camera._orientation === 2) return 0
-                else return controlsRotation }
+                if (camera._orientation === OrientationReading.TopUp) return -180;
+                else if (camera._orientation === OrientationReading.TopDown) return 0;
+                else return controlsRotation;
+            }
 
             onValueChanged: {
                 if (value != camera.digitalZoom) camera.digitalZoom = value;
