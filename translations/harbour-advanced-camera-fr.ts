@@ -296,7 +296,7 @@
 <context>
     <name>GalleryUI</name>
     <message>
-        <location filename="../qml/pages/GalleryUI.qml" line="79"/>
+        <location filename="../qml/pages/GalleryUI.qml" line="80"/>
         <source>Deleting %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -312,27 +312,27 @@
 <context>
     <name>SettingsOverlay</name>
     <message>
-        <location filename="../qml/pages/SettingsOverlay.qml" line="261"/>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="262"/>
         <source>Swap zoom controls</source>
         <translation>Inverser les commandes du zoom</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsOverlay.qml" line="271"/>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="272"/>
         <source>None</source>
         <translation>Aucune</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsOverlay.qml" line="271"/>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="272"/>
         <source>Thirds</source>
         <translation>Tiers</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsOverlay.qml" line="271"/>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="272"/>
         <source>Ambience</source>
         <translation>Ambiance</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsOverlay.qml" line="282"/>
+        <location filename="../qml/pages/SettingsOverlay.qml" line="283"/>
         <source>Grid:</source>
         <translation>Grille :</translation>
     </message>
