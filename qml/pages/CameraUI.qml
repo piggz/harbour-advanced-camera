@@ -51,10 +51,10 @@ Page {
         return (720 + camera.orientation + rotation) % 360
     }
 
-    RotationAnimation on controlsRotation { running: camera._orientation === OrientationReading.TopUp; to: 270;   duration: 200 }
-    RotationAnimation on controlsRotation { running: camera._orientation === OrientationReading.TopDown; to: 90; duration: 200 }
-    RotationAnimation on controlsRotation { running: camera._orientation === OrientationReading.LeftUp; to: 180; duration: 200 }
-    RotationAnimation on controlsRotation { running: camera._orientation === OrientationReading.RightUp; to: 0;  duration: 200 }
+    RotationAnimation on controlsRotation { running: camera._orientation === OrientationReading.TopUp; to: 270; duration: 200; direction: RotationAnimation.Shortest }
+    RotationAnimation on controlsRotation { running: camera._orientation === OrientationReading.TopDown; to: 90; duration: 200; direction: RotationAnimation.Shortest }
+    RotationAnimation on controlsRotation { running: camera._orientation === OrientationReading.LeftUp; to: 180; duration: 200; direction: RotationAnimation.Shortest }
+    RotationAnimation on controlsRotation { running: camera._orientation === OrientationReading.RightUp; to: 0; duration: 200; direction: RotationAnimation.Shortest }
 
     focus: true
 
@@ -80,7 +80,7 @@ Page {
 
         // Use easy device orientation values
         // 0=unknown, 1=portrait, 2=portrait inverted, 3=landscape, 4=landscape inverted
-        property int _orientation: 1
+        property int _orientation: OrientationReading.TopUp
 
         // Write Orientation to metadata
         metaData.orientation: _rotationValues[deviceId][_orientation]
@@ -335,7 +335,7 @@ Page {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: Theme.paddingMedium
             anchors.right: parent.right
-            anchors.rightMargin: (rotation == 90 || rotation == -90) ? Theme.paddingLarge * 2 : Theme.paddingMedium
+            anchors.rightMargin: (rotation == 90 || rotation == 270) ? Theme.paddingLarge * 2 : Theme.paddingMedium
             rotation: page.controlsRotation
             width: Theme.itemSizeSmall
 
