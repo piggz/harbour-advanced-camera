@@ -240,7 +240,7 @@
     <name>GalleryUI</name>
     <message>
         <source>Deleting %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Poistetaan %1</translation>
     </message>
 </context>
 <context>
@@ -254,23 +254,23 @@
     <name>SettingsOverlay</name>
     <message>
         <source>Grid:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ruudukko:</translation>
     </message>
     <message>
         <source>Swap zoom controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Vaihda zoomausnapit</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished">Ei mitään</translation>
+        <translation>Ei mitään</translation>
     </message>
     <message>
         <source>Thirds</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolmannekset</translation>
     </message>
     <message>
         <source>Ambience</source>
-        <translation type="unfinished"></translation>
+        <translation>Tunnelma</translation>
     </message>
 </context>
 <context>

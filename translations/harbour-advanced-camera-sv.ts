@@ -266,7 +266,7 @@
     </message>
     <message>
         <source>Thirds</source>
-        <translation>tredjedelar</translation>
+        <translation>Tredjedelar</translation>
     </message>
     <message>
         <source>Ambience</source>
