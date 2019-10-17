@@ -130,7 +130,7 @@ Item {
         model: modelEffects
         selectedItem: settings.mode.effect
         rotation: iconRotation
-        width: (iconRotation === 90 || iconRotation === -90) ? parent.height : parent.width / 2
+        width: (iconRotation === 90 || iconRotation === 270) ? parent.height : parent.width / 2
 
         onClicked: {
             camera.imageProcessing.setColorFilter(value);
@@ -144,7 +144,7 @@ Item {
         model: modelExposure
         selectedItem: settings.mode.exposure
         rotation: iconRotation
-        width: (iconRotation === 90 || iconRotation === -90) ? parent.height : parent.width / 2
+        width: (iconRotation === 90 || iconRotation === 270) ? parent.height : parent.width / 2
 
         onClicked: {
             camera.exposure.setExposureMode(value);
@@ -158,7 +158,7 @@ Item {
         model: modelFlash
         selectedItem: settings.mode.flash
         rotation: iconRotation
-        width: (iconRotation === 90 || iconRotation === -90) ? parent.height : parent.width / 2
+        width: (iconRotation === 90 || iconRotation === 270) ? parent.height : parent.width / 2
 
         onClicked: {
             camera.flash.setFlashMode(value);
@@ -172,7 +172,7 @@ Item {
         model: modelWhiteBalance
         selectedItem: settings.mode.whiteBalance
         rotation: iconRotation
-        width: (iconRotation === 90 || iconRotation === -90) ? parent.height : parent.width / 2
+        width: (iconRotation === 90 || iconRotation === 270) ? parent.height : parent.width / 2
 
         onClicked: {
             camera.imageProcessing.setWhiteBalanceMode(value);
@@ -186,7 +186,7 @@ Item {
         model: modelFocus
         selectedItem: settings.mode.focus
         rotation: iconRotation
-        width: (iconRotation === 90 || iconRotation === -90) ? parent.height : parent.width / 2
+        width: (iconRotation === 90 || iconRotation === 270) ? parent.height : parent.width / 2
 
         onClicked: {
             setFocusMode(value);
@@ -199,7 +199,7 @@ Item {
         model: modelIso
         selectedItem: settings.mode.iso
         rotation: iconRotation
-        width: (iconRotation === 90 || iconRotation === -90) ? parent.height : parent.width / 2
+        width: (iconRotation === 90 || iconRotation === 270) ? parent.height : parent.width / 2
 
         onClicked: {
             if (value === 0) {
@@ -217,7 +217,7 @@ Item {
         model: sortedModelResolution
         selectedItem: settings.resolution(settings.global.captureMode)
         rotation: iconRotation
-        width: (iconRotation === 90 || iconRotation === -90) ? parent.height : parent.width / 2
+        width: (iconRotation === 90 || iconRotation === 270) ? parent.height : parent.width / 2
 
         onClicked: {
             settings.mode.resolution = settings.sizeToStr(value);
@@ -235,7 +235,7 @@ Item {
         id: panelGeneral
         modal: true
         animationDuration: 250
-        width: (iconRotation === 90 || iconRotation === -90) ? parent.height : parent.width / 2
+        width: (iconRotation === 90 || iconRotation === 270) ? parent.height : parent.width / 2
         height: parent.height
         z: 99
         dock: Dock.Left
