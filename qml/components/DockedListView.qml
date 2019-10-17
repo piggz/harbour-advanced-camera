@@ -44,6 +44,7 @@ DockedPanel {
                     }
                     color: highlighted ? Theme.highlightColor : Theme.primaryColor
                     text: name
+                    truncationMode: TruncationMode.Fade
                 }
                 onClicked: {
                     panel.clicked(value);
