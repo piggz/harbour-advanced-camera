@@ -123,13 +123,13 @@ Page {
             videoBitRate: 12000000
 
             onRecorderStateChanged: {
-                if (camera.videoRecorder.recorderState == CameraRecorder.StoppedState) {
+                if (camera.videoRecorder.recorderState === CameraRecorder.StoppedState) {
                     console.log("saved to: " + camera.videoRecorder.outputLocation)
                 }
             }
 
             onRecorderStatusChanged: {
-                if (camera.videoRecorder.recorderStatus == CameraRecorder.FinalizingStatus) {
+                if (camera.videoRecorder.recorderStatus === CameraRecorder.FinalizingStatus) {
                     var path = camera.videoRecorder.outputLocation.toString()
                     path = path.replace(/^(file:\/{2})/,"")
                     galleryModel.append({ filePath: path, isVideo: true })
@@ -143,7 +143,7 @@ Page {
         }
 
         onLockStatusChanged: {
-            if (camera.lockStatus == Camera.Locked && _focusAndSnap && !_recordingVideo) {
+            if (camera.lockStatus === Camera.Locked && _focusAndSnap && !_recordingVideo) {
                 camera.imageCapture.captureToLocation(fsOperations.writableLocation("image") + "/AdvancedCam/IMG_" + Qt.formatDateTime(new Date(), "yyyyMMdd_hhmmss") + ".jpg");
                 animFlash.start();
                 _focusAndSnap = false;
@@ -153,7 +153,7 @@ Page {
         onCameraStatusChanged: {
             console.log("Camera status:", cameraStatus);
 
-            if (cameraStatus == Camera.StartingStatus) {
+            if (cameraStatus === Camera.StartingStatus) {
                 settingsOverlay.setCamera(camera);
             }
 
@@ -188,7 +188,7 @@ Page {
         anchors.centerIn: parent
 
         GridOverlay {
-            aspect: settings.global.captureMode == "image" ? ratio(camera.imageCapture.resolution) : ratio(camera.videoRecorder.resolution)
+            aspect: settings.global.captureMode === "image" ? ratio(camera.imageCapture.resolution) : ratio(camera.videoRecorder.resolution)
 
             function ratio(resolution) {
                 return resolution.width / resolution.height
@@ -229,7 +229,7 @@ Page {
             id: photoPreview
             rotation: page.controlsRotation
             onStatusChanged: {
-                if (photoPreview.status == Image.Ready) {
+                if (photoPreview.status === Image.Ready) {
                     console.log('photoPreview ready');
                 }
             }
@@ -291,7 +291,7 @@ Page {
 
             Label {
                 id: lblRecordTime
-                visible: settings.global.captureMode == "video"
+                visible: settings.global.captureMode === "video"
                 color: Theme.lightPrimaryColor
                 //text: Qt.formatDateTime(new Date(camera.videoRecorder.duration), "hh:mm:ss") //Doest work as return 01:00:00 for 0
                 text: msToTime(camera.videoRecorder.duration)
@@ -351,7 +351,7 @@ Page {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: Theme.paddingMedium
             anchors.right: parent.right
-            anchors.rightMargin: (rotation == 90 || rotation == 270) ? Theme.paddingLarge * 2 : Theme.paddingMedium
+            anchors.rightMargin: (rotation === 90 || rotation === 270) ? Theme.paddingLarge * 2 : Theme.paddingMedium
             rotation: page.controlsRotation
             width: Theme.itemSizeSmall
 
@@ -387,7 +387,7 @@ Page {
             }
 
             // If in auto or macro focus mode, focus on the specified point
-            if (camera.focus.focusMode == Camera.FocusAuto || camera.focus.focusMode == Camera.FocusMacro || camera.focus.focusMode == Camera.FocusContinuous) {
+            if (camera.focus.focusMode === Camera.FocusAuto || camera.focus.focusMode === Camera.FocusMacro || camera.focus.focusMode === Camera.FocusContinuous) {
                 var focusPoint
                 switch ((360 - viewfinderOrientation) % 360) {
                 case 90:
@@ -417,13 +417,13 @@ Page {
 
     Rectangle {
         id: focusCircle
-        height: (camera.lockStatus == Camera.Locked) ? Theme.itemSizeSmall : Theme.itemSizeMedium
+        height: (camera.lockStatus === Camera.Locked) ? Theme.itemSizeSmall : Theme.itemSizeMedium
         width: height
         radius: width / 2
         border.width: 4
         border.color: focusColor()
         color: "transparent"
-        visible: camera.focus.focusPointMode == Camera.FocusPointCustom
+        visible: camera.focus.focusPointMode === Camera.FocusPointCustom
 
         x: {
             var ret = 0;
@@ -523,7 +523,7 @@ Page {
     Timer {
         id: reloadTimer
         interval: 100
-        running: page._cameraReload && camera.cameraStatus == Camera.UnloadedStatus
+        running: page._cameraReload && camera.cameraStatus === Camera.UnloadedStatus
         onTriggered: {
             page._cameraReload = false;
         }
@@ -635,8 +635,8 @@ Page {
     }
 
     function doShutter() {
-        if (camera.captureMode == Camera.CaptureStillImage) {
-            if ((camera.focus.focusMode == Camera.FocusAuto && !_manualModeSelected) || camera.focus.focusMode == Camera.FocusMacro || camera.focus.focusMode == Camera.FocusContinuous) {
+        if (camera.captureMode === Camera.CaptureStillImage) {
+            if ((camera.focus.focusMode === Camera.FocusAuto && !_manualModeSelected) || camera.focus.focusMode === Camera.FocusMacro || camera.focus.focusMode === Camera.FocusContinuous) {
                 _focusAndSnap = true;
                 camera.searchAndLock();
             } else {
@@ -644,7 +644,7 @@ Page {
                 animFlash.start();
             }
         } else {
-            if (camera.videoRecorder.recorderStatus == CameraRecorder.RecordingStatus) {
+            if (camera.videoRecorder.recorderStatus === CameraRecorder.RecordingStatus) {
                 camera.videoRecorder.stop();
             } else {
                 camera.videoRecorder.outputLocation = fsOperations.writableLocation("video") + "/AdvancedCam/VID_" + Qt.formatDateTime(new Date(), "yyyyMMdd_hhmmss") + ".mp4";
@@ -666,9 +666,9 @@ Page {
     }
 
     function focusColor() {
-        if (camera.lockStatus == Camera.Unlocked) {
+        if (camera.lockStatus === Camera.Unlocked) {
             return "white";
-        } else if (camera.lockStatus == Camera.Searching) {
+        } else if (camera.lockStatus === Camera.Searching) {
             return "#e3e3e3" //light grey;
         } else {
             return "lightgreen";
@@ -676,10 +676,10 @@ Page {
     }
 
     function shutterIcon() {
-        if (camera.captureMode == Camera.CaptureStillImage) {
+        if (camera.captureMode === Camera.CaptureStillImage) {
             return "image://theme/icon-camera-shutter"
         } else {
-            if (camera.videoRecorder.recorderStatus == CameraRecorder.RecordingStatus) {
+            if (camera.videoRecorder.recorderStatus === CameraRecorder.RecordingStatus) {
                 return "image://theme/icon-camera-video-shutter-off";
             } else {
                 return "image://theme/icon-camera-video-shutter-on";

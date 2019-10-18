@@ -223,7 +223,7 @@ Item {
             settings.mode.resolution = settings.sizeToStr(value);
             hide();
             console.log("selected resolution", value, settings.mode.resolution);
-            if (settings.global.captureMode == "video") {
+            if (settings.global.captureMode === "video") {
                 camera.videoRecorder.resolution = value;
             } else {
                 camera.imageCapture.setResolution(value);

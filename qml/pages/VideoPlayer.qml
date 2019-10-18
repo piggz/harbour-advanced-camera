@@ -83,18 +83,18 @@ Page {
                 id: btnPlayPause
 
                 enabled: controlsOpacity > 0
-                icon.source: player.playbackState == MediaPlayer.PlayingState
+                icon.source: player.playbackState === MediaPlayer.PlayingState
                     ? "image://theme/icon-m-pause"
                     : "image://theme/icon-m-play"
                 size: Theme.itemSizeMedium
                 anchors.centerIn: parent
 
                 onClicked: {
-                    if (player.playbackState == MediaPlayer.PausedState) {
+                    if (player.playbackState === MediaPlayer.PausedState) {
                         player.play();
-                    } else if (player.playbackState == MediaPlayer.PlayingState) {
+                    } else if (player.playbackState === MediaPlayer.PlayingState) {
                         player.pause();
-                    } else if (player.playbackState == MediaPlayer.StoppedState) {
+                    } else if (player.playbackState === MediaPlayer.StoppedState) {
                         player.seek(0);
                         player.play();
                     }
