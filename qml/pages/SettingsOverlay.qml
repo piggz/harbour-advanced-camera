@@ -463,17 +463,17 @@ Item {
             effectIcon = "solarize";
             break;
         case CameraImageProcessing.ColorFilterWhiteboard:
-            effectIcon = "whiteboard";
-            break;
-        case 9: //CameraImageProcessing.ColorFilterEmboss: //TODO requires QT fix
-            effectIcon = "emboss";
-            break;
-        case 10: //CameraImageProcessing.ColorFilterSketch:
-            effectIcon = "sketch";
-            break;
-        case 11: //CameraImageProcessing.ColorFilterNeon:
-            effectIcon = "neon";
-            break;
+            effectIcon = "whiteboard"
+            break
+        case CameraImageProcessing.ColorFilterEmboss:
+            effectIcon = "emboss"
+            break
+        case CameraImageProcessing.ColorFilterSketch:
+            effectIcon = "sketch"
+            break
+        case CameraImageProcessing.ColorFilterNeon:
+            effectIcon = "neon"
+            break
         default:
             effectIcon = "default";
             break;
