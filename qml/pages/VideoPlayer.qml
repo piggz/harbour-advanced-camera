@@ -30,11 +30,11 @@ Page {
             autoPlay: true
 
             onPositionChanged: {
-                seekSlider.value = position;
+                seekSlider.value = position
             }
 
             onStopped: {
-                pageStack.pop(null, true);
+                pageStack.pop(null, true)
             }
         }
 
@@ -58,7 +58,10 @@ Page {
             anchors.fill: parent
             opacity: controlsOpacity
 
-            Behavior on opacity { FadeAnimation {}}
+            Behavior on opacity {
+                FadeAnimation {
+                }
+            }
 
             RoundButton {
                 id: btnCloseVideo
@@ -75,7 +78,7 @@ Page {
                 }
 
                 onClicked: {
-                    pageStack.pop(null, true);
+                    pageStack.pop(null, true)
                 }
             }
 
@@ -83,20 +86,18 @@ Page {
                 id: btnPlayPause
 
                 enabled: controlsOpacity > 0
-                icon.source: player.playbackState === MediaPlayer.PlayingState
-                    ? "image://theme/icon-m-pause"
-                    : "image://theme/icon-m-play"
+                icon.source: player.playbackState === MediaPlayer.PlayingState ? "image://theme/icon-m-pause" : "image://theme/icon-m-play"
                 size: Theme.itemSizeMedium
                 anchors.centerIn: parent
 
                 onClicked: {
                     if (player.playbackState === MediaPlayer.PausedState) {
-                        player.play();
+                        player.play()
                     } else if (player.playbackState === MediaPlayer.PlayingState) {
-                        player.pause();
+                        player.pause()
                     } else if (player.playbackState === MediaPlayer.StoppedState) {
-                        player.seek(0);
-                        player.play();
+                        player.seek(0)
+                        player.play()
                     }
                 }
             }
@@ -123,7 +124,7 @@ Page {
                     enabled: player.seekable && controlsOpacity > 0
 
                     onReleased: {
-                        player.seek(value);
+                        player.seek(value)
                     }
                 }
             }

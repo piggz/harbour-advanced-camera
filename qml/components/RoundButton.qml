@@ -7,18 +7,18 @@ Item {
     property alias icon: iconButton.icon
     property int size: Theme.itemSizeSmall
     property alias down: iconButton.down
-    signal clicked()
-    signal pressed()
+    signal clicked
+    signal pressed
 
     height: size
     width: size
 
     Rectangle {
         anchors.fill: parent
-        radius: width/2
+        radius: width / 2
         color: Theme.colorScheme === Theme.LightOnDark ? "black" : "white"
         opacity: 0.7
-        
+
         IconButton {
             id: iconButton
             anchors.centerIn: parent

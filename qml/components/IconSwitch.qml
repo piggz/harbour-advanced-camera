@@ -20,8 +20,8 @@ Item {
         icon.source: icon1Source
 
         onClicked: {
-            _hilighted2 = false;
-            iconSwitch.clicked(button1Name);
+            _hilighted2 = false
+            iconSwitch.clicked(button1Name)
         }
     }
 
@@ -34,8 +34,8 @@ Item {
         icon.source: icon2Source
 
         onClicked: {
-            _hilighted2 = true;
-            iconSwitch.clicked(button2Name);
+            _hilighted2 = true
+            iconSwitch.clicked(button2Name)
         }
     }
 
@@ -47,7 +47,11 @@ Item {
         opacity: 0.5
         z: 1
         y: _hilighted2 ? parent.height / 2 : 0
-        Behavior on y { NumberAnimation {duration: 100 } }
+        Behavior on y {
+            NumberAnimation {
+                duration: 100
+            }
+        }
         color: Theme.highlightBackgroundColor
     }
 }
