@@ -37,50 +37,64 @@ QVariant WbModel::data(const QModelIndex &index, int role) const
 
 void WbModel::setCamera(QObject *camera)
 {
-    QCamera *cam = camera->property("mediaObject").value<QCamera*>();
+    QCamera *cam = camera->property("mediaObject").value<QCamera *>();
     if (m_camera != cam) {
         m_camera = cam;
 
         beginResetModel();
-        for (int c = (int)QCameraImageProcessing::WhiteBalanceAuto; c <= (int)QCameraImageProcessing::WhiteBalanceWarmFluorescent;c++) {
-            qDebug() << "Checking supported:" << (QCameraImageProcessing::WhiteBalanceMode)c;
-
-            if (m_camera->imageProcessing()->isWhiteBalanceModeSupported((QCameraImageProcessing::WhiteBalanceMode)c)){
+        for (int c = (int)QCameraImageProcessing::WhiteBalanceAuto;
+                c <= (int)QCameraImageProcessing::WhiteBalanceWarmFluorescent; c++) {
+            if (m_camera->imageProcessing()->isWhiteBalanceModeSupported((QCameraImageProcessing::WhiteBalanceMode)c)) {
+                qDebug() << "Found support for" << (QCameraImageProcessing::WhiteBalanceMode)c;
                 m_wbModes[(QCameraImageProcessing::WhiteBalanceMode)c] = wbName((QCameraImageProcessing::WhiteBalanceMode)c);
             }
         }
         endResetModel();
-    }
 
-    qDebug() << m_wbModes;
+        if (m_wbModes.size() == 0) {
+            qDebug() << "No white balance modes found";
+        }
+    }
 }
 
 QString WbModel::wbName(QCameraImageProcessing::WhiteBalanceMode wb) const
 {
     QString name;
 
-    if (wb == QCameraImageProcessing::WhiteBalanceAuto) {
+    switch (wb) {
+    case QCameraImageProcessing::WhiteBalanceAuto:
         name = tr("Auto");
-    } else if (wb == QCameraImageProcessing::WhiteBalanceManual) {
+        break;
+    case QCameraImageProcessing::WhiteBalanceManual:
         name = tr("Manual");
-    } else if (wb == QCameraImageProcessing::WhiteBalanceSunlight) {
+        break;
+    case QCameraImageProcessing::WhiteBalanceSunlight:
         name = tr("Sunlight");
-    } else if (wb == QCameraImageProcessing::WhiteBalanceCloudy) {
+        break;
+    case QCameraImageProcessing::WhiteBalanceCloudy:
         name = tr("Cloudy");
-    } else if (wb == QCameraImageProcessing::WhiteBalanceShade) {
+        break;
+    case QCameraImageProcessing::WhiteBalanceShade:
         name = tr("Shade");
-    } else if (wb == QCameraImageProcessing::WhiteBalanceTungsten) {
+        break;
+    case QCameraImageProcessing::WhiteBalanceTungsten:
         name = tr("Tungsten");
-    } else if (wb == QCameraImageProcessing::WhiteBalanceFluorescent) {
+        break;
+    case QCameraImageProcessing::WhiteBalanceFluorescent:
         name = tr("Fluorescent");
-    } else if (wb == QCameraImageProcessing::WhiteBalanceFlash) {
+        break;
+    case QCameraImageProcessing::WhiteBalanceFlash:
         name = tr("Flash");
-    } else if (wb == QCameraImageProcessing::WhiteBalanceSunset) {
+        break;
+    case QCameraImageProcessing::WhiteBalanceSunset:
         name = tr("Sunset");
-    } else if (wb == QCameraImageProcessing::WhiteBalanceWarmFluorescent) {
+        break;
+    case QCameraImageProcessing::WhiteBalanceWarmFluorescent:
         name = tr("Warm Fluorescent");
-    } else{
+        break;
+    default:
         name = tr("Unknown");
+        break;
     }
     return name;
 }

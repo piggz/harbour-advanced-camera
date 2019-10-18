@@ -557,7 +557,9 @@ Page {
     }
 
     function applySettings() {
-        console.log("Applying settings in mode ", settings.global.captureMode, camera.deviceId, camera.cameraStatus);
+        console.log("Applying settings in", settings.global.captureMode,
+                    "mode for", camera.deviceId, "camera with status",
+                    camera.cameraStatus)
 
         camera.imageProcessing.setColorFilter(settings.mode.effect);
         camera.exposure.setExposureMode(settings.mode.exposure);

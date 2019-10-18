@@ -37,29 +37,30 @@ QVariant ExposureModel::data(const QModelIndex &index, int role) const
 
 void ExposureModel::setCamera(QObject *camera)
 {
-    QCamera *cam = camera->property("mediaObject").value<QCamera*>();
+    QCamera *cam = camera->property("mediaObject").value<QCamera *>();
     if (m_camera != cam) {
         m_camera = cam;
 
         beginResetModel();
-        for (int c = (int)QCameraExposure::ExposureAuto; c <= (int)QCameraExposure::ExposureHDR;c++) {
-            qDebug() << "Checking supported:" << (QCameraExposure::ExposureMode)c;
-
-            if (m_camera->exposure()->isExposureModeSupported((QCameraExposure::ExposureMode)c)){
+        for (int c = (int)QCameraExposure::ExposureAuto; c <= (int)QCameraExposure::ExposureHDR; c++) {
+            if (m_camera->exposure()->isExposureModeSupported((QCameraExposure::ExposureMode)c)) {
+                qDebug() << "Found support for" << (QCameraExposure::ExposureMode)c;
                 m_exposures[(QCameraExposure::ExposureMode)c] = exposureName((QCameraExposure::ExposureMode)c);
             }
         }
         endResetModel();
-    }
 
-    qDebug() << m_exposures;
+        if (m_exposures.size() == 0) {
+            qDebug() << "No exposure modes found";
+        }
+    }
 }
 
 QString ExposureModel::exposureName(QCameraExposure::ExposureMode e) const
 {
     QString name;
 
-    switch(e) {
+    switch (e) {
     case QCameraExposure::ExposureAuto:
         name = tr("Automatic Scene Detection");
         break;
@@ -144,7 +145,7 @@ QString ExposureModel::iconName(QCameraExposure::ExposureMode e) const
 {
     QString name;
 
-    switch(e) {
+    switch (e) {
     case QCameraExposure::ExposureAuto:
         name = "asd";
         break;
@@ -219,6 +220,7 @@ QString ExposureModel::iconName(QCameraExposure::ExposureMode e) const
         break;
     default:
         name = "unknown";
+        break;
     }
 
     return name;

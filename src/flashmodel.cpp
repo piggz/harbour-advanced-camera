@@ -37,48 +37,64 @@ QVariant FlashModel::data(const QModelIndex &index, int role) const
 
 void FlashModel::setCamera(QObject *camera)
 {
-    QCamera *cam = camera->property("mediaObject").value<QCamera*>();
+    QCamera *cam = camera->property("mediaObject").value<QCamera *>();
     if (m_camera != cam) {
         m_camera = cam;
 
         beginResetModel();
-        for (int c = (int)QCameraExposure::FlashAuto; c <= (int)QCameraExposure::FlashManual;c++) {
-            qDebug() << "Checking supported:" << (QCameraExposure::FlashMode)c;
-
-            if (m_camera->exposure()->isFlashModeSupported((QCameraExposure::FlashMode)c) && flashName((QCameraExposure::FlashMode)c) != tr("Unknown")){
+        for (int c = (int)QCameraExposure::FlashAuto; c <= (int)QCameraExposure::FlashManual; c++) {
+            if (m_camera->exposure()->isFlashModeSupported((QCameraExposure::FlashMode)c)
+                    && flashName((QCameraExposure::FlashMode)c) != tr("Unknown")) {
+                qDebug() << "Found support for" << (QCameraExposure::FlashMode)c;
                 m_flashModes[(QCameraExposure::FlashMode)c] = flashName((QCameraExposure::FlashMode)c);
             }
         }
         endResetModel();
+
+        if (m_flashModes.size() == 0) {
+            qDebug() << "No flash modes found";
+        }
     }
 }
 
-QString FlashModel::flashName(QCameraExposure::FlashMode focus) const
+QString FlashModel::flashName(QCameraExposure::FlashMode flash) const
 {
     QString name;
 
-    if (focus == QCameraExposure::FlashAuto) {
+    switch (flash) {
+    case QCameraExposure::FlashAuto:
         name = tr("Auto");
-    } else if (focus == QCameraExposure::FlashOff) {
+        break;
+    case QCameraExposure::FlashOff:
         name = tr("Off");
-    } else if (focus == QCameraExposure::FlashOn) {
+        break;
+    case QCameraExposure::FlashOn:
         name = tr("On");
-    } else if (focus == QCameraExposure::FlashRedEyeReduction) {
+        break;
+    case QCameraExposure::FlashRedEyeReduction:
         name = tr("Red Eye Reduction");
-    } else if (focus == QCameraExposure::FlashFill) {
+        break;
+    case QCameraExposure::FlashFill:
         name = tr("Fill");
-    } else if (focus == QCameraExposure::FlashTorch) {
+        break;
+    case QCameraExposure::FlashTorch:
         name = tr("Torch");
-    } else if (focus == QCameraExposure::FlashVideoLight) {
+        break;
+    case QCameraExposure::FlashVideoLight:
         name = tr("Video Light");
-    } else if (focus == QCameraExposure::FlashSlowSyncFrontCurtain) {
+        break;
+    case QCameraExposure::FlashSlowSyncFrontCurtain:
         name = tr("Slow Sync Front Curtain");
-    } else if (focus == QCameraExposure::FlashSlowSyncRearCurtain) {
+        break;
+    case QCameraExposure::FlashSlowSyncRearCurtain:
         name = tr("Slow Sync Rear Curtain");
-    } else if (focus == QCameraExposure::FlashManual) {
+        break;
+    case QCameraExposure::FlashManual:
         name = tr("Manual");
-    } else{
+        break;
+    default:
         name = tr("Unknown");
+        break;
     }
 
     return name;

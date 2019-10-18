@@ -37,7 +37,7 @@ QVariant IsoModel::data(const QModelIndex &index, int role) const
 
 void IsoModel::setCamera(QObject *camera)
 {
-    QCamera *cam = camera->property("mediaObject").value<QCamera*>();
+    QCamera *cam = camera->property("mediaObject").value<QCamera *>();
     if (m_camera != cam) {
         m_camera = cam;
 
@@ -45,13 +45,16 @@ void IsoModel::setCamera(QObject *camera)
 
         QList<int> supportedIsoRange = m_camera->exposure()->supportedIsoSensitivities();
 
-        for (int i = 0; i < supportedIsoRange.count() ;i++) {
+        for (int i = 0; i < supportedIsoRange.count() ; i++) {
             m_isoModes[supportedIsoRange[i]] = isoName(supportedIsoRange[i]);
+            qDebug() << "Found support for" << isoName(supportedIsoRange[i]);
         }
         endResetModel();
-    }
 
-    qDebug() << m_isoModes;
+        if (m_isoModes.size() == 0) {
+            qDebug() << "No ISO modes found";
+        }
+    }
 }
 
 QString IsoModel::isoName(int iso) const
