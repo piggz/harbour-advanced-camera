@@ -77,8 +77,9 @@ Page {
             size: Theme.itemSizeMedium
 
             function showRemorseItem() {
-                remorse.execute(qsTr("Deleting %1").arg(getFileName(gallery.currentIndex)),
-                    function() { removeFile(gallery.currentIndex) });
+                var deleteIndex = gallery.currentIndex;
+                remorse.execute(qsTr("Deleting %1").arg(getFileName(deleteIndex)),
+                    function() { removeFile(deleteIndex) });
             }
 
             onClicked: {
