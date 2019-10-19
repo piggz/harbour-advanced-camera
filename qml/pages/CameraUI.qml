@@ -268,7 +268,7 @@ Page {
                 property bool forceUpdate: false
                 id: lblResolution
                 color: Theme.lightPrimaryColor
-                text: (forceUpdate || !forceUpdate) ? settings.sizeToStr(settings.resolution(settings.global.captureMode)) : ""
+                text: (forceUpdate || !forceUpdate) ? settings.sizeToStr(camera.imageCapture.resolution) : ""
             }
 
             Label {
