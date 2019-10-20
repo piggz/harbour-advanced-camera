@@ -254,15 +254,28 @@ Page {
         }
 
         Row {
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenter: {
+                if ((camera._orientation == 1) || (camera._orientation == 2)) return parent.right
+                else parent.horizontalCenter
+            }
+
+            anchors.verticalCenter: {
+                if ((camera._orientation == 1) || (camera._orientation == 2)) return parent.verticalCenter
+                else parent.top
+            }
+
+            anchors.verticalCenterOffset: {
+                if ((camera._orientation == 1) || (camera._orientation == 2)) return 0
+                else return height
+            }
+
+            anchors.horizontalCenterOffset: {
+                if ((camera._orientation == 1) || (camera._orientation == 2)) return -(btnCapture.width + height)
+                else return 0
+            }
+
             spacing: Theme.paddingMedium
             rotation: page.controlsRotation
-            transformOrigin: {
-                if (camera._orientation == 1 || camera._orientation >= 5) return Item.Right
-                else if (camera._orientation == 2) return Item.Left
-                else return Item.Center
-            }
 
             Label {
                 property bool forceUpdate: false
