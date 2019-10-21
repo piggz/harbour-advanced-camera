@@ -466,7 +466,8 @@ Page {
             if (!window.activeFocus) {
                 camera.stop();
             } else {
-                camera.start();
+                if (pageStack.depth === 1)
+                    camera.start();
             }
         }
     }
