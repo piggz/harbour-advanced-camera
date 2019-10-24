@@ -281,7 +281,7 @@ Page {
                 property bool forceUpdate: false
                 id: lblResolution
                 color: Theme.lightPrimaryColor
-                text: (forceUpdate || !forceUpdate) ? settings.sizeToStr(camera.imageCapture.resolution) : ""
+                text: (forceUpdate || !forceUpdate) ? settings.sizeToStr((settings.global.captureMode === "video" ? camera.videoRecorder.resolution : camera.imageCapture.resolution)) : ""
             }
 
             Label {
