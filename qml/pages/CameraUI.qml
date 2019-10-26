@@ -579,9 +579,11 @@ Page {
 
     function setFocusMode(focus) {
         if (focus === Camera.FocusManual) {
-            camera.stop();
-            camera.focus.setFocusMode(Camera.FocusAuto);
-            camera.start();
+            if (camera.focus.focusMode !== Camera.FocusAuto) {
+                camera.stop();
+                camera.focus.setFocusMode(Camera.FocusAuto);
+                camera.start();
+            }
             _manualModeSelected = true;
         } else {
             _manualModeSelected = false;
