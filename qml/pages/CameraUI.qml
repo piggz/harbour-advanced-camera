@@ -255,22 +255,22 @@ Page {
 
         Row {
             anchors.horizontalCenter: {
-                if ((camera._orientation == 1) || (camera._orientation == 2)) return parent.right
+                if ((camera._orientation === OrientationReading.TopUp) || (camera._orientation === OrientationReading.TopDown)) return parent.right
                 else parent.horizontalCenter
             }
 
             anchors.verticalCenter: {
-                if ((camera._orientation == 1) || (camera._orientation == 2)) return parent.verticalCenter
+                if ((camera._orientation === OrientationReading.TopUp) || (camera._orientation === OrientationReading.TopDown)) return parent.verticalCenter
                 else parent.top
             }
 
             anchors.verticalCenterOffset: {
-                if ((camera._orientation == 1) || (camera._orientation == 2)) return 0
+                if ((camera._orientation === OrientationReading.TopUp) || (camera._orientation === OrientationReading.TopDown)) return 0
                 else return height
             }
 
             anchors.horizontalCenterOffset: {
-                if ((camera._orientation == 1) || (camera._orientation == 2)) return -(btnCapture.width + height)
+                if ((camera._orientation ===OrientationReading.TopUp) || (camera._orientation === OrientationReading.TopDown)) return -(btnCapture.width + height)
                 else return 0
             }
 
