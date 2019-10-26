@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtMultimedia 5.6
 import QtSensors 5.0
+import Nemo.KeepAlive 1.2
 import uk.co.piggz.harbour_advanced_camera 1.0
 import "../components/"
 
@@ -30,6 +31,10 @@ Page {
                 camera._orientation = reading.orientation;
             }
         }
+    }
+
+    DisplayBlanking {
+        preventBlanking: camera.videoRecorder.recorderState === CameraRecorder.RecordingState
     }
 
     // Orientation sensors for primary (back camera) & secondary (front camera)
