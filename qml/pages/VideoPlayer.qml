@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtMultimedia 5.6
+import Nemo.KeepAlive 1.2
 import "../components/"
 
 Page {
@@ -13,6 +14,10 @@ Page {
 
     property string videoFile
     property double controlsOpacity: 1.0
+
+    DisplayBlanking {
+        preventBlanking: player.playbackState === MediaPlayer.PlayingState
+    }
 
     Rectangle {
         anchors.fill: parent
