@@ -485,7 +485,7 @@ Item {
         return "../pics/icon-m-scene_mode_" + modelExposure.iconName(settings.mode.exposure) + ".svg";
     }
 
-    function setMode(mode, cam){
+    function setMode(mode){
         modelResolution.setMode(mode);
         settings.global.captureMode = mode;
         settings.mode.path = settings.global.cameraId + "/" + mode;

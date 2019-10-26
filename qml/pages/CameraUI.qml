@@ -15,9 +15,8 @@ Page {
     property bool _cameraReload: false
     property bool _completed: false
     property bool _focusAndSnap: false
-    property bool _parametersLoaded: false
+    property bool _loadParameters: true
     property bool _recordingVideo: false
-    property bool _setTempResolution: false
     property bool _manualModeSelected: false
     readonly property int zoomStepSize: 5
     property int controlsRotation: 0
@@ -149,12 +148,15 @@ Page {
         onCameraStatusChanged: {
             console.log("Camera status:", cameraStatus);
 
-            if (cameraStatus == Camera.ActiveStatus && !_parametersLoaded) {
+            if (cameraStatus == Camera.StartingStatus) {
+                settingsOverlay.setCamera(camera);
+            }
+
+            if (cameraStatus === Camera.ActiveStatus && _loadParameters) {
                 if (zoomSlider.maximumValue != camera.maximumDigitalZoom) {
                     zoomSlider.maximumValue = camera.maximumDigitalZoom;
                 }
 
-                settingsOverlay.setCamera(camera);
                 if (settings.global.captureMode === "video") {
                     camera.captureMode = Camera.CaptureVideo;
                     btnModeSwitch._hilighted2 = true;
@@ -166,10 +168,8 @@ Page {
                 settingsOverlay.setMode(settings.global.captureMode);
 
                 camera.viewfinder.resolution = getNearestViewFinderResolution();
-                if (!_setTempResolution) {
-                    _parametersLoaded = true;
-                    applySettings();
-                }
+                applySettings();
+
                 lblResolution.forceUpdate = !lblResolution.forceUpdate
             }
         }
@@ -254,21 +254,34 @@ Page {
         }
 
         Row {
-            anchors.top: parent.top
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenter: {
+                if ((camera._orientation === OrientationReading.TopUp) || (camera._orientation === OrientationReading.TopDown)) return parent.right
+                else parent.horizontalCenter
+            }
+
+            anchors.verticalCenter: {
+                if ((camera._orientation === OrientationReading.TopUp) || (camera._orientation === OrientationReading.TopDown)) return parent.verticalCenter
+                else parent.top
+            }
+
+            anchors.verticalCenterOffset: {
+                if ((camera._orientation === OrientationReading.TopUp) || (camera._orientation === OrientationReading.TopDown)) return 0
+                else return height
+            }
+
+            anchors.horizontalCenterOffset: {
+                if ((camera._orientation ===OrientationReading.TopUp) || (camera._orientation === OrientationReading.TopDown)) return -(btnCapture.width + height)
+                else return 0
+            }
+
             spacing: Theme.paddingMedium
             rotation: page.controlsRotation
-            transformOrigin: {
-                if (camera._orientation == 1 || camera._orientation >= 5) return Item.Right
-                else if (camera._orientation == 2) return Item.Left
-                else return Item.Center
-            }
 
             Label {
                 property bool forceUpdate: false
                 id: lblResolution
                 color: Theme.lightPrimaryColor
-                text: (forceUpdate || !forceUpdate) ? settings.sizeToStr(settings.resolution(settings.global.captureMode)) : ""
+                text: (forceUpdate || !forceUpdate) ? settings.sizeToStr((settings.global.captureMode === "video" ? camera.videoRecorder.resolution : camera.imageCapture.resolution)) : ""
             }
 
             Label {
@@ -319,13 +332,11 @@ Page {
                 rightMargin: Theme.paddingMedium
             }
             onClicked: {
-                _cameraReload = true;
                 console.log("Setting temp resolution");
-                _setTempResolution = true;
                 camera.imageCapture.setResolution(settings.strToSize("320x240"));
                 camera.stop();
-                camera.deviceId = settings.global.cameraId == "primary" ? "secondary" : "primary";
-                _parametersLoaded = false;
+                _loadParameters = false;
+                settings.global.cameraId = settings.global.cameraId == "primary" ? "secondary" : "primary";
                 tmrDelayedStart.start();
             }
         }
@@ -347,13 +358,12 @@ Page {
             onClicked: {
                 console.log("selected:", name);
                 camera.stop();
-                settingsOverlay.setMode(name, camera);
+                settingsOverlay.setMode(name);
                 if (name === button1Name) {
                     camera.captureMode = Camera.CaptureStillImage;
                 } else {
                     camera.captureMode = Camera.CaptureVideo;
                 }
-                applySettings();
                 camera.start();
             }
         }
@@ -495,12 +505,13 @@ Page {
         id: tmrDelayedStart
         repeat: false
         running: false
-        interval: 500
+        interval: 200
         onTriggered: {
             console.log("camera delayed start", settings.global.cameraId);
-            settings.global.cameraId = camera.deviceId;
-            _setTempResolution = false;
+            _loadParameters = true;
+            camera.deviceId = settings.global.cameraId;
             camera.start();
+            _cameraReload = true;
         }
     }
 
@@ -541,7 +552,8 @@ Page {
     }
 
     function applySettings() {
-        console.log("Applying settings in mode ", settings.global.captureMode);
+        console.log("Applying settings in mode ", settings.global.captureMode, camera.deviceId, camera.cameraStatus);
+
         camera.imageProcessing.setColorFilter(settings.mode.effect);
         camera.exposure.setExposureMode(settings.mode.exposure);
         camera.flash.setFlashMode(settings.mode.flash);
