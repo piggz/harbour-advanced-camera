@@ -26,7 +26,8 @@ DockedPanel {
         SilicaListView {
             id: listView
             anchors.fill: parent
-            VerticalScrollDecorator {}
+            VerticalScrollDecorator {
+            }
             clip: true
 
             delegate: ListItem {
@@ -47,7 +48,7 @@ DockedPanel {
                     truncationMode: TruncationMode.Fade
                 }
                 onClicked: {
-                    panel.clicked(value);
+                    panel.clicked(value)
                 }
             }
         }

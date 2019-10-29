@@ -56,7 +56,8 @@ int main(int argc, char *argv[])
     view->rootContext()->setContextProperty("sortedModelResolution", &sortedResolutionModel);
     view->setSource(SailfishApp::pathTo("qml/harbour-advanced-camera.qml"));
 
-    QObject::connect(view, &QQuickView::focusObjectChanged, &handler, &ResourceHandler::handleFocusChange);
+    QObject::connect(view, &QQuickView::focusObjectChanged, &handler,
+                     &ResourceHandler::handleFocusChange);
 
     view->show();
 

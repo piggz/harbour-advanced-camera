@@ -37,28 +37,31 @@ QVariant EffectsModel::data(const QModelIndex &index, int role) const
 
 void EffectsModel::setCamera(QObject *camera)
 {
-    QCamera *cam = camera->property("mediaObject").value<QCamera*>();
+    QCamera *cam = camera->property("mediaObject").value<QCamera *>();
     if (m_camera != cam) {
         m_camera = cam;
 
         beginResetModel();
-        for (int c = (int)QCameraImageProcessing::ColorFilterNone; c <= (int)QCameraImageProcessing::ColorFilterNeon;c++) {
-            qDebug() << "Checking supported:" << (QCameraImageProcessing::ColorFilter)c;
-
-            if (m_camera->imageProcessing()->isColorFilterSupported((QCameraImageProcessing::ColorFilter)c)){
+        for (int c = (int)QCameraImageProcessing::ColorFilterNone;
+                c <= (int)QCameraImageProcessing::ColorFilterNeon; c++) {
+            if (m_camera->imageProcessing()->isColorFilterSupported((QCameraImageProcessing::ColorFilter)c)) {
+                qDebug() << "Found support for" << (QCameraImageProcessing::ColorFilter)c;
                 m_effects[(QCameraImageProcessing::ColorFilter)c] = effectName((QCameraImageProcessing::ColorFilter)c);
             }
         }
         endResetModel();
+
+        if (m_effects.size() == 0) {
+            qDebug() << "No effect modes found";
+        }
     }
-    qDebug() << m_effects;
 }
 
 QString EffectsModel::effectName(QCameraImageProcessing::ColorFilter c) const
 {
     QString name;
 
-    switch(c) {
+    switch (c) {
     case QCameraImageProcessing::ColorFilterNone:
         name = tr("None");
         break;
@@ -95,9 +98,9 @@ QString EffectsModel::effectName(QCameraImageProcessing::ColorFilter c) const
     case QCameraImageProcessing::ColorFilterNeon:
         name = tr("Neon");
         break;
-
     default:
         name = "Unknown";
+        break;
     }
 
     return name;

@@ -8,7 +8,9 @@ import "../components/"
 Page {
     id: galleryPage
 
-    property var fileList: ({})
+    property var fileList: ({
+
+                            })
     property alias showButtons: btnClose.visible
 
     // The effective value will be restricted by ApplicationWindow.allowedOrientations
@@ -17,24 +19,24 @@ Page {
     backNavigation: false
 
     function removeFile(idx) {
-        var path = fileList.get(idx).filePath;
-        console.log("Removing", path);
-        if (fsOperations.deleteFile( path )) {
-            fileList.remove(idx);
+        var path = fileList.get(idx).filePath
+        console.log("Removing", path)
+        if (fsOperations.deleteFile(path)) {
+            fileList.remove(idx)
             if (gallery.count === 0) {
-                console.log("Closing empty gallery!");
-                pageStack.pop();
+                console.log("Closing empty gallery!")
+                pageStack.pop()
             }
         } else {
-            console.log("Error deleting file:", path);
+            console.log("Error deleting file:", path)
         }
     }
 
     function getFileName(idx) {
-        var fullPath = fileList.get(idx).filePath;
-        var lastSep = fullPath.lastIndexOf("/");
-        var fileName = fullPath.substr(lastSep + 1, fullPath.length - lastSep);
-        return fileName;
+        var fullPath = fileList.get(idx).filePath
+        var lastSep = fullPath.lastIndexOf("/")
+        var fileName = fullPath.substr(lastSep + 1, fullPath.length - lastSep)
+        return fileName
     }
 
     RoundButton {
@@ -52,12 +54,14 @@ Page {
         }
 
         onClicked: {
-            console.log("Clicked close button");
-            pageStack.pop();
+            console.log("Clicked close button")
+            pageStack.pop()
         }
     }
 
-    RemorsePopup { id: remorse }
+    RemorsePopup {
+        id: remorse
+    }
 
     Row {
         id: rowBottom
@@ -77,14 +81,17 @@ Page {
             size: Theme.itemSizeMedium
 
             function showRemorseItem() {
-                var deleteIndex = gallery.currentIndex;
-                remorse.execute(qsTr("Deleting %1").arg(getFileName(deleteIndex)),
-                    function() { removeFile(deleteIndex) });
+                var deleteIndex = gallery.currentIndex
+                remorse.execute(qsTr("Deleting %1").arg(getFileName(
+                                                            deleteIndex)),
+                                function () {
+                                    removeFile(deleteIndex)
+                                })
             }
 
             onClicked: {
-                console.log("Clicked delete button");
-                showRemorseItem();
+                console.log("Clicked delete button")
+                showRemorseItem()
             }
         }
 
@@ -95,9 +102,12 @@ Page {
             size: Theme.itemSizeMedium
 
             onClicked: {
-                var filePath = fileList.get(gallery.currentIndex).filePath;
-                var mimeType = gallery.currentIndex.isVideo ? "video/mp4" : "image/jpeg";
-                pageStack.push("Sailfish.TransferEngine.SharePage", { "source": filePath, "mimeType": mimeType });
+                var filePath = fileList.get(gallery.currentIndex).filePath
+                var mimeType = gallery.currentIndex.isVideo ? "video/mp4" : "image/jpeg"
+                pageStack.push("Sailfish.TransferEngine.SharePage", {
+                                   "source": filePath,
+                                   "mimeType": mimeType
+                               })
             }
         }
     }
@@ -147,9 +157,9 @@ Page {
                 size: Theme.itemSizeMedium
 
                 onClicked: {
-                    pageStack.push(Qt.resolvedUrl("VideoPlayer.qml"),
-                        { videoFile: filePath },
-                        PageStackAction.Immediate);
+                    pageStack.push(Qt.resolvedUrl("VideoPlayer.qml"), {
+                                       "videoFile": filePath
+                                   }, PageStackAction.Immediate)
                 }
             }
         }

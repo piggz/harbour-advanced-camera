@@ -3,8 +3,7 @@ import Sailfish.Silica 1.0
 import QtMultimedia 5.6
 import "pages"
 
-ApplicationWindow
-{
+ApplicationWindow {
     id: window
 
     Settings {

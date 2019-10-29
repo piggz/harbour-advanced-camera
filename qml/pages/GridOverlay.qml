@@ -4,22 +4,26 @@ import Sailfish.Silica 1.0
 Item {
     id: root
 
-    property double aspect: 16.0/9.0
+    property double aspect: 16.0 / 9.0
     visible: settings.global.gridMode != "none"
     anchors.centerIn: parent
     width: parent.height * aspect
     height: parent.height
 
     function horizontalLines(id) {
-        if (id === "thirds") return [0.33, 0.66];
-        if (id === "ambience") return [0.21, 0.79];
-        return [];
+        if (id === "thirds")
+            return [0.33, 0.66]
+        if (id === "ambience")
+            return [0.21, 0.79]
+        return []
     }
 
     function verticalLines(id) {
-        if (id === "thirds") return [0.33, 0.66];
-        if (id === "ambience") return [0.2333, 0.7666];
-        return [];
+        if (id === "thirds")
+            return [0.33, 0.66]
+        if (id === "ambience")
+            return [0.2333, 0.7666]
+        return []
     }
 
     Repeater {

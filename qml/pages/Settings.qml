@@ -16,7 +16,6 @@ Item {
         property bool swapZoomControl: false
         property string gridMode: "none"
 
-
         ConfigurationGroup {
             id: modeSettings
             path: globalSettings.cameraId + "/" + globalSettings.captureMode
@@ -41,23 +40,24 @@ Item {
     }
 
     function strToSize(siz) {
-        var w = parseInt(siz.substring(0, siz.indexOf("x")));
-        var h = parseInt(siz.substring(siz.indexOf("x") + 1));
-        return Qt.size(w,h);
+        var w = parseInt(siz.substring(0, siz.indexOf("x")))
+        var h = parseInt(siz.substring(siz.indexOf("x") + 1))
+        return Qt.size(w, h)
     }
 
     function sizeToStr(siz) {
-        return siz.width + "x" + siz.height;
+        return siz.width + "x" + siz.height
     }
 
     //Return either the current mode resolution or default resolution for that mode
     function resolution(mode) {
-        if (settings.global.captureMode === mode && settings.mode.resolution !== "") {
-            var res = strToSize(settings.mode.resolution);
+        if (settings.global.captureMode === mode
+                && settings.mode.resolution !== "") {
+            var res = strToSize(settings.mode.resolution)
             if (modelResolution.isValidResolution(res, mode)) {
-                return res;
+                return res
             }
         }
-        return modelResolution.defaultResolution(mode);
+        return modelResolution.defaultResolution(mode)
     }
 }
