@@ -19,8 +19,10 @@ QT += multimedia
 SOURCES += src/harbour-advanced-camera.cpp \
     src/deviceinfo.cpp \
     src/effectsmodel.cpp \
+    src/exifmodel.cpp \
     src/exposuremodel.cpp \
     src/isomodel.cpp \
+    src/metadatamodel.cpp \
     src/resolutionmodel.cpp \
     src/wbmodel.cpp \
     src/focusmodel.cpp \
@@ -37,6 +39,9 @@ DISTFILES += rpm/harbour-advanced-camera.changes.in \
     qml/pics/icon-m-uwide-lense.svg \
     qml/pics/icon-m-wide-lense-active.png \
     qml/pics/icon-m-wide-lense.svg \
+    qml/components/AboutMedia.qml \
+    qml/pages/AboutImage.qml \
+    qml/pages/AboutVideo.qml \
     rpm/harbour-advanced-camera.changes.run.in \
     rpm/harbour-advanced-camera.spec \
     rpm/harbour-advanced-camera.yaml \
@@ -72,8 +77,10 @@ TRANSLATIONS += translations/harbour-advanced-camera-de.ts \
 
 HEADERS += \
     src/effectsmodel.h \
+    src/exifmodel.h \
     src/exposuremodel.h \
     src/isomodel.h \
+    src/metadatamodel.h \
     src/resolutionmodel.h \
     src/wbmodel.h \
     src/focusmodel.h \

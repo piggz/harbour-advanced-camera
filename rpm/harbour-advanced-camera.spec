@@ -28,6 +28,7 @@ BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  ssu-sysinfo-devel
+BuildRequires:  libexif-devel
 BuildRequires:  desktop-file-utils
 
 %description
