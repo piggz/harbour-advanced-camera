@@ -30,6 +30,7 @@ PkgConfigBR:
 # Build dependencies without a pkgconfig setup can be listed here
 PkgBR:
   - qt5-qttools-linguist
+  - libexif-devel
 
 # Runtime dependencies which are not automatically detected
 Requires:
