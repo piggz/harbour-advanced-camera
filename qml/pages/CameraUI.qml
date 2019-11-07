@@ -95,10 +95,6 @@ Page {
         }
     }
 
-    FSOperations {
-        id: fsOperations
-    }
-
     Camera {
         id: camera
 
@@ -183,7 +179,8 @@ Page {
                     && !_recordingVideo) {
                 camera.imageCapture.captureToLocation(
                             fsOperations.writableLocation(
-                                "image") + "/AdvancedCam/IMG_" + Qt.formatDateTime(
+                                "image",
+                                settings.global.storagePath) + "/IMG_" + Qt.formatDateTime(
                                 new Date(), "yyyyMMdd_hhmmss") + ".jpg")
                 animFlash.start()
                 _focusAndSnap = false
@@ -545,10 +542,6 @@ Page {
     Component.onCompleted: {
         camera.deviceId = settings.global.cameraId
         _completed = true
-        fsOperations.createFolder(fsOperations.writableLocation(
-                                      "image") + "/AdvancedCam/")
-        fsOperations.createFolder(fsOperations.writableLocation(
-                                      "video") + "/AdvancedCam/")
     }
 
     Connections {
@@ -661,11 +654,11 @@ Page {
     function setFocusMode(focus) {
         if (focus === Camera.FocusManual) {
             if (camera.focus.focusMode !== Camera.FocusAuto) {
-                camera.stop();
-                camera.focus.setFocusMode(Camera.FocusAuto);
-                camera.start();
+                camera.stop()
+                camera.focus.setFocusMode(Camera.FocusAuto)
+                camera.start()
             }
-            _manualModeSelected = true;
+            _manualModeSelected = true
         } else {
             _manualModeSelected = false
             if (camera.focus.focusMode !== focus) {
@@ -731,7 +724,8 @@ Page {
             } else {
                 camera.imageCapture.captureToLocation(
                             fsOperations.writableLocation(
-                                "image") + "/AdvancedCam/IMG_" + Qt.formatDateTime(
+                                "image",
+                                settings.global.storagePath) + "/IMG_" + Qt.formatDateTime(
                                 new Date(), "yyyyMMdd_hhmmss") + ".jpg")
                 animFlash.start()
             }
@@ -740,7 +734,8 @@ Page {
                 camera.videoRecorder.stop()
             } else {
                 camera.videoRecorder.outputLocation = fsOperations.writableLocation(
-                            "video") + "/AdvancedCam/VID_" + Qt.formatDateTime(
+                            "video",
+                            settings.global.storagePath) + "/VID_" + Qt.formatDateTime(
                             new Date(), "yyyyMMdd_hhmmss") + ".mp4"
                 camera.videoRecorder.record()
             }

@@ -274,6 +274,13 @@
     </message>
 </context>
 <context>
+    <name>StorageModel</name>
+    <message>
+        <source>Internal storage</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WbModel</name>
     <message>
         <source>Auto</source>

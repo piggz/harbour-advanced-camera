@@ -240,7 +240,7 @@
     <name>GalleryUI</name>
     <message>
         <source>Deleting %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Suppression de %1</translation>
     </message>
 </context>
 <context>
@@ -254,7 +254,7 @@
     <name>SettingsOverlay</name>
     <message>
         <source>Swap zoom controls</source>
-        <translation>Inverser les commandes du zoom</translation>
+        <translation>Inverser le zoom</translation>
     </message>
     <message>
         <source>None</source>
@@ -271,6 +271,13 @@
     <message>
         <source>Grid:</source>
         <translation>Grille :</translation>
+    </message>
+</context>
+<context>
+    <name>StorageModel</name>
+    <message>
+        <source>Internal storage</source>
+        <translation>Stockage interne</translation>
     </message>
 </context>
 <context>
