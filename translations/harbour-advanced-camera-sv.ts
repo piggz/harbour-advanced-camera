@@ -277,7 +277,7 @@
     <name>StorageModel</name>
     <message>
         <source>Internal storage</source>
-        <translation type="unfinished"></translation>
+        <translation>Intern lagring</translation>
     </message>
 </context>
 <context>
