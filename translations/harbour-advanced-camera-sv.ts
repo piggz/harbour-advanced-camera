@@ -272,6 +272,14 @@
         <source>Ambience</source>
         <translation>Atmosfär</translation>
     </message>
+    <message>
+        <source>Video Bitrate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Audio Bitrate</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WbModel</name>

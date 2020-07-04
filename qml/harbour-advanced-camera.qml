@@ -5,7 +5,7 @@ import "pages"
 
 ApplicationWindow {
     id: window
-
+    property bool loadingComplete: false;
     Settings {
         id: settings
     }
@@ -31,4 +31,8 @@ ApplicationWindow {
 
     allowedOrientations: Orientation.All
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
+
+    Component.onCompleted: {
+        loadingComplete = true;
+    }
 }

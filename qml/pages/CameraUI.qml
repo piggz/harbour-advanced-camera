@@ -159,14 +159,14 @@ Page {
 
         videoRecorder {
             audioSampleRate: 48000
-            audioBitRate: 128000
+            audioBitRate: settings.global.audioBitrate
             audioChannels: 1
             audioCodec: "audio/mpeg, mpegversion=(int)4"
             frameRate: 30
             videoCodec: "video/x-h264"
             mediaContainer: "video/quicktime, variant=(string)iso"
             videoEncodingMode: CameraRecorder.AverageBitRateEncoding
-            videoBitRate: 12000000
+            videoBitRate: settings.global.videoBitrate
 
             onRecorderStateChanged: {
                 if (camera.videoRecorder.recorderState === CameraRecorder.StoppedState) {

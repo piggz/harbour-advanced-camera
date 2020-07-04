@@ -15,6 +15,8 @@ Item {
         property string captureMode: "image"
         property bool swapZoomControl: false
         property string gridMode: "none"
+        property int videoBitrate: 12800000
+        property int audioBitrate: 128000
 
         ConfigurationGroup {
             id: modeSettings

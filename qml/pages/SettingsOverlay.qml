@@ -251,6 +251,20 @@ Item {
         clip: true
         rotation: iconRotation
 
+        onVisibleChanged: {
+            if (loadingComplete) {
+                if (visible) {
+                    console.log("loading...")
+                    sldAudioBitrate.value = settings.global.audioBitrate;
+                    sldVideoBitrate.value = settings.global.videoBitrate;
+                } else {
+                    console.log("saving...")
+                    settings.global.audioBitrate = sldAudioBitrate.value;
+                    settings.global.videoBitrate = sldVideoBitrate.value;
+                }
+            }
+        }
+
         Rectangle {
             anchors.fill: parent
             color: Theme.colorScheme === Theme.LightOnDark ? "black" : "white"
@@ -315,6 +329,32 @@ Item {
                                 }
                             }
                         }
+                    }
+                    Slider {
+                        id: sldVideoBitrate
+                        label: qsTr("Video Bitrate")
+                        width: parent.width
+                        minimumValue: 6400000
+                        maximumValue: 32000000
+                        stepSize: 800000
+                        Text {
+                            text: sldVideoBitrate.value
+                            anchors.centerIn: parent
+                        }
+
+                    }
+                    Slider {
+                        id: sldAudioBitrate
+                        label: qsTr("Audio Bitrate")
+                        width: parent.width
+                        minimumValue: 64000
+                        maximumValue: 320000
+                        stepSize: 8-000
+                        Text {
+                            text: sldAudioBitrate.value
+                            anchors.centerIn: parent
+                        }
+
                     }
                 }
             }
