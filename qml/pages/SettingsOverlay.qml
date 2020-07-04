@@ -13,7 +13,7 @@ Item {
                              || panelWhiteBalance.expanded
                              || panelFocus.expanded || panelIso.expanded
                              || panelResolution.expanded
-                             || panelGeneral.expanded
+                             || panelStorage.expanded || panelGeneral.expanded
 
     Item {
         id: buttonPanel
@@ -113,6 +113,20 @@ Item {
                     panelIso.show()
                 }
             }
+
+            RoundButton {
+                id: btnStorage
+                objectName: "btnStorage"
+                icon.color: Theme.primaryColor
+                icon.rotation: iconRotation
+                image: "image://theme/icon-m-sd-card"
+
+                onClicked: {
+                    modelStorage.scan("/media/sdcard")
+                    panelStorage.show()
+                }
+            }
+
             RoundButton {
                 id: btnGeneral
                 icon.color: Theme.primaryColor
@@ -239,6 +253,24 @@ Item {
         }
     }
 
+    DockedListView {
+        id: panelStorage
+        model: modelStorage
+        selectedItem: settings.global.storagePath
+        rotation: iconRotation
+        width: (iconRotation === 90
+                || iconRotation === 270) ? parent.height : parent.width / 2
+
+        onClicked: {
+            settings.global.storagePath = value
+            hide()
+        }
+
+        Component.onCompleted: {
+            restoreStorage()
+        }
+    }
+
     DockedPanel {
         id: panelGeneral
         modal: true
@@ -305,7 +337,7 @@ Item {
                             }]
 
                         function findIndex(id) {
-                            for (; i < grids.length; i++) {
+                            for (var i = 0; i < grids.length; i++) {
                                 if (grids[i]["id"] === id) {
                                     return i
                                 }
@@ -560,5 +592,29 @@ Item {
         panelIso.hide()
         panelResolution.hide()
         panelWhiteBalance.hide()
+        panelStorage.hide()
+    }
+
+    function restoreStorage() {
+        // Restore selection to saved setting, fallback to internal otherwise
+        for (var i = 0; i < modelStorage.rowCount(); i++) {
+            var name = modelStorage.getName(i)
+            var path = modelStorage.getPath(i)
+            if (path === settings.global.storagePath) {
+                settings.global.storagePath = path
+                console.log("Selecting", name, "->", path)
+                return i
+            }
+        }
+        console.log("Defaulting to internal storage")
+        settings.global.storagePath = modelStorage.getPath(0)
+    }
+
+    Connections {
+        target: modelStorage
+
+        onModelReset: {
+            restoreStorage()
+        }
     }
 }

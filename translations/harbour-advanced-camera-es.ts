@@ -240,7 +240,7 @@
     <name>GalleryUI</name>
     <message>
         <source>Deleting %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Borrando %1</translation>
     </message>
 </context>
 <context>
@@ -254,23 +254,30 @@
     <name>SettingsOverlay</name>
     <message>
         <source>Grid:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuadrícula:</translation>
     </message>
     <message>
         <source>Swap zoom controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Invertir controles de zoom</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished">Ninguno</translation>
+        <translation>Ninguno</translation>
     </message>
     <message>
         <source>Thirds</source>
-        <translation type="unfinished"></translation>
+        <translation>Tres partes</translation>
     </message>
     <message>
         <source>Ambience</source>
-        <translation type="unfinished"></translation>
+        <translation>Ambiente</translation>
+    </message>
+</context>
+<context>
+    <name>StorageModel</name>
+    <message>
+        <source>Internal storage</source>
+        <translation>Almacenamiento interno</translation>
     </message>
     <message>
         <source>Video Bitrate</source>

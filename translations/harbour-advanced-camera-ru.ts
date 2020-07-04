@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="pl_PL">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>CoverPage</name>
     <message>
         <source>Advanced Camera</source>
-        <translation>Advanced Camera</translation>
+        <translation>Улучшенная камера</translation>
     </message>
 </context>
 <context>
     <name>EffectsModel</name>
     <message>
         <source>None</source>
-        <translation>Nie wybrano</translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <source>Aqua</source>
-        <translation>Woda</translation>
+        <translation>Под водой</translation>
     </message>
     <message>
         <source>Blackboard</source>
-        <translation>Tablica</translation>
+        <translation>Черная доска</translation>
     </message>
     <message>
         <source>Grayscale</source>
-        <translation>Skala szarości</translation>
+        <translation>Черно-белый</translation>
     </message>
     <message>
         <source>Negative</source>
-        <translation>Negatyw</translation>
+        <translation>Негатив</translation>
     </message>
     <message>
         <source>Posterize</source>
-        <translation>Posteryzuj</translation>
+        <translation>Постеризация</translation>
     </message>
     <message>
         <source>Sepia</source>
-        <translation>Sepia</translation>
+        <translation>Сепия</translation>
     </message>
     <message>
         <source>Solarize</source>
-        <translation>Rozświetl</translation>
+        <translation>Соляризация</translation>
     </message>
     <message>
         <source>Whiteboard</source>
-        <translation>Biała tablica</translation>
+        <translation>Белая доска</translation>
     </message>
     <message>
         <source>Emboss</source>
-        <translation>Płaskorzeźba</translation>
+        <translation>Рельеф</translation>
     </message>
     <message>
         <source>Sketch</source>
-        <translation>Rysunek</translation>
+        <translation>Рисунок</translation>
     </message>
     <message>
         <source>Neon</source>
-        <translation>Neon</translation>
+        <translation>Неоновое свечение</translation>
     </message>
 </context>
 <context>
     <name>ExposureModel</name>
     <message>
         <source>Automatic Scene Detection</source>
-        <translation>Automatyczne wykrywanie otoczenia</translation>
+        <translation>Обнаружение сцены</translation>
     </message>
     <message>
         <source>Augmented Reality</source>
-        <translation>Rzeczywistość rozszerzona</translation>
+        <translation>Дополненная реальность</translation>
     </message>
     <message>
         <source>Backlight</source>
-        <translation>Podświetlenie</translation>
+        <translation>Задний Свет</translation>
     </message>
     <message>
         <source>Barcode</source>
-        <translation>Kod kreskowy</translation>
+        <translation>Штрихкод</translation>
     </message>
     <message>
         <source>Beach</source>
-        <translation>Plaża</translation>
+        <translation>Пляж</translation>
     </message>
     <message>
         <source>Candlelight</source>
-        <translation>Światło świecy</translation>
+        <translation>При свечах</translation>
     </message>
     <message>
         <source>Fireworks</source>
-        <translation>Sztuczne ognie</translation>
+        <translation>Салют</translation>
     </message>
     <message>
         <source>Flowers</source>
-        <translation>Kwiaty</translation>
+        <translation>Цветы</translation>
     </message>
     <message>
         <source>HDR</source>
@@ -99,225 +99,232 @@
     </message>
     <message>
         <source>Landscape</source>
-        <translation>Krajobraz</translation>
+        <translation>Пейзаж</translation>
     </message>
     <message>
         <source>Large Aperture</source>
-        <translation>Duża przysłona</translation>
+        <translation>Большая апертура</translation>
     </message>
     <message>
         <source>Night</source>
-        <translation>Noc</translation>
+        <translation>Ночь</translation>
     </message>
     <message>
         <source>Night Portrait</source>
-        <translation>Nocny portret</translation>
+        <translation>Ночной портрет</translation>
     </message>
     <message>
         <source>Party</source>
-        <translation>Przyjecie</translation>
+        <translation>Вечеринка</translation>
     </message>
     <message>
         <source>Portrait</source>
-        <translation>Portret</translation>
+        <translation>Портрет</translation>
     </message>
     <message>
         <source>Small Aperture</source>
-        <translation>Mała przysłona</translation>
+        <translation>Малая апертура</translation>
     </message>
     <message>
         <source>Snow</source>
-        <translation>Śnieg</translation>
+        <translation>Снег</translation>
     </message>
     <message>
         <source>Sports</source>
-        <translation>Sporty</translation>
+        <translation>Спорт</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>Reflektor</translation>
+        <translation>Прожектор</translation>
     </message>
     <message>
         <source>Steady Photo</source>
-        <translation>Statyczne zdjęcie</translation>
+        <translation>Неподвижный предмет</translation>
     </message>
     <message>
         <source>Sunset</source>
-        <translation>Zachód słońca</translation>
+        <translation>Закат</translation>
     </message>
     <message>
         <source>Theatre</source>
-        <translation>Teatr</translation>
+        <translation>Театр</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation>Akcja</translation>
+        <translation>Движение</translation>
     </message>
     <message>
         <source>Off</source>
-        <translation>Wyłaczone</translation>
+        <translation>Выкл.</translation>
     </message>
 </context>
 <context>
     <name>FlashModel</name>
     <message>
         <source>Unknown</source>
-        <translation>Nieznany</translation>
+        <translation>Неизвестно</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Automatyczny</translation>
+        <translation>Автоматически</translation>
     </message>
     <message>
         <source>Off</source>
-        <translation>Wyłaczony</translation>
+        <translation>Выкл.</translation>
     </message>
     <message>
         <source>On</source>
-        <translation>Właczony</translation>
+        <translation>Вкл.</translation>
     </message>
     <message>
         <source>Red Eye Reduction</source>
-        <translation>Reducja czerwonych oczu</translation>
+        <translation>Убрать эффект красных глаз</translation>
     </message>
     <message>
         <source>Fill</source>
-        <translation>Nasycenie</translation>
+        <translation>Равномерный свет</translation>
     </message>
     <message>
         <source>Torch</source>
-        <translation>Latarka</translation>
+        <translation>Факел</translation>
     </message>
     <message>
         <source>Video Light</source>
-        <translation>Światło filmu</translation>
+        <translation>Видеосвет</translation>
     </message>
     <message>
         <source>Slow Sync Front Curtain</source>
-        <translation>Przednia kurtyna powolna synchronizacja</translation>
+        <translation>Замедленная синхронизация по передней шторке</translation>
     </message>
     <message>
         <source>Slow Sync Rear Curtain</source>
-        <translation>Tylna kurtyna powolna synchronizacja</translation>
+        <translation>Замедленная синхронизация по задней шторке</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation>Manualnie</translation>
+        <translation>Вручную</translation>
     </message>
 </context>
 <context>
     <name>FocusModel</name>
     <message>
         <source>Manual</source>
-        <translation>Manualnie</translation>
+        <translation>Ручной</translation>
     </message>
     <message>
         <source>Hyperfocal</source>
-        <translation>Hyperfocal</translation>
+        <translation>Гиперфокальный</translation>
     </message>
     <message>
         <source>Infinity</source>
-        <translation>Nieskończoność</translation>
+        <translation>Бесконечность</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Auto</translation>
+        <translation>Автоматический</translation>
     </message>
     <message>
         <source>Continuous</source>
-        <translation>Ciągły</translation>
+        <translation>Постоянный</translation>
     </message>
     <message>
         <source>Macro</source>
-        <translation>Makro</translation>
+        <translation>Макро</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Nieznany</translation>
+        <translation>Неизвестно</translation>
     </message>
 </context>
 <context>
     <name>GalleryUI</name>
     <message>
         <source>Deleting %1</source>
-        <translation>Usuwanie %1</translation>
+        <translation>Удаление %1</translation>
     </message>
 </context>
 <context>
     <name>IsoModel</name>
     <message>
         <source>Auto ISO</source>
-        <translation>Auto ISO</translation>
+        <translation>Авто ISO</translation>
     </message>
 </context>
 <context>
     <name>SettingsOverlay</name>
     <message>
-        <source>Grid:</source>
-        <translation>Siatka:</translation>
-    </message>
-    <message>
         <source>Swap zoom controls</source>
-        <translation>Zamień elementy sterujące powiększeniem</translation>
+        <translation>Поменять управление приближением</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Nie wybrano</translation>
+        <translation>нет</translation>
     </message>
     <message>
         <source>Thirds</source>
-        <translation>3x3</translation>
+        <translation>по третям</translation>
     </message>
     <message>
         <source>Ambience</source>
-        <translation>Atmosfera</translation>
+        <translation>по краям</translation>
+    </message>
+    <message>
+        <source>Grid:</source>
+        <translation>Сетка:</translation>
+    </message>
+</context>
+<context>
+    <name>StorageModel</name>
+    <message>
+        <source>Internal storage</source>
+        <translation>Встроенная память</translation>
     </message>
 </context>
 <context>
     <name>WbModel</name>
     <message>
         <source>Auto</source>
-        <translation>Auto</translation>
+        <translation>Авто</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation>Manualnie</translation>
+        <translation>Вручную</translation>
     </message>
     <message>
         <source>Sunlight</source>
-        <translation>Światło słoneczne</translation>
+        <translation>Солнце</translation>
     </message>
     <message>
         <source>Cloudy</source>
-        <translation>Pochmurno</translation>
+        <translation>Пасмурно</translation>
     </message>
     <message>
         <source>Shade</source>
-        <translation>Cień</translation>
+        <translation>Тень</translation>
     </message>
     <message>
         <source>Tungsten</source>
-        <translation>Wolfram</translation>
+        <translation>Лампа накаливания</translation>
     </message>
     <message>
         <source>Flash</source>
-        <translation>Flesz</translation>
+        <translation>Вспышка</translation>
     </message>
     <message>
         <source>Sunset</source>
-        <translation>Zachód słońca</translation>
+        <translation>Закат</translation>
     </message>
     <message>
         <source>Warm Fluorescent</source>
-        <translation>Ciepły fluorescencyjny</translation>
+        <translation>Флуорисцентная теплая лампа</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Nieznany</translation>
+        <translation>Неизвестно</translation>
     </message>
     <message>
         <source>Fluorescent</source>
-        <translation>Fluorescencyjny</translation>
+        <translation>Флуорисцентная лампа</translation>
     </message>
 </context>
 </TS>

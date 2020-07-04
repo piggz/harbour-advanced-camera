@@ -282,6 +282,13 @@
     </message>
 </context>
 <context>
+    <name>StorageModel</name>
+    <message>
+        <source>Internal storage</source>
+        <translation>Intern lagring</translation>
+    </message>
+</context>
+<context>
     <name>WbModel</name>
     <message>
         <source>Auto</source>
