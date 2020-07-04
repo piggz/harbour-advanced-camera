@@ -21,15 +21,33 @@ Page {
     property bool _manualModeSelected: false
     readonly property int zoomStepSize: 5
     property int controlsRotation: 0
+    property int _pictureRotation: Screen.primaryOrientation == Qt.PortraitOrientation ? 0 : 90
+    // Use easy device orientation values
+    // 0=unknown, 1=portrait, 2=portrait inverted, 3=landscape, 4=landscape inverted
+    property int _orientation: OrientationReading.TopUp
 
-    // Use Orientation Sensor to sense orientation change
     OrientationSensor {
-        id: orientationSensor
+    id: orientationSensor
         active: true
+
         onReadingChanged: {
             if (reading.orientation >= OrientationReading.TopUp
                     && reading.orientation <= OrientationReading.RightUp) {
-                camera._orientation = reading.orientation
+                _orientation = reading.orientation
+                console.log("Orientation:", reading.orientation, _orientation);
+            }
+
+            switch (reading.orientation) {
+            case OrientationReading.TopUp:
+                _pictureRotation = 0; break
+            case OrientationReading.TopDown:
+                _pictureRotation = 180; break
+            case OrientationReading.LeftUp:
+                _pictureRotation = 270; break
+            case OrientationReading.RightUp:
+                _pictureRotation = 90; break
+            default:
+                // Keep device orientation at previous state
             }
         }
     }
@@ -64,25 +82,25 @@ Page {
     }
 
     RotationAnimation on controlsRotation {
-        running: camera._orientation === OrientationReading.TopUp
+        running: _orientation === OrientationReading.TopUp
         to: 270
         duration: 200
         direction: RotationAnimation.Shortest
     }
     RotationAnimation on controlsRotation {
-        running: camera._orientation === OrientationReading.TopDown
+        running: _orientation === OrientationReading.TopDown
         to: 90
         duration: 200
         direction: RotationAnimation.Shortest
     }
     RotationAnimation on controlsRotation {
-        running: camera._orientation === OrientationReading.LeftUp
+        running: _orientation === OrientationReading.LeftUp
         to: 180
         duration: 200
         direction: RotationAnimation.Shortest
     }
     RotationAnimation on controlsRotation {
-        running: camera._orientation === OrientationReading.RightUp
+        running: _orientation === OrientationReading.RightUp
         to: 0
         duration: 200
         direction: RotationAnimation.Shortest
@@ -110,12 +128,8 @@ Page {
         imageProcessing.contrast: 1
         imageProcessing.sharpeningLevel: 1
 
-        // Use easy device orientation values
-        // 0=unknown, 1=portrait, 2=portrait inverted, 3=landscape, 4=landscape inverted
-        property int _orientation: OrientationReading.TopUp
-
         // Write Orientation to metadata
-        metaData.orientation: _rotationValues[deviceId][_orientation]
+        metaData.orientation:  camera.position === Camera.FrontFace ? (720 + camera.orientation - _pictureRotation) % 360 : (720 + camera.orientation + _pictureRotation) % 360
 
         exposure {
             //exposureCompensation: -1.0
@@ -218,6 +232,10 @@ Page {
                 lblResolution.forceUpdate = !lblResolution.forceUpdate
             }
         }
+
+        onOrientationChanged: {
+            console.log("Orientation:", orientation);
+        }
     }
 
     Item {
@@ -250,13 +268,13 @@ Page {
             stepSize: zoomStepSize
             rotation: {
                 // Zoom slider should be slide up to zoom in
-                if (camera._orientation === OrientationReading.TopUp)
+                if (_orientation === OrientationReading.TopUp)
                     return -180
-                else if (camera._orientation === OrientationReading.TopDown)
+                else if (_orientation === OrientationReading.TopDown)
                     return 0
-                else if (camera._orientation === OrientationReading.LeftUp)
+                else if (_orientation === OrientationReading.LeftUp)
                     return 180
-                else if (camera._orientation === OrientationReading.RightUp)
+                else if (_orientation === OrientationReading.RightUp)
                     return 0
             }
 
@@ -314,32 +332,32 @@ Page {
 
         Row {
             anchors.horizontalCenter: {
-                if ((camera._orientation === OrientationReading.TopUp)
-                        || (camera._orientation === OrientationReading.TopDown))
+                if ((_orientation === OrientationReading.TopUp)
+                        || (_orientation === OrientationReading.TopDown))
                     return parent.right
                 else
-                    parent.horizontalCenter
+                    return parent.horizontalCenter
             }
 
             anchors.verticalCenter: {
-                if ((camera._orientation === OrientationReading.TopUp)
-                        || (camera._orientation === OrientationReading.TopDown))
+                if ((_orientation === OrientationReading.TopUp)
+                        || (_orientation === OrientationReading.TopDown))
                     return parent.verticalCenter
                 else
-                    parent.top
+                    return parent.top
             }
 
             anchors.verticalCenterOffset: {
-                if ((camera._orientation === OrientationReading.TopUp)
-                        || (camera._orientation === OrientationReading.TopDown))
+                if ((_orientation === OrientationReading.TopUp)
+                        || (_orientation === OrientationReading.TopDown))
                     return 0
                 else
                     return height
             }
 
             anchors.horizontalCenterOffset: {
-                if ((camera._orientation === OrientationReading.TopUp)
-                        || (camera._orientation === OrientationReading.TopDown))
+                if ((_orientation === OrientationReading.TopUp)
+                        || (_orientation === OrientationReading.TopDown))
                     return -(btnCapture.width + height)
                 else
                     return 0
