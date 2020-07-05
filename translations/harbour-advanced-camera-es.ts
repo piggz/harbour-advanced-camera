@@ -272,13 +272,6 @@
         <source>Ambience</source>
         <translation>Ambiente</translation>
     </message>
-</context>
-<context>
-    <name>StorageModel</name>
-    <message>
-        <source>Internal storage</source>
-        <translation>Almacenamiento interno</translation>
-    </message>
     <message>
         <source>Video Bitrate</source>
         <translation type="unfinished"></translation>
@@ -286,6 +279,13 @@
     <message>
         <source>Audio Bitrate</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>StorageModel</name>
+    <message>
+        <source>Internal storage</source>
+        <translation>Almacenamiento interno</translation>
     </message>
 </context>
 <context>
