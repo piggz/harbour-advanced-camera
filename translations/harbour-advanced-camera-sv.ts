@@ -274,11 +274,11 @@
     </message>
     <message>
         <source>Video Bitrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Bithastighet Video</translation>
     </message>
     <message>
         <source>Audio Bitrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Bithastighet Ljud</translation>
     </message>
 </context>
 <context>
