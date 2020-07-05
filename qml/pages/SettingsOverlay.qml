@@ -50,6 +50,7 @@ Item {
                 icon.color: Theme.primaryColor
                 icon.rotation: iconRotation
                 image: effectIcon()
+                visible: modelEffects.rowCount > 1
 
                 onClicked: {
                     panelEffects.show()
@@ -60,6 +61,7 @@ Item {
                 image: sceneModeIcon()
                 icon.color: Theme.primaryColor
                 icon.rotation: iconRotation
+                visible: modelExposure.rowCount > 1
 
                 onClicked: {
                     panelExposure.show()
@@ -69,6 +71,7 @@ Item {
                 id: btnFocus
                 image: focusIcon()
                 icon.rotation: iconRotation
+                visible: modelFocus.rowCount > 1
 
                 onClicked: {
                     panelFocus.show()
@@ -79,6 +82,7 @@ Item {
                 icon.color: Theme.primaryColor
                 icon.rotation: iconRotation
                 image: "../pics/icon-m-resolution.png"
+                visible: modelResolution.rowCount > 1
 
                 onClicked: {
                     panelResolution.show()
@@ -88,6 +92,7 @@ Item {
                 id: btnWhiteBalance
                 image: whiteBalanceIcon()
                 icon.rotation: iconRotation
+                visible: modelWhiteBalance.rowCount > 1
 
                 onClicked: {
                     panelWhiteBalance.show()
@@ -97,6 +102,7 @@ Item {
                 id: btnFlash
                 image: flashIcon()
                 icon.rotation: iconRotation
+                visible: modelFlash.rowCount > 1
 
                 onClicked: {
                     panelFlash.show()
@@ -108,6 +114,7 @@ Item {
                 icon.color: Theme.primaryColor
                 icon.rotation: iconRotation
                 image: isoIcon()
+                visible: modelIso.rowCount > 1
 
                 onClicked: {
                     panelIso.show()
@@ -120,6 +127,7 @@ Item {
                 icon.color: Theme.primaryColor
                 icon.rotation: iconRotation
                 image: "image://theme/icon-m-sd-card"
+                visible: modelStorage.rowCount > 1
 
                 onClicked: {
                     modelStorage.scan("/media/sdcard")
@@ -597,7 +605,7 @@ Item {
 
     function restoreStorage() {
         // Restore selection to saved setting, fallback to internal otherwise
-        for (var i = 0; i < modelStorage.rowCount(); i++) {
+        for (var i = 0; i < modelStorage.rowCount; i++) {
             var name = modelStorage.getName(i)
             var path = modelStorage.getPath(i)
             if (path === settings.global.storagePath) {
