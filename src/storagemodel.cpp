@@ -60,4 +60,5 @@ void StorageModel::scan(const QString &baseDir)
         m_storage.append(Storage(dir, baseDir + "/" + dir));
     }
     endResetModel();
+    emit rowCountChanged();
 }

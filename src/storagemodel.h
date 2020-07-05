@@ -17,6 +17,8 @@ private:
 class StorageModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(int rowCount READ rowCount NOTIFY rowCountChanged)
+
 public:
     enum StorageRoles
     {
@@ -26,7 +28,7 @@ public:
 
     StorageModel();
     virtual QHash<int, QByteArray> roleNames() const;
-    virtual int rowCount(const QModelIndex &parent) const;
+    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
     virtual QVariant data(const QModelIndex &index, int role) const;
     Q_INVOKABLE QVariant getName(int index) const { return m_storage.at(index).name(); }
     Q_INVOKABLE QVariant getPath(int index) const { return m_storage.at(index).path(); }
@@ -34,6 +36,10 @@ public slots:
     void scan(const QString &baseDir);
 private:
     QList<Storage> m_storage;
+
+signals:
+    void rowCountChanged();
+
 };
 
 #endif // STORAGEMODEL_H

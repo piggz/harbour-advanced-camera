@@ -108,6 +108,7 @@ void ResolutionModel::setMode(const QString &mode)
     }
 
     endResetModel();
+    emit rowCountChanged();
 
     if (m_resolutions.size() > 0) {
         qDebug() << "Supported " << mode << " resolutions:" << m_resolutions;

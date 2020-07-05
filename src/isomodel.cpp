@@ -50,6 +50,7 @@ void IsoModel::setCamera(QObject *camera)
             qDebug() << "Found support for" << isoName(supportedIsoRange[i]);
         }
         endResetModel();
+        emit rowCountChanged();
 
         if (m_isoModes.size() == 0) {
             qDebug() << "No ISO modes found";

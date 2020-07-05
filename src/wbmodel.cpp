@@ -50,6 +50,7 @@ void WbModel::setCamera(QObject *camera)
             }
         }
         endResetModel();
+        emit rowCountChanged();
 
         if (m_wbModes.size() == 0) {
             qDebug() << "No white balance modes found";

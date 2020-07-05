@@ -54,6 +54,7 @@ void FocusModel::setCamera(QObject *camera)
             m_focusModes[QCameraFocus::ManualFocus] = focusName(QCameraFocus::ManualFocus);
         }
         endResetModel();
+        emit rowCountChanged();
 
         if (m_focusModes.size() == 0) {
             qDebug() << "No focus modes found";

@@ -9,6 +9,7 @@
 class ResolutionModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(int rowCount READ rowCount NOTIFY rowCountChanged)
 
 public:
 
@@ -21,7 +22,7 @@ public:
     ResolutionModel();
 
     virtual QHash<int, QByteArray> roleNames() const;
-    virtual int rowCount(const QModelIndex &parent) const;
+    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
     virtual QVariant data(const QModelIndex &index, int role) const;
 
     Q_INVOKABLE QSize sizeToRatio(const QSize &siz) const;
@@ -36,6 +37,9 @@ private:
     QList<QSize> m_supportedImageResolutions;
     QList<QSize> m_supportedVideoResolutions;
     QString m_mode = "image";
+
+signals:
+    void rowCountChanged();
 };
 
 #endif // RESOLUTIONMODEL_H

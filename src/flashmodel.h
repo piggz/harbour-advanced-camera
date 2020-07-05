@@ -8,6 +8,7 @@
 class FlashModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(int rowCount READ rowCount NOTIFY rowCountChanged)
 
 public:
 
@@ -19,7 +20,7 @@ public:
     FlashModel();
 
     virtual QHash<int, QByteArray> roleNames() const;
-    virtual int rowCount(const QModelIndex &parent) const;
+    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
     virtual QVariant data(const QModelIndex &index, int role) const;
 
     Q_INVOKABLE void setCamera(QObject *camera);
@@ -29,6 +30,9 @@ private:
     QCamera *m_camera = nullptr;
 
     QString flashName(QCameraExposure::FlashMode flash) const;
+
+signals:
+    void rowCountChanged();
 };
 
 #endif // FOCUSMODEL_H

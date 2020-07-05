@@ -50,6 +50,7 @@ void EffectsModel::setCamera(QObject *camera)
             }
         }
         endResetModel();
+        emit rowCountChanged();
 
         if (m_effects.size() == 0) {
             qDebug() << "No effect modes found";

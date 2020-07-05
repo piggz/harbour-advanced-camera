@@ -50,6 +50,7 @@ void FlashModel::setCamera(QObject *camera)
             }
         }
         endResetModel();
+        emit rowCountChanged();
 
         if (m_flashModes.size() == 0) {
             qDebug() << "No flash modes found";

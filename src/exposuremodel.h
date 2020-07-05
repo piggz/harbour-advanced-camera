@@ -8,6 +8,7 @@
 class ExposureModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(int rowCount READ rowCount NOTIFY rowCountChanged)
 
 public:
 
@@ -19,7 +20,7 @@ public:
     ExposureModel();
 
     virtual QHash<int, QByteArray> roleNames() const;
-    virtual int rowCount(const QModelIndex &parent) const;
+    virtual int rowCount(const QModelIndex &parent = QModelIndex()) const;
     virtual QVariant data(const QModelIndex &index, int role) const;
 
     Q_INVOKABLE void setCamera(QObject *camera);
@@ -30,6 +31,9 @@ private:
     QCamera *m_camera = nullptr;
 
     QString exposureName(QCameraExposure::ExposureMode e) const;
+
+signals:
+    void rowCountChanged();
 };
 
 #endif // EFFECTSMODEL_H

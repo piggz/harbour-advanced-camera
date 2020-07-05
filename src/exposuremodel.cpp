@@ -49,6 +49,7 @@ void ExposureModel::setCamera(QObject *camera)
             }
         }
         endResetModel();
+        emit rowCountChanged();
 
         if (m_exposures.size() == 0) {
             qDebug() << "No exposure modes found";
