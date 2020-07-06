@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+　　<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
@@ -274,18 +274,18 @@
     </message>
     <message>
         <source>Video Bitrate</source>
-        <translation type="unfinished"></translation>
+        <translation>视频码率</translation>
     </message>
     <message>
         <source>Audio Bitrate</source>
-        <translation type="unfinished"></translation>
+        <translation>音频码率</translation>
     </message>
 </context>
 <context>
     <name>StorageModel</name>
     <message>
         <source>Internal storage</source>
-        <translation type="unfinished"></translation>
+        <translation>内部存储</translation>
     </message>
 </context>
 <context>
