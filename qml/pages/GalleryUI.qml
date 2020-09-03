@@ -18,6 +18,10 @@ Page {
 
     backNavigation: false
 
+    function isVideo(idx) {
+        return fileList.get(idx).isVideo
+    }
+
     function removeFile(idx) {
         var path = fileList.get(idx).filePath
         console.log("Removing", path)
@@ -56,6 +60,30 @@ Page {
         onClicked: {
             console.log("Clicked close button")
             pageStack.pop()
+        }
+    }
+
+    RoundButton {
+        id: btnAbout
+
+        visible: showButtons
+        icon.source: "image://theme/icon-m-about"
+        size: Theme.itemSizeMedium
+
+        anchors {
+            top: parent.top
+            topMargin: Theme.paddingMedium
+            left: parent.left
+            leftMargin: Theme.paddingMedium
+        }
+
+        onClicked: {
+            var filePath = fileList.get(gallery.currentIndex).filePath
+            var mediaPage = isVideo(gallery.currentIndex) ? "AboutVideo.qml" : "AboutImage.qml"
+            pageStack.push(Qt.resolvedUrl(mediaPage), {
+                               "filePath": filePath,
+                               "fileName": getFileName(gallery.currentIndex),
+                           })
         }
     }
 
@@ -103,7 +131,7 @@ Page {
 
             onClicked: {
                 var filePath = fileList.get(gallery.currentIndex).filePath
-                var mimeType = gallery.currentIndex.isVideo ? "video/mp4" : "image/jpeg"
+                var mimeType = isVideo(gallery.currentIndex) ? "video/mp4" : "image/jpeg"
                 pageStack.push("Sailfish.TransferEngine.SharePage", {
                                    "source": filePath,
                                    "mimeType": mimeType

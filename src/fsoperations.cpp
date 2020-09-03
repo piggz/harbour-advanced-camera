@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QStandardPaths>
 
 FSOperations::FSOperations(QObject *parent) : QObject(parent)
@@ -41,4 +42,32 @@ bool FSOperations::createFolder(const QString &path)
         return dir.mkpath(".");
     }
     return true;
+}
+
+qint64 FSOperations::getFileSize(const QString &path)
+{
+    QFileInfo info(path);
+    if (info.exists())
+        return info.size();
+    return 0;
+}
+
+QString FSOperations::getFileSizeHuman(const QString &path)
+{
+    float num = (float)getFileSize(path);
+    QStringList list;
+    list << "KiB" << "MiB" << "GiB" << "TiB";
+
+    QStringListIterator i(list);
+    QString unit("B");
+
+    if (num < 1024.0)
+        return QString().setNum(num, 'f', 0) + " " + unit;
+
+    while(num >= 1024.0 && i.hasNext())
+     {
+        unit = i.next();
+        num /= 1024.0;
+    }
+    return QString().setNum(num, 'f', 2) + " " + unit;
 }

@@ -19,6 +19,8 @@
 #include "fsoperations.h"
 #include "resourcehandler.h"
 #include "storagemodel.h"
+#include "exifmodel.h"
+#include "metadatamodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -41,6 +43,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<WbModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "WhiteBalanceModel");
     qmlRegisterType<FocusModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "FocusModel");
     qmlRegisterType<FlashModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "FlashModel");
+    qmlRegisterType<ExifModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "ExifModel");
+    qmlRegisterType<MetadataModel>("uk.co.piggz.harbour_advanced_camera", 1, 0, "MetadataModel");
 
     ResolutionModel resolutionModel;
     QSortFilterProxyModel sortedResolutionModel;

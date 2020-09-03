@@ -11,6 +11,8 @@ public:
     Q_INVOKABLE bool deleteFile(const QString &path);
     Q_INVOKABLE QString writableLocation(const QString &type, const QString &baseDir);
     Q_INVOKABLE bool createFolder(const QString &path);
+    Q_INVOKABLE qint64 getFileSize(const QString &path);
+    Q_INVOKABLE QString getFileSizeHuman(const QString &path);
 signals:
     void rescan(const QString& dir);
 };
