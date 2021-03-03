@@ -29,6 +29,7 @@ SOURCES += src/harbour-advanced-camera.cpp \
     src/storagemodel.cpp
 
 DISTFILES += rpm/harbour-advanced-camera.changes.in \
+    README.md \
     rpm/harbour-advanced-camera.changes.run.in \
     rpm/harbour-advanced-camera.spec \
     rpm/harbour-advanced-camera.yaml \
