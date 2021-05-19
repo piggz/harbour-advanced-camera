@@ -314,6 +314,47 @@ Page {
             onClicked: doShutter()
         }
 
+
+        RoundButton {
+            id: teleLense
+            image: camera.deviceId == "1" ? "../pics/icon-m-tele-lense-active.png" : "../pics/icon-m-tele-lense.png"
+            size: Theme.itemSizeSmall
+            icon.anchors.margins: Theme.paddingSmall
+            onClicked: if (settings.global.cameraId != "1") { switchCamera("1")}
+            anchors.right: btnCapture.left
+            anchors.rightMargin: Theme.paddingLarge * 1.337
+            anchors.bottom: wideLense.top
+            anchors.bottomMargin: Theme.paddingSmall
+            rotation: page.controlsRotation
+            visible: checkIfCamExists("1") && (camera.videoRecorder.recorderStatus !== CameraRecorder.RecordingStatus) && settings.global.cameraCount > 3
+        }
+        RoundButton {
+            id: wideLense
+            image: camera.deviceId == "0" ? "../pics/icon-m-wide-lense-active.png" : "../pics/icon-m-wide-lense.png"
+            size: Theme.itemSizeSmall
+            icon.anchors.margins: Theme.paddingSmall
+            onClicked: if (settings.global.cameraId != "0") { switchCamera("0")}
+            anchors.right: btnCapture.left
+            anchors.rightMargin: Theme.paddingLarge * 1.337
+            anchors.verticalCenter: btnCapture.verticalCenter
+            rotation: page.controlsRotation
+            visible: checkIfCamExists("0") && (camera.videoRecorder.recorderStatus !== CameraRecorder.RecordingStatus) && settings.global.cameraCount > 3
+        }
+        RoundButton {
+            id: uwideLense
+            image: camera.deviceId == "2" ? "../pics/icon-m-uwide-lense-active.png" : "../pics/icon-m-uwide-lense.png"
+            size: Theme.itemSizeSmall
+            icon.anchors.margins: Theme.paddingSmall
+            onClicked: if (settings.global.cameraId != "2") { switchCamera("2")}
+            anchors.right: btnCapture.left
+            anchors.rightMargin: Theme.paddingLarge * 1.337
+            anchors.top: wideLense.bottom
+            anchors.topMargin: Theme.paddingSmall
+            rotation: page.controlsRotation
+            visible: checkIfCamExists("2") && (camera.videoRecorder.recorderStatus !== CameraRecorder.RecordingStatus) && settings.global.cameraCount > 3
+        }
+
+
         Rectangle {
             id: rectFlash
             anchors.fill: parent
@@ -415,6 +456,7 @@ Page {
             icon.source: "image://theme/icon-camera-switch"
             visible: settings.global.cameraCount > 1
             icon.rotation: page.controlsRotation
+            property string prevCamId
             anchors {
                 top: parent.top
                 topMargin: Theme.paddingMedium
@@ -422,13 +464,26 @@ Page {
                 rightMargin: Theme.paddingMedium
             }
             onClicked: {
-                console.log("Setting temp resolution")
-                camera.imageCapture.setResolution(settings.strToSize("320x240"))
-                camera.stop()
-                _loadParameters = false
-                settings.global.cameraId = settings.global.cameraId
-                        === "primary" ? "secondary" : "primary"
-                tmrDelayedStart.start()
+                if (settings.global.cameraCount > 3) {
+                    if (settings.global.cameraId != "3") {
+                        prevCamId = settings.global.cameraId
+                        switchCamera("3");
+                    }
+                    else {
+                        if (prevCamId != "") switchCamera(prevCamId)
+                        else switchCamera("0")
+                    }
+                }
+                else {
+                    if (settings.global.cameraId != "1") {
+                        prevCamId = settings.global.cameraId
+                        switchCamera("1");
+                    }
+                    else {
+                        if (prevCamId != "") switchCamera(prevCamId)
+                        else switchCamera("0")
+                    }
+                }
             }
         }
 
@@ -796,5 +851,28 @@ Page {
 
     function msToTime(millis) {
         return new Date(millis).toISOString().substr(11, 8)
+    }
+
+    function switchCamera(camId) {
+        console.log("Setting temp resolution")
+        camera.imageCapture.setResolution(settings.strToSize("320x240"))
+        camera.stop()
+        _loadParameters = false
+        if (camId !== "") settings.global.cameraId = camId;
+        else if (parseInt(settings.global.cameraId) + 1 == settings.global.cameraCount) settings.global.cameraId = "0";
+        else settings.global.cameraId = parseInt(settings.global.cameraId) + 1;
+        tmrDelayedStart.start()
+    }
+
+    function checkIfCamExists(camId) {
+        console.log("Check if cam exists: " + camId)
+        var found = false;
+        for(var i = 0; i < QtMultimedia.availableCameras.length; i++) {
+            if(QtMultimedia.availableCameras[i].deviceId === camId)
+                found = true;
+        }
+        if (found) return true;
+        else return false;
+
     }
 }

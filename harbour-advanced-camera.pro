@@ -30,6 +30,12 @@ SOURCES += src/harbour-advanced-camera.cpp \
 
 DISTFILES += rpm/harbour-advanced-camera.changes.in \
     README.md \
+    qml/pics/icon-m-tele-lense-active.png \
+    qml/pics/icon-m-tele-lense.svg \
+    qml/pics/icon-m-uwide-lense-active.png \
+    qml/pics/icon-m-uwide-lense.svg \
+    qml/pics/icon-m-wide-lense-active.png \
+    qml/pics/icon-m-wide-lense.svg \
     rpm/harbour-advanced-camera.changes.run.in \
     rpm/harbour-advanced-camera.spec \
     rpm/harbour-advanced-camera.yaml \
