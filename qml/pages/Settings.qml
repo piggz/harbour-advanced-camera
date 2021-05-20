@@ -11,7 +11,7 @@ Item {
     ConfigurationGroup {
         id: globalSettings
         path: "/uk/co/piggz/harbour-advanced-camera"
-        property int cameraCount: 2
+        property int cameraCount: QtMultimedia.availableCameras.length
         property string cameraId: "primary"
         property string captureMode: "image"
         property bool swapZoomControl: false
