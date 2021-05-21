@@ -13,7 +13,7 @@ Name:       harbour-advanced-camera
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Advanced camera
-Version:    0.8.0
+Version:    0.8.1
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
