@@ -801,12 +801,14 @@ Page {
                 _focusAndSnap = true
                 camera.searchAndLock()
             } else {
-                camera.imageCapture.captureToLocation(
-                            fsOperations.writableLocation(
-                                "image",
-                                settings.global.storagePath) + "/IMG_" + Qt.formatDateTime(
-                                new Date(), "yyyyMMdd_hhmmss") + ".jpg")
-                animFlash.start()
+                if (camera.lockStatus != Camera.Searching || camera.focus.focusMode === Camera.FocusManual) {
+                    camera.imageCapture.captureToLocation(
+                                fsOperations.writableLocation(
+                                    "image",
+                                    settings.global.storagePath) + "/IMG_" + Qt.formatDateTime(
+                                    new Date(), "yyyyMMdd_hhmmss") + ".jpg")
+                    animFlash.start()
+                }
             }
         } else {
             if (camera.videoRecorder.recorderStatus === CameraRecorder.RecordingStatus) {
