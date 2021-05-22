@@ -558,6 +558,7 @@ Page {
                 camera.unlock()
             }
             camera.searchAndLock()
+            if (!_manualModeSelected) focusPointTimer.restart()
         }
     }
 
@@ -671,6 +672,18 @@ Page {
                  && camera.cameraStatus === Camera.UnloadedStatus
         onTriggered: {
             page._cameraReload = false
+        }
+    }
+
+    Timer {
+        id: focusPointTimer
+        interval: 7000
+        onTriggered: {
+            //Set the focus point back to centre
+            camera.focus.setFocusPointMode(Camera.FocusPointAuto)
+            // and unlock camera so AF is working again
+            camera.unlock()
+            if (camera.focus.focusMode === Camera.FocusAuto) camera.searchAndLock()
         }
     }
 
