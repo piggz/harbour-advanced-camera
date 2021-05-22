@@ -27,7 +27,7 @@ Item {
             property int effect: CameraImageProcessing.ColorFilterNone
             property int exposure: Camera.ExposureManual
             property int flash: Camera.FlashOff
-            property int focus: CameraFocus.FocusAuto
+            property int focus: CameraFocus.FocusContinuous
             property int iso: 0
             property string resolution: ""
             property int whiteBalance: CameraImageProcessing.WhiteBalanceAuto
