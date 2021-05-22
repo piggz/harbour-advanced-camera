@@ -744,10 +744,11 @@ Page {
         camera.unlock() // Do not forget to unlock camera when changing focus mode
         settings.mode.focus = focus
 
+        //Set the focus point back to centre
+        camera.focus.setFocusPointMode(Camera.FocusPointAuto)
+
         // Do not lock focus when continuous focus is declared // TODO: We need to allow combination of continous with Auto + Macro
         if (focus !== Camera.FocusContinuous && focus !== Camera.FocusManual) {
-            //Set the focus point back to centre
-            camera.focus.setFocusPointMode(Camera.FocusPointAuto)
             camera.searchAndLock()
         }
     }
