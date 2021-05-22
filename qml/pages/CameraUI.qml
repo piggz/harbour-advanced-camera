@@ -745,7 +745,7 @@ Page {
         settings.mode.focus = focus
 
         // Do not lock focus when continuous focus is declared // TODO: We need to allow combination of continous with Auto + Macro
-        if (focus !== Camera.FocusContinuous || focus !== Camera.FocusManual) {
+        if (focus !== Camera.FocusContinuous && focus !== Camera.FocusManual) {
             //Set the focus point back to centre
             camera.focus.setFocusPointMode(Camera.FocusPointAuto)
             camera.searchAndLock()
