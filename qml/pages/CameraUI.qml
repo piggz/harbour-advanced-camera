@@ -126,6 +126,8 @@ Page {
 
         // Write Orientation to metadata
         metaData.orientation:  camera.position === Camera.FrontFace ? (720 + camera.orientation - _pictureRotation) % 360 : (720 + camera.orientation + _pictureRotation) % 360
+        metaData.cameraManufacturer: CameraManufacturer
+        metaData.cameraModel: CameraPrettyModelName
 
         exposure {
             //exposureCompensation: -1.0
