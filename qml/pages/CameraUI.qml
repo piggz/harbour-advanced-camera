@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtMultimedia 5.6
+import QtPositioning 5.2
 import QtSensors 5.0
 import Nemo.KeepAlive 1.2
 import uk.co.piggz.harbour_advanced_camera 1.0
@@ -54,6 +55,14 @@ Page {
 
     DisplayBlanking {
         preventBlanking: camera.videoRecorder.recorderState === CameraRecorder.RecordingState
+    }
+
+    PositionSource {
+        id: positionSource
+
+        active: settings.global.locationMetadata
+
+        updateInterval: 1000 // ms
     }
 
     // Orientation sensors for primary (back camera) & secondary (front camera)
@@ -128,6 +137,13 @@ Page {
         metaData.orientation:  camera.position === Camera.FrontFace ? (720 + camera.orientation - _pictureRotation) % 360 : (720 + camera.orientation + _pictureRotation) % 360
         metaData.cameraManufacturer: CameraManufacturer
         metaData.cameraModel: CameraPrettyModelName
+
+        metaData.gpsSpeed: settings.global.locationMetadata && positionSource.position.speedValid ? positionSource.speed : null
+        metaData.gpsImgDirection: settings.global.locationMetadata && positionSource.directionValid ? positionSource.direction : null
+
+        metaData.gpsLatitude: settings.global.locationMetadata && positionSource.position.latitudeValid ? positionSource.position.coordinate.latitude : null
+        metaData.gpsLongitude: settings.global.locationMetadata && positionSource.position.longitudeValid ? positionSource.position.coordinate.longitude : null
+        metaData.gpsAltitude: settings.global.locationMetadata && positionSource.position.altitudeValid ? positionSource.position.coordinate.altitude : null
 
         exposure {
             //exposureCompensation: -1.0

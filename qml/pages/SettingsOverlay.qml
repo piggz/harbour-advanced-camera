@@ -396,6 +396,17 @@ Item {
                         }
 
                     }
+                    TextSwitch{
+                        id: locationMetadataSwitch
+                        width: parent.width
+
+                        checked: settings.global.locationMetadata
+                        text: qsTr("Store GPS location to metadata")
+
+                        onCheckedChanged: {
+                            settings.global.locationMetadata = checked;
+                        }
+                    }
                 }
             }
         }
