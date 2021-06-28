@@ -555,8 +555,10 @@ Page {
 
                 camera.focus.focusPointMode = Camera.FocusPointCustom
                 camera.focus.setCustomFocusPoint(focusPoint)
+                camera.unlock()
             }
             camera.searchAndLock()
+            if (!_manualModeSelected) focusPointTimer.restart()
         }
     }
 
@@ -673,6 +675,18 @@ Page {
         }
     }
 
+    Timer {
+        id: focusPointTimer
+        interval: 7000
+        onTriggered: {
+            //Set the focus point back to centre
+            camera.focus.setFocusPointMode(Camera.FocusPointAuto)
+            // and unlock camera so AF is working again
+            camera.unlock()
+            if (camera.focus.focusMode === Camera.FocusAuto) camera.searchAndLock()
+        }
+    }
+
     Keys.onVolumeUpPressed: {
         if (settings.global.swapZoomControl) {
             zoomOut()
@@ -740,11 +754,16 @@ Page {
                 camera.start()
             }
         }
+        camera.unlock() // Do not forget to unlock camera when changing focus mode
         settings.mode.focus = focus
 
         //Set the focus point back to centre
         camera.focus.setFocusPointMode(Camera.FocusPointAuto)
-        camera.searchAndLock()
+
+        // Do not lock focus when continuous focus is declared // TODO: We need to allow combination of continous with Auto + Macro
+        if (focus !== Camera.FocusContinuous && focus !== Camera.FocusManual) {
+            camera.searchAndLock()
+        }
     }
 
     function getNearestViewFinderResolution() {
@@ -795,12 +814,14 @@ Page {
                 _focusAndSnap = true
                 camera.searchAndLock()
             } else {
-                camera.imageCapture.captureToLocation(
-                            fsOperations.writableLocation(
-                                "image",
-                                settings.global.storagePath) + "/IMG_" + Qt.formatDateTime(
-                                new Date(), "yyyyMMdd_hhmmss") + ".jpg")
-                animFlash.start()
+                if (camera.lockStatus != Camera.Searching || camera.focus.focusMode === Camera.FocusManual) {
+                    camera.imageCapture.captureToLocation(
+                                fsOperations.writableLocation(
+                                    "image",
+                                    settings.global.storagePath) + "/IMG_" + Qt.formatDateTime(
+                                    new Date(), "yyyyMMdd_hhmmss") + ".jpg")
+                    animFlash.start()
+                }
             }
         } else {
             if (camera.videoRecorder.recorderStatus === CameraRecorder.RecordingStatus) {
@@ -810,6 +831,12 @@ Page {
                             "video",
                             settings.global.storagePath) + "/VID_" + Qt.formatDateTime(
                             new Date(), "yyyyMMdd_hhmmss") + ".mp4"
+                if ((camera.focus.focusMode === Camera.FocusAuto
+                     && !_manualModeSelected)
+                        || camera.focus.focusMode === Camera.FocusMacro
+                        || camera.focus.focusMode === Camera.FocusContinuous) {
+                    camera.unlock()
+                }
                 camera.videoRecorder.record()
             }
         }
