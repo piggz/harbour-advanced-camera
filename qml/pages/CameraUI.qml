@@ -193,6 +193,7 @@ Page {
         onLockStatusChanged: {
             if (camera.lockStatus === Camera.Locked && _focusAndSnap
                     && !_recordingVideo) {
+                camera.metaData.date = new Date()
                 camera.imageCapture.captureToLocation(
                             fsOperations.writableLocation(
                                 "image",
@@ -808,6 +809,7 @@ Page {
     }
 
     function doShutter() {
+        camera.metaData.date = new Date()
         if (camera.captureMode === Camera.CaptureStillImage) {
             if ((camera.focus.focusMode === Camera.FocusAuto
                  && !_manualModeSelected)
