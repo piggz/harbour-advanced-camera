@@ -19,6 +19,7 @@ Item {
         property int videoBitrate: 12800000
         property int audioBitrate: 128000
         property string storagePath: StandardPaths.home
+        property bool locationMetadata: true
 
         ConfigurationGroup {
             id: modeSettings

@@ -280,6 +280,10 @@
         <source>Audio Bitrate</source>
         <translation>Bithastighet Ljud</translation>
     </message>
+    <message>
+        <source>Store GPS location to metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>StorageModel</name>
