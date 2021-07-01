@@ -28,29 +28,9 @@ Rectangle {
 
     Component {
         id: metaDelegate
-        Item {
-            width: ListView.view.width
-            height: Theme.itemSizeExtraSmall
-            RowLayout {
-                anchors.centerIn: parent
-                Label {
-                    text: name
-                    anchors.right: parent.horizontalCenter
-                    rightPadding: Theme.paddingMedium
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    Layout.fillWidth: true
-                }
-                Label {
-                    text: value
-                    anchors.left: parent.horizontalCenter
-                    leftPadding: Theme.paddingMedium
-                    color: Theme.primaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    Layout.fillWidth: true
-                    wrapMode: Text.WordWrap
-                }
-            }
+        DetailItem {
+            label: qsTranslate("exifKey", model.name)
+            value: model.value
         }
     }
 }
