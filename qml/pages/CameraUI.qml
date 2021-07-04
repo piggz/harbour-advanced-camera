@@ -135,8 +135,8 @@ Page {
 
         // Write Orientation to metadata
         metaData.orientation:  camera.position === Camera.FrontFace ? (720 + camera.orientation - _pictureRotation) % 360 : (720 + camera.orientation + _pictureRotation) % 360
-        metaData.cameraManufacturer: CameraManufacturer
-        metaData.cameraModel: CameraPrettyModelName
+        metaData.cameraManufacturer: CameraManufacturer === "" ? null : CameraManufacturer
+        metaData.cameraModel: CameraPrettyModelName === "" ? null : CameraPrettyModelName
 
         metaData.gpsSpeed: settings.global.locationMetadata && positionSource.position.speedValid ? positionSource.speed : null
         metaData.gpsImgDirection: settings.global.locationMetadata && positionSource.directionValid ? positionSource.direction : null

@@ -14,12 +14,10 @@ TARGET = harbour-advanced-camera
 
 CONFIG += sailfishapp
 
-CONFIG += link_pkgconfig
-PKGCONFIG += ssu-sysinfo sailfishapp
-
 QT += multimedia
 
 SOURCES += src/harbour-advanced-camera.cpp \
+    src/deviceinfo.cpp \
     src/effectsmodel.cpp \
     src/exposuremodel.cpp \
     src/isomodel.cpp \

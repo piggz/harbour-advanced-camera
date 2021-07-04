@@ -9,7 +9,7 @@
 #include <QSortFilterProxyModel>
 
 #include <sailfishapp.h>
-#include <ssusysinfo.h>
+#include "deviceinfo.h"
 #include "effectsmodel.h"
 #include "exposuremodel.h"
 #include "isomodel.h"
@@ -63,12 +63,9 @@ int main(int argc, char *argv[])
 
     view->setSource(SailfishApp::pathTo("qml/harbour-advanced-camera.qml"));
 
-    ssusysinfo_t *si = ssusysinfo_create();
-    QString manufacturer = ssusysinfo_device_manufacturer(si);
-    view->rootContext()->setContextProperty("CameraManufacturer", manufacturer);
-    QString prettyName = ssusysinfo_device_pretty_name(si);
-    view->rootContext()->setContextProperty("CameraPrettyModelName", prettyName);
-    ssusysinfo_delete(si);
+    DeviceInfo deviceInfo;
+    view->rootContext()->setContextProperty("CameraManufacturer", deviceInfo.manufacturer());
+    view->rootContext()->setContextProperty("CameraPrettyModelName", deviceInfo.prettyModelName());
 
     QObject::connect(view, &QQuickView::focusObjectChanged, &handler,
                      &ResourceHandler::handleFocusChange);
