@@ -4,7 +4,7 @@
 
 #include <QLibrary>
 
-#include <ssusysinfo.h>
+#include <ssusysinfo/ssusysinfo.h>
 
 class DeviceInfo {
 public:
