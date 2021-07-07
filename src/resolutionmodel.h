@@ -22,7 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #include <QAbstractListModel>
 #include <QCameraImageCapture>
 #include <QMediaRecorder>
-#include <QPair>
 
 class ResolutionModel : public QAbstractListModel
 {
@@ -51,7 +50,7 @@ public:
     Q_INVOKABLE bool isValidResolution(const QSize &resolution, const QString &mode);
 
 private:
-    QMap<QString, QSize> m_resolutions;
+    std::vector<std::pair<QString, QSize>> m_resolutions;
     QList<QSize> m_supportedImageResolutions;
     QList<QSize> m_supportedVideoResolutions;
     QString m_mode = "image";

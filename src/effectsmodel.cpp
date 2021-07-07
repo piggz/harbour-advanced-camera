@@ -33,7 +33,7 @@ QHash<int, QByteArray> EffectsModel::roleNames() const
 int EffectsModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return m_effects.count();
+    return m_effects.size();
 }
 
 QVariant EffectsModel::data(const QModelIndex &index, int role) const
@@ -45,9 +45,9 @@ QVariant EffectsModel::data(const QModelIndex &index, int role) const
     }
 
     if (role == EffectName) {
-        v = m_effects.values().at(index.row());
+        v = m_effects[index.row()].second;
     } else if (role == EffectValue) {
-        v = m_effects.keys().at(index.row());
+        v = m_effects.at(index.row()).first;
     }
 
     return v;
@@ -64,7 +64,7 @@ void EffectsModel::setCamera(QObject *camera)
                 c <= (int)QCameraImageProcessing::ColorFilterNeon; c++) {
             if (m_camera->imageProcessing()->isColorFilterSupported((QCameraImageProcessing::ColorFilter)c)) {
                 qDebug() << "Found support for" << (QCameraImageProcessing::ColorFilter)c;
-                m_effects[(QCameraImageProcessing::ColorFilter)c] = effectName((QCameraImageProcessing::ColorFilter)c);
+                m_effects.push_back(std::make_pair((QCameraImageProcessing::ColorFilter)c, effectName((QCameraImageProcessing::ColorFilter)c)));
             }
         }
         endResetModel();

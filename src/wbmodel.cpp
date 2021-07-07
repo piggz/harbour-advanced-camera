@@ -33,7 +33,7 @@ QHash<int, QByteArray> WbModel::roleNames() const
 int WbModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return m_wbModes.count();
+    return m_wbModes.size();
 }
 
 QVariant WbModel::data(const QModelIndex &index, int role) const
@@ -45,9 +45,9 @@ QVariant WbModel::data(const QModelIndex &index, int role) const
     }
 
     if (role == WbName) {
-        v = m_wbModes.values().at(index.row());
+        v = m_wbModes.at(index.row()).second;
     } else if (role == WbValue) {
-        v = m_wbModes.keys().at(index.row());
+        v = m_wbModes.at(index.row()).first;
     }
 
     return v;
@@ -64,7 +64,7 @@ void WbModel::setCamera(QObject *camera)
                 c <= (int)QCameraImageProcessing::WhiteBalanceWarmFluorescent; c++) {
             if (m_camera->imageProcessing()->isWhiteBalanceModeSupported((QCameraImageProcessing::WhiteBalanceMode)c)) {
                 qDebug() << "Found support for" << (QCameraImageProcessing::WhiteBalanceMode)c;
-                m_wbModes[(QCameraImageProcessing::WhiteBalanceMode)c] = wbName((QCameraImageProcessing::WhiteBalanceMode)c);
+                m_wbModes.push_back(std::make_pair((QCameraImageProcessing::WhiteBalanceMode)c, wbName((QCameraImageProcessing::WhiteBalanceMode)c)));
             }
         }
         endResetModel();

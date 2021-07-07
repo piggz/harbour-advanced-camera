@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <QAbstractListModel>
 #include <QCamera>
-#include <QPair>
 
 class EffectsModel : public QAbstractListModel
 {
@@ -44,7 +43,7 @@ public:
     Q_INVOKABLE void setCamera(QObject *camera);
 
 private:
-    QMap<QCameraImageProcessing::ColorFilter, QString> m_effects;
+    std::vector<std::pair<QCameraImageProcessing::ColorFilter, QString>> m_effects;
     QCamera *m_camera = nullptr;
 
     QString effectName(QCameraImageProcessing::ColorFilter c) const;

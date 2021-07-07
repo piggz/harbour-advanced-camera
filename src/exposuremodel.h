@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <QAbstractListModel>
 #include <QCamera>
-#include <QPair>
 
 class ExposureModel : public QAbstractListModel
 {
@@ -45,7 +44,7 @@ public:
     Q_INVOKABLE QString iconName(QCameraExposure::ExposureMode e) const;
 
 private:
-    QMap<QCameraExposure::ExposureMode, QString> m_exposures;
+    std::vector<std::pair<QCameraExposure::ExposureMode, QString>> m_exposures;
     QCamera *m_camera = nullptr;
 
     QString exposureName(QCameraExposure::ExposureMode e) const;

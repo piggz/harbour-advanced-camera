@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <QAbstractListModel>
 #include <QCamera>
-#include <QPair>
 
 class FocusModel : public QAbstractListModel
 {
@@ -44,7 +43,7 @@ public:
     Q_INVOKABLE void setCamera(QObject *camera);
 
 private:
-    QMap<int, QString> m_focusModes;
+    std::vector<std::pair<int, QString>> m_focusModes;
     QCamera *m_camera = nullptr;
 
     QString focusName(QCameraFocus::FocusMode focus) const;

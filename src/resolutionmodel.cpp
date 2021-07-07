@@ -50,7 +50,7 @@ QHash<int, QByteArray> ResolutionModel::roleNames() const
 int ResolutionModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return m_resolutions.count();
+    return m_resolutions.size();
 }
 
 QVariant ResolutionModel::data(const QModelIndex &index, int role) const
@@ -62,13 +62,12 @@ QVariant ResolutionModel::data(const QModelIndex &index, int role) const
     }
 
     if (role == ResolutionName) {
-        QSize r = sizeToRatio(m_resolutions.values().at(index.row()));
-        v = m_resolutions.keys().at(index.row()) + QString(" (%1:%2)").arg(r.width()).arg(r.height());
+        QSize r = sizeToRatio(m_resolutions.at(index.row()).second);
+        v = QString("%1 (%2:%3)").arg(m_resolutions.at(index.row()).first).arg(r.width()).arg(r.height());
     } else if (role == ResolutionValue) {
-        v = m_resolutions.values().at(index.row());
+        v = m_resolutions.at(index.row()).second;
     } else if (role == ResolutionMpx) {
-        v = m_resolutions.values().at(index.row()).width() * m_resolutions.values().at(
-                index.row()).height();
+        v = m_resolutions.at(index.row()).second.width() * m_resolutions.at(index.row()).second.height();
     }
     return v;
 }
@@ -115,13 +114,13 @@ void ResolutionModel::setMode(const QString &mode)
 
     if (mode == "image") {
         for (int i = 0; i < m_supportedImageResolutions.count() ; i++) {
-            m_resolutions[QString("%1x%2").arg(m_supportedImageResolutions[i].width()).arg(
-                              m_supportedImageResolutions[i].height())] = m_supportedImageResolutions[i];
+            m_resolutions.push_back(std::make_pair(QString("%1x%2").arg(m_supportedImageResolutions[i].width()).arg(
+                              m_supportedImageResolutions[i].height()), m_supportedImageResolutions[i]));
         }
     } else if (mode == "video") {
         for (int i = 0; i < m_supportedVideoResolutions.count() ; i++) {
-            m_resolutions[QString("%1x%2").arg(m_supportedVideoResolutions[i].width()).arg(
-                              m_supportedVideoResolutions[i].height())] = m_supportedVideoResolutions[i];
+            m_resolutions.push_back(std::make_pair(QString("%1x%2").arg(m_supportedVideoResolutions[i].width()).arg(
+                              m_supportedVideoResolutions[i].height()), m_supportedVideoResolutions[i]));
         }
     }
 
@@ -129,7 +128,10 @@ void ResolutionModel::setMode(const QString &mode)
     emit rowCountChanged();
 
     if (m_resolutions.size() > 0) {
-        qDebug() << "Supported " << mode << " resolutions:" << m_resolutions;
+         qDebug() << "Supported " << mode << " resolutions:";
+        for(const auto &res: m_resolutions) {
+            qDebug() << res.first;
+        }
     } else {
         qWarning() << "No resolutions found";
     }

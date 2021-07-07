@@ -33,7 +33,7 @@ QHash<int, QByteArray> FocusModel::roleNames() const
 int FocusModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return m_focusModes.count();
+    return m_focusModes.size();
 }
 
 QVariant FocusModel::data(const QModelIndex &index, int role) const
@@ -45,9 +45,9 @@ QVariant FocusModel::data(const QModelIndex &index, int role) const
     }
 
     if (role == FocusName) {
-        v = m_focusModes.values().at(index.row());
+        v = m_focusModes.at(index.row()).second;
     } else if (role == FocusValue) {
-        v = m_focusModes.keys().at(index.row());
+        v = m_focusModes.at(index.row()).first;
     }
 
     return v;
@@ -64,12 +64,15 @@ void FocusModel::setCamera(QObject *camera)
             if (m_camera->focus()->isFocusModeSupported((QCameraFocus::FocusMode)c)
                     && focusName((QCameraFocus::FocusMode)c) != tr("Unknown")) {
                 qDebug() << "Found support for" << (QCameraFocus::FocusMode)c;
-                m_focusModes[(QCameraFocus::FocusMode)c] = focusName((QCameraFocus::FocusMode)c);
+                m_focusModes.push_back(std::make_pair((QCameraFocus::FocusMode)c, focusName((QCameraFocus::FocusMode)c)));
             }
         }
         //Add manual mode even if not supported as we simulate it
-        if (!m_focusModes.contains(QCameraFocus::ManualFocus)) {
-            m_focusModes[QCameraFocus::ManualFocus] = focusName(QCameraFocus::ManualFocus);
+        auto it = std::find_if( m_focusModes.begin(), m_focusModes.end(),
+            [](const std::pair<int, QString>& element){ return element.first == QCameraFocus::ManualFocus;} );
+
+        if (it == std::end(m_focusModes)) {
+            m_focusModes.push_back(std::make_pair(QCameraFocus::ManualFocus, focusName(QCameraFocus::ManualFocus)));
         }
         endResetModel();
         emit rowCountChanged();

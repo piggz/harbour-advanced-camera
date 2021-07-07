@@ -33,7 +33,7 @@ QHash<int, QByteArray> IsoModel::roleNames() const
 int IsoModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return m_isoModes.count();
+    return m_isoModes.size();
 }
 
 QVariant IsoModel::data(const QModelIndex &index, int role) const
@@ -45,9 +45,9 @@ QVariant IsoModel::data(const QModelIndex &index, int role) const
     }
 
     if (role == IsoName) {
-        v = m_isoModes.values().at(index.row());
+        v = m_isoModes.at(index.row()).second;
     } else if (role == IsoValue) {
-        v = m_isoModes.keys().at(index.row());
+        v = m_isoModes.at(index.row()).first;
     }
 
     return v;
@@ -64,7 +64,7 @@ void IsoModel::setCamera(QObject *camera)
         QList<int> supportedIsoRange = m_camera->exposure()->supportedIsoSensitivities();
 
         for (int i = 0; i < supportedIsoRange.count() ; i++) {
-            m_isoModes[supportedIsoRange[i]] = isoName(supportedIsoRange[i]);
+            m_isoModes.push_back(std::make_pair(i, isoName(supportedIsoRange[i])));
             qDebug() << "Found support for" << isoName(supportedIsoRange[i]);
         }
         endResetModel();

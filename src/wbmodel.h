@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <QAbstractListModel>
 #include <QCamera>
-#include <QPair>
 
 class WbModel : public QAbstractListModel
 {
@@ -44,7 +43,7 @@ public:
     Q_INVOKABLE void setCamera(QObject *camera);
 
 private:
-    QMap<int, QString> m_wbModes;
+    std::vector<std::pair<int, QString>> m_wbModes;
     QCamera *m_camera = nullptr;
 
     QString wbName(QCameraImageProcessing::WhiteBalanceMode wb) const;

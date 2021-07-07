@@ -33,7 +33,7 @@ QHash<int, QByteArray> FlashModel::roleNames() const
 int FlashModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return m_flashModes.count();
+    return m_flashModes.size();
 }
 
 QVariant FlashModel::data(const QModelIndex &index, int role) const
@@ -45,9 +45,9 @@ QVariant FlashModel::data(const QModelIndex &index, int role) const
     }
 
     if (role == FlashName) {
-        v = m_flashModes.values().at(index.row());
+        v = m_flashModes.at(index.row()).second;
     } else if (role == FlashValue) {
-        v = m_flashModes.keys().at(index.row());
+        v = m_flashModes.at(index.row()).first;
     }
 
     return v;
@@ -64,7 +64,7 @@ void FlashModel::setCamera(QObject *camera)
             if (m_camera->exposure()->isFlashModeSupported((QCameraExposure::FlashMode)c)
                     && flashName((QCameraExposure::FlashMode)c) != tr("Unknown")) {
                 qDebug() << "Found support for" << (QCameraExposure::FlashMode)c;
-                m_flashModes[(QCameraExposure::FlashMode)c] = flashName((QCameraExposure::FlashMode)c);
+                m_flashModes.push_back(std::make_pair((QCameraExposure::FlashMode)c, flashName((QCameraExposure::FlashMode)c)));
             }
         }
         endResetModel();

@@ -33,7 +33,7 @@ QHash<int, QByteArray> ExposureModel::roleNames() const
 int ExposureModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
-    return m_exposures.count();
+    return m_exposures.size();
 }
 
 QVariant ExposureModel::data(const QModelIndex &index, int role) const
@@ -45,9 +45,9 @@ QVariant ExposureModel::data(const QModelIndex &index, int role) const
     }
 
     if (role == ExposureName) {
-        v = m_exposures.values().at(index.row());
+        v = m_exposures.at(index.row()).second;
     } else if (role == ExposureValue) {
-        v = m_exposures.keys().at(index.row());
+        v = m_exposures.at(index.row()).first;
     }
 
     return v;
@@ -63,7 +63,7 @@ void ExposureModel::setCamera(QObject *camera)
         for (int c = (int)QCameraExposure::ExposureAuto; c <= (int)QCameraExposure::ExposureHDR; c++) {
             if (m_camera->exposure()->isExposureModeSupported((QCameraExposure::ExposureMode)c)) {
                 qDebug() << "Found support for" << (QCameraExposure::ExposureMode)c;
-                m_exposures[(QCameraExposure::ExposureMode)c] = exposureName((QCameraExposure::ExposureMode)c);
+                m_exposures.push_back(std::make_pair((QCameraExposure::ExposureMode)c, exposureName((QCameraExposure::ExposureMode)c)));
             }
         }
         endResetModel();
