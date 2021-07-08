@@ -8,7 +8,7 @@ import "../components/"
 Page {
     id: galleryPage
 
-    property var fileList: ({
+    property ListModel fileList: ({
 
                             })
     property alias showButtons: btnClose.visible
@@ -158,7 +158,7 @@ Page {
 
                 onClicked: {
                     pageStack.push(Qt.resolvedUrl("VideoPlayer.qml"), {
-                                       "videoFile": filePath
+                                       "videoFile": filePath, fileList: fileList
                                    }, PageStackAction.Immediate)
                 }
             }
