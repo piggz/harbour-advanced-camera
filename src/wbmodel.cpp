@@ -55,24 +55,23 @@ QVariant WbModel::data(const QModelIndex &index, int role) const
 
 void WbModel::setCamera(QObject *camera)
 {
-    QCamera *cam = camera->property("mediaObject").value<QCamera *>();
-    if (m_camera != cam) {
-        m_camera = cam;
+    // even when m_camera instance is the same, deviceId could have changed and so available focus modes
+    m_camera = camera->property("mediaObject").value<QCamera *>();
 
-        beginResetModel();
-        for (int c = (int)QCameraImageProcessing::WhiteBalanceAuto;
-                c <= (int)QCameraImageProcessing::WhiteBalanceWarmFluorescent; c++) {
-            if (m_camera->imageProcessing()->isWhiteBalanceModeSupported((QCameraImageProcessing::WhiteBalanceMode)c)) {
-                qDebug() << "Found support for" << (QCameraImageProcessing::WhiteBalanceMode)c;
-                m_wbModes.push_back(std::make_pair((QCameraImageProcessing::WhiteBalanceMode)c, wbName((QCameraImageProcessing::WhiteBalanceMode)c)));
-            }
+    beginResetModel();
+    m_wbModes.clear();
+    for (int c = (int)QCameraImageProcessing::WhiteBalanceAuto;
+            c <= (int)QCameraImageProcessing::WhiteBalanceWarmFluorescent; c++) {
+        if (m_camera->imageProcessing()->isWhiteBalanceModeSupported((QCameraImageProcessing::WhiteBalanceMode)c)) {
+            qDebug() << "Found support for" << (QCameraImageProcessing::WhiteBalanceMode)c;
+            m_wbModes.push_back(std::make_pair((QCameraImageProcessing::WhiteBalanceMode)c, wbName((QCameraImageProcessing::WhiteBalanceMode)c)));
         }
-        endResetModel();
-        emit rowCountChanged();
+    }
+    endResetModel();
+    emit rowCountChanged();
 
-        if (m_wbModes.size() == 0) {
-            qDebug() << "No white balance modes found";
-        }
+    if (m_wbModes.size() == 0) {
+        qDebug() << "No white balance modes found";
     }
 }
 
