@@ -803,23 +803,24 @@ Page {
     }
 
     function setFocusMode(focus) {
+        var requestedFocus = focus === Camera.FocusManual ? Camera.FocusAuto : focus
+        if (!camera.focus.isFocusModeSupported(requestedFocus)) {
+            console.log("focus mode " + focusStr(requestedFocus) +
+                        " is not supported, keeping " + focusStr(camera.focus.focusMode))
+            return
+        }
         console.log("setting focus mode " +
                     focusStr(camera.focus.focusMode) + " -> " + focusStr(focus))
 
         if (focus === Camera.FocusManual) {
-            if (camera.focus.focusMode !== Camera.FocusAuto) {
-                camera.stop()
-                camera.focus.setFocusMode(Camera.FocusAuto)
-                camera.start()
-            }
             _manualModeSelected = true
         } else {
             _manualModeSelected = false
-            if (camera.focus.focusMode !== focus) {
-                camera.stop()
-                camera.focus.setFocusMode(focus)
-                camera.start()
-            }
+        }
+        if (camera.focus.focusMode !== requestedFocus) {
+            camera.stop()
+            camera.focus.setFocusMode(requestedFocus)
+            camera.start()
         }
         camera.unlock() // Do not forget to unlock camera when changing focus mode
         settings.mode.focus = focus
