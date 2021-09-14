@@ -842,7 +842,7 @@ Page {
         /// In order of preference:
         ///  * viewFinderResolution for the nearest aspect ratio as set in jolla-camera's dconf settings
         ///  * viewFinderResolution as set in jolla-camera's dconf settings
-        ///  * First resolution as returned by camera.supportedViewfinderResolutions()
+        ///  * Best match from camera.supportedViewfinderResolutions() that fit to screen and have the same aspect ratio
         ///  * device resolution
         var currentRatioSize = modelResolution.sizeToRatio(
                     settings.resolution(settings.global.captureMode))
@@ -865,9 +865,30 @@ Page {
 
         var supportedResolutions = camera.supportedViewfinderResolutions()
         if (supportedResolutions.length > 0) {
-            //TODO find the best resolution for the correct aspect ratio
-            //when we fix supportedViewfinderResolutions()
-            return Qt.size(supportedResolutions[0].width, supportedResolutions[0].height)
+            var bestMatch = 0
+            for (var i = 0; i < supportedResolutions.length; i++) {
+                var w = supportedResolutions[i].width;
+                var h = supportedResolutions[i].height;
+                if (w > Screen.height || h > Screen.width) {
+                    continue
+                }
+                if (currentRatio > 0) {
+                    var ratio = w / h
+                    var bestMatchRatio = supportedResolutions[bestMatch].width / supportedResolutions[bestMatch].height
+                    if (Math.abs(ratio - currentRatio) < Math.abs(bestMatchRatio - currentRatio)) {
+                        bestMatch = i; // better match to aspect ratio
+                    } else if (Math.abs(ratio - currentRatio) == Math.abs(bestMatchRatio - currentRatio) &&
+                               w > supportedResolutions[bestMatch].width && h > supportedResolutions[bestMatch].height) {
+                        bestMatch = i; // same aspect ratio, better resolution
+                    }
+                } else {
+                    if (w > supportedResolutions[bestMatch].width && h > supportedResolutions[bestMatch].height) {
+                        bestMatch = i; // just select best resolution
+                    }
+                }
+            }
+            console.log("Choosing view finder resolution: " + supportedResolutions[bestMatch].width + "x" + supportedResolutions[bestMatch].height)
+            return Qt.size(supportedResolutions[bestMatch].width, supportedResolutions[bestMatch].height)
         }
 
         return Qt.size(Screen.height, Screen.width)
