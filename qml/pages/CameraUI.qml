@@ -867,7 +867,7 @@ Page {
         if (supportedResolutions.length > 0) {
             //TODO find the best resolution for the correct aspect ratio
             //when we fix supportedViewfinderResolutions()
-            return supportedResolutions[0]
+            return Qt.size(supportedResolutions[0].width, supportedResolutions[0].height)
         }
 
         return Qt.size(Screen.height, Screen.width)
