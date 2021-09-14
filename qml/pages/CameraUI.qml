@@ -221,7 +221,7 @@ Page {
         }
 
         onCameraStatusChanged: {
-            console.log("Camera status:", cameraStatus)
+            console.log("Camera status:", cameraStatusStr())
 
             if (cameraStatus === Camera.StartingStatus) {
                 settingsOverlay.setCamera(camera)
@@ -734,10 +734,55 @@ Page {
         }
     }
 
+    function cameraStatusStr() {
+        switch(camera.cameraStatus){
+            case Camera.ActiveStatus:
+                return "Active"
+            case Camera.StartingStatus:
+                return "Starting"
+            case Camera.StoppingStatus:
+                return "Stopping"
+            case Camera.StandbyStatus:
+                return "Standby"
+            case Camera.LoadedStatus:
+                return "Loaded"
+            case Camera.LoadingStatus:
+                return "Loading"
+            case Camera.UnloadingStatus:
+                return "Unloading"
+            case Camera.UnloadedStatus:
+                return "Unloaded"
+            case Camera.UnavailableStatus:
+                return "Unavailable"
+            default:
+                return "unknown (" + camera.cameraStatus + ")"
+        }
+    }
+
+    function focusStr(focus) {
+        // TODO: It's possible to combine multiple Camera::FocusMode values, for example FocusMacro + FocusContinuous.
+        switch (focus) {
+            case CameraFocus.FocusManual:
+                return "Manual"
+            case CameraFocus.FocusHyperfocal:
+                return "Hyperfocal"
+            case CameraFocus.FocusInfinity:
+                return "Infinity"
+            case CameraFocus.FocusAuto:
+                return "Auto"
+            case CameraFocus.FocusContinuous:
+                return "Continuous"
+            case CameraFocus.FocusMacro:
+                return "Macro"
+            default:
+                return "unknown (" + focus + ")"
+        }
+    }
+
     function applySettings() {
         console.log("Applying settings in", settings.global.captureMode,
                     "mode for", camera.deviceId, "camera with status",
-                    camera.cameraStatus)
+                    cameraStatusStr())
 
         camera.imageProcessing.setColorFilter(settings.mode.effect)
         camera.exposure.setExposureMode(settings.mode.exposure)
@@ -758,6 +803,9 @@ Page {
     }
 
     function setFocusMode(focus) {
+        console.log("setting focus mode " +
+                    focusStr(camera.focus.focusMode) + " -> " + focusStr(focus))
+
         if (focus === Camera.FocusManual) {
             if (camera.focus.focusMode !== Camera.FocusAuto) {
                 camera.stop()
