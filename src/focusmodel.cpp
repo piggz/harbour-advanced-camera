@@ -67,11 +67,11 @@ void FocusModel::setCamera(QObject *camera)
             m_focusModes.push_back(std::make_pair((QCameraFocus::FocusMode)c, focusName((QCameraFocus::FocusMode)c)));
         }
     }
-    //Add manual mode even if not supported as we simulate it
+    // Add manual mode even if not supported as we simulate it (but FocusAuto needs to be supported)
     auto it = std::find_if( m_focusModes.begin(), m_focusModes.end(),
         [](const std::pair<int, QString>& element){ return element.first == QCameraFocus::ManualFocus;} );
 
-    if (it == std::end(m_focusModes)) {
+    if (it == std::end(m_focusModes) && m_camera->focus()->isFocusModeSupported(QCameraFocus::AutoFocus)) {
         m_focusModes.push_back(std::make_pair(QCameraFocus::ManualFocus, focusName(QCameraFocus::ManualFocus)));
     }
     endResetModel();
