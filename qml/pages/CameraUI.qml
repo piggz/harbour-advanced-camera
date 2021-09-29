@@ -221,7 +221,7 @@ Page {
         }
 
         onCameraStatusChanged: {
-            console.log("Camera status:", cameraStatus)
+            console.log("Camera status:", cameraStatusStr())
 
             if (cameraStatus === Camera.StartingStatus) {
                 settingsOverlay.setCamera(camera)
@@ -734,10 +734,55 @@ Page {
         }
     }
 
+    function cameraStatusStr() {
+        switch(camera.cameraStatus){
+            case Camera.ActiveStatus:
+                return "Active"
+            case Camera.StartingStatus:
+                return "Starting"
+            case Camera.StoppingStatus:
+                return "Stopping"
+            case Camera.StandbyStatus:
+                return "Standby"
+            case Camera.LoadedStatus:
+                return "Loaded"
+            case Camera.LoadingStatus:
+                return "Loading"
+            case Camera.UnloadingStatus:
+                return "Unloading"
+            case Camera.UnloadedStatus:
+                return "Unloaded"
+            case Camera.UnavailableStatus:
+                return "Unavailable"
+            default:
+                return "unknown (" + camera.cameraStatus + ")"
+        }
+    }
+
+    function focusStr(focus) {
+        // TODO: It's possible to combine multiple Camera::FocusMode values, for example FocusMacro + FocusContinuous.
+        switch (focus) {
+            case CameraFocus.FocusManual:
+                return "Manual"
+            case CameraFocus.FocusHyperfocal:
+                return "Hyperfocal"
+            case CameraFocus.FocusInfinity:
+                return "Infinity"
+            case CameraFocus.FocusAuto:
+                return "Auto"
+            case CameraFocus.FocusContinuous:
+                return "Continuous"
+            case CameraFocus.FocusMacro:
+                return "Macro"
+            default:
+                return "unknown (" + focus + ")"
+        }
+    }
+
     function applySettings() {
         console.log("Applying settings in", settings.global.captureMode,
                     "mode for", camera.deviceId, "camera with status",
-                    camera.cameraStatus)
+                    cameraStatusStr())
 
         camera.imageProcessing.setColorFilter(settings.mode.effect)
         camera.exposure.setExposureMode(settings.mode.exposure)
@@ -758,20 +803,24 @@ Page {
     }
 
     function setFocusMode(focus) {
+        var requestedFocus = focus === Camera.FocusManual ? Camera.FocusAuto : focus
+        if (!camera.focus.isFocusModeSupported(requestedFocus)) {
+            console.log("focus mode " + focusStr(requestedFocus) +
+                        " is not supported, keeping " + focusStr(camera.focus.focusMode))
+            return
+        }
+        console.log("setting focus mode " +
+                    focusStr(camera.focus.focusMode) + " -> " + focusStr(focus))
+
         if (focus === Camera.FocusManual) {
-            if (camera.focus.focusMode !== Camera.FocusAuto) {
-                camera.stop()
-                camera.focus.setFocusMode(Camera.FocusAuto)
-                camera.start()
-            }
             _manualModeSelected = true
         } else {
             _manualModeSelected = false
-            if (camera.focus.focusMode !== focus) {
-                camera.stop()
-                camera.focus.setFocusMode(focus)
-                camera.start()
-            }
+        }
+        if (camera.focus.focusMode !== requestedFocus) {
+            camera.stop()
+            camera.focus.setFocusMode(requestedFocus)
+            camera.start()
         }
         camera.unlock() // Do not forget to unlock camera when changing focus mode
         settings.mode.focus = focus
@@ -793,7 +842,7 @@ Page {
         /// In order of preference:
         ///  * viewFinderResolution for the nearest aspect ratio as set in jolla-camera's dconf settings
         ///  * viewFinderResolution as set in jolla-camera's dconf settings
-        ///  * First resolution as returned by camera.supportedViewfinderResolutions()
+        ///  * Best match from camera.supportedViewfinderResolutions() that fit to screen and have the same aspect ratio
         ///  * device resolution
         var currentRatioSize = modelResolution.sizeToRatio(
                     settings.resolution(settings.global.captureMode))
@@ -816,9 +865,30 @@ Page {
 
         var supportedResolutions = camera.supportedViewfinderResolutions()
         if (supportedResolutions.length > 0) {
-            //TODO find the best resolution for the correct aspect ratio
-            //when we fix supportedViewfinderResolutions()
-            return supportedResolutions[0]
+            var bestMatch = 0
+            for (var i = 0; i < supportedResolutions.length; i++) {
+                var w = supportedResolutions[i].width;
+                var h = supportedResolutions[i].height;
+                if (w > Screen.height || h > Screen.width) {
+                    continue
+                }
+                if (currentRatio > 0) {
+                    var ratio = w / h
+                    var bestMatchRatio = supportedResolutions[bestMatch].width / supportedResolutions[bestMatch].height
+                    if (Math.abs(ratio - currentRatio) < Math.abs(bestMatchRatio - currentRatio)) {
+                        bestMatch = i; // better match to aspect ratio
+                    } else if (Math.abs(ratio - currentRatio) == Math.abs(bestMatchRatio - currentRatio) &&
+                               w > supportedResolutions[bestMatch].width && h > supportedResolutions[bestMatch].height) {
+                        bestMatch = i; // same aspect ratio, better resolution
+                    }
+                } else {
+                    if (w > supportedResolutions[bestMatch].width && h > supportedResolutions[bestMatch].height) {
+                        bestMatch = i; // just select best resolution
+                    }
+                }
+            }
+            console.log("Choosing view finder resolution: " + supportedResolutions[bestMatch].width + "x" + supportedResolutions[bestMatch].height)
+            return Qt.size(supportedResolutions[bestMatch].width, supportedResolutions[bestMatch].height)
         }
 
         return Qt.size(Screen.height, Screen.width)
