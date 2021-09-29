@@ -55,24 +55,23 @@ QVariant FlashModel::data(const QModelIndex &index, int role) const
 
 void FlashModel::setCamera(QObject *camera)
 {
-    QCamera *cam = camera->property("mediaObject").value<QCamera *>();
-    if (m_camera != cam) {
-        m_camera = cam;
+    // even when m_camera instance is the same, deviceId could have changed and so available focus modes
+    m_camera = camera->property("mediaObject").value<QCamera *>();
 
-        beginResetModel();
-        for (int c = (int)QCameraExposure::FlashAuto; c <= (int)QCameraExposure::FlashManual; c++) {
-            if (m_camera->exposure()->isFlashModeSupported((QCameraExposure::FlashMode)c)
-                    && flashName((QCameraExposure::FlashMode)c) != tr("Unknown")) {
-                qDebug() << "Found support for" << (QCameraExposure::FlashMode)c;
-                m_flashModes.push_back(std::make_pair((QCameraExposure::FlashMode)c, flashName((QCameraExposure::FlashMode)c)));
-            }
+    beginResetModel();
+    m_flashModes.clear();
+    for (int c = (int)QCameraExposure::FlashAuto; c <= (int)QCameraExposure::FlashManual; c++) {
+        if (m_camera->exposure()->isFlashModeSupported((QCameraExposure::FlashMode)c)
+                && flashName((QCameraExposure::FlashMode)c) != tr("Unknown")) {
+            qDebug() << "Found support for" << (QCameraExposure::FlashMode)c;
+            m_flashModes.push_back(std::make_pair((QCameraExposure::FlashMode)c, flashName((QCameraExposure::FlashMode)c)));
         }
-        endResetModel();
-        emit rowCountChanged();
+    }
+    endResetModel();
+    emit rowCountChanged();
 
-        if (m_flashModes.size() == 0) {
-            qDebug() << "No flash modes found";
-        }
+    if (m_flashModes.size() == 0) {
+        qDebug() << "No flash modes found";
     }
 }
 

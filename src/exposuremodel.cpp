@@ -55,23 +55,22 @@ QVariant ExposureModel::data(const QModelIndex &index, int role) const
 
 void ExposureModel::setCamera(QObject *camera)
 {
-    QCamera *cam = camera->property("mediaObject").value<QCamera *>();
-    if (m_camera != cam) {
-        m_camera = cam;
+    // even when m_camera instance is the same, deviceId could have changed and so available focus modes
+    m_camera = camera->property("mediaObject").value<QCamera *>();
 
-        beginResetModel();
-        for (int c = (int)QCameraExposure::ExposureAuto; c <= (int)QCameraExposure::ExposureHDR; c++) {
-            if (m_camera->exposure()->isExposureModeSupported((QCameraExposure::ExposureMode)c)) {
-                qDebug() << "Found support for" << (QCameraExposure::ExposureMode)c;
-                m_exposures.push_back(std::make_pair((QCameraExposure::ExposureMode)c, exposureName((QCameraExposure::ExposureMode)c)));
-            }
+    beginResetModel();
+    m_exposures.clear();
+    for (int c = (int)QCameraExposure::ExposureAuto; c <= (int)QCameraExposure::ExposureHDR; c++) {
+        if (m_camera->exposure()->isExposureModeSupported((QCameraExposure::ExposureMode)c)) {
+            qDebug() << "Found support for" << (QCameraExposure::ExposureMode)c;
+            m_exposures.push_back(std::make_pair((QCameraExposure::ExposureMode)c, exposureName((QCameraExposure::ExposureMode)c)));
         }
-        endResetModel();
-        emit rowCountChanged();
+    }
+    endResetModel();
+    emit rowCountChanged();
 
-        if (m_exposures.size() == 0) {
-            qDebug() << "No exposure modes found";
-        }
+    if (m_exposures.size() == 0) {
+        qDebug() << "No exposure modes found";
     }
 }
 

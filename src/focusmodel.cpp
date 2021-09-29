@@ -55,31 +55,30 @@ QVariant FocusModel::data(const QModelIndex &index, int role) const
 
 void FocusModel::setCamera(QObject *camera)
 {
-    QCamera *cam = camera->property("mediaObject").value<QCamera *>();
-    if (m_camera != cam) {
-        m_camera = cam;
+    // even when m_camera instance is the same, deviceId could have changed and so available focus modes
+    m_camera = camera->property("mediaObject").value<QCamera *>();
 
-        beginResetModel();
-        for (int c = (int)QCameraFocus::ManualFocus; c <= (int)QCameraFocus::MacroFocus; c++) {
-            if (m_camera->focus()->isFocusModeSupported((QCameraFocus::FocusMode)c)
-                    && focusName((QCameraFocus::FocusMode)c) != tr("Unknown")) {
-                qDebug() << "Found support for" << (QCameraFocus::FocusMode)c;
-                m_focusModes.push_back(std::make_pair((QCameraFocus::FocusMode)c, focusName((QCameraFocus::FocusMode)c)));
-            }
+    beginResetModel();
+    m_focusModes.clear();
+    for (int c = (int)QCameraFocus::ManualFocus; c <= (int)QCameraFocus::MacroFocus; c++) {
+        if (m_camera->focus()->isFocusModeSupported((QCameraFocus::FocusMode)c)
+                && focusName((QCameraFocus::FocusMode)c) != tr("Unknown")) {
+            qDebug() << "Found support for" << (QCameraFocus::FocusMode)c;
+            m_focusModes.push_back(std::make_pair((QCameraFocus::FocusMode)c, focusName((QCameraFocus::FocusMode)c)));
         }
-        //Add manual mode even if not supported as we simulate it
-        auto it = std::find_if( m_focusModes.begin(), m_focusModes.end(),
-            [](const std::pair<int, QString>& element){ return element.first == QCameraFocus::ManualFocus;} );
+    }
+    // Add manual mode even if not supported as we simulate it (but FocusAuto needs to be supported)
+    auto it = std::find_if( m_focusModes.begin(), m_focusModes.end(),
+        [](const std::pair<int, QString>& element){ return element.first == QCameraFocus::ManualFocus;} );
 
-        if (it == std::end(m_focusModes)) {
-            m_focusModes.push_back(std::make_pair(QCameraFocus::ManualFocus, focusName(QCameraFocus::ManualFocus)));
-        }
-        endResetModel();
-        emit rowCountChanged();
+    if (it == std::end(m_focusModes) && m_camera->focus()->isFocusModeSupported(QCameraFocus::AutoFocus)) {
+        m_focusModes.push_back(std::make_pair(QCameraFocus::ManualFocus, focusName(QCameraFocus::ManualFocus)));
+    }
+    endResetModel();
+    emit rowCountChanged();
 
-        if (m_focusModes.size() == 0) {
-            qDebug() << "No focus modes found";
-        }
+    if (m_focusModes.size() == 0) {
+        qDebug() << "No focus modes found";
     }
 }
 

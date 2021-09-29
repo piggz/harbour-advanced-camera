@@ -55,24 +55,23 @@ QVariant EffectsModel::data(const QModelIndex &index, int role) const
 
 void EffectsModel::setCamera(QObject *camera)
 {
-    QCamera *cam = camera->property("mediaObject").value<QCamera *>();
-    if (m_camera != cam) {
-        m_camera = cam;
+    // even when m_camera instance is the same, deviceId could have changed and so available focus modes
+    m_camera = camera->property("mediaObject").value<QCamera *>();
 
-        beginResetModel();
-        for (int c = (int)QCameraImageProcessing::ColorFilterNone;
-                c <= (int)QCameraImageProcessing::ColorFilterNeon; c++) {
-            if (m_camera->imageProcessing()->isColorFilterSupported((QCameraImageProcessing::ColorFilter)c)) {
-                qDebug() << "Found support for" << (QCameraImageProcessing::ColorFilter)c;
-                m_effects.push_back(std::make_pair((QCameraImageProcessing::ColorFilter)c, effectName((QCameraImageProcessing::ColorFilter)c)));
-            }
+    beginResetModel();
+    m_effects.clear();
+    for (int c = (int)QCameraImageProcessing::ColorFilterNone;
+            c <= (int)QCameraImageProcessing::ColorFilterNeon; c++) {
+        if (m_camera->imageProcessing()->isColorFilterSupported((QCameraImageProcessing::ColorFilter)c)) {
+            qDebug() << "Found support for" << (QCameraImageProcessing::ColorFilter)c;
+            m_effects.push_back(std::make_pair((QCameraImageProcessing::ColorFilter)c, effectName((QCameraImageProcessing::ColorFilter)c)));
         }
-        endResetModel();
-        emit rowCountChanged();
+    }
+    endResetModel();
+    emit rowCountChanged();
 
-        if (m_effects.size() == 0) {
-            qDebug() << "No effect modes found";
-        }
+    if (m_effects.size() == 0) {
+        qDebug() << "No effect modes found";
     }
 }
 
