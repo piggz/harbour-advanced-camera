@@ -62,6 +62,20 @@ Page {
 
         active: settings.global.locationMetadata
 
+        onActiveChanged: {
+            // PositionSource is activated a moment after initialization
+            // regardless "active" property assignment. It looks like Qt bug.
+            // Code below workaround it.
+            console.log("positionSource.active: " + positionSource.active)
+            if (positionSource.active != settings.global.locationMetadata) {
+                if (settings.global.locationMetadata) {
+                    start();
+                } else {
+                    stop();
+                }
+            }
+        }
+
         updateInterval: 1000 // ms
     }
 
