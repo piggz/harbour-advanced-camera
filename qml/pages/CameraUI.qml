@@ -455,6 +455,35 @@ Page {
             }
         }
 
+        Slider {
+           id: exposureCompensationSlider
+
+           minimumValue: -2
+           maximumValue: +2
+           value: 0
+           stepSize: 0.1
+           //handleVisible: false
+           valueText : (Math.round(value*10)/10) + " EV"
+
+           anchors.rightMargin: Theme.paddingLarge
+           anchors.right: wideLense.left
+           anchors.top: parent.top
+           width: parent.height * 0.75
+
+           onValueChanged: {
+               if (value != camera.exposure.exposureCompensation)
+                   camera.exposure.exposureCompensation = value
+           }
+
+           Connections {
+               target: camera.exposure
+
+               onExposureCompensationChanged: {
+                   exposureCompensationSlider.value = camera.exposure.exposureCompensation
+               }
+           }
+        }
+
         SettingsOverlay {
             id: settingsOverlay
             iconRotation: page.controlsRotation
