@@ -254,23 +254,23 @@
     <name>SettingsOverlay</name>
     <message>
         <source>Swap zoom controls</source>
-        <translation>Inverser le zoom</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Aucune</translation>
+        <translation type="unfinished">Aucun</translation>
     </message>
     <message>
         <source>Thirds</source>
-        <translation>Tiers</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ambience</source>
-        <translation>Ambiance</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Grid:</source>
-        <translation>Grille :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Video Bitrate</source>
@@ -282,6 +282,10 @@
     </message>
     <message>
         <source>Store GPS location to metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable wide camera selection</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

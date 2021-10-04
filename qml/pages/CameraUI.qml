@@ -345,7 +345,7 @@ Page {
             anchors.bottom: wideLense.top
             anchors.bottomMargin: Theme.paddingSmall
             rotation: page.controlsRotation
-            visible: checkIfCamExists("1") && (camera.videoRecorder.recorderStatus !== CameraRecorder.RecordingStatus) && settings.global.cameraCount > 3
+            visible: checkIfCamExists("1") && (camera.videoRecorder.recorderStatus !== CameraRecorder.RecordingStatus) && settings.global.cameraCount > 3 && settings.global.enableWideCameraButtons
         }
         RoundButton {
             id: wideLense
@@ -357,7 +357,7 @@ Page {
             anchors.rightMargin: Theme.paddingLarge * 1.337
             anchors.verticalCenter: btnCapture.verticalCenter
             rotation: page.controlsRotation
-            visible: checkIfCamExists("0") && (camera.videoRecorder.recorderStatus !== CameraRecorder.RecordingStatus) && settings.global.cameraCount > 3
+            visible: checkIfCamExists("0") && (camera.videoRecorder.recorderStatus !== CameraRecorder.RecordingStatus) && settings.global.cameraCount > 3 && settings.global.enableWideCameraButtons
         }
         RoundButton {
             id: uwideLense
@@ -370,7 +370,7 @@ Page {
             anchors.top: wideLense.bottom
             anchors.topMargin: Theme.paddingSmall
             rotation: page.controlsRotation
-            visible: checkIfCamExists("2") && (camera.videoRecorder.recorderStatus !== CameraRecorder.RecordingStatus) && settings.global.cameraCount > 3
+            visible: checkIfCamExists("2") && (camera.videoRecorder.recorderStatus !== CameraRecorder.RecordingStatus) && settings.global.cameraCount > 3 && settings.global.enableWideCameraButtons
         }
 
 
@@ -971,6 +971,7 @@ Page {
     }
 
     function switchCamera(camId) {
+        console.log("Switching camera to", camId)
         console.log("Setting temp resolution")
         camera.imageCapture.setResolution(settings.strToSize("320x240"))
         camera.stop()
@@ -982,9 +983,11 @@ Page {
     }
 
     function checkIfCamExists(camId) {
-        console.log("Check if cam exists: " + camId)
+        console.log("Check if cam exists: ", camId, QtMultimedia.availableCameras.length)
         var found = false;
         for(var i = 0; i < QtMultimedia.availableCameras.length; i++) {
+            console.log("Check if cam exists: ", i, QtMultimedia.availableCameras[i].deviceId)
+
             if(QtMultimedia.availableCameras[i].deviceId === camId)
                 found = true;
         }

@@ -253,24 +253,24 @@
 <context>
     <name>SettingsOverlay</name>
     <message>
-        <source>Grid:</source>
-        <translation>Cuadrícula:</translation>
-    </message>
-    <message>
         <source>Swap zoom controls</source>
-        <translation>Invertir controles de zoom</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Ninguno</translation>
+        <translation type="unfinished">Ninguno</translation>
     </message>
     <message>
         <source>Thirds</source>
-        <translation>Tres partes</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ambience</source>
-        <translation>Ambiente</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grid:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Video Bitrate</source>
@@ -282,6 +282,10 @@
     </message>
     <message>
         <source>Store GPS location to metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable wide camera selection</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

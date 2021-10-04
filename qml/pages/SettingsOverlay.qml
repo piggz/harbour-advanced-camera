@@ -407,6 +407,19 @@ Item {
                             settings.global.locationMetadata = checked;
                         }
                     }
+
+
+                    TextSwitch{
+                        id: wideSelectionSwitch
+                        width: parent.width
+
+                        checked: settings.global.enableWideCameraButtons
+                        text: qsTr("Enable wide camera selection")
+
+                        onCheckedChanged: {
+                            settings.global.enableWideCameraButtons = checked;
+                        }
+                    }
                 }
             }
         }

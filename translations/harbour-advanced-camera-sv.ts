@@ -253,35 +253,39 @@
 <context>
     <name>SettingsOverlay</name>
     <message>
-        <source>Grid:</source>
-        <translation>Stödlinjer:</translation>
-    </message>
-    <message>
         <source>Swap zoom controls</source>
-        <translation>Zoomkontroller av/på</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Ingen</translation>
+        <translation type="unfinished">Ingen</translation>
     </message>
     <message>
         <source>Thirds</source>
-        <translation>Tredjedelar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ambience</source>
-        <translation>Atmosfär</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grid:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Video Bitrate</source>
-        <translation>Bithastighet Video</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Audio Bitrate</source>
-        <translation>Bithastighet Ljud</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Store GPS location to metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable wide camera selection</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -12,7 +12,7 @@ Item {
         id: globalSettings
         path: "/uk/co/piggz/harbour-advanced-camera"
         property int cameraCount: QtMultimedia.availableCameras.length
-        property string cameraId: "primary"
+        property string cameraId: "0"
         property string captureMode: "image"
         property bool swapZoomControl: false
         property string gridMode: "none"
@@ -20,6 +20,7 @@ Item {
         property int audioBitrate: 128000
         property string storagePath: StandardPaths.home
         property bool locationMetadata: true
+        property bool enableWideCameraButtons: true
 
         ConfigurationGroup {
             id: modeSettings

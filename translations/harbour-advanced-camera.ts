@@ -253,10 +253,6 @@
 <context>
     <name>SettingsOverlay</name>
     <message>
-        <source>Grid:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Swap zoom controls</source>
         <translation type="unfinished"></translation>
     </message>
@@ -273,6 +269,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Grid:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Video Bitrate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -282,6 +282,10 @@
     </message>
     <message>
         <source>Store GPS location to metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable wide camera selection</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

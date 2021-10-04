@@ -253,24 +253,24 @@
 <context>
     <name>SettingsOverlay</name>
     <message>
-        <source>Grid:</source>
-        <translation>Ruudukko:</translation>
-    </message>
-    <message>
         <source>Swap zoom controls</source>
-        <translation>Vaihda zoomausnapit</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Ei mitään</translation>
+        <translation type="unfinished">Ei mitään</translation>
     </message>
     <message>
         <source>Thirds</source>
-        <translation>Kolmannekset</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ambience</source>
-        <translation>Tunnelma</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Grid:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Video Bitrate</source>
@@ -282,6 +282,10 @@
     </message>
     <message>
         <source>Store GPS location to metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable wide camera selection</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
