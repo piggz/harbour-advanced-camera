@@ -420,6 +420,42 @@ Item {
                             settings.global.enableWideCameraButtons = checked;
                         }
                     }
+
+                    Label {
+                        text: qsTr("Disabled Cameras")
+                    }
+
+                    Row {
+                        width: parent.width
+                        spacing: 5
+                        Repeater {
+                            model: QtMultimedia.availableCameras
+                            Rectangle {
+                                width: Theme.itemSizeSmall
+                                height: width
+                                color: (settings.global.disabledCameras.indexOf("[" + QtMultimedia.availableCameras[index].deviceId + "]") >=0) ? "red" : "green"
+                                Label  {
+                                    anchors.centerIn: parent
+                                    text: QtMultimedia.availableCameras[index].deviceId
+                                }
+                                MouseArea {
+                                    anchors.fill: parent
+
+                                    onClicked: {
+                                        console.log("Clicked ", QtMultimedia.availableCameras[index].deviceId)
+                                        if (settings.global.disabledCameras.indexOf("[" + QtMultimedia.availableCameras[index].deviceId + "]") >=0) {
+                                            settings.global.disabledCameras = settings.global.disabledCameras.replace("[" + QtMultimedia.availableCameras[index].deviceId + "]", "")
+                                        } else {
+                                            settings.global.disabledCameras += ("[" + QtMultimedia.availableCameras[index].deviceId + "]")
+                                        }
+
+                                        console.log(settings.global.disabledCameras)
+                                        settings.calculateEnabledCameras()
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

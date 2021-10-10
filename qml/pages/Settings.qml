@@ -8,6 +8,8 @@ Item {
     property alias mode: modeSettings
     property alias jollaCamera: jollaCameraSettings
 
+    property variant enabledCameras: [] //Calculated on startup and when disabledCameras changes
+
     ConfigurationGroup {
         id: globalSettings
         path: "/uk/co/piggz/harbour-advanced-camera"
@@ -21,6 +23,7 @@ Item {
         property string storagePath: StandardPaths.home
         property bool locationMetadata: true
         property bool enableWideCameraButtons: true
+        property string disabledCameras: ""
 
         ConfigurationGroup {
             id: modeSettings
@@ -65,5 +68,15 @@ Item {
             }
         }
         return modelResolution.defaultResolution(mode)
+    }
+
+    function calculateEnabledCameras()
+    {
+        settings.enabledCameras = []
+        for (var i = 0; i < QtMultimedia.availableCameras.length; ++i) {
+            if (settings.global.disabledCameras.indexOf("[" + QtMultimedia.availableCameras[i].deviceId + "]") == -1) {
+                settings.enabledCameras.push(QtMultimedia.availableCameras[i].deviceId)
+            }
+        }
     }
 }

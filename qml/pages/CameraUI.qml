@@ -489,26 +489,7 @@ Page {
                 rightMargin: Theme.paddingMedium
             }
             onClicked: {
-                if (settings.global.cameraCount > 3) {
-                    if (settings.global.cameraId != "3") {
-                        prevCamId = settings.global.cameraId
-                        switchCamera("3");
-                    }
-                    else {
-                        if (prevCamId != "") switchCamera(prevCamId)
-                        else switchCamera("0")
-                    }
-                }
-                else {
-                    if (settings.global.cameraId != "1") {
-                        prevCamId = settings.global.cameraId
-                        switchCamera("1");
-                    }
-                    else {
-                        if (prevCamId != "") switchCamera(prevCamId)
-                        else switchCamera("0")
-                    }
-                }
+                switchToNextCamera()
             }
         }
 
@@ -640,6 +621,7 @@ Page {
     }
 
     Component.onCompleted: {
+        settings.calculateEnabledCameras()
         camera.deviceId = settings.global.cameraId
         _completed = true
     }
@@ -989,16 +971,32 @@ Page {
     }
 
     function checkIfCamExists(camId) {
-        console.log("Check if cam exists: ", camId, QtMultimedia.availableCameras.length)
+        console.log("Check if cam exists: ", camId, settings.enabledCameras.length)
         var found = false;
-        for(var i = 0; i < QtMultimedia.availableCameras.length; i++) {
-            console.log("Check if cam exists: ", i, QtMultimedia.availableCameras[i].deviceId)
-
-            if(QtMultimedia.availableCameras[i].deviceId === camId)
+        for(var i = 0; i < settings.enabledCameras.length; i++) {
+            if(settings.enabledCameras[i] === camId)
                 found = true;
         }
-        if (found) return true;
-        else return false;
+        return found
+    }
 
+    function switchToNextCamera() {
+        console.log("Switching no next camera from", settings.global.cameraId, settings.enabledCameras)
+        if (settings.enabledCameras.length == 0) {
+            switchCamera(0)
+        }else if (settings.enabledCameras.length == 1) {
+            switchCamera(settings.enabledCameras[0])
+        } else {
+            var idx = settings.enabledCameras.indexOf(settings.global.cameraId);
+            if (idx >= 0) {
+                idx++;
+                if (idx >= settings.enabledCameras.length) {
+                    idx = 0
+                }
+                switchCamera(settings.enabledCameras[idx])
+            } else {
+                switchCamera(settings.enabledCameras[0])
+            }
+        }
     }
 }
