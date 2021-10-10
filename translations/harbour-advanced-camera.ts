@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>CameraUI</name>
+    <message>
+        <source>Camera: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
         <source>Advanced Camera</source>
@@ -286,6 +293,10 @@
     </message>
     <message>
         <source>Enable wide camera selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled Cameras</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

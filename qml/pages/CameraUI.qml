@@ -424,6 +424,12 @@ Page {
             rotation: page.controlsRotation
 
             Label {
+                id: lblCameraId
+                text: qsTr("Camera: ") + camera.deviceId
+                color: Theme.lightPrimaryColor
+            }
+
+            Label {
                 property bool forceUpdate: false
                 id: lblResolution
                 color: Theme.lightPrimaryColor
