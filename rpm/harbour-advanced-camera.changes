@@ -12,7 +12,16 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
-* Sun Apr 13 2014 Jack Tar <jack.tar@example.com> 0.0.1-1
-- Scrubbed the deck
-- Hoisted the sails
-
+* Mon Oct 11 2021 Adam Pigg <adam@piggz.co.uk> 0.9.5-1
+- Several improvements from Lukáš Karas:
+-  Dont use an unsupported focus mode
+-  Better viewfinder resolution selection
+-  Update models when the camera changes
+-  Simulate manual focus mode
+-  Gallery media information view
+-  Turn off GPS correctly
+-  Manual exposure slider
+- Added settings to turn off telelense buttons
+- Added option to turn off manual exposure
+- Added optiont to enable/disable camera selection
+- Added current camera label

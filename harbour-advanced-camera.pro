@@ -31,7 +31,7 @@ SOURCES += src/harbour-advanced-camera.cpp \
     src/resourcehandler.cpp \
     src/storagemodel.cpp
 
-DISTFILES += rpm/harbour-advanced-camera.changes.in \
+DISTFILES += \
     README.md \
     qml/pics/icon-m-tele-lense-active.png \
     qml/pics/icon-m-tele-lense.svg \
@@ -42,6 +42,7 @@ DISTFILES += rpm/harbour-advanced-camera.changes.in \
     qml/components/AboutMedia.qml \
     qml/pages/AboutImage.qml \
     qml/pages/AboutVideo.qml \
+    rpm/harbour-advanced-camera.changes \
     rpm/harbour-advanced-camera.changes.run.in \
     rpm/harbour-advanced-camera.spec \
     rpm/harbour-advanced-camera.yaml \
