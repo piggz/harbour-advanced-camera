@@ -16,7 +16,7 @@ Summary:    Advanced camera
 Version:    0.9.5
 Release:    1
 Group:      Qt/Qt
-License:    LICENSE
+License:    GPLv2
 URL:        http://github.com/piggz/harbour-advanced-camera
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-advanced-camera.yaml
