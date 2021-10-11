@@ -24,6 +24,7 @@ Item {
         property bool locationMetadata: true
         property bool enableWideCameraButtons: true
         property string disabledCameras: ""
+        property bool showManualControls: false
 
         ConfigurationGroup {
             id: modeSettings

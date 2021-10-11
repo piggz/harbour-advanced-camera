@@ -4,6 +4,7 @@ import QtMultimedia 5.6
 import QtPositioning 5.2
 import QtSensors 5.0
 import Nemo.KeepAlive 1.2
+import QtQuick.Layouts 1.1
 import uk.co.piggz.harbour_advanced_camera 1.0
 import "../components/"
 
@@ -28,7 +29,7 @@ Page {
     property int _orientation: OrientationReading.TopUp
 
     OrientationSensor {
-    id: orientationSensor
+        id: orientationSensor
         active: true
 
         onReadingChanged: {
@@ -401,7 +402,12 @@ Page {
             }
         }
 
-        Row {
+        Column {
+            id: grdOnscreenControls
+            spacing: Theme.paddingMedium
+            rotation: page.controlsRotation
+            height: childrenRect.height
+
             anchors.horizontalCenter: {
                 if ((_orientation === OrientationReading.TopUp)
                         || (_orientation === OrientationReading.TopDown))
@@ -423,71 +429,77 @@ Page {
                         || (_orientation === OrientationReading.TopDown))
                     return 0
                 else
-                    return height
+                    return Theme.itemSizeLarge
             }
 
             anchors.horizontalCenterOffset: {
                 if ((_orientation === OrientationReading.TopUp)
                         || (_orientation === OrientationReading.TopDown))
-                    return -(btnCapture.width + height)
+                    return -(btnCapture.width + height + teleLense.height)
                 else
                     return 0
             }
 
-            spacing: Theme.paddingMedium
-            rotation: page.controlsRotation
+            Row {
+                id: rowTop
+                spacing: Theme.paddingMedium
 
-            Label {
-                id: lblCameraId
-                text: qsTr("Camera: ") + camera.deviceId
-                color: Theme.lightPrimaryColor
+                Item {
+                    height: 1
+                    width: Theme.itemSizeLarge
+                }
+
+                Label {
+                    id: lblCameraId
+                    text: qsTr("Camera: ") + camera.deviceId
+                    color: Theme.lightPrimaryColor
+                }
+
+                Label {
+                    property bool forceUpdate: false
+                    id: lblResolution
+                    color: Theme.lightPrimaryColor
+                    text: (forceUpdate
+                           || !forceUpdate) ? settings.sizeToStr(
+                                                  (settings.global.captureMode === "video" ? camera.videoRecorder.resolution : camera.imageCapture.resolution)) : ""
+                }
+
+                Label {
+                    id: lblRecordTime
+                    visible: settings.global.captureMode === "video"
+                    color: Theme.lightPrimaryColor
+                    //text: Qt.formatDateTime(new Date(camera.videoRecorder.duration), "hh:mm:ss") //Doest work as return 01:00:00 for 0
+                    text: msToTime(camera.videoRecorder.duration)
+                }
+                Item {
+                    height: 1
+                    width: Theme.itemSizeLarge
+                }
             }
 
-            Label {
-                property bool forceUpdate: false
-                id: lblResolution
-                color: Theme.lightPrimaryColor
-                text: (forceUpdate
-                       || !forceUpdate) ? settings.sizeToStr(
-                                              (settings.global.captureMode === "video" ? camera.videoRecorder.resolution : camera.imageCapture.resolution)) : ""
+            Slider {
+                id: exposureCompensationSlider
+                width: rowTop.childrenRect.width
+                minimumValue: -2
+                maximumValue: +2
+                value: 0
+                stepSize: 0.1
+                visible: settings.global.showManualControls
+                valueText : (Math.round(value*10)/10) + " EV"
+
+                onValueChanged: {
+                    if (value != camera.exposure.exposureCompensation)
+                        camera.exposure.exposureCompensation = value
+                }
+
+                Connections {
+                    target: camera.exposure
+
+                    onExposureCompensationChanged: {
+                        exposureCompensationSlider.value = camera.exposure.exposureCompensation
+                    }
+                }
             }
-
-            Label {
-                id: lblRecordTime
-                visible: settings.global.captureMode === "video"
-                color: Theme.lightPrimaryColor
-                //text: Qt.formatDateTime(new Date(camera.videoRecorder.duration), "hh:mm:ss") //Doest work as return 01:00:00 for 0
-                text: msToTime(camera.videoRecorder.duration)
-            }
-        }
-
-        Slider {
-           id: exposureCompensationSlider
-
-           minimumValue: -2
-           maximumValue: +2
-           value: 0
-           stepSize: 0.1
-           //handleVisible: false
-           valueText : (Math.round(value*10)/10) + " EV"
-
-           anchors.rightMargin: Theme.paddingLarge
-           anchors.right: wideLense.left
-           anchors.top: parent.top
-           width: parent.height * 0.75
-
-           onValueChanged: {
-               if (value != camera.exposure.exposureCompensation)
-                   camera.exposure.exposureCompensation = value
-           }
-
-           Connections {
-               target: camera.exposure
-
-               onExposureCompensationChanged: {
-                   exposureCompensationSlider.value = camera.exposure.exposureCompensation
-               }
-           }
         }
 
         SettingsOverlay {
@@ -767,46 +779,46 @@ Page {
 
     function cameraStatusStr() {
         switch(camera.cameraStatus){
-            case Camera.ActiveStatus:
-                return "Active"
-            case Camera.StartingStatus:
-                return "Starting"
-            case Camera.StoppingStatus:
-                return "Stopping"
-            case Camera.StandbyStatus:
-                return "Standby"
-            case Camera.LoadedStatus:
-                return "Loaded"
-            case Camera.LoadingStatus:
-                return "Loading"
-            case Camera.UnloadingStatus:
-                return "Unloading"
-            case Camera.UnloadedStatus:
-                return "Unloaded"
-            case Camera.UnavailableStatus:
-                return "Unavailable"
-            default:
-                return "unknown (" + camera.cameraStatus + ")"
+        case Camera.ActiveStatus:
+            return "Active"
+        case Camera.StartingStatus:
+            return "Starting"
+        case Camera.StoppingStatus:
+            return "Stopping"
+        case Camera.StandbyStatus:
+            return "Standby"
+        case Camera.LoadedStatus:
+            return "Loaded"
+        case Camera.LoadingStatus:
+            return "Loading"
+        case Camera.UnloadingStatus:
+            return "Unloading"
+        case Camera.UnloadedStatus:
+            return "Unloaded"
+        case Camera.UnavailableStatus:
+            return "Unavailable"
+        default:
+            return "unknown (" + camera.cameraStatus + ")"
         }
     }
 
     function focusStr(focus) {
         // TODO: It's possible to combine multiple Camera::FocusMode values, for example FocusMacro + FocusContinuous.
         switch (focus) {
-            case CameraFocus.FocusManual:
-                return "Manual"
-            case CameraFocus.FocusHyperfocal:
-                return "Hyperfocal"
-            case CameraFocus.FocusInfinity:
-                return "Infinity"
-            case CameraFocus.FocusAuto:
-                return "Auto"
-            case CameraFocus.FocusContinuous:
-                return "Continuous"
-            case CameraFocus.FocusMacro:
-                return "Macro"
-            default:
-                return "unknown (" + focus + ")"
+        case CameraFocus.FocusManual:
+            return "Manual"
+        case CameraFocus.FocusHyperfocal:
+            return "Hyperfocal"
+        case CameraFocus.FocusInfinity:
+            return "Infinity"
+        case CameraFocus.FocusAuto:
+            return "Auto"
+        case CameraFocus.FocusContinuous:
+            return "Continuous"
+        case CameraFocus.FocusMacro:
+            return "Macro"
+        default:
+            return "unknown (" + focus + ")"
         }
     }
 

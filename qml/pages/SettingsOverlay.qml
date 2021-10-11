@@ -408,6 +408,17 @@ Item {
                         }
                     }
 
+                    TextSwitch{
+                        id: showManualControls
+                        width: parent.width
+
+                        checked: settings.global.showManualControls
+                        text: qsTr("Display manual controls")
+
+                        onCheckedChanged: {
+                            settings.global.showManualControls = checked;
+                        }
+                    }
 
                     TextSwitch{
                         id: wideSelectionSwitch
