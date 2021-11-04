@@ -1,1 +1,14 @@
+/.idea
+/RPMS
 harbour-advanced-camera.pro.user
+debugfiles.list
+debuglinks.list
+debugsourcefiles.list
+debugsources.list
+documentation.list
+elfbins.list
+harbour-advanced-camera
+Makefile
+*.o
+*.qm
+moc_*.cpp
