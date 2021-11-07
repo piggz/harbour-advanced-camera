@@ -1,4 +1,5 @@
 import QtQuick 2.5
+import Sailfish.Share 1.0
 import Sailfish.Silica 1.0
 import QtMultimedia 5.6
 import Nemo.Thumbnailer 1.0
@@ -123,6 +124,10 @@ Page {
             }
         }
 
+        ShareAction {
+            id: shareAction
+        }
+
         RoundButton {
             id: btnShare
 
@@ -132,10 +137,9 @@ Page {
             onClicked: {
                 var filePath = fileList.get(gallery.currentIndex).filePath
                 var mimeType = isVideo(gallery.currentIndex) ? "video/mp4" : "image/jpeg"
-                pageStack.push("Sailfish.TransferEngine.SharePage", {
-                                   "source": filePath,
-                                   "mimeType": mimeType
-                               })
+                shareAction.resources = [filePath]
+                shareAction.mimeType = mimeType
+                shareAction.trigger()
             }
         }
     }
