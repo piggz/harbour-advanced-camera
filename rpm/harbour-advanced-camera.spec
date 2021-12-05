@@ -13,7 +13,7 @@ Name:       harbour-advanced-camera
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Advanced camera
-Version:    0.9.5
+Version:    0.9.6
 Release:    1
 Group:      Qt/Qt
 License:    GPLv2
@@ -33,7 +33,18 @@ BuildRequires:  desktop-file-utils
 
 %description
 Better camera application
-
+%if "%{?vendor}" == "chum"
+BEGINCHUMMETADATA
+name: Advanced Camera
+package: harbour-advanced-camera
+category: Applications/Media
+repotype: github
+repo: https://github.com/piggz/harbour-advanced-camera
+icon: https://raw.githubusercontent.com/piggz/harbour-advanced-camera/master/harbour-advanced-camera.svg
+screenshots:
+forums: https://github.com/piggz/harbour-advanced-camera/discussions
+issues: https://github.com/piggz/harbour-advanced-camera/issues
+%endif
 
 %prep
 %setup -q -n %{name}-%{version}
