@@ -42,8 +42,9 @@ repotype: github
 repo: https://github.com/piggz/harbour-advanced-camera
 icon: https://raw.githubusercontent.com/piggz/harbour-advanced-camera/master/harbour-advanced-camera.svg
 screenshots:
-forums: https://github.com/piggz/harbour-advanced-camera/discussions
+forum: https://github.com/piggz/harbour-advanced-camera/discussions
 issues: https://github.com/piggz/harbour-advanced-camera/issues
+donation: https://www.paypal.me/piggz
 %endif
 
 %prep
