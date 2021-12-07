@@ -33,8 +33,8 @@ BuildRequires:  desktop-file-utils
 
 %description
 Better camera application
+
 %if "%{?vendor}" == "chum"
-BEGINCHUMMETADATA
 name: Advanced Camera
 package: harbour-advanced-camera
 category: Applications/Media
