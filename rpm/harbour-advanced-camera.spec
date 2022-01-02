@@ -32,22 +32,44 @@ BuildRequires:  libexif-devel
 BuildRequires:  desktop-file-utils
 
 %description
-Better camera application
+Advanced Camera (aka piggz-o-vision) is a community camera application for sailfish devices which utilises the latest features in 3.0.2 to query/set parameters supported by the device.
+
+Allows full control over:
+    Effects
+    Exposure/scene modes
+    Focus mode
+    Resolution
+    White Balance
+    Flash mode
+    ISO
+
+Currently selected parameters are displayed on the buttons where possible.
+
+Tapping the screen sets the focus circle when in Auto/Macro/Continuous
+
+Hold the shutter button to focus and take an image when in Auto/Macro/Continuous focus mode, other modes take an instant image.
+
+Exposure mode will typically provide a HDR mode for taking HDR images.
 
 %if "%{?vendor}" == "chum"
-name: Advanced Camera
-package: harbour-advanced-camera
-category: Applications/Media
-repotype: github
-repo: https://github.com/piggz/harbour-advanced-camera
-icon: https://raw.githubusercontent.com/piggz/harbour-advanced-camera/master/harbour-advanced-camera.svg
-screenshots:
-- https://github.com/piggz/harbour-advanced-camera/raw/metadata/screenshots/screenshot1.png
-- https://github.com/piggz/harbour-advanced-camera/raw/metadata/screenshots/screenshot2.png
-- https://github.com/piggz/harbour-advanced-camera/raw/metadata/screenshots/screenshot3.png
-forum: https://github.com/piggz/harbour-advanced-camera/discussions
-issues: https://github.com/piggz/harbour-advanced-camera/issues
-donation: https://www.paypal.me/piggz
+PackageName: Advanced Camera
+Type: desktop-application
+DeveloperName: Adam Pigg
+Categories:
+ - Media
+ - Video
+Custom:
+  Repo: https://github.com/piggz/harbour-advanced-camera
+Icon: https://raw.githubusercontent.com/piggz/harbour-advanced-camera/master/harbour-advanced-camera.svg
+Screenshots:
+ - https://github.com/piggz/harbour-advanced-camera/raw/master/screenshots/screenshot4.png
+ - https://github.com/piggz/harbour-advanced-camera/raw/master/screenshots/screenshot5.png
+ - https://github.com/piggz/harbour-advanced-camera/raw/master/screenshots/screenshot6.png
+Url:
+  Homepage: https://github.com/piggz/harbour-advanced-camera
+  Help: https://github.com/piggz/harbour-advanced-camera/discussions
+  Bugtracker: https://github.com/piggz/harbour-advanced-camera/issues
+  Donation: https://www.paypal.me/piggz
 %endif
 
 %prep
