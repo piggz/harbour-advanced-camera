@@ -42,10 +42,8 @@ DISTFILES += \
     qml/components/AboutMedia.qml \
     qml/pages/AboutImage.qml \
     qml/pages/AboutVideo.qml \
-    rpm/harbour-advanced-camera.changes \
     rpm/harbour-advanced-camera.changes.run.in \
     rpm/harbour-advanced-camera.spec \
-    rpm/harbour-advanced-camera.yaml \
     translations/*.ts \
     harbour-advanced-camera.desktop \
     qml/harbour-advanced-camera.qml \
