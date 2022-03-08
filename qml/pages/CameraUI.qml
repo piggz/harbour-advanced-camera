@@ -676,6 +676,7 @@ Page {
     }
 
     Component.onCompleted: {
+        settings.global.cameraCount = QtMultimedia.availableCameras.length
         settings.calculateEnabledCameras()
         camera.deviceId = settings.global.cameraId
         _completed = true
@@ -841,8 +842,6 @@ Page {
 
         camera.imageCapture.setResolution(settings.resolution("image"))
         camera.videoRecorder.resolution = settings.resolution("video")
-
-        settings.global.cameraCount = QtMultimedia.availableCameras.length
     }
 
     function setFocusMode(focus) {
@@ -887,6 +886,7 @@ Page {
         ///  * viewFinderResolution as set in jolla-camera's dconf settings
         ///  * Best match from camera.supportedViewfinderResolutions() that fit to screen and have the same aspect ratio
         ///  * device resolution
+
         var currentRatioSize = modelResolution.sizeToRatio(
                     settings.resolution(settings.global.captureMode))
         var currentRatio = currentRatioSize.height

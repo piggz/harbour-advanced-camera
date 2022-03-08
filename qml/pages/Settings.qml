@@ -13,7 +13,7 @@ Item {
     ConfigurationGroup {
         id: globalSettings
         path: "/uk/co/piggz/harbour-advanced-camera"
-        property int cameraCount: QtMultimedia.availableCameras.length
+        property int cameraCount: 0 //default to 0 and get populated on startup
         property string cameraId: "0"
         property string captureMode: "image"
         property bool swapZoomControl: false
@@ -74,7 +74,7 @@ Item {
     function calculateEnabledCameras()
     {
         settings.enabledCameras = []
-        for (var i = 0; i < QtMultimedia.availableCameras.length; ++i) {
+        for (var i = 0; i < globalSettings.cameraCount; ++i) {
             if (settings.global.disabledCameras.indexOf("[" + QtMultimedia.availableCameras[i].deviceId + "]") == -1) {
                 settings.enabledCameras.push(QtMultimedia.availableCameras[i].deviceId)
             }
