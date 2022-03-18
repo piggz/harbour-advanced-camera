@@ -11,3 +11,8 @@ Name=Advanced Camera
 # a different app name in German locale (de).
 #Name[de]=harbour-advanced-camera
 Name[ru]=Улучшенная камера
+
+[X-Sailjail]
+Permissions=Audio;Location;RemovableMedia;Pictures;Videos
+OrganizationName=uk.co.piggz
+ApplicationName=AdvancedCamera
