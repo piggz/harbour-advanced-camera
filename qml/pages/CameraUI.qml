@@ -21,7 +21,7 @@ Page {
     property bool _loadParameters: true
     property bool _recordingVideo: false
     property bool _manualModeSelected: false
-    readonly property int zoomStepSize: 5
+    readonly property real zoomStepSize: 0.05
     property int controlsRotation: 0
     property int _pictureRotation: Screen.primaryOrientation == Qt.PortraitOrientation ? 0 : 90
     // Use easy device orientation values
