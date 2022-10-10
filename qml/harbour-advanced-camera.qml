@@ -35,4 +35,12 @@ ApplicationWindow {
     Component.onCompleted: {
         loadingComplete = true;
     }
+
+    onApplicationActiveChanged: {
+        if (Qt.application.state == Qt.ApplicationActive) {
+            cameraUI.camera.start();
+        } else {
+            cameraUI.camera.stop();
+        }
+    }
 }
