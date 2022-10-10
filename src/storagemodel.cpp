@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QStandardPaths>
+#include <QStorageInfo>
 
 Storage::Storage(const QString &name, const QString &path) :
     m_name(name), m_path(path)
@@ -11,7 +12,7 @@ Storage::Storage(const QString &name, const QString &path) :
 
 StorageModel::StorageModel()
 {
-    scan("/media/sdcard");
+    scan();
 }
 
 QHash<int, QByteArray> StorageModel::roleNames() const
@@ -46,19 +47,31 @@ QVariant StorageModel::data(const QModelIndex &index, int role) const
     }
 }
 
-void StorageModel::scan(const QString &baseDir)
+void StorageModel::scan()
 {
-    qDebug() << "Scanning" << baseDir;
+    qDebug() << "Scanning storage directories";
     QString homeDir = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-    QDir subRoot(baseDir);
-    QStringList subDirs = subRoot.entryList(QDir::AllDirs|QDir::NoDotAndDotDot); // Add QDir::Writable ?
+
     beginResetModel();
     m_storage.clear();
     m_storage.append(Storage(tr("Internal storage"), homeDir));
-    // TODO: add "Android" for /home/nemo/android_storage if it exists ?
-    for (const QString &dir : subDirs) {
-        m_storage.append(Storage(dir, baseDir + "/" + dir));
+
+    for (const QStorageInfo &storage : QStorageInfo::mountedVolumes()) {
+
+        QString mountPoint = storage.rootPath();
+
+        // Sailfish OS specific mount point base for SD cards!
+        if (storage.isValid() &&
+            storage.isReady() &&
+            (mountPoint.startsWith("/media") ||
+             mountPoint.startsWith("/run/media/") /* SFOS >= 2.2 */ )
+            ) {
+
+            qDebug() << "Found storage:" << mountPoint;
+            m_storage << Storage(QDir(mountPoint).dirName(), mountPoint);
+        }
     }
+
     endResetModel();
     emit rowCountChanged();
 }

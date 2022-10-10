@@ -33,7 +33,7 @@ public:
     Q_INVOKABLE QVariant getName(int index) const { return m_storage.at(index).name(); }
     Q_INVOKABLE QVariant getPath(int index) const { return m_storage.at(index).path(); }
 public slots:
-    void scan(const QString &baseDir);
+    void scan();
 private:
     QList<Storage> m_storage;
 
