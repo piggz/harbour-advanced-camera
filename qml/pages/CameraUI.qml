@@ -22,6 +22,7 @@ Page {
     property bool _recordingVideo: false
     property bool _manualModeSelected: false
     readonly property real zoomStepSize: 0.05
+    readonly property real zoomStepButton: 5.0
     property int controlsRotation: 0
     property int _pictureRotation: Screen.primaryOrientation == Qt.PortraitOrientation ? 0 : 90
     // Use easy device orientation values
@@ -750,7 +751,7 @@ Page {
         }
     }
 
-    Keys.onVolumeUpPressed: {
+    function volUp() {
         if (settings.global.swapZoomControl) {
             zoomOut()
         } else {
@@ -758,7 +759,7 @@ Page {
         }
     }
 
-    Keys.onVolumeDownPressed: {
+    function volDown() {
         if (settings.global.swapZoomControl) {
             zoomIn()
         } else {
@@ -767,6 +768,7 @@ Page {
     }
 
     Keys.onPressed: {
+        console.log(event);
         if (event.isAutoRepeat) {
             return
         }
@@ -977,13 +979,13 @@ Page {
 
     function zoomIn() {
         if (camera.digitalZoom < camera.maximumDigitalZoom) {
-            camera.digitalZoom += zoomStepSize
+            camera.digitalZoom += zoomStepButton;
         }
     }
 
     function zoomOut() {
         if (camera.digitalZoom > 1) {
-            camera.digitalZoom -= zoomStepSize
+            camera.digitalZoom -= zoomStepButton;
         }
     }
 

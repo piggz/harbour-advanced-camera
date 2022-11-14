@@ -43,4 +43,18 @@ ApplicationWindow {
             cameraUI.camera.stop();
         }
     }
+
+    Keys.onPressed: {
+        console.log(event.key);
+        if (event.isAutoRepeat) {
+            return
+        }
+        if (event.key === Qt.Key_VolumeUp) {
+            cameraUI.volUp();
+        } else if (event.key === Qt.Key_VolumeDown) {
+            cameraUI.volDown();
+        } else if (event.key === Qt.Key_Camera) {
+            console.log("Cmamera key");
+        }
+    }
 }

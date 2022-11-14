@@ -12,7 +12,8 @@ static int (*release_set)(resource_set_t *);
 ResourceHandler::ResourceHandler(QObject *parent) :
     QObject(parent)
 {
-    m_handle = dlopen ("/usr/lib/libresource-glib.so.0", RTLD_LAZY);
+
+    m_handle = dlopen ((sizeof(void*) == 8) ? "/usr/lib64/libresource-glib.so.0" : "/usr/lib/libresource-glib.so.0", RTLD_LAZY);
 
     if (m_handle) {
         create_set = (resource_set_t *(*)(const char *, uint32_t, uint32_t, uint32_t, resource_callback_t,
@@ -31,9 +32,12 @@ ResourceHandler::ResourceHandler(QObject *parent) :
         if (!create_set || !acquire_set || !release_set) {
             qDebug() << "Error in dlsym to one of the functions";
         } else {
+            qDebug() << "Creating resource set";
             m_resource = create_set("player", RESOURCE_SCALE_BUTTON | RESOURCE_SNAP_BUTTON, 0, 0,
                                     &grant_callback, nullptr);
         }
+    } else {
+        qDebug() << "Unable to open libresource.  Unable to use hardware keys";
     }
 }
 
