@@ -5,7 +5,7 @@
     <name>CameraUI</name>
     <message>
         <source>Camera: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kamera: </translation>
     </message>
 </context>
 <context>
@@ -220,7 +220,7 @@
     </message>
     <message>
         <source>Hyperfocal</source>
-        <translation>Hyperfocal</translation>
+        <translation>Hyperfokal</translation>
     </message>
     <message>
         <source>Infinity</source>
@@ -261,47 +261,47 @@
     <name>SettingsOverlay</name>
     <message>
         <source>Swap zoom controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Byt zoomkontroller</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished">Ingen</translation>
+        <translation>Inga</translation>
     </message>
     <message>
         <source>Thirds</source>
-        <translation type="unfinished"></translation>
+        <translation>Tredjedelar</translation>
     </message>
     <message>
         <source>Ambience</source>
-        <translation type="unfinished"></translation>
+        <translation>Atmosfär</translation>
     </message>
     <message>
         <source>Grid:</source>
-        <translation type="unfinished"></translation>
+        <translation>Stödlinjer:</translation>
     </message>
     <message>
         <source>Video Bitrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Videoupplösning</translation>
     </message>
     <message>
         <source>Audio Bitrate</source>
-        <translation type="unfinished"></translation>
+        <translation>Ljudupplösning</translation>
     </message>
     <message>
         <source>Store GPS location to metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara GPS platsinfo i metadata</translation>
     </message>
     <message>
         <source>Enable wide camera selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivera vidvinkelval</translation>
     </message>
     <message>
         <source>Disabled Cameras</source>
-        <translation type="unfinished"></translation>
+        <translation>Inaktiverade kameror</translation>
     </message>
     <message>
         <source>Display manual controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa manuella kontroller</translation>
     </message>
 </context>
 <context>
