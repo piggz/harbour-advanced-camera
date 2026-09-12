@@ -16,6 +16,12 @@ CONFIG += sailfishapp
 
 QT += multimedia
 
+# sailfishapp has to stay in this list: link_pkgconfig resolves PKGCONFIG
+# before sailfishapp.prf contributes its own entry, and -lsailfishapp would
+# silently drop off the link line (undefined SailfishApp:: symbols).
+CONFIG += link_pkgconfig
+PKGCONFIG += sailfishapp glib-2.0 gstreamer-1.0
+
 SOURCES += src/harbour-advanced-camera.cpp \
     src/deviceinfo.cpp \
     src/effectsmodel.cpp \
@@ -29,7 +35,8 @@ SOURCES += src/harbour-advanced-camera.cpp \
     src/flashmodel.cpp \
     src/fsoperations.cpp \
     src/resourcehandler.cpp \
-    src/storagemodel.cpp
+    src/storagemodel.cpp \
+    src/videojoiner.cpp
 
 DISTFILES += \
     README.md \
@@ -86,6 +93,7 @@ HEADERS += \
     src/flashmodel.h \
     src/fsoperations.h \
     src/resourcehandler.h \
-    src/storagemodel.h
+    src/storagemodel.h \
+    src/videojoiner.h
 
 LIBS += -ldl

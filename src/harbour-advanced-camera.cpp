@@ -22,6 +22,7 @@
 #include "storagemodel.h"
 #include "exifmodel.h"
 #include "metadatamodel.h"
+#include "videojoiner.h"
 
 int main(int argc, char *argv[])
 {
@@ -68,6 +69,8 @@ int main(int argc, char *argv[])
     view->rootContext()->setContextProperty("modelStorage", &storageModel);
     FSOperations fsOperations;
     view->rootContext()->setContextProperty("fsOperations", &fsOperations);
+    VideoJoiner videoJoiner;
+    view->rootContext()->setContextProperty("videoJoiner", &videoJoiner);
 
     view->setSource(SailfishApp::pathTo("qml/harbour-advanced-camera.qml"));
 

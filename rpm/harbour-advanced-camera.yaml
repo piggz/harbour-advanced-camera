@@ -26,6 +26,8 @@ PkgConfigBR:
   - Qt5Multimedia
   - Qt5Qml
   - Qt5Quick
+  - glib-2.0
+  - gstreamer-1.0
 
 # Build dependencies without a pkgconfig setup can be listed here
 PkgBR:

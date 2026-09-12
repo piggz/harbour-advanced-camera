@@ -26,6 +26,8 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Multimedia)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(gstreamer-1.0)
 BuildRequires:  qt5-qttools-linguist
 BuildRequires:  ssu-sysinfo-devel
 BuildRequires:  libexif-devel

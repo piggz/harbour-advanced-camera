@@ -21,6 +21,18 @@ Page {
     property bool _loadParameters: true
     property bool _recordingVideo: false
     property bool _manualModeSelected: false
+    // --- video pause/resume: a session runs from the first record to Stop.
+    // A pause ends a segment, a resume starts the next one, Stop joins them
+    // losslessly. Completion is keyed off recorderState (StoppedState), the
+    // signal the recorder reports reliably, not recorderStatus.
+    property var _vidSegments: []
+    property var _vidJoinSegs: []
+    property string _vidFinalPath: ""
+    property bool _vidPaused: false
+    property string _vidStopIntent: ""    // "pause" | "stop" (set when WE stop)
+    property int _vidElapsedBefore: 0
+    readonly property bool _vidRecording: camera.videoRecorder.recorderStatus === CameraRecorder.RecordingStatus
+    readonly property bool _vidActive: _vidRecording || _vidPaused
     readonly property real zoomStepSize: 0.05
     readonly property real zoomStepButton: 5.0
     property int controlsRotation: 0
@@ -56,7 +68,7 @@ Page {
     }
 
     DisplayBlanking {
-        preventBlanking: camera.videoRecorder.recorderState === CameraRecorder.RecordingState
+        preventBlanking: camera.videoRecorder.recorderState === CameraRecorder.RecordingState || _vidPaused
     }
 
     PositionSource {
@@ -199,19 +211,14 @@ Page {
             videoBitRate: settings.global.videoBitrate
 
             onRecorderStateChanged: {
-                if (camera.videoRecorder.recorderState === CameraRecorder.StoppedState) {
-                    console.log("saved to: " + camera.videoRecorder.outputLocation)
-                }
-            }
-
-            onRecorderStatusChanged: {
-                if (camera.videoRecorder.recorderStatus === CameraRecorder.FinalizingStatus) {
-                    var path = camera.videoRecorder.outputLocation.toString()
-                    path = path.replace(/^(file:\/{2})/, "")
-                    galleryModel.append({
-                                            "filePath": path,
-                                            "isVideo": true
-                                        })
+                if (camera.videoRecorder.recorderState === CameraRecorder.StoppedState
+                        && _vidStopIntent !== "") {
+                    var intent = _vidStopIntent
+                    _vidStopIntent = ""
+                    if (intent === "pause")
+                        _vidPaused = true
+                    else
+                        videoFinalizeSession()
                 }
             }
 
@@ -267,6 +274,27 @@ Page {
 
         onOrientationChanged: {
             console.log("Orientation:", orientation);
+        }
+    }
+
+    Connections {
+        target: videoJoiner
+        onFinished: {
+            if (ok) {
+                for (var i = 0; i < _vidJoinSegs.length; ++i)
+                    fsOperations.deleteFile(_vidJoinSegs[i])
+                galleryModel.append({ "filePath": output, "isVideo": true })
+            } else {
+                console.warn("join failed:", error)
+                fsOperations.deleteFile(output)
+                // Recover: expose the hidden segments under visible names.
+                for (var j = 0; j < _vidJoinSegs.length; ++j) {
+                    var vis = _vidFinalPath.replace(/\.mp4$/, "") + "_part" + (j + 1) + ".mp4"
+                    videoJoiner.renameFile(_vidJoinSegs[j], vis)
+                    galleryModel.append({ "filePath": vis, "isVideo": true })
+                }
+            }
+            _vidJoinSegs = []
         }
     }
 
@@ -349,6 +377,19 @@ Page {
             onClicked: doShutter()
         }
 
+        RoundButton {
+            id: btnPause
+            visible: settings.global.captureMode === "video" && _vidActive
+            enabled: visible
+            anchors.right: btnCapture.left
+            anchors.rightMargin: Theme.paddingLarge
+            anchors.verticalCenter: btnCapture.verticalCenter
+            size: Theme.itemSizeMedium
+            rotation: page.controlsRotation
+            image: _vidPaused ? "image://theme/icon-m-play" : "image://theme/icon-m-pause"
+            onClicked: _vidPaused ? videoResume() : videoPause()
+        }
+
 
         RoundButton {
             id: teleLense
@@ -361,7 +402,7 @@ Page {
             anchors.bottom: wideLense.top
             anchors.bottomMargin: Theme.paddingSmall
             rotation: page.controlsRotation
-            visible: checkIfCamExists("1") && (camera.videoRecorder.recorderStatus !== CameraRecorder.RecordingStatus) && settings.global.cameraCount > 3 && settings.global.enableWideCameraButtons
+            visible: checkIfCamExists("1") && !_vidActive && settings.global.cameraCount > 3 && settings.global.enableWideCameraButtons
         }
         RoundButton {
             id: wideLense
@@ -373,7 +414,7 @@ Page {
             anchors.rightMargin: Theme.paddingLarge * 1.337
             anchors.verticalCenter: btnCapture.verticalCenter
             rotation: page.controlsRotation
-            visible: checkIfCamExists("0") && (camera.videoRecorder.recorderStatus !== CameraRecorder.RecordingStatus) && settings.global.cameraCount > 3 && settings.global.enableWideCameraButtons
+            visible: checkIfCamExists("0") && !_vidActive && settings.global.cameraCount > 3 && settings.global.enableWideCameraButtons
         }
         RoundButton {
             id: uwideLense
@@ -386,7 +427,7 @@ Page {
             anchors.top: wideLense.bottom
             anchors.topMargin: Theme.paddingSmall
             rotation: page.controlsRotation
-            visible: checkIfCamExists("2") && (camera.videoRecorder.recorderStatus !== CameraRecorder.RecordingStatus) && settings.global.cameraCount > 3 && settings.global.enableWideCameraButtons
+            visible: checkIfCamExists("2") && !_vidActive && settings.global.cameraCount > 3 && settings.global.enableWideCameraButtons
         }
 
 
@@ -468,9 +509,11 @@ Page {
                 Label {
                     id: lblRecordTime
                     visible: settings.global.captureMode === "video"
-                    color: Theme.lightPrimaryColor
+                    color: _vidPaused ? Theme.secondaryHighlightColor : Theme.lightPrimaryColor
                     //text: Qt.formatDateTime(new Date(camera.videoRecorder.duration), "hh:mm:ss") //Doest work as return 01:00:00 for 0
-                    text: msToTime(camera.videoRecorder.duration)
+                    text: (videoJoiner.busy ? qsTr("Joining…") + " "
+                           : _vidPaused ? qsTr("Paused") + " " : "")
+                          + msToTime(_vidElapsedBefore + (_vidRecording ? camera.videoRecorder.duration : 0))
                 }
                 Item {
                     height: 1
@@ -939,6 +982,75 @@ Page {
         return Qt.size(Screen.height, Screen.width)
     }
 
+    // --- video pause/resume session ---
+    function videoStartSession() {
+        _vidSegments = []
+        _vidJoinSegs = []
+        _vidElapsedBefore = 0
+        _vidPaused = false
+        _vidFinalPath = fsOperations.writableLocation(
+                    "video", settings.global.storagePath) + "/VID_" + Qt.formatDateTime(
+                    new Date(), "yyyyMMdd_hhmmss") + ".mp4"
+        videoStartSegment()
+    }
+    function _vidSegPath(n) {
+        // Hidden (dot-prefixed) so the media tracker ignores the raw segments;
+        // only the finished VID_*.mp4 — a fresh name, never a segment — is indexed.
+        var slash = _vidFinalPath.lastIndexOf("/")
+        var dir = _vidFinalPath.substring(0, slash)
+        var base = _vidFinalPath.substring(slash + 1).replace(/\.mp4$/, "")
+        return dir + "/." + base + ".part" + n + ".mp4"
+    }
+    function videoStartSegment() {
+        var n = _vidSegments.length
+        var path = _vidSegPath(n + 1)
+        var segs = _vidSegments.slice()
+        segs.push(path)
+        _vidSegments = segs
+        _vidPaused = false
+        _vidStopIntent = ""
+        if ((camera.focus.focusMode === Camera.FocusAuto && !_manualModeSelected)
+                || camera.focus.focusMode === Camera.FocusMacro
+                || camera.focus.focusMode === Camera.FocusContinuous) {
+            camera.unlock()
+        }
+        camera.videoRecorder.outputLocation = path
+        camera.videoRecorder.record()
+    }
+    function videoPause() {
+        if (!_vidRecording)
+            return
+        _vidElapsedBefore += camera.videoRecorder.duration
+        _vidStopIntent = "pause"
+        camera.videoRecorder.stop()
+    }
+    function videoResume() {
+        if (_vidPaused)
+            videoStartSegment()
+    }
+    function videoStop() {
+        if (_vidRecording) {
+            _vidElapsedBefore += camera.videoRecorder.duration
+            _vidStopIntent = "stop"
+            camera.videoRecorder.stop()     // -> onRecorderStateChanged -> videoFinalizeSession()
+        } else if (_vidPaused) {
+            videoFinalizeSession()
+        }
+    }
+    function videoFinalizeSession() {
+        _vidPaused = false
+        var segs = _vidSegments
+        _vidSegments = []
+        _vidElapsedBefore = 0
+        if (segs.length === 1) {
+            videoJoiner.renameFile(segs[0], _vidFinalPath)   // hidden -> fresh final name
+            galleryModel.append({ "filePath": _vidFinalPath, "isVideo": true })
+        } else if (segs.length > 1) {
+            _vidJoinSegs = segs
+            videoJoiner.join(segs, _vidFinalPath)            // join straight to the final name
+        }
+    }
+
     function doShutter() {
         camera.metaData.date = new Date()
         if (camera.captureMode === Camera.CaptureStillImage) {
@@ -959,21 +1071,10 @@ Page {
                 }
             }
         } else {
-            if (camera.videoRecorder.recorderStatus === CameraRecorder.RecordingStatus) {
-                camera.videoRecorder.stop()
-            } else {
-                camera.videoRecorder.outputLocation = fsOperations.writableLocation(
-                            "video",
-                            settings.global.storagePath) + "/VID_" + Qt.formatDateTime(
-                            new Date(), "yyyyMMdd_hhmmss") + ".mp4"
-                if ((camera.focus.focusMode === Camera.FocusAuto
-                     && !_manualModeSelected)
-                        || camera.focus.focusMode === Camera.FocusMacro
-                        || camera.focus.focusMode === Camera.FocusContinuous) {
-                    camera.unlock()
-                }
-                camera.videoRecorder.record()
-            }
+            if (_vidActive)
+                videoStop()
+            else if (!videoJoiner.busy && _vidStopIntent === "")
+                videoStartSession()
         }
     }
 
@@ -1003,7 +1104,7 @@ Page {
         if (camera.captureMode === Camera.CaptureStillImage) {
             return "image://theme/icon-camera-shutter"
         } else {
-            if (camera.videoRecorder.recorderStatus === CameraRecorder.RecordingStatus) {
+            if (_vidActive) {
                 return "image://theme/icon-camera-video-shutter-off"
             } else {
                 return "image://theme/icon-camera-video-shutter-on"
